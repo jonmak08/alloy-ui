@@ -437,8 +437,8 @@ var ImageCropper = A.Component.create(
 
 				var cropNode = instance.cropNode;
 
-				instance.set('x', parseNumber(cropNode.getStyle('left')) + cropNode.getBorderWidth('l'));
-				instance.set('y', parseNumber(cropNode.getStyle('top')) + cropNode.getBorderWidth('t'));
+				instance.set('x', parseNumber(cropNode.getStyle('left')));
+				instance.set('y', parseNumber(cropNode.getStyle('top')));
 			},
 
 			_uiSetCropHeight: function(value) {
