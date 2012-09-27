@@ -208,9 +208,13 @@ var Paginator = A.Component.create(
 			firstPageLink: {
 				setter: A.one,
 				valueFn: function() {
-					var label = this.get(FIRST_PAGE_LINK_LABEL);
+					var instance = this;
 
-					return A.Node.create(FIRST_LINK_TPL).html(label);
+					var label = instance.TPL.firstPageLinkLabel;
+
+					var firstLink = instance.TPL.firstLink;
+
+					return A.Node.create(firstLink).html(label);
 				}
 			},
 
@@ -238,9 +242,13 @@ var Paginator = A.Component.create(
 			lastPageLink: {
 				setter: A.one,
 				valueFn: function() {
+					var instance = this;
+
 					var label = this.get(LAST_PAGE_LINK_LABEL);
 
-					return A.Node.create(LAST_LINK_TPL).html(label);
+					var lastLink = instance.TPL.lastLink;
+
+					return A.Node.create(lastLink).html(label);
 				}
 			},
 
@@ -288,9 +296,13 @@ var Paginator = A.Component.create(
 			nextPageLink: {
 				setter: A.one,
 				valueFn: function() {
+					var instance = this;
+
 					var label = this.get(NEXT_PAGE_LINK_LABEL);
 
-					return A.Node.create(NEXT_LINK_TPL).html(label);
+					var nextLink = instance.TPL.nextLink;
+
+					return A.Node.create(nextLink).html(label);
 				}
 			},
 
@@ -385,9 +397,13 @@ var Paginator = A.Component.create(
 			pageReportEl: {
 				setter: A.one,
 				valueFn: function() {
+					var instance = this;
+
 					var label = this.get(PAGE_REPORT_LABEL_TEMPLATE);
 
-					return A.Node.create(PAGE_REPORT_TPL).html(label);
+					var pageReport = instance.TPL.pageReport;
+
+					return A.Node.create(pageReport).html(label);
 				}
 			},
 
@@ -405,7 +421,9 @@ var Paginator = A.Component.create(
 				getter: function() {
 					var instance = this;
 
-					return L.sub(PAGE_REPORT_LABEL_TPL, {
+					var pageReportLabel = instance.TPL.pageReportLabel;
+
+					return L.sub(pageReportLabel, {
 						page: instance.get(PAGE),
 						totalPages: instance.get(TOTAL_PAGES)
 					});
@@ -424,9 +442,13 @@ var Paginator = A.Component.create(
 			prevPageLink: {
 				setter: A.one,
 				valueFn: function() {
+					var instance = this;
+
 					var label = this.get(PREV_PAGE_LINK_LABEL);
 
-					return A.Node.create(PREV_LINK_TPL).html(label);
+					var prevLink = instance.TPL.prevLink;
+
+					return A.Node.create(prevLink).html(label);
 				}
 			},
 
@@ -495,7 +517,11 @@ var Paginator = A.Component.create(
 					return val;
 				},
 				valueFn: function() {
-					return A.Node.create(ROWS_PER_PAGE_TPL);
+					var instance = this;
+
+					var rowsPerPage = instance.TPL.rowsPerPage;
+
+					return A.Node.create(rowsPerPage);
 				}
 			},
 
@@ -554,9 +580,13 @@ var Paginator = A.Component.create(
 			totalEl: {
 				setter: A.one,
 				getter: function() {
+					var instance = this;
+
 					var label = this.get(TOTAL_LABEL);
 
-					return A.Node.create(TOTAL_TPL).html(label);
+					var total = instance.TPL.total;
+
+					return A.Node.create(total).html(label);
 				}
 			},
 
@@ -571,7 +601,9 @@ var Paginator = A.Component.create(
 				getter: function() {
 					var instance = this;
 
-					return L.sub(TOTAL_LABEL_TPL, {
+					var totalLabel = instance.TPL.totalLabel;
+
+					return L.sub(totalLabel, {
 						total: instance.get(TOTAL)
 					});
 				},
@@ -623,6 +655,30 @@ var Paginator = A.Component.create(
 			 * @method renderUI
 			 * @protected
 			 */
+
+			TPL: {
+				defaultOutput: '{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}',
+				firstLink: '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_FIRST_LINK)+'"></a>',
+				lastLink: '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_LAST_LINK)+'"></a>',
+				nextLink: '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_NEXT_LINK)+'"></a>',
+				pageContainer: '<span></span>',
+				pageLink: '<a href="#"></a>',
+				pageReport: '<span class="'+concat(CSS_PAGINATOR_PAGE_REPORT)+'"></span>',
+				pageReportLabel: '({page} of {totalPages})',
+				prevLink: '<a href="#" class="'+concat(CSS_PAGINATOR_LINK, CSS_PAGINATOR_PREV_LINK)+'"></a>',
+				rowsPerPage: '<select class="'+CSS_PAGINATOR_ROWS_PER_PAGE+'"></select>',
+				total: '<span class="'+concat(CSS_PAGINATOR_TOTAL)+'"></span>',
+				totalLabel: '(Total {total})'
+			},
+
+			initializer: function(config) {
+				var instance = this;
+
+				var TPL = config.TPL || {};
+
+				A.mix(instance.TPL, TPL, true);
+			},
+
 			renderUI: function() {
 				var instance = this;
 				var containers = instance.get(CONTAINERS);
