@@ -16,7 +16,6 @@ var L = A.Lang,
 	toInt = L.toInt,
 
 	ALWAYS_VISIBLE = 'alwaysVisible',
-	BOUNDING_BOX = 'boundingBox',
 	CIRCULAR = 'circular',
 	CONTAINER = 'container',
 	CONTAINERS = 'containers',
@@ -24,40 +23,28 @@ var L = A.Lang,
 	CURRENT = 'current',
 	DOT = '.',
 	FIRST = 'first',
-	FIRST_PAGE_LINK = 'firstPageLink',
 	FIRST_PAGE_LINK_LABEL = 'firstPageLinkLabel',
 	LAST = 'last',
-	LAST_PAGE_LINK = 'lastPageLink',
 	LAST_PAGE_LINK_LABEL = 'lastPageLinkLabel',
 	LINK = 'link',
 	MAX_PAGE_LINKS = 'maxPageLinks',
 	NEXT = 'next',
-	NEXT_PAGE_LINK = 'nextPageLink',
 	NEXT_PAGE_LINK_LABEL = 'nextPageLinkLabel',
 	OPTION = 'option',
 	PAGE = 'page',
-	PAGE_CONTAINER_TEMPLATE = 'pageContainerTemplate',
 	PAGE_LINK_CONTENT = 'pageLinkContent',
-	PAGE_LINK_TEMPLATE = 'pageLinkTemplate',
-	PAGE_REPORT_EL = 'pageReportEl',
-	PAGE_REPORT_LABEL_TEMPLATE = 'pageReportLabelTemplate',
 	PAGINATOR = 'paginator',
 	PER = 'per',
 	PREV = 'prev',
-	PREV_PAGE_LINK = 'prevPageLink',
 	PREV_PAGE_LINK_LABEL = 'prevPageLinkLabel',
 	REPORT = 'report',
 	ROWS = 'rows',
 	ROWS_PER_PAGE = 'rowsPerPage',
-	ROWS_PER_PAGE_EL = 'rowsPerPageEl',
 	ROWS_PER_PAGE_OPTIONS = 'rowsPerPageOptions',
-	SELECT = 'select',
 	SELECTED = 'selected',
 	SPACE = ' ',
 	STATE = 'state',
-	TEMPLATE = 'template',
 	TOTAL = 'total',
-	TOTAL_EL = 'totalEl',
 	TOTAL_LABEL = 'totalLabel',
 	TOTAL_PAGES = 'totalPages',
 
@@ -331,7 +318,7 @@ var Paginator = A.Component.create(
 			 */
 			rowsPerPageOptions: {
 				validator: isArray,
-				value: {}
+				value: []
 			},
 
 			/**
@@ -450,13 +437,6 @@ var Paginator = A.Component.create(
 				var configTpl = instance.configTpl;
 
 				var pageReportLabel = configTpl.pageReportLabel;
-				var rowsPerPage = configTpl.rowsPerPage;
-
-				var rowsPerPageNode = instance._createNode(rowsPerPage);
-
-				rowsPerPageNode.addClass(CSS_PAGINATOR_ROWS_PER_PAGE);
-
-				instance._rowsPerPage = rowsPerPageNode;
 
 				instance._pageReportLabel = L.sub(
 					pageReportLabel,
@@ -465,8 +445,6 @@ var Paginator = A.Component.create(
 						totalPages: totalPages
 					}
 				);
-
-				instance.templates = null;
 			},
 
 			/**
@@ -564,7 +542,7 @@ var Paginator = A.Component.create(
 
 				return {
 					end: end,
-					start: start,
+					start: start
 				};
 			},
 
@@ -849,7 +827,7 @@ var Paginator = A.Component.create(
 				var totalEl = configTpl.total;
 
 				var pageReportLinkLabel = instance._pageReportLabel;
-				var rowsPerPage = instance._rowsPerPage;
+				var rowsPerPageEl = instance._rowsPerPageEl;
 
 				var firstPageLink = instance._createNode(firstPageLinkEl, firstPageLinkLabel);
 				var lastPageLink = instance._createNode(lastPageLinkEl, lastPageLinkLabel);
@@ -877,8 +855,8 @@ var Paginator = A.Component.create(
 					return key.outerHTML();
 				};
 
-				if (rowsPerPage) {
-					var rowsPerPageSelect = outer(rowsPerPage);
+				if (rowsPerPageEl) {
+					var rowsPerPageSelect = outer(rowsPerPageEl);
 
 					if (IE >= 9) {
 						rowsPerPageSelect = rowsPerPageSelect.replace(/selected=""/gi, '');
@@ -1013,35 +991,37 @@ var Paginator = A.Component.create(
 			_renderRowsPerPageOptions: function() {
 				var instance = this;
 
-				var i = 0;
-
 				var configTpl = instance.configTpl;
 
-				var rowsPerPageEl = instance._rowsPerPage;
+				var rowsPerPageTpl = configTpl.rowsPerPage;
 
-				if (rowsPerPageEl) {
-					var rowsPerPage = instance.get(ROWS_PER_PAGE);
-					var rowsPerPageOptions = instance.get(ROWS_PER_PAGE_OPTIONS);
+				var rowsPerPageEl = instance._createNode(rowsPerPageTpl);
 
-					var options = rowsPerPageEl.all(OPTION);
+				rowsPerPageEl.addClass(CSS_PAGINATOR_ROWS_PER_PAGE);
 
-					options.removeAttribute(SELECTED);
+				var options = rowsPerPageEl.all(OPTION);
 
-					var selected = options.filter('[value=' + rowsPerPage + ']');
+				options.removeAttribute(SELECTED);
 
-					if (selected) {
-						selected.setAttribute(SELECTED, SELECTED);
-					}
+				var rowsPerPage = instance.get(ROWS_PER_PAGE);
+				var rowsPerPageOptions = instance.get(ROWS_PER_PAGE_OPTIONS);
 
-					A.each(
-						rowsPerPageOptions,
-						function(value) {
-							var rowsPerPageDOM = rowsPerPageEl.getDOM();
+				var selected = options.filter('[value=' + rowsPerPage + ']');
 
-							rowsPerPageDOM.options[i++] = new Option(value, value);
-						}
-					);
+				if (selected) {
+					selected.setAttribute(SELECTED, SELECTED);
 				}
+
+				A.each(
+					rowsPerPageOptions,
+					function(item, index, collection) {
+						var rowsPerPageDOM = rowsPerPageEl.getDOM();
+
+						rowsPerPageDOM.options[index] = new Option(item, item);
+					}
+				);
+
+				instance._rowsPerPageEl = rowsPerPageEl;
 			},
 
 			/**
