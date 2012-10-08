@@ -117,7 +117,7 @@ var ParseContent = A.Component.create(
 
 				var url = config && config.url;
 
-				if (!!url) {
+				if (url) {
 					instance._bindIOSuccess(url);
 				}
 			},
@@ -344,4 +344,4 @@ var ParseContent = A.Component.create(
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{skinnable:false, requires:['async-queue','aui-base','plugin']});
+}, '@VERSION@' ,{requires:['async-queue','aui-base','plugin','io'], skinnable:false});
