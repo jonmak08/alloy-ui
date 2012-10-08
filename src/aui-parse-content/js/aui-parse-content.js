@@ -116,7 +116,7 @@ var ParseContent = A.Component.create(
 
 				var url = config && config.url;
 
-				if (!!url) {
+				if (url) {
 					instance._bindIOSuccess(url);
 				}
 			},
