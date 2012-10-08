@@ -21,7 +21,7 @@ AUI().ready('aui-parse-content', 'io', function(A) {
 	var node = A.one('#temp');
 
 	// after plug the ParseContent, it will parse the internal script/css content
-	node.plug(A.Plugin.ParseContent);
+	node.plug(A.Plugin.ParseContent, {url: 'assets/content.html'});
 
 	// var html = 'textNode<' + 'script src="assets/external.js"></' + 'script>anyNode<span>span</span>';
 	// var frag = document.createElement('div');
@@ -30,16 +30,6 @@ AUI().ready('aui-parse-content', 'io', function(A) {
 	// or using append...
 	// node.append(html);
 	// node.append(frag);
-
-	A.io('assets/content.html', {
-		on: {
-			success: function(id, o) {
-				// or using setContent
- 				node.setContent(o.responseText);
- 				// node.append(o.responseText);
-			}
-		}
-	});
 });
 
 </script>
