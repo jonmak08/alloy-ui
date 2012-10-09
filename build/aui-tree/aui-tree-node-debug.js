@@ -1493,9 +1493,17 @@ var TreeNodeCheck = A.Component.create(
 			checkEl: {
 				setter: A.one,
 				valueFn: function() {
-					var checkName = this.get(CHECK_NAME);
+					var instance = this;
 
-					return A.Node.create(CHECKBOX_TPL).attr(NAME, checkName);
+					var checkName = instance.get(CHECK_NAME);
+					var id = concat(instance.get(ID), 'Checkbox');
+
+					var attributes = {
+						ID: id,
+						NAME: checkName
+					};
+
+					return A.Node.create(CHECKBOX_TPL).attr(attributes);
 				}
 			}
 		},
@@ -1878,4 +1886,4 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','aui-io','json','querystring-stringify']});

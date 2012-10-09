@@ -851,7 +851,7 @@ A.mix(TreeData.prototype, {
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-task-manager'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-task-manager']});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -2347,9 +2347,17 @@ var TreeNodeCheck = A.Component.create(
 			checkEl: {
 				setter: A.one,
 				valueFn: function() {
-					var checkName = this.get(CHECK_NAME);
+					var instance = this;
 
-					return A.Node.create(CHECKBOX_TPL).attr(NAME, checkName);
+					var checkName = instance.get(CHECK_NAME);
+					var id = concat(instance.get(ID), 'Checkbox');
+
+					var attributes = {
+						ID: id,
+						NAME: checkName
+					};
+
+					return A.Node.create(CHECKBOX_TPL).attr(attributes);
 				}
 			}
 		},
@@ -2732,7 +2740,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','aui-io','json','querystring-stringify']});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
@@ -3670,7 +3678,7 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-delegate','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-tree-node','dd-delegate','dd-proxy'], skinnable:true});
 
 
 AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
