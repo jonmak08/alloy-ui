@@ -114,10 +114,8 @@ var ParseContent = A.Component.create(
 
 				instance._bindAOP();
 
-				var url = config && config.url;
-
-				if (url) {
-					instance._bindIOSuccess(url);
+				if (config && config.url) {
+					instance._bindIOSuccess(config);
 				}
 			},
 
@@ -222,24 +220,28 @@ var ParseContent = A.Component.create(
 			 * <code>setContent</code> as the IO transaction's <code>responseText</code>.
 			 *
 			 * @method _bindIOSuccess
-			 * @param {String} url IO transaction success URL.
+			 * @param {Object} data The config plugin config object.
 			 * @protected
 			 */
-			_bindIOSuccess: function(url) {
+			_bindIOSuccess: function(data) {
 				var instance = this;
 
 				var node = instance.get(HOST);
 
-				A.io(
-					url,
+				var url = data.url;
+
+				var ioConfig = data.ioConfig || {};
+
+				ioConfig.on = A.merge(
 					{
-						on: {
-							success: function(id, o) {
-								node.setContent(o.responseText);
-							}
+						success: function(id, o) {
+							node.setContent(o.responseText);
 						}
-					}
+					},
+					ioConfig.on
 				);
+
+				A.io(url, ioConfig);
 			},
 
 			/**
