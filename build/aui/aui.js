@@ -11120,7 +11120,7 @@ YUI.add('yui', function (Y, NAME) {}, '3.7.2', {"use": ["yui-base", "get", "feat
 						'aui-overlay': {submodules: {'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {skinnable:true, requires:['aui-overlay-context','anim']}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task','aui-aria']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true},
 						'aui-paginator': {requires:['aui-base'], skinnable:true},
 						'aui-panel': {requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria'], skinnable:true},
-						'aui-parse-content': {requires:['async-queue','aui-base','plugin'], skinnable:false},
+						'aui-parse-content': {requires:['async-queue','aui-base','plugin','io'], skinnable:false},
 						'aui-portal-layout': {requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy'], skinnable:true},
 						'aui-progressbar': {requires:['aui-base','aui-aria'], skinnable:true},
 						'aui-property-list': {requires:['aui-datatable','datatable-scroll','datatable-sort'], skinnable:true},

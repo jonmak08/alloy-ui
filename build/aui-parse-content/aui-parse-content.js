@@ -103,7 +103,7 @@ var ParseContent = A.Component.create(
 			 * @method initializer
 			 * @protected
 			 */
-			initializer: function() {
+			initializer: function(config) {
 				var instance = this;
 
 				ParseContent.superclass.initializer.apply(this, arguments);
@@ -114,6 +114,10 @@ var ParseContent = A.Component.create(
 				);
 
 				instance._bindAOP();
+
+				if (config && config.url) {
+					instance._bindIOSuccess(config);
+				}
 			},
 
 			/**
@@ -210,6 +214,35 @@ var ParseContent = A.Component.create(
 
 				this.doBefore('replace', cleanArgs);
 				this.doBefore('setContent', cleanArgs);
+			},
+
+			/**
+			 * Bind a <code>success</code> listener to the host node that will
+			 * <code>setContent</code> as the IO transaction's <code>responseText</code>.
+			 *
+			 * @method _bindIOSuccess
+			 * @param {Object} data The config plugin config object.
+			 * @protected
+			 */
+			_bindIOSuccess: function(data) {
+				var instance = this;
+
+				var node = instance.get(HOST);
+
+				var url = data.url;
+
+				var ioConfig = data.ioConfig || {};
+
+				ioConfig.on = A.merge(
+					{
+						success: function(id, o) {
+							node.setContent(o.responseText);
+						}
+					},
+					ioConfig.on
+				);
+
+				A.io(url, ioConfig);
 			},
 
 			/**
@@ -313,4 +346,4 @@ var ParseContent = A.Component.create(
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{skinnable:false, requires:['async-queue','aui-base','plugin']});
+}, '@VERSION@' ,{requires:['async-queue','aui-base','plugin','io'], skinnable:false});
