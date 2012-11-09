@@ -305,7 +305,11 @@ var OverlayMask = A.Component.create(
 			_setOpacity: function(v) {
 				var instance = this;
 
-				instance.get(CONTENT_BOX).setStyle(OPACITY, v);
+				instance.get(CONTENT_BOX).setStyles({
+					opacity: v,
+					height: '100%',
+					width: '100%'
+				});
 
 				return v;
 			},
