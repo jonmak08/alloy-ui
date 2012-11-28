@@ -39,9 +39,6 @@ var Lang = A.Lang,
 	CLEARFIX = 'clearfix',
 	CONTENT_BOX = 'contentBox',
 	CONTENT = 'content',
-	CURRENT_DAY = 'currentDay',
-	CURRENT_MONTH = 'currentMonth',
-	CURRENT_YEAR = 'currentYear',
 	DATA_COMPONENT_ID = 'data-auiComponentID',
 	DATEPICKER = 'datepicker',
 	DAY = 'day',
@@ -557,18 +554,20 @@ var DatePickerSelect = A.Component.create(
 			 * @return {Object}
 			 */
 			_normalizeYearMonth: function(year, month, day) {
-				var instance = this;
+				var instance = this,
+					selectedDates = instance.calendar.get('selectedDates'),
+					date = selectedDates.length ? selectedDates[0] : new Date();
 
 				if (!isValue(day)) {
-					day = instance.get(CURRENT_DAY);
+					day = date.getDate();
 				}
 
 				if (!isValue(month)) {
-					month = instance.get(CURRENT_MONTH);
+					month = date.getMonth();
 				}
 
 				if (!isValue(year)) {
-					year = instance.get(CURRENT_YEAR);
+					year = date.getFullYear();
 				}
 
 				return { year: year, month: month, day: day };
@@ -1022,4 +1021,4 @@ var DatePickerSelect = A.Component.create(
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datepicker-base','aui-button-item']});
+}, '@VERSION@' ,{requires:['aui-datepicker-base','aui-button-item'], skinnable:true});

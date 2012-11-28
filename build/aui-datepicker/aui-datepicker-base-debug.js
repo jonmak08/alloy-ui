@@ -387,4 +387,4 @@ Calendar.prototype = {
 
 A.Base.mix(A.Calendar, [Calendar]);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','calendar','aui-overlay-context']});
+}, '@VERSION@' ,{requires:['aui-datatype','calendar','aui-overlay-context'], skinnable:true});
