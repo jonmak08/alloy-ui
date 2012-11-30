@@ -452,7 +452,6 @@ var DatePickerSelect = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				instance._populateSelects();
 				instance._syncSelectsUI();
 			},
 
