@@ -1027,6 +1027,7 @@ var DatePickerSelect = A.Component.create(
 				instance.get(DAY_NODE).set('disabled', disabled);
 				instance.get(MONTH_NODE).set('disabled', disabled);
 				instance.get(YEAR_NODE).set('disabled', disabled);
+				instance.get(BUTTON_NODE).set('hidden', true);
 			}
 		}
 	}
