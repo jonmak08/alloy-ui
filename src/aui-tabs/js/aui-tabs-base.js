@@ -23,7 +23,7 @@ var Lang = A.Lang,
 	TPL_DIV = '<div></div>',
 	TPL_UL = '<ul></ul>',
 
-	TPL_LABEL = '<em></em>',
+	TPL_LABEL = '<span></span>',
 	TPL_TAB_CONTAINER = TPL_UL,
 	TPL_CONTENT_ITEM = TPL_DIV,
 	TPL_CONTENT_CONTAINER = TPL_DIV;
