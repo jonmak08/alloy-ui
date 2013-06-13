@@ -545,22 +545,22 @@ var TabView = A.Component.create(
 			_onActiveTabChange: function(event) {
 				var instance = this;
 
-				var newTab = event.newVal;
-				var oldTab = event.prevVal;
+				var targetTab = event.newVal;
+				var previousTab = event.prevVal;
 
-				if (newTab != oldTab) {
-					newTab.set('active', true);
+				if (targetTab != previousTab) {
+					targetTab.set('active', true);
 
-					var newTabAnchor = newTab.get(CONTENT_BOX).one('.' + CSS_TAB_LABEL);
+					var targetTabLabel = targetTab.get(CONTENT_BOX).one('.' + CSS_TAB_LABEL);
 
-					newTabAnchor.html('<strong>' + newTabAnchor.text() + '</strong>');
+					targetTabLabel.html('<strong>' + targetTabLabel.text() + '</strong>');
 
-					if (oldTab) {
-						var oldTabAnchor = oldTab.get(CONTENT_BOX).one('.' + CSS_TAB_LABEL);
+					if (previousTab) {
+						var previousTabLabel = previousTab.get(CONTENT_BOX).one('.' + CSS_TAB_LABEL);
 
-						oldTabAnchor.html(oldTabAnchor.text());
+						previousTabLabel.html(previousTabLabel.text());
 
-						oldTab.set('active', false);
+						previousTab.set('active', false);
 					}
 				}
 			},
@@ -605,7 +605,7 @@ var TabView = A.Component.create(
 
 				var length = items.length;
 
-				for (var i = 0; i < items.length; i++) {
+				for (var i = 0; i < length; i++) {
 					instance.addTab(items[i]);
 				}
 
