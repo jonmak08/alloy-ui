@@ -37,9 +37,11 @@
 
 .textboxlistentry-close {
 	cursor: pointer;
+	height: 14px;
+	margin-top: -7px;
 	position: absolute;
 	right: 3px;
-	top: 5px;
+	top: 50%;
 }
 
 .textboxlistentry-close-hover {
