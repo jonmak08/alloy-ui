@@ -1,6 +1,6 @@
 YUI.add('module-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-ace-editor');
+    var suite = new Y.Test.Suite('aui-timepicker');
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',

@@ -359,8 +359,19 @@ A.mix(DateParser.prototype, {
         }
 
         if (Lang.isValue(calendar.hours)) {
-            if (!calendar.isoTime && calendar.ampm) {
-                calendar.hours += 12;
+            if (!calendar.isoTime) {
+                if (calendar.ampm) {
+                    // Adjust for PM, e.g. 1:00 PM
+                    if (calendar.hours < 12) {
+                        calendar.hours += 12;
+                    }
+                }
+                else {
+                    // Adjust for AM, e.g. 12:00 AM
+                    if (calendar.hours === 12) {
+                        calendar.hours = 0;
+                    }
+                }
             }
 
             opt_date.setHours(calendar.hours);
@@ -612,7 +623,7 @@ A.mix(DateParser.prototype, {
 
         text = text.substring(textPos[0]);
 
-        match = /\b[A-Z]{3}([+-\s])?(\d{1,2})?:?(\d{1,2})?/.exec(text);
+        match = /\b[A-Z]{3}([+\-\s])?(\d{1,2})?:?(\d{1,2})?/.exec(text);
 
         if (match) {
             tz = match[0];
