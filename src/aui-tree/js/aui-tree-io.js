@@ -94,7 +94,9 @@ TreeViewIO.prototype = {
 
 		var io = instance.get(IO);
 
-		if (isFunction(io.cfg.data)) {
+		var dataCfg = isFunction(io.cfg.data) ? io.cfg.data : '';
+
+		if (dataCfg) {
 			io.cfg.data = io.cfg.data.call(instance, instance);
 		}
 
@@ -108,6 +110,10 @@ TreeViewIO.prototype = {
 		}
 		else {
 			A.io.request(io.url, io.cfg);
+		}
+
+		if (dataCfg) {
+			io.cfg.data = dataCfg;
 		}
 	},
 
