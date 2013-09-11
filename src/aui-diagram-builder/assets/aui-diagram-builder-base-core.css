@@ -45,6 +45,11 @@
 	position: relative;
 }
 
+.diagram-builder-tab-pane {
+	height: 544px;
+	overflow: auto;
+}
+
 .diagram-builder-fields-container {
 	margin: 5px;
 }
