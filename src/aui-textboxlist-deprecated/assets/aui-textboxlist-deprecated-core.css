@@ -4,6 +4,12 @@
 	padding: 4px 5px 0;
 }
 
+.textboxlist-content input[type="text"].field-input-text, .textboxlist-content input[type="text"].field-input-text:focus {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 .textboxlist-content .field-input-text {
 	border-width: 0;
 	outline-width: 0;
@@ -24,7 +30,7 @@
 .textboxlistentry {
 	background-color: #dee7f8;
 	border: 1px solid #cad8f3;
-	padding: 5px 25px 5px 11px;
+	padding: 7px 11px;
 	position: relative;
 }
 
@@ -35,17 +41,20 @@
 	outline-width: 0;
 }
 
-.textboxlistentry-close {
+.textboxlistentry-remove {
+	border-radius: 50%;
+	color: #D21212;
 	cursor: pointer;
-	position: absolute;
-	right: 3px;
-	top: 3px;
+	margin-left: 5px;
+	padding: 1px 3px 2px 3px;
+	text-align: center;
+	vertical-align: middle;
 }
 
-.textboxlistentry-close-hover {
+.textboxlistentry-remove-hover {
 	background-color: #cad8f3;
 }
 
-.textboxlistentry-focused .textboxlistentry-close {
+.textboxlistentry-focused .textboxlistentry-remove {
 	background-color: #fff;
 }
