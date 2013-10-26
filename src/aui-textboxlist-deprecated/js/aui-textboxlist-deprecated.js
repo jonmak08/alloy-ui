@@ -102,6 +102,9 @@ var TextboxList = A.Component.create(
 			delimChar: {
 				value: ''
 			},
+			escapedContent: {
+				value: false
+			},
 			tabIndex: {
 				value: 0
 			}
@@ -430,6 +433,7 @@ var TextboxList = A.Component.create(
 				var eventType = event.type;
 				var inputNode = instance.inputNode;
 				var entryHolder = instance.entryHolder;
+				var escaped = instance.get('escapedContent');
 				var item = event.item;
 				var index = event.index;
 
@@ -441,7 +445,8 @@ var TextboxList = A.Component.create(
 					if (eventType == 'dataset:add') {
 						var entry = new TextboxListEntry(
 							{
-								labelText: key
+								labelText: key,
+								escapedContent: escaped
 							}
 						);
 
@@ -494,6 +499,9 @@ var TextboxListEntry = A.Component.create(
 			},
 			tabIndex: {
 				value: 0
+			},
+			escapedContent: {
+				value: false
 			}
 		},
 
@@ -509,6 +517,10 @@ var TextboxListEntry = A.Component.create(
 				var close = A.Node.create(TPL_ENTRY_REMOVE);
 
 				var labelText = A.Escape.html(instance.get('labelText'));
+
+				if (instance.get('escapedContent')) {
+					labelText = instance.get('labelText');
+				}
 
 				text.set('innerHTML', labelText);
 
