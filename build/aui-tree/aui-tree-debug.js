@@ -2321,6 +2321,13 @@ var TreeNodeTask = A.Component.create(
 		 */
 		NAME: TREE_NODE_TASK,
 
+		ATTRS: {
+			selectAllChildren: {
+				validator: isBoolean,
+				value: true
+			},
+		},
+
 		EXTENDS: A.TreeNodeCheck,
 
 		prototype: {
@@ -2332,7 +2339,7 @@ var TreeNodeTask = A.Component.create(
 
 				originalTarget = originalTarget || instance;
 
-				if (!instance.isLeaf()) {
+				if (!instance.isLeaf() && instance.get('selectAllChildren')) {
 					instance.eachChildren(
 						function(child) {
 							if (isTreeNodeTask(child)) {
@@ -2361,7 +2368,7 @@ var TreeNodeTask = A.Component.create(
 
 				originalTarget = originalTarget || instance;
 
-				if (!instance.isLeaf()) {
+				if (!instance.isLeaf() && instance.get('selectAllChildren')) {
 					instance.eachChildren(
 						function(child) {
 							if (child instanceof A.TreeNodeCheck) {
@@ -3697,7 +3704,7 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy'], skinnable:true});
 AUI.add('aui-tree-io', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
