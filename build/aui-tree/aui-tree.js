@@ -1187,6 +1187,11 @@ var TreeNode = A.Component.create(
 				value: false
 			},
 
+			selectChildren: {
+				validator: isBoolean,
+				value: true
+			},
+
 			tabIndex: {
 				value: null
 			}
@@ -2332,7 +2337,7 @@ var TreeNodeTask = A.Component.create(
 
 				originalTarget = originalTarget || instance;
 
-				if (!instance.isLeaf()) {
+				if (!instance.isLeaf() && instance.get('selectChildren')) {
 					instance.eachChildren(
 						function(child) {
 							if (isTreeNodeTask(child)) {
@@ -2361,7 +2366,7 @@ var TreeNodeTask = A.Component.create(
 
 				originalTarget = originalTarget || instance;
 
-				if (!instance.isLeaf()) {
+				if (!instance.isLeaf() && instance.get('selectChildren')) {
 					instance.eachChildren(
 						function(child) {
 							if (child instanceof A.TreeNodeCheck) {
