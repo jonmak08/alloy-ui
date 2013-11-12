@@ -1609,6 +1609,13 @@ var TreeNodeTask = A.Component.create({
      */
     NAME: TREE_NODE_TASK,
 
+    ATTRS: {
+        selectAllChildren: {
+            value: true,
+            validator: isBoolean
+        }
+    },
+
     EXTENDS: A.TreeNodeCheck,
 
     prototype: {
@@ -1626,7 +1633,7 @@ var TreeNodeTask = A.Component.create({
 
             originalTarget = originalTarget || instance;
 
-            if (!instance.isLeaf()) {
+            if (!instance.isLeaf() && instance.get('selectAllChildren')) {
                 instance.eachChildren(function(child) {
                     if (isTreeNodeTask(child)) {
                         child.check(originalTarget);
@@ -1661,7 +1668,7 @@ var TreeNodeTask = A.Component.create({
 
             originalTarget = originalTarget || instance;
 
-            if (!instance.isLeaf()) {
+            if (!instance.isLeaf() && instance.get('selectAllChildren')) {
                 instance.eachChildren(function(child) {
                     if (child instanceof A.TreeNodeCheck) {
                         child.uncheck(originalTarget);
