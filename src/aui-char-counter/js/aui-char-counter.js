@@ -28,7 +28,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/char-counter/).
  *
  * @class A.CharCounter
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -36,7 +36,7 @@ var CharCounter = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property CharCounter.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -46,7 +46,7 @@ var CharCounter = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the CharCounter.
      *
-     * @property CharCounter.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -94,7 +94,7 @@ var CharCounter = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property CharCounter.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

@@ -108,7 +108,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class A.TreeNode
- * @extends A.Base
+ * @extends Base
  * @uses A.TreeData
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -117,7 +117,7 @@ var TreeNode = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -127,7 +127,7 @@ var TreeNode = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNode.
      *
-     * @property TreeNode.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1095,7 +1095,7 @@ var TreeNodeIO = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1105,7 +1105,7 @@ var TreeNodeIO = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNode.
      *
-     * @property TreeNode.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1319,7 +1319,7 @@ var TreeNodeCheck = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1329,7 +1329,7 @@ var TreeNodeCheck = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNode.
      *
-     * @property TreeNode.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1594,7 +1594,7 @@ var TreeNodeTask = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */

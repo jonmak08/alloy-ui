@@ -62,7 +62,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class A.TreeView
- * @extends A.TreeData
+ * @uses A.TreeData, A.TreeViewPaginator, A.TreeViewIO
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -70,7 +70,7 @@ var TreeView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -80,7 +80,7 @@ var TreeView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeView.
      *
-     * @property TreeView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -468,7 +468,7 @@ var TreeViewDD = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeViewDD.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -478,7 +478,7 @@ var TreeViewDD = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeViewDD.
      *
-     * @property TreeViewDD.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */

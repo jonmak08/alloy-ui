@@ -52,7 +52,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/sortable-list/).
  *
  * @class A.SortableList
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -60,7 +60,7 @@ var SortableList = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SortableList.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -70,7 +70,7 @@ var SortableList = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SortableList.
      *
-     * @property SortableList.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -199,7 +199,7 @@ var SortableList = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SortableList.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

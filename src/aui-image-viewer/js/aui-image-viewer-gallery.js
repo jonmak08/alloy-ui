@@ -75,7 +75,6 @@ var L = A.Lang,
     TPL_PLAYER_CONTENT = '<span class="' + CSS_IMAGE_GALLERY_PLAYER_CONTENT + '"></span>';
 
 /**
- *
  * A base class for ImageGallery, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
@@ -96,7 +95,7 @@ var ImageGallery = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ImageGallery.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -106,7 +105,7 @@ var ImageGallery = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ImageGallery.
      *
-     * @property ImageGallery.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -300,7 +299,7 @@ var ImageGallery = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property ImageGallery.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
