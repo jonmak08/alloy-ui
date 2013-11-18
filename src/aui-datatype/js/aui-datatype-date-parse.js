@@ -96,7 +96,7 @@ A.mix(DateParser.prototype, {
                         hints: hints,
                         numeric: (hints.numericTokens &&
                             hints.numericTokens.indexOf(chNext) > -1),
-                        token: chNext,
+                        token: chNext
                     };
 
                     last = compiled[compiled.length - 1];
@@ -417,6 +417,10 @@ A.mix(DateParser.prototype, {
         var textLength = text.length,
             ch,
             value = '';
+
+        while (textPos[0] < textLength && text.charAt(textPos) === opt_separator) {
+            textPos[0]++;
+        }
 
         while (textPos[0] < textLength) {
             ch = text.charAt(textPos);
