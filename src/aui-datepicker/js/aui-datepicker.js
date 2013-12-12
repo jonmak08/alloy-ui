@@ -25,7 +25,8 @@ var Lang = A.Lang,
  * A base class for DatePickerBase.
  *
  * @class A.DatePickerBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -35,7 +36,7 @@ function DatePickerBase() {}
  * Static property used to define the default attribute
  * configuration for the DatePickerBase.
  *
- * @property DatePickerBase.PANES
+ * @property PANES
  * @type Array
  * @static
  */
@@ -48,7 +49,7 @@ DatePickerBase.PANES = [
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property DatePickerBase.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -99,7 +100,8 @@ A.mix(DatePickerBase.prototype, {
     calendar: null,
 
     /**
-     * Construction logic executed during DatePickerBase instantiation. Lifecycle.
+     * Construction logic executed during DatePickerBase instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -312,9 +314,12 @@ A.DatePickerBase = DatePickerBase;
  * A base class for DatePicker.
  *
  * @class A.DatePicker
- * @extends A.Base
+ * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/datepicker/basic-markup.html
+ * @include http://alloyui.com/examples/datepicker/basic.js
  */
 A.DatePicker = A.Base.create('datepicker', A.Base, [A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase]);

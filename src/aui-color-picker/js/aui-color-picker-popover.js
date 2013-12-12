@@ -13,12 +13,13 @@ var Lang = A.Lang,
     _NAME = 'color-picker-popover';
 
 /**
- * A base class for ColorPickerPopover.
+ * A base class for `ColorPickerPopover`.
  *
  * @class A.ColorPickerPopover
  * @extends A.Popover
  * @uses A.ColorPickerBase, A.WidgetAutohide, A.WidgetCssClass, A.WidgetToggle
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
@@ -29,19 +30,19 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
 ], {}, {
     /**
      * Static property used to define the default attribute
-     * configuration for the ColorPickerPopover.
+     * configuration for the `ColorPickerPopover`.
      *
-     * @property ColorPickerPopover.ATTRS
-     * @type Object
+     * @property ATTRS
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The alignment configuration for `ColorPickerPopover`.
          *
          * @attribute align
-         * @type Object
+         * @type {Object}
          */
         align: {
             validator: Lang.isObject,
@@ -51,11 +52,11 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if `ColorPickerPopover` is visible or not.
          *
          * @attribute visible
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         visible: {
             validator: Lang.isBoolean,
@@ -66,17 +67,17 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ColorPickerPopover.NAME
-     * @type String
+     * @property NAME
+     * @type {String}
      * @static
      */
     NAME: _NAME,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The namespace of the plugin.
      *
-     * @property ColorPickerPopover.NS
-     * @type String
+     * @property NS
+     * @type {String}
      * @static
      */
     NS: _NAME

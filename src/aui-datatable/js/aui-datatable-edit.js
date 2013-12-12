@@ -127,8 +127,9 @@ var Lang = A.Lang,
 /**
  * An extension for A.DataTable to support Cell Editing.
  *
- * @class A.CellEditorSupport
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @class A.DataTable.CellEditorSupport
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var CellEditorSupport = function() {};
@@ -136,7 +137,7 @@ var CellEditorSupport = function() {};
 /**
  * Static property provides a string to identify the class.
  *
- * @property CellEditorSupport.NAME
+ * @property NAME
  * @type String
  * @static
  */
@@ -145,7 +146,7 @@ CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property CellEditorSupport.EDITOR_ZINDEX
+ * @property EDITOR_ZINDEX
  * @default 9999
  * @type Number
  * @static
@@ -156,7 +157,7 @@ CellEditorSupport.EDITOR_ZINDEX = 9999;
  * Static property used to define the default attribute
  * configuration for the CellEditorSupport.
  *
- * @property CellEditorSupport.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -179,7 +180,8 @@ CellEditorSupport.ATTRS = {
 A.mix(CellEditorSupport.prototype, {
 
     /**
-     * Construction logic executed during CellEditorSupport instantiation. Lifecycle.
+     * Construction logic executed during CellEditorSupport instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -203,7 +205,8 @@ A.mix(CellEditorSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getEditor
-     * @param record, column
+     * @param record
+     * @param column
      */
     getEditor: function(record, column) {
         var instance = this,
@@ -278,7 +281,8 @@ A.mix(CellEditorSupport.prototype, {
 
         editor.set(VALUE, event.newVal);
 
-        // TODO: Memorize the activeCell coordinates to set the focus on it instead
+        // TODO: Memorize the activeCell coordinates to set the focus on it
+        // instead
         instance.set(ACTIVE_CELL, instance.get(ACTIVE_CELL));
 
         record.set(column.key, event.newVal);
@@ -349,7 +353,8 @@ A.mix(CellEditorSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getRecordColumnValue
-     * @param record, column
+     * @param record
+     * @param column
      */
     getRecordColumnValue: function(record, column) {
         return record.get(column.key);
@@ -364,8 +369,9 @@ A.Base.mix(A.DataTable, [CellEditorSupport]);
  * Abstract class BaseCellEditor.
  *
  * @class A.BaseCellEditor
- * @extends A.Overlay
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Overlay
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @abstract
  */
 var BaseCellEditor = A.Component.create({
@@ -373,7 +379,7 @@ var BaseCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property BaseCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -383,7 +389,7 @@ var BaseCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the BaseCellEditor.
      *
-     * @property BaseCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -487,7 +493,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -575,7 +581,7 @@ var BaseCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property BaseCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -584,7 +590,7 @@ var BaseCellEditor = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property BaseCellEditor.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -600,7 +606,8 @@ var BaseCellEditor = A.Component.create({
         _hDocMouseDownEv: null,
 
         /**
-         * Construction logic executed during BaseCellEditor instantiation. Lifecycle.
+         * Construction logic executed during BaseCellEditor instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -652,7 +659,8 @@ var BaseCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method formatValue
-         * @param formatter, val
+         * @param formatter
+         * @param val
          */
         formatValue: function(formatter, val) {
             var instance = this;
@@ -776,8 +784,7 @@ var BaseCellEditor = A.Component.create({
 
             instance.toolbar = new A.Toolbar(
                 instance.get(TOOLBAR)
-            )
-                .render(instance.footerNode);
+            ).render(instance.footerNode);
 
             if (editable) {
                 instance._uiSetEditable(editable);
@@ -962,27 +969,25 @@ var BaseCellEditor = A.Component.create({
             var strings = instance.getStrings();
 
             return A.merge({
-                    activeState: false,
-                    children: [
-      [
-                            {
-                                on: {
-                                    click: A.bind(instance._handleSaveEvent, instance)
-                                },
-                                label: strings[SAVE],
-                                icon: 'icon-ok-sign'
-       },
-                            {
-                                on: {
-                                    click: A.bind(instance._handleCancelEvent, instance)
-                                },
-                                label: strings[CANCEL]
-       }
-      ]
-     ]
-                },
-                val
-            );
+                activeState: false,
+                children: [
+                    [
+                        {
+                            on: {
+                                click: A.bind(instance._handleSaveEvent, instance)
+                            },
+                            label: strings[SAVE],
+                            icon: 'icon-ok-sign'
+                        },
+                        {
+                            on: {
+                                click: A.bind(instance._handleCancelEvent, instance)
+                            },
+                            label: strings[CANCEL]
+                        }
+                    ]
+                ]
+            }, val);
         },
 
         /**
@@ -1123,16 +1128,15 @@ var BaseCellEditor = A.Component.create({
             if (instance.get(RENDERED) && toolbar) {
                 if (val) {
                     toolbar.add(
-      [
+                        [
                             {
                                 icon: 'icon-edit',
                                 label: instance.getString(EDIT),
                                 on: {
                                     click: A.bind(instance._handleEditEvent, instance)
                                 }
-       }
-      ],
-                        1
+                            }
+                        ], 1
                     );
                 }
                 else {
@@ -1168,7 +1172,8 @@ A.BaseCellEditor = BaseCellEditor;
  *
  * @class A.BaseOptionsCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @abstract
  */
 var BaseOptionsCellEditor = A.Component.create({
@@ -1176,7 +1181,7 @@ var BaseOptionsCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property BaseOptionsCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1186,7 +1191,7 @@ var BaseOptionsCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the BaseOptionsCellEditor.
      *
-     * @property BaseOptionsCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1238,7 +1243,7 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -1262,7 +1267,7 @@ var BaseOptionsCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property BaseOptionsCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1271,7 +1276,7 @@ var BaseOptionsCellEditor = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property BaseOptionsCellEditor.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -1293,7 +1298,8 @@ var BaseOptionsCellEditor = A.Component.create({
         options: null,
 
         /**
-         * Construction logic executed during BaseOptionsCellEditor instantiation. Lifecycle.
+         * Construction logic executed during BaseOptionsCellEditor
+         * instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -1310,7 +1316,8 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method addNewOption
-         * @param name, value
+         * @param name
+         * @param value
          */
         addNewOption: function(name, value) {
             var instance = this;
@@ -1465,7 +1472,8 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createEditOption
-         * @param name, value
+         * @param name
+         * @param value
          * @protected
          */
         _createEditOption: function(name, value) {
@@ -1511,11 +1519,10 @@ var BaseOptionsCellEditor = A.Component.create({
                 handles: [_DOT + CSS_CELLEDITOR_EDIT_DD_HANDLE],
                 nodes: _DOT + CSS_CELLEDITOR_EDIT_OPTION_ROW,
                 opacity: '.3'
-            })
-                .delegate.dd.plug(A.Plugin.DDConstrained, {
-                    constrain: editContainer,
-                    stickY: true
-                });
+            }).delegate.dd.plug(A.Plugin.DDConstrained, {
+                constrain: editContainer,
+                stickY: true
+            });
 
             instance._syncEditOptionsUI();
         },
@@ -1707,7 +1714,8 @@ A.BaseOptionsCellEditor = BaseOptionsCellEditor;
  *
  * @class A.TextCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TextCellEditor = A.Component.create({
@@ -1715,7 +1723,7 @@ var TextCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TextCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1724,7 +1732,7 @@ var TextCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TextCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1741,7 +1749,9 @@ A.TextCellEditor = TextCellEditor;
  * TextAreaCellEditor class.
  *
  * @class A.TextAreaCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends A.BaseCellEditor
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TextAreaCellEditor = A.Component.create({
@@ -1749,7 +1759,7 @@ var TextAreaCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TextAreaCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1758,7 +1768,7 @@ var TextAreaCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TextAreaCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1775,7 +1785,9 @@ A.TextAreaCellEditor = TextAreaCellEditor;
  * DropDownCellEditor class.
  *
  * @class A.DropDownCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends A.BaseOptionsCellEditor
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DropDownCellEditor = A.Component.create({
@@ -1783,7 +1795,7 @@ var DropDownCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property DropDownCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1793,7 +1805,7 @@ var DropDownCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the DropDownCellEditor.
      *
-     * @property DropDownCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1815,7 +1827,7 @@ var DropDownCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property DropDownCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1824,7 +1836,7 @@ var DropDownCellEditor = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property DropDownCellEditor.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -1888,7 +1900,9 @@ A.DropDownCellEditor = DropDownCellEditor;
  * CheckboxCellEditor class.
  *
  * @class A.CheckboxCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends A.BaseOptionsCellEditor
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var CheckboxCellEditor = A.Component.create({
@@ -1896,7 +1910,7 @@ var CheckboxCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property CheckboxCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1906,7 +1920,7 @@ var CheckboxCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the CheckboxCellEditor.
      *
-     * @property CheckboxCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1927,7 +1941,7 @@ var CheckboxCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property CheckboxCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1987,7 +2001,9 @@ A.CheckboxCellEditor = CheckboxCellEditor;
  * RadioCellEditor class.
  *
  * @class A.RadioCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends A.CheckboxCellEditor
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var RadioCellEditor = A.Component.create({
@@ -1995,7 +2011,7 @@ var RadioCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property RadioCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -2004,7 +2020,7 @@ var RadioCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property RadioCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -2033,7 +2049,9 @@ A.RadioCellEditor = RadioCellEditor;
  * DateCellEditor class.
  *
  * @class A.DateCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends A.BaseCellEditor
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DateCellEditor = A.Component.create({
@@ -2041,7 +2059,7 @@ var DateCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property DateCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -2050,7 +2068,7 @@ var DateCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property DateCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -2060,7 +2078,7 @@ var DateCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the DateCellEditor.
      *
-     * @property DateCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -2145,7 +2163,8 @@ var DateCellEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<input class="' + CSS_CELLEDITOR_ELEMENT + '" type="hidden" />',
 
         /**
-         * Construction logic executed during DateCellEditor instantiation. Lifecycle.
+         * Construction logic executed during DateCellEditor instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -2211,8 +2230,7 @@ var DateCellEditor = A.Component.create({
 
             instance.calendar = new A.Calendar(
                 instance.get(CALENDAR)
-            )
-                .render(instance.bodyNode);
+            ).render(instance.bodyNode);
         },
 
         /**

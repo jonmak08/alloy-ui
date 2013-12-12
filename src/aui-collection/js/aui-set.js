@@ -9,8 +9,9 @@
  * A base class for HashSet.
  *
  * @class A.HashSet
- * @extends A.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var HashSet = A.Base.create('set', A.Base, [], {
@@ -64,7 +65,8 @@ var HashSet = A.Base.create('set', A.Base, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method has
-     * @param value, opt_hash
+     * @param value
+     * @param opt_hash
      */
     has: function(value, opt_hash) {
         return this._map.has(value, opt_hash);

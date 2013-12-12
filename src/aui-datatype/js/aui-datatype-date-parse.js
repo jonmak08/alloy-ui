@@ -21,7 +21,7 @@ var Lang = A.Lang,
  * A base class for DateParser.
  *
  * @class A.DateParser
- * @param opt_pattern {String} Mask as strftime string.
+ * @param {String} opt_pattern Mask as strftime string.
  * @constructor
  */
 
@@ -36,7 +36,7 @@ function DateParser(opt_pattern) {
 /**
  * Static property provides a string to identify the token prefix, e.g. %A.
  *
- * @property DateParser.TOKEN_PREFIX
+ * @property TOKEN_PREFIX
  * @type String
  * @static
  */
@@ -46,7 +46,7 @@ DateParser.TOKEN_PREFIX = '%';
  * Static property provides a base year to sum two digit years, e.g. For the
  * mask %Y, "13" will be parsed to 2013.
  *
- * @property DateParser.TWO_DIGIT_YEAR_BASE
+ * @property TWO_DIGIT_YEAR_BASE
  * @type Number
  * @static
  */
@@ -60,7 +60,7 @@ A.mix(DateParser.prototype, {
      * reused to other "compiled" masks.
      *
      * @method compilePattern
-     * @param pattern {String} Mask as strftime string.
+     * @param {String} pattern Mask as strftime string.
      */
     compilePattern: function(pattern) {
         var instance = this,
@@ -96,7 +96,7 @@ A.mix(DateParser.prototype, {
                         hints: hints,
                         numeric: (hints.numericTokens &&
                             hints.numericTokens.indexOf(chNext) > -1),
-                        token: chNext,
+                        token: chNext
                     };
 
                     last = compiled[compiled.length - 1];
@@ -119,79 +119,85 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Takes a string mask and a text as input and parses it as a native JavaScript Date.
+     * Takes a string mask and a text as input and parses it as a native
+     * JavaScript Date.
      *
-     * @for Date
      * @method parse
-     * @param mask {String} Mask as strftime string.
-     * @param text {String} Text input to be parsed.
-     * @param opt_date {Date} Optional Date object to be used a base date for filling the parsed values.
-     *  <dl>
-     *   <dt>parse {HTML} (Optional)</dt>
-     *   <dd>
-     *   <p>
-     *   Any strftime string is supported, such as "%I:%M:%S %p". strftime has several format specifiers defined by the Open group at
-     *   <a href="http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html">http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html</a>
-     *   PHP added a few of its own, defined at <a href="http://www.php.net/strftime">http://www.php.net/strftime</a>
-     *   </p>
-     *   <p>
-     *   This javascript implementation supports all the PHP specifiers and a few more.  The full list is below.
-     *   </p>
-     *   <p>
-     *   If not specified, it defaults to the ISO 8601 standard date format: %Y-%m-%d.
-     *   </p>
-     *   <dl>
-     *   <dt>%a</dt> <dd>abbreviated weekday name according to the current locale</dd>
-     *   <dt>%A</dt> <dd>full weekday name according to the current locale</dd>
-     *   <dt>%b</dt> <dd>abbreviated month name according to the current locale</dd>
-     *   <dt>%B</dt> <dd>full month name according to the current locale</dd>
-     *   <dt>%c</dt> <dd>preferred date and time representation for the current locale</dd>
-     *   <dt>%C</dt> <dd>century number (the year divided by 100 and truncated to an integer, range 00 to 99)</dd>
-     *   <dt>%d</dt> <dd>day of the month as a decimal number (range 01 to 31)</dd>
-     *   <dt>%D</dt> <dd>same as %m/%d/%y</dd>
-     *   <dt>%e</dt> <dd>day of the month as a decimal number, a single digit is preceded by a space (range " 1" to "31")</dd>
-     *   <dt>%F</dt> <dd>same as %Y-%m-%d (ISO 8601 date format)</dd>
-     *   <dt>%g</dt> <dd>like %G, but without the century</dd>
-     *   <dt>%G</dt> <dd>The 4-digit year corresponding to the ISO week number</dd>
-     *   <dt>%h</dt> <dd>same as %b</dd>
-     *   <dt>%H</dt> <dd>hour as a decimal number using a 24-hour clock (range 00 to 23)</dd>
-     *   <dt>%I</dt> <dd>hour as a decimal number using a 12-hour clock (range 01 to 12)</dd>
-     *   <dt>%j</dt> <dd>day of the year as a decimal number (range 001 to 366)</dd>
-     *   <dt>%k</dt> <dd>hour as a decimal number using a 24-hour clock (range 0 to 23); single digits are preceded by a blank. (See also %H.)</dd>
-     *   <dt>%l</dt> <dd>hour as a decimal number using a 12-hour clock (range 1 to 12); single digits are preceded by a blank. (See also %I.) </dd>
-     *   <dt>%m</dt> <dd>month as a decimal number (range 01 to 12)</dd>
-     *   <dt>%M</dt> <dd>minute as a decimal number</dd>
-     *   <dt>%n</dt> <dd>newline character</dd>
-     *   <dt>%p</dt> <dd>either "AM" or "PM" according to the given time value, or the corresponding strings for the current locale</dd>
-     *   <dt>%P</dt> <dd>like %p, but lower case</dd>
-     *   <dt>%r</dt> <dd>time in a.m. and p.m. notation equal to %I:%M:%S %p</dd>
-     *   <dt>%R</dt> <dd>time in 24 hour notation equal to %H:%M</dd>
-     *   <dt>%s</dt> <dd>number of seconds since the Epoch, ie, since 1970-01-01 00:00:00 UTC</dd>
-     *   <dt>%S</dt> <dd>second as a decimal number</dd>
-     *   <dt>%t</dt> <dd>tab character</dd>
-     *   <dt>%T</dt> <dd>current time, equal to %H:%M:%S</dd>
-     *   <dt>%u</dt> <dd>weekday as a decimal number [1,7], with 1 representing Monday</dd>
-     *   <dt>%U</dt> <dd>week number of the current year as a decimal number, starting with the
-     *           first Sunday as the first day of the first week</dd>
-     *   <dt>%V</dt> <dd>The ISO 8601:1988 week number of the current year as a decimal number,
-     *           range 01 to 53, where week 1 is the first week that has at least 4 days
-     *           in the current year, and with Monday as the first day of the week.</dd>
-     *   <dt>%w</dt> <dd>day of the week as a decimal, Sunday being 0</dd>
-     *   <dt>%W</dt> <dd>week number of the current year as a decimal number, starting with the
-     *           first Monday as the first day of the first week</dd>
-     *   <dt>%x</dt> <dd>preferred date representation for the current locale without the time</dd>
-     *   <dt>%X</dt> <dd>preferred time representation for the current locale without the date</dd>
-     *   <dt>%y</dt> <dd>year as a decimal number without a century (range 00 to 99)</dd>
-     *   <dt>%Y</dt> <dd>year as a decimal number including the century</dd>
-     *   <dt>%z</dt> <dd>numerical time zone representation</dd>
-     *   <dt>%Z</dt> <dd>time zone name or abbreviation</dd>
-     *   <dt>%%</dt> <dd>a literal "%" character</dd>
-     *   </dl>
-     *  </dd>
-     * </dl>
+     * @param {String} mask Mask as strftime string.
+     * @param {String} text Text input to be parsed.
+     * @param {Date} opt_date Optional Date object to be used a base date for
+     *     filling the parsed values.
      *
-     * @return {Date} native JavaScript Date. Returns <code>false</code> if cannot
-     * parse.
+     *  **parse {HTML} (Optional)**
+     *
+     *  Any strftime string is supported, such as `%I:%M:%S %p`. This format has
+     *  several specifiers defined by the Open group at:
+     *  http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html
+     *
+     *  PHP added a few of its own, defined at: http://www.php.net/strftime
+     *
+     *  This JavaScript implementation supports all the PHP specifiers and a few
+     *  more. The full list is below:
+     *
+     *  If not specified, it defaults to the ISO 8601 standard date format:
+     *  `%Y-%m-%d`.
+     *
+     *    * **%a** abbreviated weekday name according to the current locale
+     *    * **%A** full weekday name according to the current locale
+     *    * **%b** abbreviated month name according to the current locale
+     *    * **%B** full month name according to the current locale
+     *    * **%c** preferred date and time representation for the current locale
+     *    * **%C** century number (the year divided by 100 and truncated to an
+     *      integer, range `00` to `99`)
+     *    * **%d** day of the month as a decimal number (range `01` to `31`)
+     *    * **%D** same as `%m/%d/%y`
+     *    * **%e** day of the month as a decimal number, a single digit is preceded
+     *      by a space (range `1` to `31`)
+     *    * **%F** same as `%Y-%m-%d` (ISO 8601 date format)
+     *    * **%g** like `%G`, but without the century
+     *    * **%G** The 4-digit year corresponding to the ISO week number
+     *    * **%h** same as `%b`
+     *    * **%H** hour as a decimal number using a 24-hour clock (range `00` to `23`)
+     *    * **%I** hour as a decimal number using a 12-hour clock (range `01` to `12`)
+     *    * **%j** day of the year as a decimal number (range 001 to 366)
+     *    * **%k** hour as a decimal number using a 24-hour clock (range `0` to `23`);
+     *      single digits are preceded by a blank. (See also `%H`.)
+     *    * **%l** hour as a decimal number using a 12-hour clock (range `1` to `12`);
+     *      single digits are preceded by a blank. (See also `%I`.)
+     *    * **%m** month as a decimal number (range `01` to `12`)
+     *    * **%M** minute as a decimal number
+     *    * **%n** newline character
+     *    * **%p** either `AM` or `PM` according to the given time value, or the
+     *      corresponding strings for the current locale
+     *    * **%P** like `%p`, but lower case
+     *    * **%r** time in a.m. and p.m. notation equal to `%I:%M:%S %p`
+     *    * **%R** time in 24 hour notation equal to `%H:%M`
+     *    * **%s** number of seconds since the Epoch, ie, since `1970-01-01
+     *      00:00:00` UTC
+     *    * **%S** second as a decimal number
+     *    * **%t** tab character
+     *    * **%T** current time, equal to `%H:%M:%S`
+     *    * **%u** weekday as a decimal number [1,7], with 1 representing Monday
+     *    * **%U** week number of the current year as a decimal number, starting
+     *      with the first Sunday as the first day of the first week
+     *    * **%V** The ISO 8601:1988 week number of the current year as a decimal
+     *      number, range `01` to `53`, where week 1 is the first week that has at least
+     *      4 days in the current year, and with Monday as the first day of the
+     *      week.
+     *    * **%w** day of the week as a decimal, Sunday being 0
+     *    * **%W** week number of the current year as a decimal number, starting
+     *      with the first Monday as the first day of the first week
+     *    * **%x** preferred date representation for the current locale without the
+     *      time
+     *    * **%X** preferred time representation for the current locale without the
+     *      date
+     *    * **%y** year as a decimal number without a century (range `00` to `99`)
+     *    * **%Y** year as a decimal number including the century
+     *    * **%z** numerical time zone representation
+     *    * **%Z** time zone name or abbreviation
+     *    * **%%** a literal `%` character
+     *
+     * @return {Date} Native JavaScript Date. Returns `false` if cannot parse.
      */
     parse: function(text, opt_date) {
         var instance = this,
@@ -257,11 +263,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _expandPattern
      * @protected
-     * @param pattern {String} Mask as strftime string.
-     * @param pos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
-     *
+     * @param {String} pattern Mask as strftime string.
+     * @param {Array} pos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @return {String} Expanded patter.
      */
     _expandPattern: function(pattern, pos, token) {
@@ -289,12 +294,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _findBestStringMatch
      * @protected
-     * @param val {String} Keyword The string to match to.
-     * @param data {Array} The string array of matching patterns.
-     * @param opt_inverse {Boolean} Inverts the matching test. Instead of test
-     * array values against <code>val</code>, tests <code>val</code> against the
-     * array values.
-     *
+     * @param {String} val Keyword The string to match to.
+     * @param {Array} data The string array of matching patterns.
+     * @param {Boolean} opt_inverse Inverts the matching test. Instead of test
+     *     array values against `val`, tests `val` against the array values.
      * @return {Number} Best match index. Returns -1 if doesn't find any match.
      */
     _findBestStringMatch: function(val, data, opt_inverse) {
@@ -330,11 +333,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _getCalendarDate
      * @protected
-     * @param data {Array} The string array of matching patterns.
-     * @param opt_date {Date} Date object to be filled.
-     *
-     * @return {Date} Filled date object. Returns <code>false</code> if have
-     * nothing to fill.
+     * @param {Array} data The string array of matching patterns.
+     * @param {Date} opt_date Date object to be filled.
+     * @return {Date} Filled date object. Returns `false` if have nothing to
+     *     fill.
      */
     _getCalendarDate: function(calendar, opt_date) {
         var originalDate;
@@ -399,24 +401,27 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Infer the next value based on <code>textPos</code> position.
+     * Infer the next value based on `textPos` position.
      *
      * @method _getNextValue
      * @protected
-     * @param text {String} Input text.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
-     * @param opt_separator {String} If specified is used as boundary of the
-     * next value.
+     * @param {String} text Input text.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
+     * @param {String} opt_separator If specified is used as boundary of the
+     *     next value.
      * @param {Boolean} opt_numeric If specified, find only next numeric values.
-     *
      * @return {String} Inferred next value.
      */
     _getNextValue: function(text, textPos, opt_separator, opt_numeric) {
         var textLength = text.length,
             ch,
             value = '';
+
+        while (textPos[0] < textLength && text.charAt(textPos) === opt_separator) {
+            textPos[0]++;
+        }
 
         while (textPos[0] < textLength) {
             ch = text.charAt(textPos);
@@ -438,15 +443,14 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Infer the next numeric value based on <code>textPos</code> position.
+     * Infer the next numeric value based on `textPos` position.
      *
      * @method _getNextNumericValue
      * @protected
-     * @param text {String} Input text.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
-     *
+     * @param {String} text Input text.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @return {String} Inferred next value.
      */
     _getNextNumericValue: function(text, textPos) {
@@ -461,8 +465,7 @@ A.mix(DateParser.prototype, {
      *
      * @method _getPatternHints
      * @protected
-     * @param token {String} strftime token.
-     *
+     * @param {String} token Strftime token.
      * @return {Object} Hints object. If token is not supported returns false.
      */
     _getPatternHints: function(token) {
@@ -516,8 +519,7 @@ A.mix(DateParser.prototype, {
      *
      * @method _getLangResource
      * @protected
-     * @param token {String} strftime token.
-     *
+     * @param {String} token Strftime token.
      * @return {Object} Resource object.
      */
     _getLangResource: function(token) {
@@ -532,12 +534,11 @@ A.mix(DateParser.prototype, {
      *
      * @method _subparseNumericBlob
      * @protected
-     * @param blob {String} Ambigous numeric value.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
+     * @param {String} blob Ambigous numeric value.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @param {Number} i Token position on the compiled array.
-     *
      * @return {String} Non-ambiguous numeric value.
      */
     _subparseNumericBlob: function(blob, textPos, i) {
@@ -571,12 +572,11 @@ A.mix(DateParser.prototype, {
      *
      * @method _subparseStringBlob
      * @protected
-     * @param blob {String} Ambigous string value.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
+     * @param {String} blob Ambigous string value.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @param {Number} i Token position on the compiled array.
-     *
      * @return {String} Non-ambiguous string value.
      */
     _subparseStringBlob: function(blob, textPos, i) {
@@ -615,12 +615,11 @@ A.mix(DateParser.prototype, {
      *
      * @method _subparseTimeZone
      * @protected
-     * @param text {String} Input text.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
+     * @param {String} text Input text.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @param {Number} i Token position on the compiled array.
-     *
      * @return {Object} Found timezone.
      */
     _subparseTimeZone: function(text, textPos) {
@@ -644,7 +643,7 @@ A.mix(DateParser.prototype, {
  * Static property provides an object that contains hints information for
  * possible token values, e.g. year, month, day etc.
  *
- * @property DateParser.HINTS
+ * @property HINTS
  * @type Object
  * @static
  */
@@ -653,7 +652,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * aggregates tokens.
      *
-     * @property DateParser.HINTS.AGGREGATES
+     * @property HINTS.AGGREGATES
      * @type Object
      * @static
      */
@@ -665,7 +664,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * ampm tokens.
      *
-     * @property DateParser.HINTS.AMPM
+     * @property HINTS.AMPM
      * @type Object
      * @static
      */
@@ -685,7 +684,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * year tokens.
      *
-     * @property DateParser.HINTS.YEAR
+     * @property HINTS.YEAR
      * @type Object
      * @static
      */
@@ -709,7 +708,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * month tokens.
      *
-     * @property DateParser.HINTS.MONTH
+     * @property HINTS.MONTH
      * @type Object
      * @static
      */
@@ -738,7 +737,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * day tokens.
      *
-     * @property DateParser.HINTS.DAY
+     * @property HINTS.DAY
      * @type Object
      * @static
      */
@@ -758,7 +757,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * hours tokens.
      *
-     * @property DateParser.HINTS.HOURS
+     * @property HINTS.HOURS
      * @type Object
      * @static
      */
@@ -779,7 +778,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * minutes tokens.
      *
-     * @property DateParser.HINTS.MINUTES
+     * @property HINTS.MINUTES
      * @type Object
      * @static
      */
@@ -799,7 +798,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * seconds tokens.
      *
-     * @property DateParser.HINTS.SECONDS
+     * @property HINTS.SECONDS
      * @type Object
      * @static
      */
@@ -819,7 +818,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * timezone tokens.
      *
-     * @property DateParser.HINTS.TZ
+     * @property HINTS.TZ
      * @type Object
      * @static
      */
@@ -835,81 +834,87 @@ A.DateParser = DateParser;
 A.Date.dateparser = new A.DateParser();
 
 /**
- * Takes a string mask and a text as input and parses it as a native JavaScript Date.
- * **If only one argument is passed**, the YUI parser will be called for backwards compatibility.
+ * Takes a string mask and a text as input and parses it as a native JavaScript
+ * Date. **If only one argument is passed**, the YUI parser will be called for
+ * backwards compatibility.
  *
- * @for A.Date
+ * @for Date
  * @method parse
  * @static
- * @param mask {String} Mask as strftime string.
- * @param text {String} Text input to be parsed.
- * @param opt_date {Date} Optional Date object to be used a base date for filling the parsed values.
- *  <dl>
- *   <dt>parse {HTML} (Optional)</dt>
- *   <dd>
- *   <p>
- *   Any strftime string is supported, such as "%I:%M:%S %p". strftime has several format specifiers defined by the Open group at
- *   <a href="http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html">http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html</a>
- *   PHP added a few of its own, defined at <a href="http://www.php.net/strftime">http://www.php.net/strftime</a>
- *   </p>
- *   <p>
- *   This javascript implementation supports all the PHP specifiers and a few more.  The full list is below.
- *   </p>
- *   <p>
- *   If not specified, it defaults to the ISO 8601 standard date format: %Y-%m-%d.
- *   </p>
- *   <dl>
- *   <dt>%a</dt> <dd>abbreviated weekday name according to the current locale</dd>
- *   <dt>%A</dt> <dd>full weekday name according to the current locale</dd>
- *   <dt>%b</dt> <dd>abbreviated month name according to the current locale</dd>
- *   <dt>%B</dt> <dd>full month name according to the current locale</dd>
- *   <dt>%c</dt> <dd>preferred date and time representation for the current locale</dd>
- *   <dt>%C</dt> <dd>century number (the year divided by 100 and truncated to an integer, range 00 to 99)</dd>
- *   <dt>%d</dt> <dd>day of the month as a decimal number (range 01 to 31)</dd>
- *   <dt>%D</dt> <dd>same as %m/%d/%y</dd>
- *   <dt>%e</dt> <dd>day of the month as a decimal number, a single digit is preceded by a space (range " 1" to "31")</dd>
- *   <dt>%F</dt> <dd>same as %Y-%m-%d (ISO 8601 date format)</dd>
- *   <dt>%g</dt> <dd>like %G, but without the century</dd>
- *   <dt>%G</dt> <dd>The 4-digit year corresponding to the ISO week number</dd>
- *   <dt>%h</dt> <dd>same as %b</dd>
- *   <dt>%H</dt> <dd>hour as a decimal number using a 24-hour clock (range 00 to 23)</dd>
- *   <dt>%I</dt> <dd>hour as a decimal number using a 12-hour clock (range 01 to 12)</dd>
- *   <dt>%j</dt> <dd>day of the year as a decimal number (range 001 to 366)</dd>
- *   <dt>%k</dt> <dd>hour as a decimal number using a 24-hour clock (range 0 to 23); single digits are preceded by a blank. (See also %H.)</dd>
- *   <dt>%l</dt> <dd>hour as a decimal number using a 12-hour clock (range 1 to 12); single digits are preceded by a blank. (See also %I.) </dd>
- *   <dt>%m</dt> <dd>month as a decimal number (range 01 to 12)</dd>
- *   <dt>%M</dt> <dd>minute as a decimal number</dd>
- *   <dt>%n</dt> <dd>newline character</dd>
- *   <dt>%p</dt> <dd>either "AM" or "PM" according to the given time value, or the corresponding strings for the current locale</dd>
- *   <dt>%P</dt> <dd>like %p, but lower case</dd>
- *   <dt>%r</dt> <dd>time in a.m. and p.m. notation equal to %I:%M:%S %p</dd>
- *   <dt>%R</dt> <dd>time in 24 hour notation equal to %H:%M</dd>
- *   <dt>%s</dt> <dd>number of seconds since the Epoch, ie, since 1970-01-01 00:00:00 UTC</dd>
- *   <dt>%S</dt> <dd>second as a decimal number</dd>
- *   <dt>%t</dt> <dd>tab character</dd>
- *   <dt>%T</dt> <dd>current time, equal to %H:%M:%S</dd>
- *   <dt>%u</dt> <dd>weekday as a decimal number [1,7], with 1 representing Monday</dd>
- *   <dt>%U</dt> <dd>week number of the current year as a decimal number, starting with the
- *           first Sunday as the first day of the first week</dd>
- *   <dt>%V</dt> <dd>The ISO 8601:1988 week number of the current year as a decimal number,
- *           range 01 to 53, where week 1 is the first week that has at least 4 days
- *           in the current year, and with Monday as the first day of the week.</dd>
- *   <dt>%w</dt> <dd>day of the week as a decimal, Sunday being 0</dd>
- *   <dt>%W</dt> <dd>week number of the current year as a decimal number, starting with the
- *           first Monday as the first day of the first week</dd>
- *   <dt>%x</dt> <dd>preferred date representation for the current locale without the time</dd>
- *   <dt>%X</dt> <dd>preferred time representation for the current locale without the date</dd>
- *   <dt>%y</dt> <dd>year as a decimal number without a century (range 00 to 99)</dd>
- *   <dt>%Y</dt> <dd>year as a decimal number including the century</dd>
- *   <dt>%z</dt> <dd>numerical time zone representation</dd>
- *   <dt>%Z</dt> <dd>time zone name or abbreviation</dd>
- *   <dt>%%</dt> <dd>a literal "%" character</dd>
- *   </dl>
- *  </dd>
- * </dl>
+ * @param {String} mask Mask as strftime string.
+ * @param {String} text Text input to be parsed.
+ * @param {Date} opt_date Optional Date object to be used a base date for
+ *     filling the parsed values.
  *
- * @return {Date} native JavaScript Date. Returns <code>false</code> if cannot
- * parse.
+ *  **parse {HTML} (Optional)**
+ *
+ *  Any strftime string is supported, such as `%I:%M:%S %p`. This format has
+ *  several specifiers defined by the Open group at:
+ *  http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html
+ *
+ *  PHP added a few of its own, defined at: http://www.php.net/strftime
+ *
+ *  This JavaScript implementation supports all the PHP specifiers and a few
+ *  more. The full list is below:
+ *
+ *  If not specified, it defaults to the ISO 8601 standard date format:
+ *  `%Y-%m-%d`.
+ *
+ *    * **%a** abbreviated weekday name according to the current locale
+ *    * **%A** full weekday name according to the current locale
+ *    * **%b** abbreviated month name according to the current locale
+ *    * **%B** full month name according to the current locale
+ *    * **%c** preferred date and time representation for the current locale
+ *    * **%C** century number (the year divided by 100 and truncated to an
+ *      integer, range `00` to `99`)
+ *    * **%d** day of the month as a decimal number (range `01` to `31`)
+ *    * **%D** same as `%m/%d/%y`
+ *    * **%e** day of the month as a decimal number, a single digit is preceded
+ *      by a space (range `1` to `31`)
+ *    * **%F** same as `%Y-%m-%d` (ISO 8601 date format)
+ *    * **%g** like `%G`, but without the century
+ *    * **%G** The 4-digit year corresponding to the ISO week number
+ *    * **%h** same as `%b`
+ *    * **%H** hour as a decimal number using a 24-hour clock (range `00` to `23`)
+ *    * **%I** hour as a decimal number using a 12-hour clock (range `01` to `12`)
+ *    * **%j** day of the year as a decimal number (range 001 to 366)
+ *    * **%k** hour as a decimal number using a 24-hour clock (range `0` to `23`);
+ *      single digits are preceded by a blank. (See also `%H`.)
+ *    * **%l** hour as a decimal number using a 12-hour clock (range `1` to `12`);
+ *      single digits are preceded by a blank. (See also `%I`.)
+ *    * **%m** month as a decimal number (range `01` to `12`)
+ *    * **%M** minute as a decimal number
+ *    * **%n** newline character
+ *    * **%p** either `AM` or `PM` according to the given time value, or the
+ *      corresponding strings for the current locale
+ *    * **%P** like `%p`, but lower case
+ *    * **%r** time in a.m. and p.m. notation equal to `%I:%M:%S %p`
+ *    * **%R** time in 24 hour notation equal to `%H:%M`
+ *    * **%s** number of seconds since the Epoch, ie, since `1970-01-01
+ *      00:00:00` UTC
+ *    * **%S** second as a decimal number
+ *    * **%t** tab character
+ *    * **%T** current time, equal to `%H:%M:%S`
+ *    * **%u** weekday as a decimal number [1,7], with 1 representing Monday
+ *    * **%U** week number of the current year as a decimal number, starting
+ *      with the first Sunday as the first day of the first week
+ *    * **%V** The ISO 8601:1988 week number of the current year as a decimal
+ *      number, range `01` to `53`, where week 1 is the first week that has at least
+ *      4 days in the current year, and with Monday as the first day of the
+ *      week.
+ *    * **%w** day of the week as a decimal, Sunday being 0
+ *    * **%W** week number of the current year as a decimal number, starting
+ *      with the first Monday as the first day of the first week
+ *    * **%x** preferred date representation for the current locale without the
+ *      time
+ *    * **%X** preferred time representation for the current locale without the
+ *      date
+ *    * **%y** year as a decimal number without a century (range `00` to `99`)
+ *    * **%Y** year as a decimal number including the century
+ *    * **%z** numerical time zone representation
+ *    * **%Z** time zone name or abbreviation
+ *    * **%%** a literal `%` character
+ * @return {Date} native JavaScript Date. Returns `false` if cannot parse.
  */
 
 var YDateParser = A.Date.parse;

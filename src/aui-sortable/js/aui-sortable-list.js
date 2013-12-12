@@ -44,23 +44,23 @@ var L = A.Lang,
 
 /**
  * A base class for SortableList, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Sortable list utility</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Sortable list utility
  *
  * Check the [live demo](http://alloyui.com/examples/sortable-list/).
  *
  * @class A.SortableList
- * @extends A.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SortableList = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SortableList.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -70,7 +70,7 @@ var SortableList = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SortableList.
      *
-     * @property SortableList.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -199,7 +199,7 @@ var SortableList = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SortableList.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -208,7 +208,8 @@ var SortableList = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SortableList instantiation. Lifecycle.
+         * Construction logic executed during SortableList instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -285,8 +286,7 @@ var SortableList = A.Component.create({
                 // creating delayed drag instance
                 new A.DD.Drag(
                     A.mix(dragOptions, instance.get(DD))
-                )
-                    .plug(A.Plugin.DDProxy, proxyOptions);
+                ).plug(A.Plugin.DDProxy, proxyOptions);
             }
         },
 
@@ -348,7 +348,8 @@ var SortableList = A.Component.create({
                 // check for the user dropCondition
                 var dropCondition = instance.get(DROP_CONDITION);
 
-                // if there is a container waiting for nodes to be appended it's priority
+                // if there is a container waiting for nodes to be appended it's
+                // priority
                 if (container && !cancelAppend && dropCondition(event)) {
                     // this checking avoid the parent bubbling drag:over
                     if (!container.contains(placeholder) && !placeholder.contains(container)) {
@@ -360,11 +361,13 @@ var SortableList = A.Component.create({
                 // or if it's not floating and the yDirection
                 else {
                     if ((floating && (xDirection === LEFT)) || (!floating && (yDirection === UP))) {
-                        // LEFT or UP directions means to place the placeholder before
+                        // LEFT or UP directions means to place the placeholder
+                        // before
                         dropNode.placeBefore(placeholder);
                     }
                     else {
-                        // RIGHT or DOWN directions means to place the placeholder after
+                        // RIGHT or DOWN directions means to place the
+                        // placeholder after
                         dropNode.placeAfter(placeholder);
                     }
                 }
@@ -488,7 +491,8 @@ var SortableList = A.Component.create({
                 node.placeAfter(placeholder);
 
                 if (helper) {
-                    // show helper, we need display block here, yui dd hide it with display none
+                    // show helper, we need display block here, yui dd hide it
+                    // with display none
                     helper.setStyles({
                         display: BLOCK,
                         visibility: VISIBLE

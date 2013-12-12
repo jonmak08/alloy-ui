@@ -97,8 +97,9 @@ var L = A.Lang,
  * A base class for FormBuilderFieldBase.
  *
  * @class A.FormBuilderFieldBase
- * @extends Component
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @uses A.FieldSupport
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderFieldBase = A.Component.create({
@@ -106,7 +107,7 @@ var FormBuilderFieldBase = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderFieldBase.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -115,7 +116,7 @@ var FormBuilderFieldBase = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilderFieldBase.AUGMENTS
+     * @property AUGMENTS
      * @type Array
      * @static
      */
@@ -127,7 +128,8 @@ var FormBuilderFieldBase = A.Component.create({
  *
  * @class A.FormBuilderField
  * @extends A.FormBuilderFieldBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderField = A.Component.create({
@@ -135,7 +137,7 @@ var FormBuilderField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderField.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -145,7 +147,7 @@ var FormBuilderField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderField.
      *
-     * @property FormBuilderField.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -351,7 +353,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -518,7 +520,7 @@ var FormBuilderField = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property FormBuilderField.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -528,7 +530,7 @@ var FormBuilderField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property FormBuilderField.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -559,7 +561,7 @@ var FormBuilderField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilderField.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */
@@ -574,7 +576,8 @@ var FormBuilderField = A.Component.create({
         BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
         /**
-         * Construction logic executed during FormBuilderField instantiation. Lifecycle.
+         * Construction logic executed during FormBuilderField instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -638,7 +641,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the FormBuilderField class. Lifecycle.
+         * Destructor lifecycle implementation for the FormBuilderField class.
+         * Lifecycle.
          *
          * @method destructor
          * @protected
@@ -726,7 +730,8 @@ var FormBuilderField = A.Component.create({
             AArray.each(propertyModel, function(property) {
                 var attribute = property.attributeName;
 
-                // TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
+                // TODO - Change checking to use hashes O(1) instead of indexOf
+                // arrays O(N)
                 if (AArray.indexOf(hiddenAttributes, attribute) > -1) {
                     return;
                 }
@@ -740,7 +745,8 @@ var FormBuilderField = A.Component.create({
 
                 property.value = value;
 
-                // TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
+                // TODO - Change checking to use hashes O(1) instead of indexOf
+                // arrays O(N)
                 if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
                     property.readOnly = true;
                 }

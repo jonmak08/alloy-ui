@@ -100,24 +100,24 @@ var Lang = A.Lang,
 
 /**
  * A base class for TreeNode, providing:
- * <ul>
- *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *	<li>The node for the TreeView component</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - The node for the TreeView component
  *
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class A.TreeNode
- * @extends A.Base
+ * @extends Base
  * @uses A.TreeData
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeNode = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -127,7 +127,7 @@ var TreeNode = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNode.
      *
-     * @property TreeNode.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -307,7 +307,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Label element to house the <code>label</code> attribute.
+         * Label element to house the `label` attribute.
          *
          * @attribute labelEl
          * @default Generated DOM element.
@@ -570,7 +570,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Render the <code>contentBox</code> node.
+         * Render the `contentBox` node.
          *
          * @method _renderContentBox
          * @protected
@@ -598,7 +598,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Render the <code>boundingBox</code> node.
+         * Render the `boundingBox` node.
          *
          * @method _renderBoundingBox
          * @protected
@@ -744,7 +744,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Check if the current TreeNode contains the passed <code>node</code>.
+         * Check if the current TreeNode contains the passed `node`.
          *
          * @method contains
          * @param {TreeNode} node
@@ -835,7 +835,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Whether the current TreeNode is ancestor of the passed <code>node</code> or not.
+         * Whether the current TreeNode is ancestor of the passed `node` or not.
          *
          * @method isLeaf
          * @return {Boolean}
@@ -856,7 +856,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Toggle the current TreeNode, <code>collapsed</code> or <code>expanded</code>.
+         * Toggle the current TreeNode, `collapsed` or `expanded`.
          *
          * @method toggle
          */
@@ -904,7 +904,7 @@ var TreeNode = A.Component.create({
         },
 
         /*
-         * Fire when <code>mouseover</code> the current TreeNode.
+         * Fire when `mouseover` the current TreeNode.
          *
          * @method over
          */
@@ -913,7 +913,7 @@ var TreeNode = A.Component.create({
         },
 
         /*
-         * Fire when <code>mouseout</code> the current TreeNode.
+         * Fire when `mouseout` the current TreeNode.
          *
          * @method over
          */
@@ -948,7 +948,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set the <code>boundingBox</code> id.
+         * Set the `boundingBox` id.
          *
          * @method _syncTreeNodeBBId
          * @param {String} id
@@ -985,7 +985,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set <code>draggable</code> attribute on the UI.
+         * Set `draggable` attribute on the UI.
          *
          * @method _uiSetDraggable
          * @param val
@@ -999,7 +999,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set <code>expanded</code> attribute on the UI.
+         * Set `expanded` attribute on the UI.
          *
          * @method _uiSetExpanded
          * @param val
@@ -1030,7 +1030,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set <code>leaf</code> attribute on the UI.
+         * Set `leaf` attribute on the UI.
          *
          * @method _uiSetLeaf
          * @param val
@@ -1070,22 +1070,22 @@ var TREE_NODE_IO = 'tree-node-io';
 
 /**
  * A base class for TreeNodeIO, providing:
- * <ul>
- *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *	<li>Ajax support to load the children of the current TreeNode</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Ajax support to load the children of the current TreeNode
  *
  * @class A.TreeNodeIO
  * @extends A.TreeNode
  * @uses A.TreeViewPaginator, A.TreeViewIO
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeNodeIO = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1095,7 +1095,7 @@ var TreeNodeIO = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNode.
      *
-     * @property TreeNode.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1234,8 +1234,8 @@ var TreeNodeIO = A.Component.create({
         },
 
         /**
-         * If not specified on the TreeNode some attributes are inherited from the
-         * ownerTree by this method.
+         * If not specified on the TreeNode some attributes are inherited from
+         * the ownerTree by this method.
          *
          * @method _inheritOwnerTreeAttrs
          * @protected
@@ -1267,7 +1267,8 @@ var TreeNodeIO = A.Component.create({
 
                     var paginator = A.clone(ownerTreePaginator);
 
-                    // make sure we are not using the same element passed to the ownerTree on the TreeNode
+                    // make sure we are not using the same element passed to the
+                    // ownerTree on the TreeNode
                     if (paginator && paginator.element) {
                         paginator.element = ownerTreePaginator.element.clone();
                     }
@@ -1314,21 +1315,21 @@ var CHECKBOX = 'checkbox',
 
 /**
  * A base class for TreeNodeCheck, providing:
- * <ul>
- *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *	<li>Checkbox support for the TreeNode</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Checkbox support for the TreeNode
  *
  * @class A.TreeNodeCheck
  * @extends A.TreeNodeIO
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeNodeCheck = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1338,7 +1339,7 @@ var TreeNodeCheck = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNode.
      *
-     * @property TreeNode.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1542,7 +1543,7 @@ var TreeNodeCheck = A.Component.create({
         },
 
         /**
-         * Fire after <code>checked</code> change.
+         * Fire after `checked` change.
          *
          * @method _afterCheckedChange
          * @param event
@@ -1555,7 +1556,7 @@ var TreeNodeCheck = A.Component.create({
         },
 
         /**
-         * Set the <code>checked</code> attribute on the UI.
+         * Set the `checked` attribute on the UI.
          *
          * @method _uiSetChecked
          * @param val
@@ -1588,22 +1589,23 @@ var CHILD = 'child',
 
 /**
  * A base class for TreeNodeTask, providing:
- * <ul>
- *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *	<li>3 states checkbox support</li>
- *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - 3 states checkbox support
+ * - Automatic check/uncheck the parent status based on the children checked
+ *   status
  *
  * @class A.TreeNodeTask
  * @extends A.TreeNodeCheck
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeNodeTask = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNode.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1701,22 +1703,23 @@ var TREE_NODE_RADIO = 'tree-node-radio',
 
 /**
  * A base class for TreeNodeRadio, providing:
- * <ul>
- *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *	<li>3 states checkbox support</li>
- *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - 3 states checkbox support
+ * - Automatic check/uncheck the parent status based on the children checked
+ *   status
  *
  * @class A.TreeNodeRadio
  * @extends A.TreeNodeTask
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeNodeRadio = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNodeRadio.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1726,7 +1729,7 @@ var TreeNodeRadio = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNodeRadio.
      *
-     * @property TreeNodeRadio.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1761,7 +1764,7 @@ var TreeNodeRadio = A.Component.create({
         }
     },
 
-    EXTENDS: A.TreeNodeTask,
+    EXTENDS: A.TreeNodeCheck,
 
     prototype: {
 
@@ -1839,16 +1842,18 @@ A.TreeNodeRadio = TreeNodeRadio;
 /**
  * TreeNode types hash map.
  *
- * <pre><code>A.TreeNode.nodeTypes = {
+ * ```
+ * A.TreeNode.nodeTypes = {
  *  radio: A.TreeNodeRadio,
  *  task: A.TreeNodeTask,
  *  check: A.TreeNodeCheck,
  *  node: A.TreeNode,
  *  io: A.TreeNodeIO
- *};</code></pre>
+ * };
+ * ```
  *
  * @for TreeNode
- * @property A.TreeNode.nodeTypes
+ * @property nodeTypes
  * @type Object
  */
 A.TreeNode.nodeTypes = {

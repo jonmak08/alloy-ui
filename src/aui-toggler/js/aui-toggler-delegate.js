@@ -46,8 +46,9 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/toggler/).
  *
  * @class A.TogglerDelegate
- * @extends A.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TogglerDelegate = A.Component.create({
@@ -55,7 +56,7 @@ var TogglerDelegate = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TogglerDelegate.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -65,7 +66,7 @@ var TogglerDelegate = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Toggler Delegate.
      *
-     * @property TogglerDelegate.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -159,7 +160,7 @@ var TogglerDelegate = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TogglerDelegate.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -170,7 +171,8 @@ var TogglerDelegate = A.Component.create({
         items: null,
 
         /**
-         * Construction logic executed during TogglerDelegate instantiation. Lifecycle.
+         * Construction logic executed during TogglerDelegate instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -216,7 +218,8 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the TogglerDelegate class. Lifecycle.
+         * Destructor lifecycle implementation for the TogglerDelegate class.
+         * Lifecycle.
          *
          * @method destructor
          * @protected
@@ -346,7 +349,8 @@ var TogglerDelegate = A.Component.create({
             var instance = this,
                 expanded = instance.get(EXPANDED);
 
-            // Prioritize markup information to decide whether it's expanded or not
+            // Prioritize markup information to decide whether it's expanded or
+            // not
             if (header.hasClass(CSS_TOGGLER_HEADER_EXPANDED)) {
                 expanded = true;
             }
@@ -370,7 +374,7 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
-         * Trigger when the <code>animating</code> attribute change its value.
+         * Trigger when the `animating` attribute change its value.
          *
          * @method _onAnimatingChange
          * @param event

@@ -55,22 +55,24 @@ var L = A.Lang,
 
 /**
  * A base class for TreeView, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  *
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class A.TreeView
- * @extends A.TreeData
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @uses A.TreeData, A.TreeViewPaginator, A.TreeViewIO
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/tree/basic-markup.html
+ * @include http://alloyui.com/examples/tree/basic.js
  */
 var TreeView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -80,7 +82,7 @@ var TreeView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeView.
      *
-     * @property TreeView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -206,6 +208,18 @@ var TreeView = A.Component.create({
          */
         _afterSetChildren: function(event) {
             var instance = this;
+
+            var paginator = instance.get('paginator');
+
+            if (paginator && paginator.total) {
+                var increment = -1;
+
+                if (event.newVal.length > event.prevVal.length) {
+                    increment = 1;
+                }
+
+                paginator.total += increment;
+            }
 
             instance._syncPaginatorUI();
         },
@@ -355,7 +369,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>mouseEnter</code> the TreeNode.
+         * Fire on `mouseEnter` the TreeNode.
          *
          * @method _onMouseEnterNodeEl
          * @param {EventFacade} event
@@ -371,7 +385,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>mouseLeave</code> the TreeNode.
+         * Fire on `mouseLeave` the TreeNode.
          *
          * @method _onMouseLeaveNodeEl
          * @param {EventFacade} event
@@ -387,7 +401,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>click</code> the TreeNode hitarea.
+         * Fire on `click` the TreeNode hitarea.
          *
          * @method _onClickHitArea
          * @param {EventFacade} event
@@ -457,21 +471,21 @@ var isNumber = L.isNumber,
 
 /**
  * A base class for TreeViewDD, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>DragDrop support for the TreeNodes</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - DragDrop support for the TreeNodes
  *
  * @class A.TreeViewDD
  * @extends A.TreeView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeViewDD = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeViewDD.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -481,7 +495,7 @@ var TreeViewDD = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeViewDD.
      *
-     * @property TreeViewDD.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -641,11 +655,10 @@ var TreeViewDD = A.Component.create({
                     moveOnEnd: false,
                     positionProxy: false,
                     borderStyle: null
-                })
-                    .plug(A.Plugin.DDNodeScroll, {
-                        scrollDelay: instance.get(SCROLL_DELAY),
-                        node: boundingBox
-                    });
+                }).plug(A.Plugin.DDNodeScroll, {
+                    scrollDelay: instance.get(SCROLL_DELAY),
+                    node: boundingBox
+                });
 
                 dd.removeInvalid('a');
 
@@ -655,9 +668,11 @@ var TreeViewDD = A.Component.create({
 
             };
 
-            // Check for mobile devices and execute _createDragInitHandler before events
+            // Check for mobile devices and execute _createDragInitHandler
+            // before events
             if (!UA.touch) {
-                // only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
+                // only create the drag on the init elements if the user
+                // mouseover the boundingBox for init performance reasons
                 dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
             }
             else {
@@ -674,7 +689,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the append CSS state on the passed <code>nodeContent</code>.
+         * Set the append CSS state on the passed `nodeContent`.
          *
          * @method _appendState
          * @param {Node} nodeContent
@@ -691,7 +706,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the going down CSS state on the passed <code>nodeContent</code>.
+         * Set the going down CSS state on the passed `nodeContent`.
          *
          * @method _goingDownState
          * @param {Node} nodeContent
@@ -708,7 +723,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the going up CSS state on the passed <code>nodeContent</code>.
+         * Set the going up CSS state on the passed `nodeContent`.
          *
          * @method _goingUpState
          * @param {Node} nodeContent
@@ -725,7 +740,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the reset CSS state on the passed <code>nodeContent</code>.
+         * Set the reset CSS state on the passed `nodeContent`.
          *
          * @method _resetState
          * @param {Node} nodeContent
@@ -768,8 +783,9 @@ var TreeViewDD = A.Component.create({
             // cannot drop the dragged element into any of its children
             // using DOM contains method for performance reason
             if (!dragNode.contains(dropNode)) {
-                // nArea splits the height in 3 areas top/center/bottom
-                // these areas are responsible for defining the state when the mouse is over any of them
+                // nArea splits the height in 3 areas top/center/bottom these
+                // areas are responsible for defining the state when the mouse
+                // is over any of them
                 var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
                 var yTop = nodeContent.getY();
                 var yCenter = yTop + nArea;
@@ -790,7 +806,8 @@ var TreeViewDD = A.Component.create({
                     if (dropTreeNode && !dropTreeNode.isLeaf()) {
                         instance._appendState(nodeContent);
                     }
-                    // if it's a leaf we need to set the ABOVE or BELOW state instead of append
+                    // if it's a leaf we need to set the ABOVE or BELOW state
+                    // instead of append
                     else {
                         if (instance.direction === UP) {
                             instance._goingUpState(nodeContent);
@@ -809,7 +826,7 @@ var TreeViewDD = A.Component.create({
          * Fire after the drop hit event.
          *
          * @method _afterDropHit
-         * @param {EventFacade} event drop hit event facade
+         * @param {EventFacade} event Drop hit event facade
          * @protected
          */
         _afterDropHit: function(event) {
@@ -861,7 +878,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drag align event.
          *
          * @method _onDragAlign
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDragAlign: function(event) {
@@ -882,7 +899,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drag start event.
          *
          * @method _onDragStart
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDragStart: function(event) {
@@ -903,10 +920,12 @@ var TreeViewDD = A.Component.create({
             var helper = instance.get(HELPER);
             var helperLabel = helper.one(DOT + CSS_TREE_DRAG_HELPER_LABEL);
 
-            // show helper, we need display block here, yui dd hide it with display none
+            // show helper, we need display block here, yui dd hide it with
+            // display none
             helper.setStyle(DISPLAY, BLOCK).show();
 
-            // set the CSS_TREE_DRAG_HELPER_LABEL html with the label of the dragged node
+            // set the CSS_TREE_DRAG_HELPER_LABEL html with the label of the
+            // dragged node
             helperLabel.html(dragTreeNode.get(LABEL));
 
             // update the DRAG_NODE with the new helper
@@ -917,7 +936,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drop over event.
          *
          * @method _onDropOver
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDropOver: function(event) {
@@ -930,7 +949,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drop hit event.
          *
          * @method _onDropHit
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDropHit: function(event) {
@@ -946,7 +965,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drop exit event.
          *
          * @method _onDropExit
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDropExit: function() {

@@ -28,21 +28,19 @@ var Lang = A.Lang,
 
     EV_PROCESS_ATTRIBUTE = 'aria:processAttribute',
 
-    _toAriaRole = A.cached(
-        function(str) {
-            return str.replace(STR_REGEX, function() {
-                return EMPTY_STR;
-            })
-                .toLowerCase();
-        }
-    );
+    _toAriaRole = A.cached(function(str) {
+        return str.replace(STR_REGEX, function() {
+            return EMPTY_STR;
+        }).toLowerCase();
+    });
 
 /**
  * A base class for Aria.
  *
- * @class A.Aria
- * @extends A.Plugin.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @class A.Plugin.Aria
+ * @extends Plugin.Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var Aria = A.Component.create({
@@ -50,7 +48,7 @@ var Aria = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Aria.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -59,7 +57,7 @@ var Aria = A.Component.create({
     /**
      * Static property provides a string to identify the namespace.
      *
-     * @property Aria.NS
+     * @property NS
      * @type String
      * @static
      */
@@ -69,7 +67,7 @@ var Aria = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Aria.
      *
-     * @property Aria.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -161,7 +159,7 @@ var Aria = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property Aria.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

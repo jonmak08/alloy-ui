@@ -85,13 +85,9 @@ var Lang = A.Lang,
     },
 
     _numericSort = function(arr) {
-        return AArray.map(
-            arr,
-            function(v) {
-                return +v;
-            }
-        )
-            .sort(AArray.numericSort);
+        return AArray.map(arr, function(v) {
+            return +v;
+        }).sort(AArray.numericSort);
     },
 
     getCN = A.getClassName,
@@ -149,11 +145,12 @@ var Lang = A.Lang,
         '</div>';
 
 /**
- * A base class for SchedulerAgendaView.
+ * A base class for `SchedulerAgendaView`.
  *
  * @class A.SchedulerAgendaView
  * @extends A.SchedulerView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerAgendaView = A.Component.create({
@@ -161,38 +158,38 @@ var SchedulerAgendaView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerAgendaView.NAME
-     * @type String
+     * @property NAME
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_AGENDA,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerAgendaView.
+     * configuration for the `SchedulerAgendaView`.
      *
-     * @property SchedulerAgendaView.ATTRS
-     * @type Object
+     * @property ATTRS
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the content of Scheduler view agenda's body section.
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the events date.
          *
          * @attribute eventsDateFormatter
-         * @type Function
+         * @type {Function}
          */
         eventsDateFormatter: {
             value: function(startDate, endDate) {
@@ -229,17 +226,16 @@ var SchedulerAgendaView = A.Component.create({
                     startDateFormatter.call(instance, startDate),
                     _MDASH,
                     endDateFormatter.call(instance, endDate)
-                    ]
-                    .join(_SPACE);
+                    ].join(_SPACE);
             },
             validator: isFunction
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the header day date.
          *
          * @attribute headerDayDateFormatter
-         * @type Function
+         * @type {Function}
          */
         headerDayDateFormatter: {
             value: function(date) {
@@ -263,10 +259,10 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the header extra date.
          *
          * @attribute headerExtraDateFormatter
-         * @type Function
+         * @type {Function}
          */
         headerExtraDateFormatter: {
             validator: isFunction,
@@ -274,10 +270,10 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the info day date.
          *
          * @attribute infoDayDateFormatter
-         * @type Function
+         * @type {Function}
          */
         infoDayDateFormatter: {
             validator: isFunction,
@@ -285,10 +281,10 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the info label date.
          *
          * @attribute infoLabelBigDateFormatter
-         * @type Function
+         * @type {Function}
          */
         infoLabelBigDateFormatter: {
             validator: isFunction,
@@ -296,10 +292,10 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the info label small date.
          *
          * @attribute infoLabelSmallDateFormatter
-         * @type Function
+         * @type {Function}
          */
         infoLabelSmallDateFormatter: {
             validator: isFunction,
@@ -307,20 +303,21 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the name for this agenda.
          *
          * @attribute name
          * @default 'agenda'
-         * @type String
+         * @type {String}
          */
         name: {
             value: AGENDA
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
+         * @type {Object}
          */
         strings: {
             value: {
@@ -332,8 +329,8 @@ var SchedulerAgendaView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SchedulerAgendaView.EXTENDS
-     * @type Object
+     * @property EXTENDS
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerView,
@@ -341,7 +338,7 @@ var SchedulerAgendaView = A.Component.create({
     prototype: {
 
         /**
-         * Bind the events on the SchedulerAgendaView UI. Lifecycle.
+         * Binds the events on the `SchedulerAgendaView` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -356,9 +353,11 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that follows the agenda view's current
+         * date.
          *
          * @method getNextDate
+         * @return {Date}
          */
         getNextDate: function() {
             var instance = this,
@@ -369,9 +368,11 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that preceeds the agenda view's current
+         * date.
          *
          * @method getPrevDate
+         * @return {Date}
          */
         getPrevDate: function() {
             var instance = this,
@@ -382,7 +383,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Plots all events in the current view.
          *
          * @method plotEvents
          */
@@ -485,10 +486,11 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the current day's `eventMap`.
          *
          * @method _getDayEventsMap
          * @protected
+         * @return {Object} The current day's `eventMap`.
          */
         _getDayEventsMap: function() {
             var instance = this,
@@ -525,10 +527,10 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `eventsHeader` click events.
          *
          * @method _onEventsHeaderClick
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onEventsHeaderClick: function(event) {
@@ -551,10 +553,10 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `scheduler` click events.
          *
          * @method _onEventsHeaderClick
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onSchedulerEventClick: function(event) {

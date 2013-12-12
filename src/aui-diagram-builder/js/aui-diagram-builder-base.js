@@ -101,8 +101,9 @@ var Lang = A.Lang,
  * A base class for AvailableField.
  *
  * @class A.AvailableField
- * @extends A.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var AvailableField = A.Component.create({
@@ -110,7 +111,7 @@ var AvailableField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property AvailableField.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -120,7 +121,7 @@ var AvailableField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the AvailableField.
      *
-     * @property AvailableField.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -215,7 +216,7 @@ var AvailableField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property AvailableField.EXTENDS
+     * @property EXTENDS
      * @type String
      * @static
      */
@@ -265,7 +266,8 @@ var AvailableField = A.Component.create({
             CSS_DIAGRAM_BUILDER_FIELD_ICON].join(_SPACE) + ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
-         * Construction logic executed during AvailableField instantiation. Lifecycle.
+         * Construction logic executed during AvailableField instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -407,7 +409,7 @@ var FieldSupport = function() {};
  * Static property used to define the default attribute
  * configuration for the FieldSupport.
  *
- * @property FieldSupport.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -553,16 +555,16 @@ A.FieldSupport = FieldSupport;
  * A base class for DiagramBuilderBase.
  *
  * @class A.DiagramBuilderBase
- * @extends A.Component
  * @uses A.FieldSupport
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DiagramBuilderBase = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property DiagramBuilderBase.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -572,7 +574,7 @@ var DiagramBuilderBase = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the DiagramBuilderBase.
      *
-     * @property DiagramBuilderBase.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -673,7 +675,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -733,7 +735,7 @@ var DiagramBuilderBase = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property DiagramBuilderBase.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */
@@ -748,7 +750,7 @@ var DiagramBuilderBase = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property DiagramBuilderBase.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -757,7 +759,7 @@ var DiagramBuilderBase = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property DiagramBuilderBase.AUGMENTS
+     * @property AUGMENTS
      * @type Array
      * @static
      */
@@ -777,7 +779,8 @@ var DiagramBuilderBase = A.Component.create({
         toolbar: null,
 
         /**
-         * Construction logic executed during DiagramBuilderBase instantiation. Lifecycle.
+         * Construction logic executed during DiagramBuilderBase instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -1054,8 +1057,7 @@ var DiagramBuilderBase = A.Component.create({
             if (!instance.toolbar) {
                 instance.toolbar = new A.Toolbar(
                     instance.get(TOOLBAR)
-                )
-                    .render(instance.settingsNode);
+                ).render(instance.settingsNode);
             }
         },
 

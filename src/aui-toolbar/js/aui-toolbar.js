@@ -45,16 +45,18 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
  * @class A.Toolbar
- * @extends A.Component
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/toolbar/basic-markup.html
+ * @include http://alloyui.com/examples/toolbar/basic.js
  */
 A.Toolbar = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Toolbar.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -64,7 +66,7 @@ A.Toolbar = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Toolbar.
      *
-     * @property Toolbar.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -81,7 +83,7 @@ A.Toolbar = A.Component.create({
         },
 
         /**
-         * Define a new <code>ToolbarRenderer</code>.
+         * Define a new `ToolbarRenderer`.
          *
          * @attribute toolbarRenderer
          * @value A.ToolbarRenderer
@@ -96,7 +98,7 @@ A.Toolbar = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property Toolbar.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -297,7 +299,7 @@ A.Toolbar = A.Component.create({
         },
 
         /**
-         * Set <code>children</code> attribute on the UI.
+         * Set `children` attribute on the UI.
          *
          * @method _uiSetChildren
          * @param val
@@ -323,7 +325,8 @@ A.Toolbar = A.Component.create({
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
  * @class A.ToolbarRenderer
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ToolbarRenderer = function() {};
@@ -333,7 +336,7 @@ ToolbarRenderer.prototype = {
     /**
      * Static property provides a set of templates.
      *
-     * @property ToolbarRenderer.TEMPLATES
+     * @property TEMPLATES
      * @type Object
      * @static
      */
@@ -347,7 +350,7 @@ ToolbarRenderer.prototype = {
      * Static property used to define how
      * things are going to be rendered.
      *
-     * @property ToolbarRenderer.RENDERER
+     * @property RENDERER
      * @type Object
      * @static
      */
@@ -375,8 +378,8 @@ ToolbarRenderer.prototype = {
             // Add node reference support
             buttonNode = A.one(value.boundingBox || value.srcNode);
             if (buttonNode) {
-                // IE6- fails when setting type on created input elements, try to
-                // silently fails when that happens.
+                // IE6- fails when setting type on created input elements, try
+                // to silently fails when that happens.
                 try {
                     // Add type support
                     buttonNode.setAttribute('type', type);

@@ -19,8 +19,9 @@ var Lang = A.Lang,
  * A base class for TernarySearchTree.
  *
  * @class A.TernarySearchTree
- * @extends A.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TernarySearchTree = A.Component.create({
@@ -28,7 +29,7 @@ var TernarySearchTree = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TernarySearchTree.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -37,7 +38,7 @@ var TernarySearchTree = A.Component.create({
     /**
      * Static property provides a string to identify the namespace.
      *
-     * @property TernarySearchTree.NS
+     * @property NS
      * @type String
      * @static
      */
@@ -46,7 +47,7 @@ var TernarySearchTree = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TernarySearchTree.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

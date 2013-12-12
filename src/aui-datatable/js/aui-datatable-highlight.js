@@ -56,8 +56,9 @@ var Lang = A.Lang,
  * A base class for DataTableHighlight.
  *
  * @class A.DataTableHighlight
- * @extends A.Plugin.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Plugin.Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DataTableHighlight = A.Base.create(
@@ -71,7 +72,8 @@ var DataTableHighlight = A.Base.create(
         _nodes: null,
 
         /**
-         * Construction logic executed during DataTableHighlight instantiation. Lifecycle.
+         * Construction logic executed during DataTableHighlight instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -246,7 +248,9 @@ var DataTableHighlight = A.Base.create(
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _alignBorder
-         * @param overlayNode, region, borderWidth
+         * @param overlayNode
+         * @param region
+         * @param borderWidth
          * @protected
          */
         _alignBorder: function(overlayNode, region, borderWidth) {
@@ -337,7 +341,7 @@ var DataTableHighlight = A.Base.create(
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property DataTableHighlight.NS
+         * @property NS
          * @type String
          * @static
          */
@@ -346,7 +350,7 @@ var DataTableHighlight = A.Base.create(
         /**
          * Static property provides a string to identify the class.
          *
-         * @property DataTableHighlight.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -356,7 +360,7 @@ var DataTableHighlight = A.Base.create(
          * Static property used to define the default attribute
          * configuration for the DataTableHighlight.
          *
-         * @property DataTableHighlight.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

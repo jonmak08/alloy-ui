@@ -43,16 +43,16 @@ var L = A.Lang,
 
 /**
  * A base class for TreeData, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Handle the data of the tree</li>
- *    <li>Basic DOM implementation (append/remove/insert)</li>
- *    <li>Indexing management to handle the children nodes</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Handle the data of the tree
+ * - Basic DOM implementation (append/remove/insert)
+ * - Indexing management to handle the children nodes
  *
  * @class A.TreeData
- * @extends A.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Base
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -62,7 +62,7 @@ var TreeData = function() {};
  * Static property used to define the default attribute
  * configuration for the TreeData.
  *
- * @property TreeData.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -80,7 +80,8 @@ TreeData.ATTRS = {
     },
 
     /**
-     * Array of children (i.e. could be a JSON metadata object or a TreeNode instance).
+     * Array of children (i.e. could be a JSON metadata object or a TreeNode
+     * instance).
      *
      * @attribute children
      * @default []
@@ -165,7 +166,7 @@ A.mix(TreeData.prototype, {
      *
      * @method isRegistered
      * @param {TreeNode} node
-     * @return {boolean}
+     * @return {Boolean}
      */
     isRegistered: function(node) {
         var instance = this;
@@ -177,9 +178,9 @@ A.mix(TreeData.prototype, {
      * Update the references of the passed TreeNode.
      *
      * @method updateReferences
-     * @param {node} TreeNode
-     * @param {parentNode} TreeNode
-     * @param {ownerTree} TreeView
+     * @param {TreeNode} node
+     * @param {TreeNode} parentNode
+     * @param {TreeView} ownerTree
      */
     updateReferences: function(node, parentNode, ownerTree) {
         var instance = this;
@@ -287,7 +288,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Update the <a href="TreeData.html#config_index">index</a> attribute value.
+     * Update the [index](A.TreeData.html#attr_index) attribute value.
      *
      * @method updateIndex
      * @param {Object} index
@@ -374,11 +375,11 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Loop each children and execute the <code>fn</code> callback.
+     * Loop each children and execute the `fn` callback.
      *
      * @method eachChildren
-     * @param {function} fn callback
-     * @param {boolean} fn recursive
+     * @param {Function} fn Callback
+     * @param {Boolean} deep Recursive
      */
     eachChildren: function(fn, deep) {
         var instance = this;
@@ -392,10 +393,10 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Loop each parent node and execute the <code>fn</code> callback.
+     * Loop each parent node and execute the `fn` callback.
      *
      * @method eachParent
-     * @param {function} fn callback
+     * @param {Function} fn Callback
      */
     eachParent: function(fn) {
         var instance = this;
@@ -415,21 +416,23 @@ A.mix(TreeData.prototype, {
      * @method bubbleEvent
      * @param {String} eventType
      * @param {Array} args
-     * @param {boolean} cancelBubbling
-     * @param {boolean} stopActionPropagation
+     * @param {Boolean} cancelBubbling
+     * @param {Boolean} stopActionPropagation
      */
     bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
         var instance = this;
 
-        // event.stopActionPropagation === undefined, invoke the event native action
+        // event.stopActionPropagation === undefined, invoke the event native
+        // action
         instance.fire(eventType, args);
 
         if (!cancelBubbling) {
             var parentNode = instance.get(PARENT_NODE);
 
-            // Avoid execution of the native action (private methods) while propagate
-            // for example: private _appendChild() is invoked only on the first level of the bubbling
-            // the intention is only invoke the user callback on parent nodes.
+            // Avoid execution of the native action (private methods) while
+            // propagate for example: private _appendChild() is invoked only on
+            // the first level of the bubbling the intention is only invoke the
+            // user callback on parent nodes.
             args = args || {};
 
             if (isUndefined(stopActionPropagation)) {
@@ -466,7 +469,7 @@ A.mix(TreeData.prototype, {
      *
      * @method appendChild
      * @param {TreeNode} node
-     * @param {boolean} cancelBubbling
+     * @param {Boolean} cancelBubbling
      */
     appendChild: function(node, cancelBubbling) {
         var instance = this;
@@ -480,7 +483,7 @@ A.mix(TreeData.prototype, {
      *
      * @method _appendChild
      * @param {TreeNode} node
-     * @param {boolean} cancelBubbling
+     * @param {Boolean} cancelBubbling
      * @protected
      */
     _appendChild: function(event) {
@@ -526,8 +529,8 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Index of the passed TreeNode on the <a
-     * href="TreeData.html#config_children">children</a> attribute.
+     * Index of the passed TreeNode on the
+     * [children](A.TreeData.html#attr_children) attribute.
      *
      * @method indexOf
      * @param {TreeNode} node
@@ -543,7 +546,7 @@ A.mix(TreeData.prototype, {
      * Whether the TreeData contains children or not.
      *
      * @method hasChildNodes
-     * @return {boolean}
+     * @return {Boolean}
      */
     hasChildNodes: function() {
         var instance = this;
@@ -555,7 +558,7 @@ A.mix(TreeData.prototype, {
      * Get an Array of the children nodes of the current TreeData.
      *
      * @method getChildren
-     * @param {boolean} deep
+     * @param {Boolean} deep
      * @return {Array}
      */
     getChildren: function(deep) {
@@ -599,7 +602,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Remove the passed <code>node</code> from the current TreeData.
+     * Remove the passed `node` from the current TreeData.
      *
      * @method removeChild
      * @param {TreeData} node
@@ -612,7 +615,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Remove the passed <code>node</code> from the current TreeData.
+     * Remove the passed `node` from the current TreeData.
      *
      * @method _removeChild
      * @param {TreeData} node
@@ -670,7 +673,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> before or after the <code>refTreeNode</code>.
+     * Insert `treeNode` before or after the `refTreeNode`.
      *
      * @method insert
      * @param {TreeNode} treeNode
@@ -736,7 +739,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> after the <code>refTreeNode</code>.
+     * Insert `treeNode` after the `refTreeNode`.
      *
      * @method insertAfter
      * @param {TreeNode} treeNode
@@ -749,7 +752,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> before the <code>refTreeNode</code>.
+     * Insert `treeNode` before the `refTreeNode`.
      *
      * @method insertBefore
      * @param {TreeNode} treeNode
@@ -782,7 +785,7 @@ A.mix(TreeData.prototype, {
     _inheritOwnerTreeAttrs: L.emptyFn,
 
     /**
-     * Setter for <a href="TreeData.html#config_children">children</a>.
+     * Setter for [children](A.TreeData.html#attr_children).
      *
      * @method _setChildren
      * @protected
@@ -800,9 +803,10 @@ A.mix(TreeData.prototype, {
 
         instance.childrenLength = v.length;
 
-        // before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
-        // this is required on the render phase of the TreeNode (_createNodeContainer)
-        // to propagate the events callback (appendChild/expand)
+        // before render the node, make sure the PARENT_NODE and OWNER_TREE
+        // references are updated this is required on the render phase of the
+        // TreeNode (_createNodeContainer) to propagate the events callback
+        // (appendChild/expand)
         var ownerTree = instance;
 
         if (isTreeNode(instance)) {

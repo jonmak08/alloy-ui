@@ -64,24 +64,39 @@ A.Tab.NAME = TAB;
  * Check the [live demo](http://alloyui.com/examples/tabview/).
  *
  * @class A.Tab
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @extends Tab
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/tabview/basic-markup.html
+ * @include http://alloyui.com/examples/tabview/basic.js
  */
 A.Tab = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Tab.NAME
+     * @property NAME
      * @type String
      * @static
      */
     NAME: TAB,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Tab.
+     *
+     * @property ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
 
         /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
          * @attribute disabled
+         * @type Boolean
          */
         disabled: {
             validator: isBoolean,
@@ -92,7 +107,7 @@ A.Tab = A.Component.create({
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property Tab.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -101,7 +116,7 @@ A.Tab = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property Tab.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -124,7 +139,7 @@ A.Tab = A.Component.create({
         },
 
         /**
-         * Fire after <code>disabled</code> class been set on the UI.
+         * Fire after `disabled` class been set on the UI.
          *
          * @method _afterUiSetDisabled
          * @param val
@@ -137,7 +152,7 @@ A.Tab = A.Component.create({
         },
 
         /**
-         * Fire before <code>selected</code> attribute change.
+         * Fire before `selected` attribute change.
          *
          * @method _onTabSelectedChange
          * @param event
@@ -195,7 +210,8 @@ A.TabView.CSS_PREFIX = getClassName(TABBABLE);
  *
  * @class A.TabView
  * @extends TabView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.TabView = A.Component.create({
@@ -203,7 +219,7 @@ A.TabView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TabView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -212,7 +228,7 @@ A.TabView = A.Component.create({
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property TabView.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -222,7 +238,7 @@ A.TabView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TabView.
      *
-     * @property TabView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -259,7 +275,7 @@ A.TabView = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property TabView.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -268,7 +284,7 @@ A.TabView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TabView.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -362,7 +378,7 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Fire after <code>type</code> attribute changes.
+         * Fire after `type` attribute changes.
          *
          * @method _afterTypeChange
          * @param event
@@ -378,7 +394,8 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Check if the child is already inDoc to avoid be appended to the renderTo node.
+         * Check if the child is already inDoc to avoid be appended to the
+         * renderTo node.
          *
          * @method _renderChildren
          * @protected
@@ -398,7 +415,7 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Set the <code>type</code> attribute on the UI.
+         * Set the `type` attribute on the UI.
          *
          * @method _uiSetType
          * @param val
@@ -412,7 +429,7 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Toggle <code>stacked</code> attribute on the UI.
+         * Toggle `stacked` attribute on the UI.
          *
          * @method _uiSetStacked
          * @param val

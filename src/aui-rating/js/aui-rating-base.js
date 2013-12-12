@@ -57,25 +57,25 @@ var Lang = A.Lang,
     TPL_LABEL = '<span class="' + CSS_RATING_LABEL + '"></span>';
 
 /**
- *
  * A base class for Rating, providing:
- * <ul>
- *    <li>A non-obstrusive star rating control</li>
- *    <li>Could be based on a set of radio input boxes</li>
- * </ul>
+ *
+ * - A non-obstrusive star rating control
+ * - Could be based on a set of radio input boxes
  *
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *
  * @class A.Rating
- * @extends A.Component
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/rating/basic-markup.html
+ * @include http://alloyui.com/examples/rating/basic.js
  */
 var Rating = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Rating.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -85,7 +85,7 @@ var Rating = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Rating.
      *
-     * @property Rating.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -106,7 +106,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * If <code>true</code> could be reseted
+         * If `true` could be reseted
          * (i.e., have no values selected).
          *
          * @attribute canReset
@@ -148,7 +148,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * <a href="NodeList.html">NodeList</a> of elements used on the
+         * [NodeList](NodeList.html) of elements used on the
          * Rating. Each element is one Star.
          *
          * @attribute elements
@@ -172,8 +172,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Name of the <a
-         * href="Rating.html#config_hiddenInput">hiddenInput</a> element. If
+         * Name of the [hiddenInput](A.Rating.html#attr_hiddenInput) element. If
          * not specified will use the name of the replaced radio.
          *
          * @attribute inputName
@@ -200,7 +199,7 @@ var Rating = A.Component.create({
         /**
          * DOM Node to display the text of the StarRating. If not
          * specified try to query using HTML_PARSER an element inside
-         * boundingBox which matches <code>aui-rating-label-element</code>.
+         * boundingBox which matches `aui-rating-label-element`.
          *
          * @attribute labelNode
          * @default Generated div element.
@@ -226,8 +225,8 @@ var Rating = A.Component.create({
         },
 
         /**
-         * If <code>true</code> will extract the value of the
-         * <code>title</code> attribute on the radio, and use it on the
+         * If `true` will extract the value of the
+         * `title` attribute on the radio, and use it on the
          * generated Rating elements.
          *
          * @attribute showTitle
@@ -254,7 +253,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * If set, will be used when there is no DOM <code>title</code> on the
+         * If set, will be used when there is no DOM `title` on the
          * radio elements.
          *
          * @attribute title
@@ -277,7 +276,7 @@ var Rating = A.Component.create({
      * Object hash, defining how attribute values are to be parsed from
      * markup contained in the widget's content box.
      *
-     * @property StarRating.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */
@@ -377,7 +376,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Select the <code>index</code> Rating element.
+         * Select the `index` Rating element.
          *
          * @method select
          * @param {Number} index Index to be selected
@@ -411,12 +410,13 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Add the <code>className</code> on the the <code>index</code> element
+         * Add the `className` on the the `index` element
          * and all the previous Rating elements.
          *
          * @method fillTo
          * @param {Number} index Index to be selected
-         * @param {String} className Class name to be applied when fill the Rating elements
+         * @param {String} className Class name to be applied when fill the
+         *     Rating elements
          */
         fillTo: function(index, className) {
             var instance = this,
@@ -434,7 +434,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Find the index of the <code>elem</code>.
+         * Find the index of the `elem`.
          *
          * @method indexOf
          * @param {Node} elem Rating element
@@ -459,13 +459,14 @@ var Rating = A.Component.create({
             var instance = this,
                 domTarget = event.domEvent.target;
 
-            // checks if the widget is not disabled and if the dom event is firing with a item as target
-            // do not fire custom events for other elements into the boundingBox
+            // checks if the widget is not disabled and if the dom event is
+            // firing with a item as target do not fire custom events for other
+            // elements into the boundingBox
             return !instance.get(DISABLED) && domTarget.test('a');
         },
 
         /**
-         * Create rating elements based on the <code>size</code>
+         * Create rating elements based on the `size`
          * attribute. It's only invoked when the HTML_PARSER does not find
          * nothing.
          *
@@ -514,8 +515,8 @@ var Rating = A.Component.create({
              *
              * @event itemClick
              * @preventable _defRatingItemClickFn
-             * @param {Event.Facade} event The itemClick event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemClick event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_CLICK,
@@ -527,8 +528,8 @@ var Rating = A.Component.create({
              *
              * @event itemSelect
              * @preventable _defRatingItemSelectFn
-             * @param {Event.Facade} event The itemSelect event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemSelect event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_SELECT,
@@ -540,8 +541,8 @@ var Rating = A.Component.create({
              *
              * @event itemSelect
              * @preventable _defRatingItemOverFn
-             * @param {Event.Facade} event The itemOver event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemOver event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_OVER,
@@ -553,8 +554,8 @@ var Rating = A.Component.create({
              *
              * @event itemOut
              * @preventable _defRatingItemOutFn
-             * @param {Event.Facade} event The itemOut event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemOut event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_OUT,
@@ -655,7 +656,8 @@ var Rating = A.Component.create({
                         var labelEl = labels.filter('[for="' + id + '"]');
 
                         if (labelEl.size()) {
-                            // if there is, extract the content of the label to use as content of the anchors...
+                            // if there is, extract the content of the label to
+                            // use as content of the anchors...
                             label = labelEl.item(0).html();
                         }
                     }
@@ -704,7 +706,8 @@ var Rating = A.Component.create({
                 contentBox = instance.get(CONTENT_BOX),
                 elements = instance.get(ELEMENTS);
 
-            // if there are no elements in the markup, create them based on the size attribute
+            // if there are no elements in the markup, create them based on the
+            // size attribute
             if (!elements || !elements.size()) {
                 elements = instance._createElements();
 
@@ -715,7 +718,9 @@ var Rating = A.Component.create({
                 function(element, i) {
                     var data = instance._getInputData(i),
                         content = data.content,
-                        // try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content
+                        // try to use the pulled title data from the dom,
+                        // otherwise use the TITLE attr, in the last case use
+                        // the content
                         title = data.title || instance.get(TITLE) || content;
 
                     // setting the title
@@ -758,8 +763,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Get the <code>index</code> element input data stored on <a
-         * href="Rating.html#property_inputElementsData">inputElementsData</a>.
+         * Get the `index` element input data stored on `inputElementsData`.
          *
          * @method _getInputData
          * @protected
@@ -774,7 +778,7 @@ var Rating = A.Component.create({
          * Fire the click event.
          *
          * @method _handleClickEvent
-         * @param {EventFacade} event click event facade
+         * @param {EventFacade} event Click event facade
          * @protected
          */
         _handleClickEvent: function(event) {
@@ -829,8 +833,8 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Fire after the value of the
-         * <a href="Rating.html#config_label">label</a> attribute change.
+         * Fire after the value of the [label](A.Rating.html#attr_label)
+         * attribute change.
          *
          * @method _afterSetLabel
          * @param {EventFacade} event
