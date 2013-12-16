@@ -137,13 +137,11 @@ var AColor = A.Color,
     REGEX_RANGE_0_360 = /^([0]{0,2}[1-9]|[0]?[1-9][0-9]|[12][0-9][0-9]|3[0-5][0-9]|360)$/,
 
     /**
-     * A base class for `HSVPalette`.
+     * A base class for HSVPalette.
      *
      * @class A.HSVPalette
-     * @extends Widget
-     * @uses A.WidgetCssClass, A.WidgetToggle
-     * @param {Object} config Object literal specifying widget configuration
-     *     properties.
+     * @extends A.Widget
+     * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
      */
     HSVPalette = A.Base.create(NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
@@ -176,8 +174,7 @@ var AColor = A.Color,
         _outputType: TYPE_HEX,
 
         /**
-         * Construction logic executed during `HSVPalette` instantiation.
-         * Lifecycle.
+         * Construction logic executed during HSVPalette instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -191,7 +188,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Bind the events on the `HSVPalette` UI. Lifecycle.
+         * Bind the events on the HSVPalette UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -207,8 +204,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Destructor lifecycle implementation for the `HSVPalette` class.
-         * Lifecycle.
+         * TODO. Wanna help? Please send a Pull Request. Lifecycle.
          *
          * @method destructor
          * @protected
@@ -220,7 +216,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Render the `HSVPalette` component instance. Lifecycle.
+         * Render the HSVPalette component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -239,10 +235,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates selected color after input `valueChange`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterInputChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterInputChange: function(event) {
@@ -270,11 +266,11 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates color based on the X and Y coordinates.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterHSThumbChange
-         * @param {Number} x
-         * @param {Number} y
+         * @param x
+         * @param y
          * @protected
          */
         _afterHSThumbChange: function(x, y) {
@@ -324,11 +320,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Gets X and Y coordinates from mousedown on HS container and updates
-         * color selection based on position.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterPaletteMousedown
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterPaletteMousedown: function(event) {
@@ -355,7 +350,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Sets the X and Y coordinates of the HS container on drag start.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterPaletteDragStart
          * @protected
@@ -367,10 +362,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Sets the X and Y coordinates of the HS container after drag.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterPaletteThumbDrag
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterPaletteThumbDrag: function(event) {
@@ -385,7 +380,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Binds drag events to thumb selector.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _bindDD
          * @protected
@@ -408,13 +403,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Calculates and returns RGB color value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateRGBColor
-         * @param {Number} hue
-         * @param {Number} saturation
-         * @param {Number} value
-         * @return {String} RGB value
+         * @param hue, saturation, value
          * @protected
          */
         _calculateRGBColor: function(hue, saturation, value) {
@@ -424,11 +416,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Calculates and returns hue value based on X position.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateHue
-         * @param {Number} x
-         * @return {Number} hue
+         * @param x
          * @protected
          */
         _calculateHue: function(x) {
@@ -449,13 +440,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Calculates RGB color value from HSV color value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateRGB
-         * @param {Number} hue
-         * @param {Number} saturation
-         * @param {Number} value
-         * @return {String} RGB value
+         * @param hue, saturation, value
          * @protected
          */
         _calculateRGB: function(hue, saturation, value) {
@@ -473,13 +461,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Calculates and returns RGB value from array of values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateRGBArray
-         * @param {Number} r
-         * @param {Number} g
-         * @param {Number} b
-         * @return {String} RGB value
+         * @param r, g, b
          * @protected
          */
         _calculateRGBArray: function(r, g, b) {
@@ -489,11 +474,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Calculates and returns saturation value based on Y position.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateSaturation
-         * @param {Number} y
-         * @return {Number} saturation
+         * @param y
          * @protected
          */
         _calculateSaturation: function(y) {
@@ -514,11 +498,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Calculates X value based on hue input value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateX
-         * @param {Number} hue
-         * @return {Number} x
+         * @param hue
          * @protected
          */
         _calculateX: function(hue) {
@@ -539,11 +522,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Calculates Y value based on saturation input value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateY
-         * @param {Number} saturation
-         * @return {Number} y
+         * @param saturation
          * @protected
          */
         _calculateY: function(saturation) {
@@ -564,7 +546,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Creates sliders.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createSliders
          * @protected
@@ -576,7 +558,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders and binds events to the sliders.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createValueSlider
          * @protected
@@ -615,10 +597,9 @@ var AColor = A.Color,
         },
 
         /**
-         * Returns container class name.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getContainerClassName
-         * @return {String} class name
          * @protected
          */
         _getContainerClassName: function() {
@@ -633,11 +614,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Returns field value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getFieldValue
-         * @param {Node} fieldNode
-         * @return {Number} field value
+         * @param fieldNode
          * @protected
          */
         _getFieldValue: function(fieldNode) {
@@ -647,12 +627,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Returns hexadecimal color value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getHexValue
-         * @param {String} hexColor
-         * @param {Array} rgbColorArray
-         * @return {String} hex value
+         * @param hexColor, rgbColorArray
          * @protected
          */
         _getHexValue: function(hexColor, rgbColorArray) {
@@ -660,10 +638,9 @@ var AColor = A.Color,
         },
 
         /**
-         * Returns hex container configuration.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getHexContainerConfig
-         * @return {Object} hex container config object
          * @protected
          */
         _getHexContainerConfig: function() {
@@ -679,11 +656,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Returns HSV color values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getHSVArray
-         * @param {Number} hsv
-         * @return {Array} hsv color array
+         * @param hsv
          * @protected
          */
         _getHSVArray: function(hsv) {
@@ -693,12 +669,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Returns X and Y values from hue and saturation input values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getXYFromHueSaturation
-         * @param {Number} hue
-         * @param {Number} saturation
-         * @return {Array} x and y positions
+         * @param hue, saturation
          * @protected
          */
         _getXYFromHueSaturation: function(hue, saturation) {
@@ -714,11 +688,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Formats hexadecimal color values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _normalizeHexValue
-         * @param {String} hex
-         * @return {String} formatted hex color value
+         * @param hex
          * @protected
          */
         _normalizeHexValue: function(hex) {
@@ -736,10 +709,10 @@ var AColor = A.Color,
         },
 
         /**
-         *  Updates view on `selectedChange`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onSelectedChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onSelectedChange: function(event) {
@@ -751,10 +724,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates color on input `valueChange`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onValueChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onValueChange: function(event) {
@@ -813,7 +786,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders container.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderContainer
          * @protected
@@ -836,7 +809,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders view container.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderViewContainer
          * @protected
@@ -852,7 +825,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders contents of container.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderViewContainerContent
          * @protected
@@ -880,12 +853,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders input field.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderField
-         * @param {Node} container
-         * @param {Object} data
-         * @return {Node} field node
+         * @param container, data
          * @protected
          */
         _renderField: function(container, data) {
@@ -906,12 +877,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders hexadecimal output field.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderOutputField
-         * @param {Node} container
-         * @param {Object} data
-         * @return {Node} field node
+         * @param container, data
          * @protected
          */
         _renderOutputField: function(container, data) {
@@ -930,7 +899,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders hexNode.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderHexNode
          * @protected
@@ -958,7 +927,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders input fields.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderFields
          * @protected
@@ -1054,7 +1023,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders color canvas backdrop.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderImageBackdrop
          * @protected
@@ -1068,7 +1037,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders color canvas.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderHSContainer
          * @protected
@@ -1082,7 +1051,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders value slider container.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderValueSliderContainer
          * @protected
@@ -1096,7 +1065,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders results backdrop.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderResultBackdrop
          * @protected
@@ -1110,7 +1079,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Render results view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderResultView
          * @protected
@@ -1124,7 +1093,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Renders thumb selector.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderThumb
          * @protected
@@ -1138,7 +1107,7 @@ var AColor = A.Color,
         },
 
         /**
-         * Sets X and Y coordinates of HS container.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setHSContainerXY
          * @protected
@@ -1150,11 +1119,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Sets value of field node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setFieldValue
-         * @param {Node} fieldNode
-         * @param {Number} value
+         * @param fieldNode, value
          * @protected
          */
         _setFieldValue: function(fieldNode, value) {
@@ -1164,10 +1132,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates X and Y position of thumb selector.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _updatePaletteThumbPosition
-         * @param {Array} xy
+         * @param xy
          * @protected
          */
         _updatePaletteThumbPosition: function(xy) {
@@ -1177,10 +1145,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates results view from input values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _updateViewFromInput
-         * @param {Node} fieldNode
+         * @param fieldNode
          * @protected
          */
         _updateViewFromInput: function(fieldNode) {
@@ -1201,10 +1169,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates results view from HSVA input values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _updateViewByHSVA
-         * @param {Node} fieldNode
+         * @param fieldNode
          * @protected
          */
         _updateViewByHSVA: function(fieldNode) {
@@ -1267,10 +1235,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates results view from RGB input values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _updateViewByRGB
-         * @param {Node} fieldNode
+         * @param fieldNode
          * @protected
          */
         _updateViewByRGB: function(fieldNode) {
@@ -1348,10 +1316,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Updates results view from hexNode values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _updateViewByHEXNode
-         * @param {Node} fieldNode
+         * @param fieldNode
          * @protected
          */
         _updateViewByHEXNode: function(fieldNode) {
@@ -1368,30 +1336,19 @@ var AColor = A.Color,
                     fieldNode: fieldNode
                 }
             );
-
-            instance.set(SELECTED, hex, {
-                src: AWidget.UI_SRC
-            });
         },
 
         /**
-         * Update the HSV Palette view according to the provided HEX value.
-         *
-         * The function normalizes and extracts the hue, saturation, value, also
-         * r, g and b and updates their representatives - the sliders, the
-         * image, etc. Also, it updates the text fields (if the "controls"
-         * attribute is set to true) with the extracted values.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _updateViewByHEX
-         * @param {String} hexValue
+         * @param hex
          * @protected
          */
-        _updateViewByHEX: function(hexValue) {
+        _updateViewByHEX: function(hex) {
             var instance = this,
                 b,
-                currentHexValue,
                 g,
-                hex,
                 hexColor,
                 hsvColor,
                 hsvColorArray,
@@ -1403,7 +1360,7 @@ var AColor = A.Color,
                 saturation,
                 value;
 
-            hex = instance._normalizeHexValue(hexValue);
+            hex = instance._normalizeHexValue(hex);
 
             hex = hex.substr(0, 6);
 
@@ -1443,12 +1400,6 @@ var AColor = A.Color,
             instance._hsContainer.setStyle(OPACITY, 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
             if (instance.get(CONTROLS)) {
-                currentHexValue = instance._getFieldValue(instance._outputContainer);
-
-                if (hexValue.toLowerCase() !== currentHexValue.toLowerCase()) {
-                    instance._setFieldValue(instance._outputContainer, hexValue);
-                }
-
                 instance._setFieldValue(instance._hContainer, hue);
                 instance._setFieldValue(instance._sContainer, saturation);
                 instance._setFieldValue(instance._vContainer, value);
@@ -1460,12 +1411,10 @@ var AColor = A.Color,
         },
 
         /**
-         * Validates field value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _validateFieldValue
-         * @param {Node} fieldNode
-         * @param {Boolean} field validation
-         * @return {Boolean} The result of the validation
+         * @param fieldNode
          * @protected
          */
         _validateFieldValue: function(fieldNode) {
@@ -1492,30 +1441,30 @@ var AColor = A.Color,
     }, {
 
         /**
-         * Static property provides a string to identify the CSS prefix.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property CSS_PREFIX
-         * @type {String}
+         * @property HSVPalette.CSS_PREFIX
+         * @type String
          * @static
          */
         CSS_PREFIX: getClassName(NAME),
 
         /**
          * Static property used to define the default attribute
-         * configuration for the `HSVPalette`.
+         * configuration for the HSVPalette.
          *
-         * @property ATTRS
-         * @type {Object}
+         * @property HSVPalette.ATTRS
+         * @type Object
          * @static
          */
         ATTRS: {
 
             /**
-             * Determines if HSVA and RGB input `controls` are visible.
+             * TODO. Wanna help? Please send a Pull Request.
              *
              * @attribute controls
              * @default true
-             * @type {Boolean}
+             * @type Boolean
              * @writeOnce
              */
             controls: {
@@ -1525,10 +1474,10 @@ var AColor = A.Color,
             },
 
             /**
-             * Collection of regular expressions used to validate field values.
+             * TODO. Wanna help? Please send a Pull Request.
              *
              * @attribute fieldValidator
-             * @type {Object}
+             * @type Object
              */
             fieldValidator: {
                 validator: Lang.isObject,
@@ -1545,11 +1494,11 @@ var AColor = A.Color,
             },
 
             /**
-             * Currently `selected` color value.
+             * TODO. Wanna help? Please send a Pull Request.
              *
              * @attribute selected
              * @default ''
-             * @type {String}
+             * @type String
              */
             selected: {
                 validator: Lang.isString,
@@ -1557,10 +1506,10 @@ var AColor = A.Color,
             },
 
             /**
-             * Collection of strings used to label elements of the UI.
+             * TODO. Wanna help? Please send a Pull Request.
              *
              * @attribute strings
-             * @type {Object}
+             * @type Object
              */
             strings: {
                 value: {
@@ -1579,17 +1528,17 @@ var AColor = A.Color,
         /**
          * Static property provides a string to identify the class.
          *
-         * @property NAME
-         * @type {String}
+         * @property HSVPalette.NAME
+         * @type String
          * @static
          */
         NAME: NAME,
 
         /**
-         * The namespace of the plugin.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property NS
-         * @type {String}
+         * @property HSVPalette.NS
+         * @type String
          * @static
          */
         NS: NAME

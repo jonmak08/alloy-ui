@@ -41,15 +41,11 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/modal/).
  *
  * @class A.Modal
- * @extends Widget
+ * @extends A.Widget
  * @uses A.WidgetPosition, A.WidgetStdMod, A.WidgetAutohide, A.WidgetToolbars,
- *     A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionConstrain,
- *     A.WidgetStack
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStack
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/modal/basic-markup.html
- * @include http://alloyui.com/examples/modal/basic.js
  */
 A.Modal = A.Base.create(MODAL, A.Widget, [
     A.WidgetCssClass,
@@ -103,7 +99,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
-     * Add `bubbleTargets` to config object.
+     * Add <code>bubbleTargets</code> to config object.
      *
      * @method _addBubbleTargets
      * @param config
@@ -121,7 +117,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
-     * Fire after `maxHeight` CSS property changes.
+     * Fire after <code>maxHeight</code> CSS property changes.
      *
      * @method _afterFillHeight
      * @param event
@@ -204,7 +200,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
-     * Set `maxHeight` CSS property.
+     * Set <code>maxHeight</code> CSS property.
      *
      * @method _fillMaxHeight
      * @param height
@@ -315,7 +311,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property CSS_PREFIX
+     * @property Modal.CSS_PREFIX
      * @type String
      * @static
      */
@@ -325,7 +321,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Modal.
      *
-     * @property ATTRS
+     * @property Modal.ATTRS
      * @type Object
      * @static
      */
@@ -334,9 +330,8 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         /**
          * Determine the content of Modal's body section.
          *
-         * Temporary fix for widget-stdmod bug when bodyContent initializes
-         * empty. this._currFillNode is never updated if _uiSetFillHeight is not
-         * called.
+         * Temporary fix for widget-stdmod bug when bodyContent initializes empty.
+         * this._currFillNode is never updated if _uiSetFillHeight is not called.
          *
          * @attribute bodyContent
          * @default ''
@@ -422,7 +417,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     /**
      * Static property provides a set of reusable templates.
      *
-     * @property TEMPLATES
+     * @property Modal.TEMPLATES
      * @type Object
      * @static
      */

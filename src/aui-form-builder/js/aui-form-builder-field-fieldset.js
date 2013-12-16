@@ -43,8 +43,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderFieldsetField
  * @extends A.FormBuilderField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var FormBuilderFieldsetField = A.Component.create({
@@ -52,7 +51,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property FormBuilderFieldsetField.NAME
      * @type String
      * @static
      */
@@ -62,7 +61,7 @@ var FormBuilderFieldsetField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderFieldsetField.
      *
-     * @property ATTRS
+     * @property FormBuilderFieldsetField.ATTRS
      * @type Object
      * @static
      */
@@ -118,7 +117,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property UI_ATTRS
+     * @property FormBuilderFieldsetField.UI_ATTRS
      * @type Array
      * @static
      */
@@ -127,7 +126,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property CSS_PREFIX
+     * @property FormBuilderFieldsetField.CSS_PREFIX
      * @type String
      * @static
      */
@@ -136,7 +135,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property FormBuilderFieldsetField.EXTENDS
      * @type Object
      * @static
      */

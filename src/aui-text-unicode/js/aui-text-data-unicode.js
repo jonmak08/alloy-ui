@@ -1,13 +1,14 @@
 /**
  * Mapping UTF-8 groups of characters. Based on Steven Levithan's XRegExp
  * project (http://xregexp.com)
+ *
  */
 
 A.namespace('Text.Data').Unicode = {
     /*
 	Character Properties
 
-	L - Letter (the top-level Letter category is included in the Unicode plugin)
+	L - Letter (the top-level Letter category is included in the Unicode plugin base script)
 		Ll - Lowercase letter
 		Lu - Uppercase letter
 		Lt - Titlecase letter

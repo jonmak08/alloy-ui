@@ -46,8 +46,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderButtonField
  * @extends A.FormBuilderField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var FormBuilderButtonField = A.Component.create({
@@ -55,7 +54,7 @@ var FormBuilderButtonField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property FormBuilderButtonField.NAME
      * @type String
      * @static
      */
@@ -65,7 +64,7 @@ var FormBuilderButtonField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderButtonField.
      *
-     * @property ATTRS
+     * @property FormBuilderButtonField.ATTRS
      * @type Object
      * @static
      */
@@ -133,7 +132,7 @@ var FormBuilderButtonField = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property UI_ATTRS
+     * @property FormBuilderButtonField.UI_ATTRS
      * @type Array
      * @static
      */
@@ -142,7 +141,7 @@ var FormBuilderButtonField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property CSS_PREFIX
+     * @property FormBuilderButtonField.CSS_PREFIX
      * @type String
      * @static
      */
@@ -151,7 +150,7 @@ var FormBuilderButtonField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property FormBuilderButtonField.EXTENDS
      * @type Object
      * @static
      */

@@ -45,17 +45,15 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/video/).
  *
  * @class A.Video
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Component
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/video/basic-markup.html
- * @include http://alloyui.com/examples/video/basic.js
  */
 var Video = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property Video.NAME
      * @type String
      * @static
      */
@@ -65,7 +63,7 @@ var Video = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Video.
      *
-     * @property ATTRS
+     * @property Video.ATTRS
      * @type Object
      * @static
      */
@@ -139,8 +137,8 @@ var Video = A.Component.create({
         },
 
         /**
-         * If `true` the render phase will be automatically invoked
-         * preventing the `.render()` manual call.
+         * If <code>true</code> the render phase will be automatically invoked
+         * preventing the <code>.render()</code> manual call.
          *
          * @attribute render
          * @default true
@@ -155,7 +153,7 @@ var Video = A.Component.create({
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
      *
-     * @property BIND_UI_ATTRS
+     * @property Video.BIND_UI_ATTRS
      * @type Array
      * @static
      */
@@ -165,7 +163,7 @@ var Video = A.Component.create({
      * Static property used to define the attributes
      * for the syncUI lifecycle phase.
      *
-     * @property SYNC_UI_ATTRS
+     * @property Video.SYNC_UI_ATTRS
      * @type Array
      * @static
      */
@@ -244,7 +242,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Create `source` element
+         * Create <code>source</code> element
          * using passed type attribute.
          *
          * @method _createSource
@@ -384,7 +382,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Set the `fixedAttributes` on the UI.
+         * Set the <code>fixedAttributes</code> on the UI.
          *
          * @method _uiSetFixedAttributes
          * @param val
@@ -397,7 +395,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Set the `flashVars` on the UI.
+         * Set the <code>flashVars</code> on the UI.
          *
          * @method _uiSetFlashVars
          * @param val
@@ -410,7 +408,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Set the `ogvUrl` on the UI.
+         * Set the <code>ogvUrl</code> on the UI.
          *
          * @method _uiSetOgvUrl
          * @param val
@@ -450,7 +448,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Set the `poster` on the UI.
+         * Set the <code>poster</code> on the UI.
          *
          * @method _uiSetPoster
          * @param val
@@ -469,7 +467,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Set the `swfUrl` on the UI.
+         * Set the <code>swfUrl</code> on the UI.
          *
          * @method _uiSetSwfUrl
          * @param val
@@ -482,7 +480,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Set the `url` on the UI.
+         * Set the <code>url</code> on the UI.
          *
          * @method _uiSetUrl
          * @param val
@@ -521,7 +519,7 @@ var Video = A.Component.create({
         },
 
         /**
-         * Check if it's a `video` node.
+         * Check if it's a <code>video</code> node.
          *
          * @method _usingVideo
          * @protected

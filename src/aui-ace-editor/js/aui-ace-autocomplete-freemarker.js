@@ -19,10 +19,9 @@ var Lang = A.Lang,
     /**
      * A base class for Freemarker plugin.
      *
-     * @class A.AceEditor.AutoCompleteFreemarker
+     * @class A.Freemarker
      * @extends A.AceEditor.TemplateProcessor
-     * @param {Object} config Object literal specifying configuration
-     *     properties.
+     * @param config {Object} Object literal specifying configuration properties.
      * @constructor
      */
     Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
@@ -32,8 +31,7 @@ var Lang = A.Lang,
          * Checks if the provided content contains directive or variable.
          *
          * @method getMatch
-         * @param {String} content The content which should be traversed for
-         *     matches
+         * @param {String} content The content which should be traversed for matches
          * @return {Object} An Object which contains the following properties:
          * content - the found content
          * start - the start index of the match
@@ -74,7 +72,7 @@ var Lang = A.Lang,
         /**
          * Static property which provides a string to identify the class.
          *
-         * @property NAME
+         * @property Freemarker.NAME
          * @type String
          * @static
          */
@@ -83,7 +81,7 @@ var Lang = A.Lang,
         /**
          * The namespace of the plugin.
          *
-         * @property NS
+         * @property Freemarker.NS
          * @type String
          * @static
          */
@@ -93,15 +91,14 @@ var Lang = A.Lang,
          * Static property used to define the default attribute
          * configuration for the Freemarker.
          *
-         * @property ATTRS
+         * @property Freemarker.ATTRS
          * @type Object
          * @static
          */
         ATTRS: {
 
             /**
-             * Contains the list of supported directives according to Freemarker
-             * specification.
+             * Contains the list of supported directives according to Freemarker specification.
              *
              * @attribute directives
              * @default
@@ -182,8 +179,7 @@ var Lang = A.Lang,
             },
 
             /**
-             * Contains the regular expression which checks for directive
-             * presence.
+             * Contains the regular expression which checks for directive presence.
              *
              * @attribute directivesMatcher
              * @default /<#[\w]*[^<#]*$/
@@ -214,8 +210,7 @@ var Lang = A.Lang,
             },
 
             /**
-             * Contains the regular expression which will check for variable
-             * match.
+             * Contains the regular expression which will check for variable match.
              *
              * @attribute variablesMatcher
              * @default /\${[\w., ()"]*(?:[^$]|\\\$)*$/

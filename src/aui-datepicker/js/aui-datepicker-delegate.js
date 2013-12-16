@@ -28,8 +28,7 @@ var Lang = A.Lang,
  * A base class for DatePickerDelegate.
  *
  * @class A.DatePickerDelegate
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 
@@ -41,8 +40,7 @@ DatePickerDelegate.prototype = {
     _userInteractionInProgress: false,
 
     /**
-     * Construction logic executed during DatePickerDelegate instantiation.
-     * Lifecycle.
+     * Construction logic executed during DatePickerDelegate instantiation. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -290,7 +288,7 @@ DatePickerDelegate.prototype = {
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property ATTRS
+ * @property DatePickerDelegate.ATTRS
  * @type Object
  * @static
  */

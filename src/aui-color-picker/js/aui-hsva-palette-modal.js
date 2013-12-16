@@ -18,19 +18,17 @@ var AArray = A.Array,
     EMPTY = '',
 
     /**
-     * A base class for `HSVAPaletteModal`.
+     * A base class for HSVAPaletteModal.
      *
      * @class A.HSVAPaletteModal
      * @extends A.Modal
-     * @param {Object} config Object literal specifying widget configuration
-     *     properties.
+     * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
      */
     HSVAPaletteModal = A.Base.create(NAME, A.Modal, [A.WidgetCssClass, A.WidgetToggle], {
 
         /**
-         * Construction logic executed during `HSVAPaletteModal` instantiation.
-         * Lifecycle.
+         * Construction logic executed during HSVAPaletteModal instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -44,10 +42,9 @@ var AArray = A.Array,
         },
 
         /**
-         * Returns the currently selected value of the `HSVPalette`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getSelected
-         * @return {String} selected hex color value
          * @protected
          */
         _getSelected: function() {
@@ -57,10 +54,10 @@ var AArray = A.Array,
         },
 
         /**
-         * Sets selected value of the `HSVPalette`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onSelectionChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onSelectionChange: function(event) {
@@ -72,7 +69,7 @@ var AArray = A.Array,
         },
 
         /**
-         * Renders the `HSVPalette`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderHSVAPalette
          * @protected
@@ -120,19 +117,19 @@ var AArray = A.Array,
 
         /**
          * Static property used to define the default attribute
-         * configuration for the `HSVAPaletteModal`.
+         * configuration for the HSVAPaletteModal.
          *
-         * @property ATTRS
-         * @type {Object}
+         * @property HSVAPaletteModal.ATTRS
+         * @type Object
          * @static
          */
         ATTRS: {
 
             /**
-             * Configuration options for the `HSVPalette`.
+             * TODO. Wanna help? Please send a Pull Request.
              *
              * @attribute hsv
-             * @type {Object}
+             * @type Object
              */
             hsv: {
                 validator: Lang.isObject,
@@ -142,11 +139,11 @@ var AArray = A.Array,
             },
 
             /**
-             * Currently `selected` color value.
+             * TODO. Wanna help? Please send a Pull Request.
              *
              * @attribute selected
              * @default ''
-             * @type {String}
+             * @type String
              */
             selected: {
                 getter: '_getSelected',
@@ -156,10 +153,10 @@ var AArray = A.Array,
         },
 
         /**
-         * Static property provides a string to identify the CSS prefix.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property CSS_PREFIX
-         * @type {String}
+         * @property HSVAPaletteModal.CSS_PREFIX
+         * @type String
          * @static
          */
         CSS_PREFIX: getClassName(NAME),
@@ -167,17 +164,17 @@ var AArray = A.Array,
         /**
          * Static property provides a string to identify the class.
          *
-         * @property NAME
-         * @type {String}
+         * @property HSVAPaletteModal.NAME
+         * @type String
          * @static
          */
         NAME: NAME,
 
         /**
-         * The namespace of the plugin.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property NS
-         * @type {String}
+         * @property HSVAPaletteModal.NS
+         * @type String
          * @static
          */
         NS: NAME

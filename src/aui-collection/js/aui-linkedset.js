@@ -10,8 +10,7 @@
  *
  * @class A.LinkedSet
  * @extends A.Set
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var LinkedSet = A.Base.create('linkedset', A.Set, [], {

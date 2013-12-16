@@ -32,17 +32,13 @@ var StdMod = A.WidgetStdMod,
  *
  * Check the [live demo](http://alloyui.com/examples/popover/).
  *
- * @class A.Popover
+ * @class Popover
  * @extends Widget
- * @uses A.WidgetCssClass, A.WidgetPosition, A.WidgetStdMod, A.WidgetToggle,
- *     A.WidgetAutohide, A.WidgetToolbars, A.WidgetModality,
- *     A.WidgetPositionAlign, A.WidgetPositionAlignSuggestion,
- *     A.WidgetPositionConstrain, A.WidgetStack
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @uses WidgetCssClass, WidgetPosition, WidgetStdMod, WidgetToggle, WidgetAutohide,
+ * WidgetToolbars, WidgetModality, WidgetPositionAlign, WidgetPositionAlignSuggestion,
+ * WidgetPositionConstrain, WidgetStack
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/popover/basic-markup.html
- * @include http://alloyui.com/examples/popover/basic.js
  */
 A.Popover = A.Base.create(POPOVER, A.Widget, [
     A.WidgetCssClass,
@@ -88,7 +84,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     },
 
     /**
-     * Fire after `contentBox` class names changes.
+     * Fire after <code>contentBox</code> class names changes.
      *
      * @method _afterRenderBoxClassNames
      * @param event
@@ -102,7 +98,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     },
 
     /**
-     * Fire after `boundingBox` style changes.
+     * Fire after <code>boundingBox</code> style changes.
      *
      * @method _afterUiSetVisible
      * @param val
@@ -129,7 +125,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property CSS_PREFIX
+     * @property Popover.CSS_PREFIX
      * @type String
      * @static
      */
@@ -139,7 +135,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Popover.
      *
-     * @property ATTRS
+     * @property A.Popover.ATTRS
      * @type Object
      * @static
      */
@@ -159,7 +155,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     /**
      * Static property provides a set of reusable templates.
      *
-     * @property TEMPLATES
+     * @property Popover.TEMPLATES
      * @type Object
      * @static
      */

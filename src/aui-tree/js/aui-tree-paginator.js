@@ -34,8 +34,7 @@ var Lang = A.Lang,
  * A base class for TreeViewPaginator.
  *
  * @class A.TreeViewPaginator
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 
@@ -51,7 +50,7 @@ function TreeViewPaginator(config) {
  * Static property used to define the default attribute
  * configuration for the TreeView.
  *
- * @property ATTRS
+ * @property TreeViewPaginator.ATTRS
  * @type Object
  * @static
  */
@@ -130,7 +129,7 @@ TreeViewPaginator.prototype = {
 
     /**
      * Default paginatorClick event handler. Increment the
-     * `paginator.start` to the next `paginator.limit`.
+     * <code>paginator.start</code> to the next <code>paginator.limit</code>.
      *
      * @method _defPaginatorClickFn
      * @param {EventFacade} event The Event object
@@ -169,7 +168,8 @@ TreeViewPaginator.prototype = {
 
     /**
      * Adds two extra IO data parameter to the request to handle the
-     * paginator. By default these parameters are `limit` and `start`.
+     * paginator. By default these parameters are <code>limit</code> and
+     * <code>start</code>.
      *
      * @method _syncPaginatorIOData
      * @protected

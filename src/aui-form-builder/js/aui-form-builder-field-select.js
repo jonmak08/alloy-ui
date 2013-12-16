@@ -35,8 +35,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderSelectField
  * @extends A.FormBuilderMultipleChoiceField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var FormBuilderSelectField = A.Component.create({
@@ -44,7 +43,7 @@ var FormBuilderSelectField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property FormBuilderSelectField.NAME
      * @type String
      * @static
      */
@@ -54,7 +53,7 @@ var FormBuilderSelectField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderSelectField.
      *
-     * @property ATTRS
+     * @property FormBuilderSelectField.ATTRS
      * @type Object
      * @static
      */
@@ -88,7 +87,7 @@ var FormBuilderSelectField = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property UI_ATTRS
+     * @property FormBuilderSelectField.UI_ATTRS
      * @type Array
      * @static
      */
@@ -97,7 +96,7 @@ var FormBuilderSelectField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property CSS_PREFIX
+     * @property FormBuilderSelectField.CSS_PREFIX
      * @static
      */
     CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
@@ -105,7 +104,7 @@ var FormBuilderSelectField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property FormBuilderSelectField.EXTENDS
      * @type Object
      * @static
      */

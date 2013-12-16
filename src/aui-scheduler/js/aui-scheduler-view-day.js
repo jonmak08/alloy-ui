@@ -231,12 +231,11 @@ var Lang = A.Lang,
         CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST].join(_SPACE) + '"></td>';
 
 /**
- * A base class for `SchedulerDayView`.
+ * A base class for SchedulerDayView.
  *
  * @class A.SchedulerDayView
  * @extends A.SchedulerView
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var SchedulerDayView = A.Component.create({
@@ -244,39 +243,39 @@ var SchedulerDayView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
-     * @type {String}
+     * @property SchedulerDayView.NAME
+     * @type String
      * @static
      */
     NAME: SCHEDULER_VIEW_DAY,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `SchedulerDayView`.
+     * configuration for the SchedulerDayView.
      *
-     * @property ATTRS
-     * @type {Object}
+     * @property SchedulerDayView.ATTRS
+     * @type Object
      * @static
      */
     ATTRS: {
 
         /**
-         * Determines the content of Scheduler day view's body section.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute bodyContent
          * @default ''
-         * @type {String}
+         * @type String
          */
         bodyContent: {
             value: _EMPTY_STR
         },
 
         /**
-         * Contains the number of day columns this view displays.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute days
          * @default 1
-         * @type {Number}
+         * @type Number
          */
         days: {
             value: 1,
@@ -284,11 +283,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Configures this view's `DD.Delegate`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute delegateConfig
          * @default {}
-         * @type {Object}
+         * @type Object
          */
         delegateConfig: {
             value: {},
@@ -311,11 +310,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the width of a `SchedulerView` in pixels.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute eventWidth
          * @default 95
-         * @type {Number}
+         * @type Number
          */
         eventWidth: {
             value: 95,
@@ -323,10 +322,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Applies a filter to `SchedulerEvent`s.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute filterFn
-         * @type {Function}
          */
         filterFn: {
             value: function(evt) {
@@ -335,10 +333,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the function that formats the header date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerDateFormatter
-         * @type {String}
+         * @type String
          */
         headerDateFormatter: {
             value: function(date) {
@@ -356,11 +354,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the header view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerView
          * @default true
-         * @type {Boolean}
+         * @type Boolean
          */
         headerView: {
             value: true,
@@ -368,11 +366,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Configures the header day view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerViewConfig
          * @default {}
-         * @type {Object}
+         * @type Object
          */
         headerViewConfig: {
             setter: function(val) {
@@ -394,11 +392,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the height of an hour in pixels.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute hourHeight
          * @default 52
-         * @type {Number}
+         * @type Number
          */
         hourHeight: {
             value: 52,
@@ -406,21 +404,21 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Determines the name for this day view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute name
          * @default 'day'
-         * @type {String}
+         * @type String
          */
         name: {
             value: DAY
         },
 
         /**
-         * Contains the function that formats the navigation date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute navigationDateFormatter
-         * @type {Function}
+         * @type Function
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -438,10 +436,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the collection of strings used to label elements of the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute strings
-         * @type {Object}
          */
         strings: {
             value: {
@@ -450,10 +447,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the function that returns the `headerTable` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerTableNode
-         * return {Node}
          */
         headerTableNode: {
             valueFn: function() {
@@ -462,10 +458,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the function that returns the `headerViewLabel` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerViewLabelNode
-         * return {Node}
          */
         headerViewLabelNode: {
             valueFn: function() {
@@ -482,10 +477,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the function that returns the `resizer` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute resizerNode
-         * return {Node}
          */
         resizerNode: {
             valueFn: function() {
@@ -494,10 +488,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the function that returns the `table` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute tableNode
-         * return {Node}
          */
         tableNode: {
             valueFn: function() {
@@ -506,40 +499,36 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Contains the function that returns the `colDays` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute colDaysNode
-         * return {Node}
          */
         colDaysNode: {
             valueFn: '_valueColDaysNode'
         },
 
         /**
-         * Contains the function that returns the `colHeaderDays` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute colHeaderDaysNode
-         * return {Node}
          */
         colHeaderDaysNode: {
             valueFn: '_valueColHeaderDaysNode'
         },
 
         /**
-         * Contains the function that returns the `markercells` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute markercellsNode
-         * return {Node}
          */
         markercellsNode: {
             valueFn: '_valueMarkercellsNode'
         },
 
         /**
-         * Contains the function that returns the `times` node.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute timesNode
-         * return {Node}
          */
         timesNode: {
             valueFn: '_valueTimesNode'
@@ -547,12 +536,11 @@ var SchedulerDayView = A.Component.create({
     },
 
     /**
-     * Contains an object hash, defining how attribute values are to be parsed
-     * from markup contained in the widget's bounding box.
+     * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property HTML_PARSER
+     * @property SchedulerDayView.HTML_PARSER
      * @default defaultName
-     * @type {Object}
+     * @type typeName
      * @static
      */
     HTML_PARSER: {
@@ -569,8 +557,8 @@ var SchedulerDayView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
-     * @type {Object}
+     * @property SchedulerDayView.EXTENDS
+     * @type Object
      * @static
      */
     EXTENDS: A.SchedulerView,
@@ -578,8 +566,7 @@ var SchedulerDayView = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during `SchedulerDayView` instantiation.
-         * Lifecycle.
+         * Construction logic executed during SchedulerDayView instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -611,7 +598,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Renders the `SchedulerDayView` component instance. Lifecycle.
+         * Render the SchedulerDayView component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -632,7 +619,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Binds the events on the `SchedulerDayView` UI. Lifecycle.
+         * Bind the events on the SchedulerDayView UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -661,7 +648,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerDayView` UI. Lifecycle.
+         * Sync the SchedulerDayView UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -677,7 +664,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Sync SchedulerView StdContent.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncStdContent
          */
@@ -698,12 +685,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Calculates and returns the height of an event based on a given
-         * `duration`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method calculateEventHeight
-         * @param {Number} duration The duration of an event.
-         * @return {Number} The height of an event.
+         * @param duration
          */
         calculateEventHeight: function(duration) {
             var instance = this;
@@ -713,13 +698,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Calculates and returns the value needed to get the `top` property
-         * give a `date`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method calculateTop
-         * @param {Date} date
-         * @return {Number} The value needed to get the `top` property give a
-         *     `date`.
+         * @param date
          */
         calculateTop: function(date) {
             var instance = this;
@@ -729,11 +711,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the value of the date that follows the day view's current
-         * date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getNextDate
-         * @return {Date}
          */
         getNextDate: function() {
             var instance = this;
@@ -743,11 +723,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the value of the date that preceeds the day view's current
-         * date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getPrevDate
-         * @return {Date}
          */
         getPrevDate: function() {
             var instance = this;
@@ -757,11 +735,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the column `Node` determined by a given `Date`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getColumnByDate
-         * @param {Date} date
-         * @return {Number} The column `Node` determined by a given `Date`.
+         * @param date
          */
         getColumnByDate: function(date) {
             var instance = this;
@@ -770,11 +747,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the column shim `Node` determined by a given `Date`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getColumnShimByDate
-         * @param {Date} date
-         * @return {Number} The column shim `Node` determined by a given `Date`.
+         * @param date
          */
         getColumnShimByDate: function(date) {
             var instance = this;
@@ -783,11 +759,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the `Date` determined by a given column `Node`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getDateByColumn
          * @param colNumber
-         * @return The `Date` determined by a given column `Node`.
          */
         getDateByColumn: function(colNumber) {
             var instance = this;
@@ -798,11 +773,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the number of offset days.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getDateDaysOffset
-         * @param {Date} date
-         * @return {Number} The number of offset days.
+         * @param date
          */
         getDateDaysOffset: function(date) {
             var instance = this;
@@ -815,11 +789,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the time at the Y coordinate from a given top position.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getYCoordTime
-         * @param {Number} top
-         * @return {Array}
+         * @param top
          */
         getYCoordTime: function(top) {
             var instance = this;
@@ -834,10 +807,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Plots a given event for the day view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method plotEvent
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
+         * @param evt
          */
         plotEvent: function(evt) {
             var instance = this;
@@ -887,7 +860,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Plots all events in the current view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method plotEvents
          */
@@ -917,7 +890,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerView` `columns` instance. Lifecycle.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncColumnsUI
          */
@@ -934,7 +907,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerView` `daysHeader` instance. Lifecycle.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncDaysHeaderUI
          */
@@ -958,10 +931,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerView` `eventsIntersection` instance. Lifecycle.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncEventsIntersectionUI
-         * @param {Array} columnEvents
+         * @param columnEvents
          */
         syncEventsIntersectionUI: function(columnEvents) {
             var instance = this;
@@ -1000,10 +973,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerView` `eventHeight` instance. Lifecycle.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncEventHeightUI
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
+         * @param evt
          */
         syncEventHeightUI: function(evt) {
             var instance = this;
@@ -1029,10 +1002,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerView` `eventTop` instance. Lifecycle.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncEventTopUI
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
+         * @param evt
          */
         syncEventTopUI: function(evt) {
             var instance = this;
@@ -1044,7 +1017,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerView` `headerView` instance. Lifecycle.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncHeaderViewUI
          */
@@ -1070,11 +1043,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Calculates the Y delta between two XY coordinates.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method calculateYDelta
-         * @param {Array} startXY The starting XY coords
-         * @param {Array} xy The XY coords to compare to the starting XY coords
+         * @param startXY
+         * @param xy
          */
         calculateYDelta: function(startXY, xy) {
             var instance = this;
@@ -1083,13 +1056,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns a collection of `SchedulerEvents` as the parameter `events`
-         * that intersect with `evt`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method findEventIntersections
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @param {Array} Array of intersecting `SchedulerEvent`s.
-         * @return {Array}
+         * @param evt
+         * @param events
          */
         findEventIntersections: function(evt, events) {
             var instance = this;
@@ -1105,11 +1076,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Calculates the XY delta between the `event.currentTarget` XY
-         * coordinates as well as the XY coordinates from the event page.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getXYDelta
-         * @param {EventFacade} event
+         * @param event
          */
         getXYDelta: function(event) {
             var instance = this;
@@ -1122,12 +1092,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the nearest multiple of 10 to half the height of this
-         * `SchedulerView`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getTickY
-         * @return {Number} The nearest multiple of 10 to half the height of
-         * this `SchedulerView`.
          */
         getTickY: function() {
             var instance = this;
@@ -1137,11 +1104,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Rounds a given `Date` to a given hour represented as time.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method roundToNearestHour
-         * @param {Date} date
-         * @param {Array} time Time value used to compute value
+         * @param date
+         * @param time
          */
         roundToNearestHour: function(date, time) {
             var instance = this;
@@ -1153,10 +1120,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `dragAlign` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterDragAlign
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterDragAlign: function(event) {
@@ -1171,11 +1138,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Aligns the dragging `SchedulerEvent` to the X axis while bound to the
-         * Y axis on the `activeColumn`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _dragTickAlignX
-         * @param {Node} activeColumn
+         * @param activeColumn
          * @protected
          */
         _dragTickAlignX: function(activeColumn) {
@@ -1201,12 +1167,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Aligns the dragging `SchedulerEvent` to the Y axis by either setting
-         * the end date if the event is a `resize`, or moves the event
-         * otherwise.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _dragTickAlignY
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _dragTickAlignY: function(event) {
@@ -1243,8 +1207,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Configures a `DD.Delegate` that handles `DD` events for this
-         * `SchedulerDayView`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setupDragDrop
          * @protected
@@ -1297,12 +1260,13 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Sets `date` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetDate
+         * @param val
          * @protected
          */
-        _uiSetDate: function() {
+        _uiSetDate: function(val) {
             var instance = this;
 
             instance.syncColumnsUI();
@@ -1310,17 +1274,17 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `clickDays` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickDaysHeader
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onClickDaysHeader: function(event) {
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
 
-            if (event.target.test('a, a span')) {
+            if (event.target.test(_ANCHOR)) {
                 var dayView = scheduler.getViewByName(DAY);
 
                 if (dayView) {
@@ -1335,10 +1299,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `eventDrag` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEventDragEnd
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onEventDragEnd: function(event) {
@@ -1364,10 +1328,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `eventDrag` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEventDragStart
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onEventDragStart: function(event) {
@@ -1397,10 +1361,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseDownTableCol` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseDownTableCol
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onMouseDownTableCol: function(event) {
@@ -1451,10 +1415,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseEnter` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseEnterEvent
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onMouseEnterEvent: function(event) {
@@ -1468,10 +1432,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseLeave` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseLeaveEvent
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onMouseLeaveEvent: function(event) {
@@ -1483,10 +1447,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseMoveTableCol` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseMoveTableCol
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onMouseMoveTableCol: function(event) {
@@ -1531,10 +1495,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseUpTableCol` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseUpTableCol
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onMouseUpTableCol: function(event) {
@@ -1559,10 +1523,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `scheduler` value change.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onSchedulerChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onSchedulerChange: function(event) {
@@ -1574,7 +1538,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Removes the `SchedulerView`'s resizer `Node` from the DOM.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _removeResizer
          * @protected
@@ -1586,11 +1550,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the value of `colDaysNode`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _valueColDaysNode
          * @protected
-         * @return {Node} The value of `colDaysNode`.
          */
         _valueColDaysNode: function() {
             var instance = this;
@@ -1610,11 +1573,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the `colHeaderDaysNode` value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _valueColHeaderDaysNode
          * @protected
-         * @return {Node} The `colHeaderDaysNode` value.
          */
         _valueColHeaderDaysNode: function() {
             var instance = this;
@@ -1636,11 +1598,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the `markercellsNode` value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _valueMarkercellsNode
          * @protected
-         * @return {Node} The `markercellsNode` value.
          */
         _valueMarkercellsNode: function() {
             var instance = this;
@@ -1655,11 +1616,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Returns the `timesNode` value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _valueTimesNode
          * @protected
-         * @return {Node} The `timesNode` value.
          */
         _valueTimesNode: function() {
             var instance = this;

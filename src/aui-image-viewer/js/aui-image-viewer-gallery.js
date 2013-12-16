@@ -75,27 +75,28 @@ var L = A.Lang,
     TPL_PLAYER_CONTENT = '<span class="' + CSS_IMAGE_GALLERY_PLAYER_CONTENT + '"></span>';
 
 /**
- * A base class for ImageGallery, providing:
  *
- * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
- * - Displays an image in a Overlay
- * - Displays list of thumbnails of the images as a control
- * - Slide show functionalities (i.e., play, pause etc)
- * - Keyboard navigation support
+ * A base class for ImageGallery, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Displays an image in a Overlay</li>
+ *    <li>Displays list of thumbnails of the images as a control</li>
+ *    <li>Slide show functionalities (i.e., play, pause etc)</li>
+ *    <li>Keyboard navigation support</li>
+ * </ul>
  *
  * Check the [live demo](http://alloyui.com/examples/image-viewer/gallery/).
  *
  * @class A.ImageGallery
  * @extends A.ImageViewer
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var ImageGallery = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property ImageGallery.NAME
      * @type String
      * @static
      */
@@ -105,14 +106,14 @@ var ImageGallery = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ImageGallery.
      *
-     * @property ATTRS
+     * @property ImageGallery.ATTRS
      * @type Object
      * @static
      */
     ATTRS: {
 
         /**
-         * If `true` the slide show will be played when the
+         * If <code>true</code> the slide show will be played when the
          * ImageGallery is displayed.
          *
          * @attribute autoPlay
@@ -137,11 +138,11 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * [Pagination](A.Pagination.html) configuration Object. The
-         * `Pagination` handles the thumbnails control.
+         * <a href="Pagination.html">Pagination</a> configuration Object. The
+         * <code>Pagination</code> handles the thumbnails control.
          *
          * @attribute pagination
-         * @default [Pagination](A.Pagination.html) configuration Object.
+         * @default <a href="Pagination.html">Pagination</a> configuration Object.
          * @type Object
          */
         pagination: {
@@ -153,8 +154,7 @@ var ImageGallery = A.Component.create({
                         formatter: A.bind(instance._thumbnailFormatter, instance),
                         after: {
                             changeRequest: function(event) {
-                                // fire changeRequest from ImageGallery passing
-                                // the "state" object from Pagination
+                                // fire changeRequest from ImageGallery passing the "state" object from Pagination
                                 instance.fire(
                                     'changeRequest', {
                                         lastState: event.lastState,
@@ -173,8 +173,8 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Element which contains the [Pagination](A.Pagination.html) with the
-         * thumbnails.
+         * Element which contains the <a href="Pagination.html">Pagination</a>
+         * with the thumbnails.
          *
          * @attribute paginationEl
          * @default Generated HTML div.
@@ -189,7 +189,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Stores the [Pagination](A.Pagination.html) instance.
+         * Stores the <a href="Pagination.html">Pagination</a> instance.
          *
          * @attribute paginationInstance
          * @default null
@@ -200,7 +200,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * If `true` the slide show is paused.
+         * If <code>true</code> the slide show is paused.
          *
          * @attribute paused
          * @default false
@@ -224,7 +224,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * If `true` the slide show is playing.
+         * If <code>true</code> the slide show is playing.
          *
          * @attribute playing
          * @default false
@@ -272,7 +272,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * [Toolbar](A.Toolbar.html) with a play, and pause buttons.
+         * <a href="Toolbar.html">Toolbar</a> with a play, and pause buttons.
          *
          * @attribute toolbar
          * @default Generated Toolbar with a play, and pause buttons.
@@ -285,7 +285,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * If `true` will use the original image as thumbnails.
+         * If <code>true</code> will use the original image as thumbnails.
          *
          * @attribute useOriginalImage
          * @default false
@@ -300,7 +300,7 @@ var ImageGallery = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property ImageGallery.EXTENDS
      * @type Object
      * @static
      */
@@ -318,7 +318,7 @@ var ImageGallery = A.Component.create({
         toolbar: null,
 
         /**
-         * Stores the `A.later` reference.
+         * Stores the <code>A.later</code> reference.
          *
          * @property _timer
          * @type Number
@@ -381,7 +381,8 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Hide the [Pagination](A.Pagination.html) with the thumbnails list.
+         * Hide the <a href="Pagination.html">Pagination</a>
+         * with the thumbnails list.
          *
          * @method hidePagination
          */
@@ -420,12 +421,13 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Show the ImageGallery.
+         * <p>Show the ImageGallery.</p>
          *
-         * **NOTE:**Overloads the [ImageViewer](A.ImageViewer.html) show method
-         * to not loadImage, the changeRequest now is responsible to do that if
-         * we invoke the superclass show method its loading the image, and the
-         * changeRequest loads again, avoiding double request.
+         * <p><strong>NOTE:</strong>Overloads the <a
+         * href="ImageViewer.html">ImageViewer</a> show method to not loadImage, the
+         * changeRequest now is responsible to do that if we invoke the superclass
+         * show method its loading the image, and the changeRequest loads again,
+         * avoiding double request.</p>
          *
          * @method show
          */
@@ -446,7 +448,8 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Show the [Pagination](A.Pagination.html) with the thumbnails list.
+         * Show the <a href="Pagination.html">Pagination</a>
+         * with the thumbnails list.
          *
          * @method showPagination
          */
@@ -471,7 +474,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Render the [Pagination](A.Pagination.html) with the thumbnails.
+         * Render the <a href="Pagination.html">Pagination</a> with the thumbnails.
          *
          * @method _renderPagination
          * @protected
@@ -486,7 +489,8 @@ var ImageGallery = A.Component.create({
 
             var paginationInstance = new A.Pagination(
                 instance.get(PAGINATION)
-            ).render();
+            )
+                .render();
 
             instance.set(PAGINATION_INSTANCE, paginationInstance);
         },
@@ -508,7 +512,8 @@ var ImageGallery = A.Component.create({
 
             instance.toolbar = new A.Toolbar(
                 instance.get(TOOLBAR)
-            ).render(playerContent);
+            )
+                .render(playerContent);
         },
 
         /**
@@ -523,23 +528,25 @@ var ImageGallery = A.Component.create({
 
             if (instance.get(SHOW_PLAYER)) {
                 value = A.merge({
-                    children: [
-                        [
-                            {
-                                icon: CSS_ICON_PLAY,
-                                on: {
-                                    click: A.bind(instance.play, instance)
-                                }
-                            },
-                            {
-                                icon: CSS_ICON_PAUSE,
-                                on: {
-                                    click: A.bind(instance.pause, instance)
-                                }
-                            }
-                        ]
-                    ]
-                }, value);
+                        children: [
+        [
+                                {
+                                    icon: CSS_ICON_PLAY,
+                                    on: {
+                                        click: A.bind(instance.play, instance)
+                                    }
+         },
+                                {
+                                    icon: CSS_ICON_PAUSE,
+                                    on: {
+                                        click: A.bind(instance.pause, instance)
+                                    }
+         }
+        ]
+       ]
+                    },
+                    value
+                );
             }
 
             return value;
@@ -620,8 +627,7 @@ var ImageGallery = A.Component.create({
                 return false; // NOTE: return
             }
 
-            // check if the lastState page number is different from the newState
-            // page number.
+            // check if the lastState page number is different from the newState page number.
             if (!lastState || (lastState && lastState.page != page)) {
                 instance.set(CURRENT_INDEX, page - 1);
 
@@ -664,8 +670,7 @@ var ImageGallery = A.Component.create({
                 instance.getCurrentLink().attr(HREF)
             );
 
-            // restart the timer if the user change the image, respecting the
-            // paused state
+            // restart the timer if the user change the image, respecting the paused state
             var paused = instance.get(PAUSED);
             var playing = instance.get(PLAYING);
 
@@ -675,7 +680,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * See [_formatter](A.Pagination.html#attr_formatter).
+         * See <a href="Pagination.html#method__formatter">_formatter</a>.
          *
          * @method _thumbnailFormatter
          * @param {Number} pageNumber
@@ -712,7 +717,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Get the [infoTemplate](A.ImageViewer.html#attr_infoTemplate) template.
+         * Get the <a href="ImageViewer.html#config_info">info</a> template.
          *
          * @method _getInfoTemplate
          * @param {String} v template
@@ -740,7 +745,7 @@ var ImageGallery = A.Component.create({
 
         /**
          * Fire after the value of the
-         * [visible](A.ImageViewer.html#attr_visible) attribute change.
+         * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
          *
          * @method _afterVisibleChange
          * @param {EventFacade} event
@@ -761,7 +766,7 @@ var ImageGallery = A.Component.create({
 
         /**
          * Fire before the value of the
-         * [paused](A.ImageGallery.html#attr_paused) attribute change.
+         * <a href="ImageGallery.html#config_paused">paused</a> attribute change.
          *
          * @method _onPausedChange
          * @param {EventFacade} event
@@ -777,7 +782,7 @@ var ImageGallery = A.Component.create({
 
         /**
          * Fire before the value of the
-         * [playing](A.ImageGallery.html#attr_playing) attribute change.
+         * <a href="ImageGallery.html#config_playing">playing</a> attribute change.
          *
          * @method _onPlayingChange
          * @param {EventFacade} event

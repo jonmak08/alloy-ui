@@ -177,11 +177,11 @@ var Lang = A.Lang,
     TPL_SCHEDULER_VIEWS = '<div class="span5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
 
 /**
- * A base class for `SchedulerEvent`.
+ * A base class for SchedulerEvent.
  *
  * @class A.SchedulerEvent
  * @extends A.Model
- * @param {Object} config Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var SchedulerEvent = A.Component.create({
@@ -189,29 +189,28 @@ var SchedulerEvent = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
-     * @type {String}
+     * @property SchedulerEvent.NAME
+     * @type String
      * @static
      */
     NAME: SCHEDULER_EVENT,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `SchedulerEvent`.
+     * configuration for the SchedulerEvent.
      *
-     * @property ATTRS
-     * @type {Object}
+     * @property SchedulerEvent.ATTRS
+     * @type Object
      * @static
      */
     ATTRS: {
 
         /**
-         * Determines whether a new event will take place all day. When enabled,
-         * the event will not contain 24-hour clock date inputs.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute allDay
          * @default false
-         * @type {Boolean}
+         * @type Boolean
          */
         allDay: {
             setter: A.DataType.Boolean.parse,
@@ -219,7 +218,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the content of Scheduler event's body section.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute content
          */
@@ -229,11 +228,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the `color` of a calendar event.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute color
          * @default '#D96666'
-         * @type {String}
+         * @type String
          */
         color: {
             lazyAdd: false,
@@ -242,12 +241,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the color brightness factor is applied to the `color`
-         * attribute.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute colorBrightnessFactor
          * @default 1.4
-         * @type {Number}
+         * @type Number
          */
         colorBrightnessFactor: {
             value: 1.4,
@@ -255,12 +253,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the color saturation factor is applied to the `color`
-         * attribute.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute colorSaturationFactor
          * @default 0.88
-         * @type {Number}
+         * @type Number
          */
         colorSaturationFactor: {
             value: 0.88,
@@ -268,12 +265,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the formatted title date for this scheduler event, taking
-         * into account ISO time. The value will not contain an `endDate` if
-         * this event is `allDay`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute titleDateFormat
-         * @type {Object}
+         * @type Function
          */
         titleDateFormat: {
             getter: '_getTitleDateFormat',
@@ -305,13 +300,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the date corresponding to the current ending date of a
-         * scheduled event. By default, the value is one hour after the
-         * `startDate`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute endDate
-         * @type {Date}
-         * @default Today's date as set on the user's computer.
          */
         endDate: {
             setter: '_setDate',
@@ -325,11 +316,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if the event is disabled.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute disabled
          * @default false
-         * @type {Boolean}
+         * @type Boolean
          */
         disabled: {
             value: false,
@@ -337,11 +328,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if the event is a meeting.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute meeting
          * @default false
-         * @type {Boolean}
+         * @type Boolean
          */
         meeting: {
             value: false,
@@ -349,7 +340,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the event `NodeList`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute node
          */
@@ -360,11 +351,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if the event is requires reminder.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute reminder
          * @default false
-         * @type {Boolean}
+         * @type Boolean
          */
         reminder: {
             value: false,
@@ -372,11 +363,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if the event is to be repeated.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute repeated
          * @default false
-         * @type {Boolean}
+         * @type Boolean
          */
         repeated: {
             value: false,
@@ -384,20 +375,16 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains this `SchedulerEvent`'s `SchedulerBase' object.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute scheduler
-         * @type {A.SchedulerBase}
          */
         scheduler: {},
 
         /**
-         * Contains the date corresponding to the current starting date of a
-         * scheduled event. By default, the value is the date set on the user's
-         * computer.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute startDate
-         * @type {Date}
          */
         startDate: {
             setter: '_setDate',
@@ -407,11 +394,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Indicates whether the event is visible.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute visible
          * @default true
-         * @type {Boolean}
+         * @type Boolean
          */
         visible: {
             value: true,
@@ -422,17 +409,17 @@ var SchedulerEvent = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
-     * @type {Object}
+     * @property SchedulerEvent.EXTENDS
+     * @type Object
      * @static
      */
     EXTENDS: A.Model,
 
     /**
-     * Defines the propegate attribute keys for `Scheduler` events.
+     * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property PROPAGATE_ATTRS
-     * @type {Array}
+     * @property SchedulerEvent.PROPAGATE_ATTRS
+     * @type Array
      * @static
      */
     PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR,
@@ -446,8 +433,7 @@ var SchedulerEvent = A.Component.create({
             CSS_SCHEDULER_EVENT_ICON_REPEATED].join(_SPACE) + '"></span>' + '</div>' + '</div>',
 
         /**
-         * Construction logic executed during `SchedulerEvent` instantiation.
-         * Lifecycle.
+         * Construction logic executed during SchedulerEvent instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -460,7 +446,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Binds the events on the `SchedulerEvent` UI. Lifecycle.
+         * Bind the events on the SchedulerEvent UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -481,7 +467,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerEvent` UI. Lifecycle.
+         * Sync the SchedulerEvent UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -521,7 +507,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Removes the `node` from DOM.
+         * TODO. Wanna help? Please send a Pull Request. Lifecycle.
          *
          * @method destroy
          * @protected
@@ -533,14 +519,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sometimes an event will require a padding node that mimics the
-         * behavior of the scheduler `event`'s `node`. This can occur in the
-         * week view when an event spans multiple days.
-
-         * For example, an event beginning at 10pm on January 1 and ending on
-         * 3am January 2nd would require a padding node. The `event`'s `node`
-         * appears from January 1 from 10:00pm to 11:59pm and the `paddingNode`
-         * is rendered on the table from January 2 from 12:00am to 3:00am.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method addPaddingNode
          */
@@ -553,10 +532,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Clones the scheduler `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method clone
-         * @return {Object} Scheduler's event model
          */
         clone: function() {
             var instance = this,
@@ -574,11 +552,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Copies the dates from the `event` parameter to the instance `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method copyDates
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @param {Object} options Zero or more options.
+         * @param evt
+         * @param options
          */
         copyDates: function(evt, options) {
             var instance = this;
@@ -591,12 +569,12 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Copies the propagate attribute vales from an `event` to this `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method copyPropagateAttrValues
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @param {Boolean} dontCopyMap
-         * @param {Object} options Zero or more options.
+         * @param evt
+         * @param dontCopyMap
+         * @param options
          */
         copyPropagateAttrValues: function(evt, dontCopyMap, options) {
             var instance = this,
@@ -618,10 +596,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Gets the number of days an `event` is scheduled to take place.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getDaysDuration
-         * @return {Number}
          */
         getDaysDuration: function() {
             var instance = this;
@@ -631,10 +608,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Gets the number of hours an `event` is scheduled to take place.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getHoursDuration
-         * @return {Number}
          */
         getHoursDuration: function() {
             var instance = this;
@@ -644,10 +620,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Gets the number of minutes an `event` is scheduled to take place.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getMinutesDuration
-         * @return {Number}
          */
         getMinutesDuration: function() {
             var instance = this;
@@ -657,10 +632,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Gets the number of seconds an `event` is scheduled to take place.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getSecondsDuration
-         * @return {Number}
          */
         getSecondsDuration: function() {
             var instance = this;
@@ -670,11 +644,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if an `event`'s end date is this same as this `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method sameEndDate
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @return {Boolean}
+         * @param evt
          */
         sameEndDate: function(evt) {
             var instance = this;
@@ -683,11 +656,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if an `event`'s start date is this same as this `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method sameStartDate
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @return {Boolean}
+         * @param evt
          */
         sameStartDate: function(evt) {
             var instance = this;
@@ -697,11 +669,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if an `event` is after this `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isAfter
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @return {Boolean}
+         * @param evt
          */
         isAfter: function(evt) {
             var instance = this;
@@ -712,11 +683,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if an `event` is before this `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isBefore
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @return {Boolean}
+         * @param evt
          */
         isBefore: function(evt) {
             var instance = this;
@@ -727,11 +697,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if an `event` interescts with this `event`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method intersects
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @return {Boolean}
+         * @param evt
          */
         intersects: function(evt) {
             var instance = this;
@@ -744,12 +713,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if an `event`'s hours' interescts with this `event`'s
-         * hours.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method intersectHours
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @return {Boolean}
+         * @param evt
          */
         intersectHours: function(evt) {
             var instance = this;
@@ -764,11 +731,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if a this `event` starts or ends at the beginning or end
-         * of a day.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isDayBoundaryEvent
-         * @return {Boolean}
          */
         isDayBoundaryEvent: function() {
             var instance = this;
@@ -778,10 +743,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Checks if the passed date is between `startDate` and `endDate`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isDayOverlapEvent
-         * @return {Boolean}
          */
         isDayOverlapEvent: function() {
             var instance = this;
@@ -791,11 +755,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Clears the time fields from the `endDate`, effectively setting the
-         * time to 12 noon.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getClearEndDate
-         * @return {Date}
          */
         getClearEndDate: function() {
             var instance = this;
@@ -804,11 +766,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Clears the time fields from the `startDate`, effectively setting the
-         * time to 12 noon.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getClearStartDate
-         * @return {Date}
          */
         getClearStartDate: function() {
             var instance = this;
@@ -817,12 +777,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Moves this Scheduler event to a new date specified by the date
-         * parameter.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method move
-         * @param {Date} date
-         * @param {Object} options Zero or more options.
+         * @param date
+         * @param options
          */
         move: function(date, options) {
             var instance = this;
@@ -836,7 +795,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Replaces each node's current content with the `content`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method setContent
          * @param content
@@ -852,7 +811,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Replaces each node's current title with the `content`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method setTitle
          * @param content
@@ -868,8 +827,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets the content of the Scheduler event to the content attribute
-         * value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncNodeContentUI
          */
@@ -880,7 +838,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets the title of the Scheduler event to the a formated date.
+         * TODO. Wanna help? Please send a Pull Request.
+         *
          * @method syncNodeTitleUI
          */
         syncNodeTitleUI: function() {
@@ -902,12 +861,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Splits an event into multiple days. Since an event can span across
-         * multiple days in the week view, this event will be split into chunks
-         * for each day column.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method split
-         * @return {Array}
          */
         split: function() {
             var instance = this,
@@ -925,10 +881,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `allDay` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterAllDayChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterAllDayChange: function(event) {
@@ -938,10 +894,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `color` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterColorChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterColorChange: function(event) {
@@ -951,10 +907,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `disabled` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterDisabledChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterDisabledChange: function(event) {
@@ -964,10 +920,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `endDate` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterEndDateChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterEndDateChange: function(event) {
@@ -977,10 +933,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `meeting` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterMeetingChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterMeetingChange: function(event) {
@@ -990,10 +946,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `reminder` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterReminderChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterReminderChange: function(event) {
@@ -1003,10 +959,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `repeated` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterRepeatedChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterRepeatedChange: function(event) {
@@ -1016,10 +972,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `visible` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterVisibleChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterVisibleChange: function(event) {
@@ -1029,11 +985,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Returns `true` if the event ends before the current date.
+         * Returns true if the event ends before the current date.
          *
          * @method _isPastEvent
          * @protected
-         * @return {Boolean}
          */
         _isPastEvent: function() {
             var instance = this,
@@ -1043,10 +998,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets the date to the given value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setDate
-         * @param {Date | Number} val The value of the property.
+         * @param val
          * @protected
          */
         _setDate: function(val) {
@@ -1060,10 +1015,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Formats the given date with the given format.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _formatDate
-         * @param {Date} date
+         * @param date
          * @param format
          * @protected
          */
@@ -1078,11 +1033,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Returns the format for the title date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getTitleDateFormat
-         * @param {String|Function} val
-         * @return {Object|Function}
+         * @param val
          * @protected
          */
         _getTitleDateFormat: function(val) {
@@ -1102,10 +1056,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `allDay` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetAllDay
-         * @param {Boolean} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetAllDay: function(val) {
@@ -1115,10 +1069,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `color` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetColor
-         * @param {String} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetColor: function(val) {
@@ -1132,11 +1086,6 @@ var SchedulerEvent = A.Component.create({
             backgroundColor[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
             backgroundColor = Color.fromArray(backgroundColor, Color.TYPES.HSL);
 
-            // Some browsers doesn't support HSL colors, convert to RGB for
-            // compatibility.
-            color = Color.toRGB(color);
-            backgroundColor = Color.toRGB(backgroundColor);
-
             if (node) {
                 node.setStyles({
                     backgroundColor: backgroundColor,
@@ -1146,10 +1095,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `disabled` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetDisabled
-         * @param {Boolean} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetDisabled: function(val) {
@@ -1159,22 +1108,23 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `endDate` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetEndDate
+         * @param val
          * @protected
          */
-        _uiSetEndDate: function() {
+        _uiSetEndDate: function(val) {
             var instance = this;
 
             instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_SHORT, instance.getMinutesDuration() <= 30);
         },
 
         /**
-         * Sets `meeting` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetMeeting
-         * @param {Boolean} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetMeeting: function(val) {
@@ -1184,10 +1134,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `past` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetPast
-         * @param {Boolean} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetPast: function(val) {
@@ -1197,10 +1147,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `reminder` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetReminder
-         * @param {Boolean} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetReminder: function(val) {
@@ -1210,10 +1160,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `repeated` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetRepeated
-         * @param {Boolean} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetRepeated: function(val) {
@@ -1223,10 +1173,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sets `visible` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetVisible
-         * @param {Boolean} val The value of the property.
+         * @param val
          * @protected
          */
         _uiSetVisible: function(val) {

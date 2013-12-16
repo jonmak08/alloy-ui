@@ -12,14 +12,6 @@ AlloyUI is a framework built on top of [YUI3](http://yuilibrary.com) (JavaScript
 * [Contributing](http://alloyui.com/contributing/)
 * [About](http://alloyui.com/about/)
 
-## Browser Support
-
-As an user interface framework we do care about browser support. Most of our modules use all the power of HTML5, so for old browsers we provide fallbacks in Flash.
-
-![IE](https://raw.github.com/paulirish/browser-logos/master/ie/ie_48x48.png) | ![Chrome](https://raw.github.com/paulirish/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/paulirish/browser-logos/master/firefox/firefox_48x48.png) | ![Opera](https://raw.github.com/paulirish/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/paulirish/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-IE 7+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
-
 ## Automated tasks
 
 Provides a set of util tasks to work with [AlloyUI](http://github.com/liferay/alloy-ui) project.
@@ -32,7 +24,7 @@ grunt command --option value
 
 ### Setup
 
-1. Install [NodeJS](http://nodejs.org/download/), if you don't have it yet.
+1. Install [NodeJS](https://github.com/bevry/community/wiki/Installing-Node) v0.8.11, if you don't have it yet. 
 
 	Some tasks requires you to have [Ruby](http://www.ruby-lang.org/en/downloads/), [Sass](http://sass-lang.com/tutorial.html), and [Compass](http://compass-style.org/install/) installed. If you're on OS X or Linux you probably already have Ruby installed; test with `ruby -v` in your terminal. When you've confirmed you have Ruby installed, run `gem update --system && gem install compass` to install Compass and Sass.
 
@@ -40,7 +32,7 @@ grunt command --option value
 2. Install global dependencies:
 
     ```
-[sudo] npm install -g grunt-cli shifter yogi yuidocjs phantomjs
+[sudo] npm install -g grunt-cli shifter yogi yuidocjs
     ```
 
 3. Install local dependencies:
@@ -115,38 +107,18 @@ grunt watch --src src/aui-module-name
 grunt create
     ```
 
-### Format/Lint
-
-* Format JavaScript source code:
-
-    ```
-grunt format
-    ```
-
-* Lint JavaScript source code using JSHint.
-
-    ```
-grunt lint
-    ```
-
 ### Release
 
-* Generate a zip file:
+* Generate a release zip file:
 
     ```
-grunt zip
+grunt compress
     ```
 
 * Build modules and generate a release zip file:
 
     ```
 grunt release
-    ```
-
-* Build modules optimized for CDN and generate a release zip file:
-
-    ```
-grunt release-cdn
     ```
 
 ### Test
@@ -159,22 +131,23 @@ grunt test
 
 ### API Docs
 
-* Import code examples from alloyui.com and build docs locally:
+* Build docs locally:
 
     ```
-grunt api
+grunt api-build
     ```
+
+* Build docs locally and deploy it to alloyui.com:
+
+    ```
+grunt api-deploy
+    ```
+
 
 * Run docs locally and watch for any changes:
 
     ```
 grunt api-watch
-    ```
-
-* Run `grunt api` and deploy it to alloyui.com:
-
-    ```
-grunt api-deploy
     ```
 
 ## Discussion
@@ -187,18 +160,15 @@ grunt api-deploy
 
 The basic structure of the project is given in the following way:
 
-* `build/` Contains AlloyUI and YUI generated files, once build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/blob/master/.gitignore)).
+* `build/` Contains AlloyUI and YUI generated files, once Yogi Alloy's build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/tree/2.0.x/.gitignore)).
 * `demos/` Contains basic examples of the AlloyUI modules.
 * `src/` Contains the source code of the AlloyUI modules.
-* `tasks/` Contains the source code of the [Grunt](http://gruntjs.com/) tasks.
 * `.alloy.json` Specifies all dependencies and some configurations.
 * `.editorconfig` Specifies the coding style for different editors/IDEs.
-* `.jsbeautifyrc` Specifies the coding format rules for [JSBeautify](http://jsbeautifier.org/).
-* `.jshintrc` Specifies the linting configurations for [JSHint](http://www.jshint.com/).
-* `.yeti.json` Specifies the testing configurations for [Yeti](http://yeti.cx/).
 * `LICENSE.md` Defines the license agreement for AlloyUI.
 * `README.md` Explains the AlloyUI project.
 * `package.json` Lists all NodeJS dependencies.
+
 
 ## Team
 
@@ -210,4 +180,4 @@ AlloyUI is maintained by these people and a bunch of awesome [contributors](http
 
 ## License
 
-[BSB License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.md) (c) Liferay, Inc.
+[BSB license](https://github.com/liferay/alloy-ui/tree/2.0.x/LICENSE.md)

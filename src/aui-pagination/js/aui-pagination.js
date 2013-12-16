@@ -1,6 +1,5 @@
 /**
- * The Pagination widget provides a set of controls to navigate through paged
- * data.
+ * The Pagination widget provides a set of controls to navigate through paged data.
  *
  * @module aui-pagination
  */
@@ -36,24 +35,23 @@ var Lang = A.Lang,
 
 /**
  * A base class for Pagination, providing:
- *
- * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
- * - Set of controls to navigate through paged data
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Set of controls to navigate through paged data</li>
+ * </ul>
  *
  * Check the [live demo](http://alloyui.com/examples/pagination/).
  *
  * @class A.Pagination
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Component
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/pagination/basic-markup.html
- * @include http://alloyui.com/examples/pagination/basic.js
  */
 var Pagination = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property Pagination.NAME
      * @type String
      * @static
      */
@@ -63,7 +61,7 @@ var Pagination = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Pagination.
      *
-     * @property ATTRS
+     * @property Pagination.ATTRS
      * @type Object
      * @static
      */
@@ -73,8 +71,8 @@ var Pagination = A.Component.create({
          * When enabled this property allows the navigation to go back to
          * the beggining when it reaches the last page, the opposite behavior
          * is also true. Incremental page navigation could happen clicking the
-         * control arrows or invoking `.next()` and
-         * `.prev()` methods.
+         * control arrows or invoking <code>.next()</code> and
+         * <code>.prev()</code> methods.
          *
          * @attribute circular
          * @default true
@@ -99,7 +97,7 @@ var Pagination = A.Component.create({
         /**
          * Holds the page items as a NodeList. The list could be queried
          * from the DOM trough Widget HTML_PARSER or generated if
-         * [total](A.Pagination.html#attr_total) is specified.
+         * <a href="Pagination.html#config_total">total</a> is specified.
          *
          * @attribute items
          * @default undefined
@@ -133,7 +131,7 @@ var Pagination = A.Component.create({
 
         /**
          * Total number of page links available. If set, the new
-         * [items](A.Pagination.html#attr_items) node list will
+         * <a href="Pagination.html#config_items">items</a> node list will
          * be rendered.
          *
          * @attribute total
@@ -146,7 +144,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Colection of strings used to label elements of the UI.
+         * Text used on Pagination.
          *
          * @attribute strings
          * @type Object
@@ -163,7 +161,7 @@ var Pagination = A.Component.create({
      * Object hash, defining how attribute values are to be parsed from
      * markup contained in the widget's content box.
      *
-     * @property HTML_PARSER
+     * @property Pagination.HTML_PARSER
      * @type Object
      * @static
      */
@@ -180,7 +178,7 @@ var Pagination = A.Component.create({
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
      *
-     * @property BIND_UI_ATTRS
+     * @property Pagination.BIND_UI_ATTRS
      * @type Array
      * @static
      */
@@ -189,7 +187,7 @@ var Pagination = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property UI_ATTRS
+     * @property Pagination.UI_ATTRS
      * @type Array
      * @static
      */
@@ -254,7 +252,7 @@ var Pagination = A.Component.create({
          * If passed item is a node instead of the index returns itself.
          *
          * @method getItem
-         * @param {Node|Number} i Index or Node reference.
+         * @param {Node | Number} i Index or Node reference.
          * @return {Node}
          */
         getItem: function(i) {
@@ -355,7 +353,7 @@ var Pagination = A.Component.create({
 
         /**
          * Set the new pagination state. The state is a payload object
-         * containing the page number, e.g. `{page:1}`.
+         * containing the page number, e.g. <code>{page:1}</code>.
          *
          * @method setState
          * @param state

@@ -33,12 +33,11 @@ var Lang = A.Lang,
     CSS_SVT_TABLE_DATA_COL_TITLE = getCN(SCHEDULER_VIEW, TABLE, DATA, COL, TITLE);
 
 /**
- * A base class for `SchedulerMonthView`.
+ * A base class for SchedulerMonthView.
  *
  * @class A.SchedulerMonthView
  * @extends A.SchedulerTableView
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var SchedulerMonthView = A.Component.create({
@@ -46,28 +45,28 @@ var SchedulerMonthView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
-     * @type {String}
+     * @property SchedulerMonthView.NAME
+     * @type String
      * @static
      */
     NAME: SCHEDULER_VIEW_MONTH,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `SchedulerMonthView`.
+     * configuration for the SchedulerMonthView.
      *
-     * @property ATTRS
-     * @type {Object}
+     * @property SchedulerMonthView.ATTRS
+     * @type Object
      * @static
      */
     ATTRS: {
 
         /**
-         * Contains the number of Days to display in a month view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute displayDaysInterval
          * @default 42
-         * @type {Number}
+         * @type Number
          * @readyOnly
          */
         displayDaysInterval: {
@@ -76,21 +75,21 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * Determines the name for this month view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute name
          * @default 'month'
-         * @type {String}
+         * @type String
          */
         name: {
             value: MONTH
         },
 
         /**
-         * Contains the function that formats the navigation date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute navigationDateFormatter
-         * @type {Function}
+         * @type Function
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -111,8 +110,8 @@ var SchedulerMonthView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
-     * @type {Object}
+     * @property SchedulerMonthView.EXTENDS
+     * @type Object
      * @static
      */
     EXTENDS: A.SchedulerTableView,
@@ -120,25 +119,21 @@ var SchedulerMonthView = A.Component.create({
     prototype: {
 
         /**
-         * Returns a date value of the first day of the month with its time
-         * adjusted to midnight.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getAdjustedViewDate
-         * @param {Date} date
-         * @return {Date}
+         * @param val
          */
-        getAdjustedViewDate: function(date) {
+        getAdjustedViewDate: function(val) {
             var instance = this;
 
-            return DateMath.toMidnight(DateMath.findMonthStart(date));
+            return DateMath.toMidnight(DateMath.findMonthStart(val));
         },
 
         /**
-         * Returns the value of the date that follows the month view's current
-         * date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getNextDate
-         * @return {Date}
          */
         getNextDate: function() {
             var instance = this;
@@ -150,11 +145,9 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * Returns the value of the date that preceeds the month view's current
-         * date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getPrevDate
-         * @return {Date}
          */
         getPrevDate: function() {
             var instance = this;
@@ -166,7 +159,7 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * Plots all events in the current view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method plotEvents
          */
@@ -195,13 +188,10 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * Returns the current interval start by finding the first day of the
-         * week with the `Scheduler`'s `viewDate`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _findCurrentIntervalStart
          * @protected
-         * @return {Date} The current interval start from the first day of the
-         * week with the `Scheduler`'s `viewDate`.
          */
         _findCurrentIntervalStart: function() {
             var instance = this;
@@ -212,12 +202,11 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * Returns the first day of the week with given `Date`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _findFirstDayOfWeek
-         * @param {Date} date
+         * @param date
          * @protected
-         * @return {Date} The first day of the week with given `Date`.
          */
         _findFirstDayOfWeek: function(date) {
             var instance = this;

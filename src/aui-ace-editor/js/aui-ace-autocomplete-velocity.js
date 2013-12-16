@@ -20,10 +20,9 @@ var Lang = A.Lang,
     /**
      * A base class for Velocity plugin.
      *
-     * @class A.AceEditor.AutoCompleteVelocity
+     * @class A.Velocity
      * @extends A.AceEditor.TemplateProcessor
-     * @param {Object} config Object literal specifying widget configuration
-     *     properties.
+     * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
      */
     Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
@@ -32,8 +31,7 @@ var Lang = A.Lang,
          * Checks if the provided content contains directive or variable.
          *
          * @method getMatch
-         * @param {String} content The content which should be traversed for
-         *     matches
+         * @param {String} content The content which should be traversed for matches
          * @return {Object} An Object which contains the following properties:
          * content - the found content
          * start - the start index of the match
@@ -74,7 +72,7 @@ var Lang = A.Lang,
         /**
          * Static property which provides a string to identify the class.
          *
-         * @property NAME
+         * @property Velocity.NAME
          * @type String
          * @static
          */
@@ -83,7 +81,7 @@ var Lang = A.Lang,
         /**
          * The namespace of the plugin.
          *
-         * @property NS
+         * @property Velocity.NS
          * @type String
          * @static
          */
@@ -93,15 +91,14 @@ var Lang = A.Lang,
          * Static property used to define the default attribute
          * configuration for the Velocity.
          *
-         * @property ATTRS
+         * @property Velocity.ATTRS
          * @type Object
          * @static
          */
         ATTRS: {
 
             /**
-             * Contains the list of supported directives according to Velocity
-             * specification.
+             * Contains the list of supported directives according to Velocity specification.
              *
              * @attribute directives
              * @default
@@ -145,7 +142,7 @@ var Lang = A.Lang,
             },
 
             /**
-             * The Editor in which the current instance is plugged.
+             * he Editor in which the current instance is plugged.
              *
              * @attribute host
              * @type Object
@@ -165,8 +162,7 @@ var Lang = A.Lang,
             },
 
             /**
-             * Contains the regular expression which will check for variable
-             * match.
+             * Contains the regular expression which will check for variable match.
              *
              * @attribute variablesMatcher
              * @default /\$[\w., ()"]*(?:[^$]|\\\$)*$/

@@ -11,7 +11,8 @@ var Lang = A.Lang,
 
 /**
  * Widget extension, which can be used to add trigger support to the
- * base Widget class, through the [Base.build](Base.html#method_build) method.
+ * base Widget class, through the <a href="Base.html#method_build">Base.build</a>
+ * method.
  *
  * @class A.WidgetTrigger
  * @param {Object} The user configuration object
@@ -23,7 +24,7 @@ function WidgetTrigger() {}
  * Static property used to define the default attribute
  * configuration.
  *
- * @property ATTRS
+ * @property WidgetTrigger.ATTRS
  * @type Object
  * @static
  */
@@ -112,7 +113,7 @@ A.mix(WidgetTrigger.prototype, {
     },
 
     /**
-     * Fire after `renderUI`.
+     * Fire after <code>renderUI</code>.
      *
      * @method _afterRenderUIWT
      * @param event
@@ -125,7 +126,7 @@ A.mix(WidgetTrigger.prototype, {
     },
 
     /**
-     * Fire after `trigger` changes.
+     * Fire after <code>trigger</code> changes.
      *
      * @method _afterTriggerChange
      * @param event
@@ -138,7 +139,7 @@ A.mix(WidgetTrigger.prototype, {
     },
 
     /**
-     * Set the `trigger` UI.
+     * Set the <code>trigger</code> UI.
      *
      * @method _uiSetTrigger
      * @param val

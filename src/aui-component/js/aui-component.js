@@ -28,14 +28,14 @@ var Lang = A.Lang,
 
 /**
  * A base class for Component, providing:
- *
- * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ * </ul>
  *
  * @class A.Component
- * @extends Widget
+ * @extends A.Widget
  * @uses A.WidgetCssClass, A.WidgetToggle
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var Component = A.Base.create(_NAME, A.Widget, [
@@ -216,7 +216,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Component.
      *
-     * @property ATTRS
+     * @property Component.ATTRS
      * @type Object
      * @static
      */
@@ -237,8 +237,9 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * CSS class added to hide the `boundingBox` when
-         * [visible](A.Component.html#attr_visible) is set to `false`.
+         * CSS class added to hide the <code>boundingBox</code> when
+         * <a href="Component.html#config_visible">visible</a> is set to
+         * <code>false</code>.
          *
          * @attribute hideClass
          * @default 'aui-hide'
@@ -249,8 +250,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * If `true` the render phase will be autimatically invoked
-         * preventing the `.render()` manual call.
+         * If <code>true</code> the render phase will be autimatically invoked
+         * preventing the <code>.render()</code> manual call.
          *
          * @attribute render
          * @default false
@@ -266,7 +267,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
 /**
  * Static property used to define the map to store Component instances by id.
  *
- * @property _INSTANCES
+ * @property Component._INSTANCES
  * @type Object
  * @static
  */
@@ -373,7 +374,7 @@ Component.create = function(config) {
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property CSS_PREFIX
+ * @property Component.CSS_PREFIX
  * @type String
  * @static
  */

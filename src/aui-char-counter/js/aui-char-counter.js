@@ -15,26 +15,25 @@ var L = A.Lang,
     SCROLL_TOP = 'scrollTop';
 
 /**
- * A base class for CharCounter, providing:
  *
- * - Limit the number of characters allowed in an input box
- * - Display the number of characters left
+ * A base class for CharCounter, providing:
+ * <ul>
+ *    <li>Limit the number of characters allowed in an input box</li>
+ *    <li>Display the number of characters left</li>
+ * </ul>
  *
  * Check the [live demo](http://alloyui.com/examples/char-counter/).
  *
  * @class A.CharCounter
- * @extends Base
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/char-counter/basic-markup.html
- * @include http://alloyui.com/examples/char-counter/basic.js
  */
 var CharCounter = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property CharCounter.NAME
      * @type String
      * @static
      */
@@ -44,7 +43,7 @@ var CharCounter = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the CharCounter.
      *
-     * @property ATTRS
+     * @property CharCounter.ATTRS
      * @type Object
      * @static
      */
@@ -61,8 +60,8 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Max number of characters the [input](A.CharCounter.html#attr_input)
-         * can have.
+         * Max number of characters the <a
+         * href="CharCounter.html#config_input">input</a> can have.
          *
          * @attribute maxLength
          * @default Infinity
@@ -92,7 +91,7 @@ var CharCounter = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property CharCounter.EXTENDS
      * @type Object
      * @static
      */
@@ -101,8 +100,8 @@ var CharCounter = A.Component.create({
     prototype: {
 
         /**
-         * Event handler for the input [aui-event](../modules/aui-event.html)
-         * event.
+         * Event handler for the input <a
+         * href="module_aui-event.html">aui-event</a> event.
          *
          * @property handler
          * @type EventHandle
@@ -111,8 +110,7 @@ var CharCounter = A.Component.create({
         handler: null,
 
         /**
-         * Construction logic executed during CharCounter instantiation.
-         * Lifecycle.
+         * Construction logic executed during CharCounter instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -180,10 +178,10 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Check the current value of the
-         * [input](A.CharCounter.html#attr_input), truncate the data if needed,
-         * and re-sync the UI. Fired from
-         * [_onInputChange](A.CharCounter.html#method__onInputChange).
+         * Check the current value of the <a
+         * href="CharCounter.html#config_input">input</a>, truncate the data if
+         * needed, and re-sync the UI. Fired from <a
+         *  href="CharCounter.html#method__onInputChange">_onInputChange</a>.
          *
          * @method checkLength
          */
@@ -230,11 +228,10 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Setter for [maxLength](A.CharCounter.html#attr_maxLength).
+         * Setter for <a href="CharCounter.html#config_maxLength">maxLength</a>.
          *
          * @method _setMaxLength
-         * @param {Number} v Value of the new
-         *     [maxLength](A.CharCounter.html#attr_maxLength).
+         * @param {Number} v Value of the new <a href="CharCounter.html#config_maxLenght">maxLenght</a>.
          * @protected
          * @return {Number}
          */

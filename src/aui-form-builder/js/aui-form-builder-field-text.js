@@ -46,8 +46,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderTextField
  * @extends A.FormBuilderField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var FormBuilderTextField = A.Component.create({
@@ -55,7 +54,7 @@ var FormBuilderTextField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property FormBuilderTextField.NAME
      * @type String
      * @static
      */
@@ -65,7 +64,7 @@ var FormBuilderTextField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderTextField.
      *
-     * @property ATTRS
+     * @property FormBuilderTextField.ATTRS
      * @type Object
      * @static
      */
@@ -97,7 +96,7 @@ var FormBuilderTextField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property CSS_PREFIX
+     * @property FormBuilderTextField.CSS_PREFIX
      * @type String
      * @static
      */
@@ -106,7 +105,7 @@ var FormBuilderTextField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property FormBuilderTextField.EXTENDS
      * @type Object
      * @static
      */

@@ -60,25 +60,24 @@ var L = A.Lang,
 
 /**
  * A base class for IORequest, providing:
- *
- * - Response data normalization for XML, JSON, JavaScript
- * - Cache options
+ * <ul>
+ *    <li>Response data normalization for XML, JSON, JavaScript</li>
+ *    <li>Cache options</li>
+ * </ul>
  *
  * Check the [live demo](http://alloyui.com/examples/io/).
  *
  * @class A.IORequest
- * @extends Plugin.Base
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Plugin.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @uses io
  * @constructor
- * @include http://alloyui.com/examples/io/basic.js
  */
 var IORequest = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property IORequest.NAME
      * @type String
      * @static
      */
@@ -88,14 +87,15 @@ var IORequest = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the IORequest.
      *
-     * @property ATTRS
+     * @property IORequest.ATTRS
      * @type Object
      * @static
      */
     ATTRS: {
 
         /**
-         * If `true` invoke the [start](A.IORequest.html#method_start) method
+         * If <code>true</code> invoke the
+         * <a href="IORequest.html#method_start">start</a> method
          * automatically, initializing the IO transaction.
          *
          * @attribute autoLoad
@@ -108,7 +108,7 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * If `false` the current timestamp will be appended to the
+         * If <code>false</code> the current timestamp will be appended to the
          * url, avoiding the url to be cached.
          *
          * @attribute cache
@@ -136,10 +136,10 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * This is a normalized attribute for the response data. It's useful to
-         * retrieve the correct type for the
-         * [dataType](A.IORequest.html#attr_dataType) (i.e., in json requests
-         * the `responseData`) is a JSONObject.
+         * This is a normalized attribute for the response data. It's useful
+         * to retrieve the correct type for the
+         * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
+         * requests the <code>responseData</code>) is a JSONObject.
          *
          * @attribute responseData
          * @default null
@@ -182,12 +182,13 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * Object containing all the [IO Configuration Attributes](A.io.html).
-         * This Object is passed to the `A.io` internally.
+         * Object containing all the
+         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+         * This Object is passed to the <code>A.io</code> internally.
          *
          * @attribute cfg
-         * @default Object containing all the [IO Configuration
-         *     Attributes](A.io.html).
+         * @default Object containing all the
+         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
          * @readOnly
          * @type String
          */
@@ -195,9 +196,8 @@ var IORequest = A.Component.create({
             getter: function() {
                 var instance = this;
 
-                // keep the current cfg object always synchronized with the
-                // mapped public attributes when the user call .start() it
-                // always retrieve the last set values for each mapped attr
+                // keep the current cfg object always synchronized with the mapped public attributes
+                // when the user call .start() it always retrieve the last set values for each mapped attr
                 return {
                     arguments: instance.get(ARGUMENTS),
                     context: instance.get(CONTEXT),
@@ -236,8 +236,8 @@ var IORequest = A.Component.create({
         // See: http://developer.yahoo.com/yui/3/io/
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute arguments
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -248,8 +248,8 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute context
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -260,8 +260,8 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute data
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -272,8 +272,8 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute form
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -317,8 +317,8 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute method
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -341,8 +341,8 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute sync
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -353,8 +353,8 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute timeout
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -365,8 +365,8 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+         * Configuration</a>.
          *
          * @attribute xdr
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -380,7 +380,7 @@ var IORequest = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property IORequest.EXTENDS
      * @type Object
      * @static
      */
@@ -389,8 +389,7 @@ var IORequest = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during IORequest instantiation.
-         * Lifecycle.
+         * Construction logic executed during IORequest instantiation. Lifecycle.
          *
          * @method initializer
          * @param config
@@ -420,7 +419,7 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * Applies the `YUI.AUI.defaults.io.dataFormatter` if
+         * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if
          * defined and return the formatted data.
          *
          * @method getFormattedData
@@ -481,7 +480,7 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * Invoke the `start` method (autoLoad attribute).
+         * Invoke the <code>start</code> method (autoLoad attribute).
          *
          * @method _autoStart
          * @protected
@@ -495,9 +494,10 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * Parse the [uri](A.IORequest.html#attr_uri) to add a
-         * timestamp if [cache](A.IORequest.html#attr_cache) is
-         * `true`. Also applies the `YUI.AUI.defaults.io.uriFormatter`.
+         * Parse the <a href="IORequest.html#config_uri">uri</a> to add a
+         * timestamp if <a href="IORequest.html#config_cache">cache</a> is
+         * <code>true</code>. Also applies the
+         * <code>YUI.AUI.defaults.io.uriFormatter</code>.
          *
          * @method _parseURL
          * @param {String} url
@@ -518,8 +518,7 @@ var IORequest = A.Component.create({
                 url = ret + ((ret == url) ? (url.match(/\?/) ? '&' : '?') + '_=' + ts : '');
             }
 
-            // formatting the URL with the default uriFormatter after the cache
-            // timestamp was added
+            // formatting the URL with the default uriFormatter after the cache timestamp was added
             var uriFormatter = defaults.uriFormatter;
 
             if (isFunction(uriFormatter)) {
@@ -534,8 +533,7 @@ var IORequest = A.Component.create({
          *
          * @method _end
          * @param {Number} id ID of the IO transaction.
-         * @param {Object} args Custom arguments, passed to the event handler.
-         *     See [IO](http://developer.yahoo.com/yui/3/io/#configuration).
+         * @param {Object} args Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
          * @protected
          */
         _end: function(id, args) {
@@ -553,8 +551,7 @@ var IORequest = A.Component.create({
          * @method _success
          * @param {Number} id ID of the IO transaction.
          * @param {Object} obj IO transaction Object.
-         * @param {Object} args Custom arguments, passed to the event handler.
-         *     See [IO](http://developer.yahoo.com/yui/3/io/#configuration).
+         * @param {Object} args Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
          * @protected
          */
         _success: function(id, obj, args) {
@@ -567,7 +564,7 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * Setter for [responseData](A.IORequest.html#attr_responseData).
+         * Setter for <a href="IORequest.html#config_responseData">responseData</a>.
          *
          * @method _setResponseData
          * @protected
@@ -646,13 +643,13 @@ A.IORequest = IORequest;
  */
 
 /**
- * Static method to invoke the [IORequest](A.IORequest.html).
- * Likewise [IO](A.io.html).
+ * Static method to invoke the <a href="IORequest.html">IORequest</a>.
+ * Likewise <a href="io.html#method_io">io</a>.
  *
  * @method A.io.request
  * @for A.io
  * @param {String} uri URI to be requested.
- * @param {Object} config Configuration Object for the [IO](A.io.html).
+ * @param {Object} config Configuration Object for the <a href="io.html">IO</a>.
  * @return {IORequest}
  */
 A.io.request = function(uri, config) {

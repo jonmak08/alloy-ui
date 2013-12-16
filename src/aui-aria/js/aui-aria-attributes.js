@@ -1,10 +1,6 @@
-/**
- * Static property used to define [W3C's Supported States and
- * Properties](http://www.w3.org/TR/wai-aria/states_and_properties).
- *
- * @property W3C_ATTRIBUTES
- * @type Object
- * @static
+/*
+ * W3C - Supported States and Properties
+ * http://www.w3.org/TR/wai-aria/states_and_properties
  */
 A.Plugin.Aria.W3C_ATTRIBUTES = {
     'activedescendant': 1,

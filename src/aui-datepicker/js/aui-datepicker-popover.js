@@ -24,8 +24,7 @@ var Lang = A.Lang,
  * A base class for DatePickerPopover.
  *
  * @class A.DatePickerPopover
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 
@@ -34,7 +33,7 @@ function DatePickerPopover() {}
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property ATTRS
+ * @property DatePickerPopover.ATTRS
  * @type Object
  * @static
  */

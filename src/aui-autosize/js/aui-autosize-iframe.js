@@ -23,9 +23,8 @@ var Lang = A.Lang,
  * A base class for AutosizeIframe.
  *
  * @class A.AutosizeIframe
- * @extends Plugin.Base
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Plugin.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 AutosizeIframe = A.Component.create({
@@ -33,7 +32,7 @@ AutosizeIframe = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property AutosizeIframe.NAME
      * @type String
      * @static
      */
@@ -42,7 +41,7 @@ AutosizeIframe = A.Component.create({
     /**
      * Static property provides a string to identify the namespace.
      *
-     * @property NS
+     * @property AutosizeIframe.NS
      * @type String
      * @static
      */
@@ -51,7 +50,7 @@ AutosizeIframe = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property AutosizeIframe.EXTENDS
      * @type String
      * @static
      */
@@ -61,7 +60,7 @@ AutosizeIframe = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the AutosizeIframe.
      *
-     * @property ATTRS
+     * @property AutosizeIframe.ATTRS
      * @type Object
      * @static
      */
@@ -104,8 +103,7 @@ AutosizeIframe = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during AutosizeIframe instantiation.
-         * Lifecycle.
+         * Construction logic executed during AutosizeIframe instantiation. Lifecycle.
          *
          * @method initializer
          * @param config
@@ -152,8 +150,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the AutosizeIframe class.
-         * Lifecycle.
+         * Destructor lifecycle implementation for the AutosizeIframe class. Lifecycle.
          *
          * @method destructor
          * @protected

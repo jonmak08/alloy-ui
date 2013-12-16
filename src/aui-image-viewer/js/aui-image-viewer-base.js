@@ -134,22 +134,20 @@ var L = A.Lang,
 
 /**
  * A base class for ImageViewer, providing:
- *
- * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
- * - Displays an image in a Overlay
- * - Keyboard navigation support
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Displays an image in a Overlay</li>
+ *    <li>Keyboard navigation support</li>
+ * </ul>
  *
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class A.ImageViewer
- * @extends Widget
+ * @extends A.Widget
  * @uses A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign,
- *     A.WidgetPositionConstrain, A.WidgetModality
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * A.WidgetPositionConstrain, A.WidgetModality
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/image-viewer/basic-markup.html
- * @include http://alloyui.com/examples/image-viewer/basic.js
  */
 var ImageViewer = A.Base.create(
     'aui-image-viewer',
@@ -253,8 +251,8 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Get the Node reference to the `currentIndex` element from
-         * the [links](A.ImageViewer.html#attr_links).
+         * Get the Node reference to the <code>currentIndex</code> element from
+         * the <a href="ImageViewer.html#config_links">links</a>.
          *
          * @method getLink
          * @param {Number} currentIndex
@@ -281,7 +279,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Load an image `src` on the ImageViewer.
+         * Load an image <code>src</code> on the ImageViewer.
          *
          * @method loadImage
          * @param {String} src Image src.
@@ -304,8 +302,7 @@ var ImageViewer = A.Base.create(
                 var image0 = placeholder.clone();
                 var image1 = placeholder.clone();
 
-                // bind the onLoad handler to the image, this handler should
-                // append the loaded image
+                // bind the onLoad handler to the image, this handler should append the loaded image
                 var onload = A.bind(instance._onLoadImage, instance);
 
                 image0.on('load', onload);
@@ -330,8 +327,8 @@ var ImageViewer = A.Base.create(
             activeImagePool.push(activeImagePool.shift(image));
 
             // set the src of the image to be loaded on the placeholder image.
-            // dataURI allows cached images to refire load event in webkit, and
-            // bypass the MimeType error (c/o Paul Irish & Doug Jones)
+            // dataURI allows cached images to refire load event in webkit, and bypass
+            // the MimeType error (c/o Paul Irish & Doug Jones)
             if (A.UA.webkit) {
                 image.attr(SRC, 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
             }
@@ -344,7 +341,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Check if there is a node reference for the `currentIndex`.
+         * Check if there is a node reference for the <code>currentIndex</code>.
          *
          * @method hasLink
          * @param {Number} currentIndex
@@ -429,7 +426,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Preload an image based on its `index`.
+         * Preload an image based on its <code>index</code>.
          *
          * @method preloadImage
          * @param {Number} currentIndex
@@ -636,13 +633,11 @@ var ImageViewer = A.Base.create(
 
             if (instance.get(VISIBLE)) {
                 if (instance.get(SHOW_CONTROLS)) {
-                    // get the viewportRegion to centralize the controls on the
-                    // middle of the window viewport
+                    // get the viewportRegion to centralize the controls on the middle of the window viewport
                     var viewportRegion = boundingBox.get(VIEWPORT_REGION);
                     var heightRegion = Math.floor(viewportRegion.height / 2) + viewportRegion.top;
 
-                    // show or hide controls based on the hasPrev/hasNext
-                    // information
+                    // show or hide controls based on the hasPrev/hasNext information
                     controlLeftEl[instance.hasPrev() ? SHOW : HIDE]();
                     controlRightEl[instance.hasNext() ? SHOW : HIDE]();
 
@@ -711,7 +706,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Get the [info](A.ImageViewer.html#attr_info) template.
+         * Get the <a href="ImageViewer.html#config_info">info</a> template.
          *
          * @method _getInfoTemplate
          * @param {String} v template
@@ -784,7 +779,7 @@ var ImageViewer = A.Base.create(
 
         /**
          * Fires after the value of the
-         * [loading](A.ImageViewer.html#attr_loading) attribute change.
+         * <a href="ImageViewer.html#config_loading">loading</a> attribute change.
          *
          * @method _afterLoadingChange
          * @param {EventFacade} event
@@ -806,7 +801,7 @@ var ImageViewer = A.Base.create(
 
         /**
          * Fires after the value of the
-         * [visible](A.ImageViewer.html#attr_visible) attribute change.
+         * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
          *
          * @method _afterVisibleChange
          * @param {EventFacade} event
@@ -822,7 +817,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the close icon.
          *
          * @method _onClickCloseEl
-         * @param {EventFacade} event Click event facade
+         * @param {EventFacade} event click event facade
          * @protected
          */
         _onClickCloseEl: function(event) {
@@ -837,7 +832,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the left control icon.
          *
          * @method _onClickLeftControl
-         * @param {EventFacade} event Click event facade
+         * @param {EventFacade} event click event facade
          * @protected
          */
         _onClickLeftControl: function(event) {
@@ -852,7 +847,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the right control icon.
          *
          * @method _onClickRightControl
-         * @param {EventFacade} event Click event facade
+         * @param {EventFacade} event click event facade
          * @protected
          */
         _onClickRightControl: function(event) {
@@ -867,7 +862,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the links.
          *
          * @method _onClickLinks
-         * @param {EventFacade} event Click event facade
+         * @param {EventFacade} event click event facade
          * @protected
          */
         _onClickLinks: function(event) {
@@ -889,7 +884,7 @@ var ImageViewer = A.Base.create(
          * Handles the key interaction (i.e., next, prev etc).
          *
          * @method _onKeyInteraction
-         * @param {EventFacade} event Click event facade
+         * @param {EventFacade} event click event facade
          * @protected
          */
         _onKeyInteraction: function(event) {
@@ -981,7 +976,7 @@ var ImageViewer = A.Base.create(
         /**
          * Static property provides a string to identify the class.
          *
-         * @property NAME
+         * @property ImageViewer.NAME
          * @type String
          * @static
          */
@@ -990,7 +985,7 @@ var ImageViewer = A.Base.create(
         /**
          * Static property provides a string to identify the CSS prefix.
          *
-         * @property CSS_PREFIX
+         * @property ImageViewer.CSS_PREFIX
          * @type String
          * @static
          */
@@ -1000,14 +995,14 @@ var ImageViewer = A.Base.create(
          * Static property used to define the default attribute
          * configuration for the ImageViewer.
          *
-         * @property ATTRS
+         * @property ImageViewer.ATTRS
          * @type Object
          * @static
          */
         ATTRS: {
 
             /**
-             * If `true` the navigation is animated.
+             * If <code>true</code> the navigation is animated.
              *
              * @attribute anim
              * @default true
@@ -1041,8 +1036,9 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * If `true` the [caption](A.ImageViewer.html#attr_caption) will be
-             * pulled from the title DOM attribute.
+             * If <code>true</code> the <a
+             * href="ImageViewer.html#config_caption">caption</a> will be pulled
+             * from the title DOM attribute.
              *
              * @attribute captionFromTitle
              * @default true
@@ -1054,7 +1050,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * If `true` the Overlay with the image will be positioned
+             * If <code>true</code> the Overlay with the image will be positioned
              * on the center of the viewport.
              *
              * @attribute centered
@@ -1093,10 +1089,11 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Configuration attributes passed to the [Anim](Anim.html) class.
+             * Configuration attributes passed to the <a href="Anim.html">Anim</a>
+             * class.
              *
              * @attribute imageAnim
-             * @default Predefined [Anim](Anim.html) configuration.
+             * @default Predefined <a href="Anim.html">Anim</a> configuration.
              * @type Object
              */
             imageAnim: {
@@ -1164,7 +1161,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Displays the modal the viewport. Set to `false` to
+             * Displays the modal the viewport. Set to <code>false</code> to
              * disable.
              *
              * @attribute modal
@@ -1176,8 +1173,8 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Preload all images grabbed from the
-             * [links](A.ImageViewer.html#attr_links) attribute.
+             * Preload all images grabbed from the <a
+             * href="ImageViewer.html#config_links">links</a> attribute.
              *
              * @attribute preloadAllImages
              * @default false
@@ -1189,8 +1186,8 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Preload the neighbor image (i.e., the previous and next image
-             * based on the current load one).
+             * Preload the neighbor image (i.e., the previous and next image based
+             * on the current load one).
              *
              * @attribute preloadAllImages
              * @default false
@@ -1237,8 +1234,8 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Helper attribute to get the `size` of the
-             * [links](A.ImageViewer.html#attr_links) NodeList.
+             * Helper attribute to get the <code>size</code> of the <a
+             * href="ImageViewer.html#config_links">links</a> NodeList.
              *
              * @attribute totalLinks
              * @default true
@@ -1351,7 +1348,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * HTML element to house the `img` which is being loaded.
+             * HTML element to house the <code>img</code> which is being loaded.
              *
              * @attribute loader
              * @default Generated HTML div element.

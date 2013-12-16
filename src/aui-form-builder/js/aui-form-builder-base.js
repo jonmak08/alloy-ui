@@ -91,8 +91,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderAvailableField
  * @extends A.AvailableField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 
@@ -101,7 +100,7 @@ var FormBuilderAvailableField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property FormBuilderAvailableField.NAME
      * @type String
      * @static
      */
@@ -111,7 +110,7 @@ var FormBuilderAvailableField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ModuleName.
      *
-     * @property ATTRS
+     * @property FormBuilderAvailableField.ATTRS
      * @type Object
      * @static
      */
@@ -214,7 +213,7 @@ var FormBuilderAvailableField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property FormBuilderAvailableField.EXTENDS
      * @type String
      * @static
      */
@@ -228,18 +227,15 @@ A.FormBuilderAvailableField = FormBuilderAvailableField;
  *
  * @class A.FormBuilder
  * @extends A.DiagramBuilderBase
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/form-builder/basic-markup.html
- * @include http://alloyui.com/examples/form-builder/basic.js
  */
 var FormBuilder = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property FormBuilder.NAME
      * @type String
      * @static
      */
@@ -249,7 +245,7 @@ var FormBuilder = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilder.
      *
-     * @property ATTRS
+     * @property FormBuilder.ATTRS
      * @type Object
      * @static
      */
@@ -292,7 +288,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute strings
          * @type Object
@@ -313,7 +309,7 @@ var FormBuilder = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property UI_ATTRS
+     * @property FormBuilder.UI_ATTRS
      * @type Array
      * @static
      */
@@ -322,7 +318,7 @@ var FormBuilder = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property FormBuilder.EXTENDS
      * @type String
      * @static
      */
@@ -331,7 +327,7 @@ var FormBuilder = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FIELDS_TAB
+     * @property FormBuilder.FIELDS_TAB
      * @default 0
      * @type Number
      * @static
@@ -341,7 +337,7 @@ var FormBuilder = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property SETTINGS_TAB
+     * @property FormBuilder.SETTINGS_TAB
      * @default 1
      * @type Number
      * @static
@@ -354,8 +350,7 @@ var FormBuilder = A.Component.create({
         uniqueFieldsMap: null,
 
         /**
-         * Construction logic executed during FormBuilder instantiation.
-         * Lifecycle.
+         * Construction logic executed during FormBuilder instantiation. Lifecycle.
          *
          * @method initializer
          * @protected

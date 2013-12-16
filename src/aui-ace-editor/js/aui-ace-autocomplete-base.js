@@ -54,16 +54,14 @@ var Lang = A.Lang,
 /**
  * A base class for AutoCompleteBase.
  *
- * @class A.AceEditor.AutoCompleteBase
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @class A.AutoCompleteBase
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 Base.prototype = {
 
     /**
-     * Construction logic executed during AutoCompleteBase instantiation.
-     * Lifecycle.
+     * Construction logic executed during AutoCompleteBase instantiation. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -87,9 +85,7 @@ Base.prototype = {
     },
 
     /**
-     * Inserts the provided suggestion as a string to the editor. The added text
-     * can overwrite the match or to be inserted depending on the `fillMode`
-     * attribute.
+     * Inserts the provided suggestion as a string to the editor. The added text can overwrite the match or to be inserted depending on the <code>fillMode</code> attribute.
      *
      * @method _addSuggestion
      * @param {String} content
@@ -185,8 +181,7 @@ Base.prototype = {
     },
 
     /**
-     * Checks if the cursor is out of the row/column on the latest match. If so,
-     * fires an `cursorOut` event.
+     * Checks if the cursor is out of the row/column on the latest match. If so, fires an <code>cursorOut</code> event.
      *
      * @method _defaultCursorChangeFn
      * @param {CustomEvent} event The fired event
@@ -249,8 +244,7 @@ Base.prototype = {
     },
 
     /**
-     * Filters and sorts the found suggestions using the existing chain of
-     * `filters` and `sorters`.
+     * Filters and sorts the found suggestions using the existing chain of <code>filters</code> and <code>sorters</code>.
      *
      * @method _filterResults
      * @param {String} content
@@ -289,14 +283,12 @@ Base.prototype = {
     },
 
     /**
-     * Checks for new line or tab character and adds a suggestion to the editor
-     * if so.
+     * Checks for new line or tab character and adds a suggestion to the editor if so.
      *
      * @method _handleEnter
      * @param {String} text
      * @protected
-     * @return {Do.Halt} If text is new line or tab character, returns an
-     *     instance of Do.Halt to stop function execution
+     * @return {Do.Halt} If text is new line or tab character, returns an instance of Do.Halt to stop function execution
      */
     _handleEnter: function(text) {
         var instance = this,
@@ -310,8 +302,7 @@ Base.prototype = {
     },
 
     /**
-     * Handles editor change event. If editor is not locked and data action is
-     * insert or remove text, process auto complete.
+     * Handles editor change event. If editor is not locked and data action is insert or remove text, process auto complete.
      *
      * @method _onEditorChange
      * @param {CustomEvent} event The fired event
@@ -353,8 +344,7 @@ Base.prototype = {
     },
 
     /**
-     * Fires cursor change event providing the current position as event
-     * payload.
+     * Fires cursor change event providing the current position as event payload.
      *
      * @method _onEditorChangeCursor
      * @param {CustomEvent} event The fired event
@@ -367,7 +357,7 @@ Base.prototype = {
     },
 
     /**
-     * Fires an `resultsError` event containing the error.
+     * Fires an <code>resultsError</code> event containing the error.
      *
      * @method _onResultsError
      * @param error
@@ -380,7 +370,7 @@ Base.prototype = {
     },
 
     /**
-     * Updates `results` attribute with the provided results.
+     * Updates <code>results</code> attribute with the provided results.
      *
      * @method _onResultsSuccess
      * @param {Array} results
@@ -470,13 +460,14 @@ Base.prototype = {
     },
 
     /**
-     * Invokes the loaded content processor and checks for match. If found,
-     * provides the match together with information about current row and column
-     * and invokes processor's `getResults` function in order to retrieve
-     * results. At the end, fires and `match` event with the following
-     * properties: column - the current column coords - the page coordinates of
-     * the match line - the current line match - the current match row - the
-     * current row
+     * Invokes the loaded content processor and checks for match. If found, provides the match together with information about
+     * current row and column and invokes processor's <code>getResults</code> function in order to retrieve results.
+     * At the end, fires and <code>match</code> event with the following properties:
+     * column - the current column
+     * coords - the page coordinates of the match
+     * line - the current line
+     * match - the current match
+     * row - the current row
      *
      * @method _processAutoComplete
      * @param {Number} row The row on which match happened
@@ -545,14 +536,12 @@ Base.prototype = {
     },
 
     /**
-     * Sorts the results in ascending order, taking in consideration the length
-     * of the content.
+     * Sorts the results in ascending order, taking in consideration the length of the content.
      *
      * @method _sortAscLength
      * @param {String} content The text content
      * @param {Array} results The results to be filtered
-     * @param {Boolean} caseSensitive Should we filter these results
-     *     alphabetically
+     * @param {Boolean} caseSensitive Should we filter these results alphabetically
      * @protected
      * @return {Array} The sorted results
      */
@@ -594,13 +583,12 @@ Base.prototype = {
     },
 
     /**
-     * Validates the value of `fillMode` attribute.
+     * Validates the value of <code>fillMode</code> attribute.
      *
      * @method _validateFillMode
      * @param value
      * @protected
-     * @return {Boolean} True if mode is 'overwrite' - value '0' or 'insert' -
-     *     value '1'
+     * @return {Boolean} True if mode is 'overwrite' - value '0' or 'insert' - value '1'
      */
     _validateFillMode: function(value) {
         return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
@@ -608,18 +596,17 @@ Base.prototype = {
 };
 
 /**
- * Exposes a constant for insert fill mode. See `fillMode` for more information.
+ * Exposes a constant for insert fill mode. See <code>fillMode</code> for more information.
  *
- * @property FILL_MODE_INSERT
+ * @property Base.FILL_MODE_INSERT
  * @static
  */
 Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
 
 /**
- * Exposes a constant for overwrite fill mode. See `fillMode` for more
- * information.
+ * Exposes a constant for overwrite fill mode. See <code>fillMode</code> for more information.
  *
- * @property FILL_MODE_OVERWRITE
+ * @property Base.FILL_MODE_OVERWRITE
  * @static
  */
 Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
@@ -627,7 +614,7 @@ Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 /**
  * Static property which provides a string to identify the class.
  *
- * @property NAME
+ * @property AutoCompleteBase.NAME
  * @type String
  * @static
  */
@@ -636,7 +623,7 @@ Base.NAME = _NAME;
 /**
  * Static property which provides a string to identify the namespace.
  *
- * @property NS
+ * @property AutoCompleteBase.NS
  * @type String
  * @static
  */
@@ -646,7 +633,7 @@ Base.NS = _NAME;
  * Static property used to define the default attribute
  * configuration for AutoCompleteBase.
  *
- * @property ATTRS
+ * @property AutoCompleteBase.ATTRS
  * @type Object
  * @static
  */
@@ -654,10 +641,9 @@ Base.ATTRS = {
 
     /**
      * The mode in which the AutoComplete should operate. Can be one of these:
-     * INSERT - value '0' or OVERWRITE - value '1'. In case of INSERT mode, when
-     * Editor adds a suggestion, it will be added next to the matched
-     * expression. In case of OVERWRITE mode, the suggestion will overwrite the
-     * matched expression.
+     * INSERT - value '0' or OVERWRITE - value '1'
+     * In case of INSERT mode, when Editor adds a suggestion, it will be added next to the matched expression.
+     * In case of OVERWRITE mode, the suggestion will overwrite the matched expression.
      *
      * @attribute fillMode
      * @default 1 - OVERWRITE mode
@@ -669,8 +655,7 @@ Base.ATTRS = {
     },
 
     /**
-     * Provides an array of filter functions which will filter the results. By
-     * default there is one function which provides phrase match filtering.
+     * Provides an array of filter functions which will filter the results. By default there is one function which provides phrase match filtering.
      *
      * @attribute filters
      * @default Array with one function which provides phrase match filtering
@@ -699,8 +684,7 @@ Base.ATTRS = {
     },
 
     /**
-     * The keyboard combination which should be used to show the list with found
-     * results.
+     * The keyboard combination which should be used to show the list with found results.
      *
      * @attribute showListKey
      * @default 'Alt-Space' for Mac, 'Ctrl-Space' for PC
@@ -715,8 +699,7 @@ Base.ATTRS = {
     },
 
     /**
-     * Provides an array of sorter functions which will sort the results. By
-     * default there is one function which sorts the results in ascending order.
+     * Provides an array of sorter functions which will sort the results. By default there is one function which sorts the results in ascending order.
      *
      * @attribute sorters
      * @default Array with one function which sorts results in ascending order

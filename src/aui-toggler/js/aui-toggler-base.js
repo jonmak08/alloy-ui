@@ -67,9 +67,8 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/toggler/).
  *
  * @class A.Toggler
- * @extends Base
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var Toggler = A.Component.create({
@@ -77,7 +76,7 @@ var Toggler = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property Toggler.NAME
      * @type String
      * @static
      */
@@ -87,7 +86,7 @@ var Toggler = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Toggler.
      *
-     * @property ATTRS
+     * @property Toggler.ATTRS
      * @type Object
      * @static
      */
@@ -108,8 +107,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Determine if the Toggler transitions are being animated in that
-         * moment.
+         * Determine if the Toggler transitions are being animated in that moment.
          *
          * @attribute animating
          * @default false
@@ -183,7 +181,7 @@ var Toggler = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property Toggler.EXTENDS
      * @type Object
      * @static
      */
@@ -421,7 +419,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Trigger when the `expanded` attribute change its value.
+         * Trigger when the <code>expanded</code> attribute change its value.
          *
          * @method _onExpandedChange
          * @param event
@@ -434,7 +432,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Set the `expanded` attribute on the UI.
+         * Set the <code>expanded</code> attribute on the UI.
          *
          * @method _uiSetExpanded
          * @param val

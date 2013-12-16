@@ -99,23 +99,23 @@ var Lang = A.Lang,
 
 /**
  * A base class for SortableLayout, providing:
- *
- * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
- * - DragDrop utility for drag lists, portal layouts (portlets)
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>DragDrop utility for drag lists, portal layouts (portlets)</li>
+ * </ul>
  *
  * Check the [live demo](http://alloyui.com/examples/sortable-layout/).
  *
  * @class A.SortableLayout
- * @extends Base
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var SortableLayout = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property SortableLayout.NAME
      * @type String
      * @static
      */
@@ -125,7 +125,7 @@ var SortableLayout = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SortableLayout.
      *
-     * @property ATTRS
+     * @property SortableLayout.ATTRS
      * @type Object
      * @static
      */
@@ -283,7 +283,7 @@ var SortableLayout = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property SortableLayout.EXTENDS
      * @type Object
      * @static
      */
@@ -292,8 +292,7 @@ var SortableLayout = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SortableLayout instantiation.
-         * Lifecycle.
+         * Construction logic executed during SortableLayout instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -471,14 +470,12 @@ var SortableLayout = A.Component.create({
             var marginTop = PLACEHOLDER_MARGIN_TOP;
 
             if (isTarget) {
-                // update the margin values in case of the target placeholder
-                // has a different margin
+                // update the margin values in case of the target placeholder has a different margin
                 marginBottom = PLACEHOLDER_TARGET_MARGIN_BOTTOM;
                 marginTop = PLACEHOLDER_TARGET_MARGIN_TOP;
             }
 
-            // update the className of the placeholder when interact with target
-            // (drag/drop) elements
+            // update the className of the placeholder when interact with target (drag/drop) elements
             placeholder.toggleClass(CSS_DRAG_TARGET_INDICATOR, isTarget);
 
             var regionBottom = ceil(region.bottom);
@@ -487,8 +484,7 @@ var SortableLayout = A.Component.create({
 
             var x = regionLeft;
 
-            // 1 and 2 quadrants are the top quadrants, so align to the
-            // region.top when quadrant < 3
+            // 1 and 2 quadrants are the top quadrants, so align to the region.top when quadrant < 3
             var y = (instance.quadrant < 3) ?
                 (regionTop - (placeholder.get(OFFSET_HEIGHT) + marginBottom)) : (regionBottom + marginTop);
 
@@ -589,10 +585,8 @@ var SortableLayout = A.Component.create({
 
             if (activeDrop && placeholder) {
                 var node = activeDrop.get('node');
-                // DD.Delegate use the Drop Plugin on its "target" items. Using
-                // Drop Plugin a "node.drop" namespace is created. Using the
-                // .drop namespace to detect when the node is also a "target"
-                // DD.Delegate node
+                // DD.Delegate use the Drop Plugin on its "target" items. Using Drop Plugin a "node.drop" namespace is created.
+                // Using the .drop namespace to detect when the node is also a "target" DD.Delegate node
                 var isTarget = !! node.drop;
 
                 instance.lastAlignDrop = activeDrop;
@@ -656,8 +650,7 @@ var SortableLayout = A.Component.create({
                 instance.fire(EV_QUADRANT_ENTER, evOutput);
             }
 
-            // firing EV_QUADRANT_OVER, align event fires like the drag over
-            // without bubbling for performance reasons
+            // firing EV_QUADRANT_OVER, align event fires like the drag over without bubbling for performance reasons
             instance.fire(EV_QUADRANT_OVER, evOutput);
 
             // updating "last" information
@@ -693,11 +686,9 @@ var SortableLayout = A.Component.create({
                 var dragNode = instance._getAppendNode();
                 var dropNode = activeDrop.get(NODE);
 
-                // detects if the activeDrop is a dd target (portlet) or a drop
-                // area only (column) DD.Delegate use the Drop Plugin on its
-                // "target" items. Using Drop Plugin a "node.drop" namespace is
-                // created. Using the .drop namespace to detect when the node is
-                // also a "target" DD.Delegate node
+                // detects if the activeDrop is a dd target (portlet) or a drop area only (column)
+                // DD.Delegate use the Drop Plugin on its "target" items. Using Drop Plugin a "node.drop" namespace is created.
+                // Using the .drop namespace to detect when the node is also a "target" DD.Delegate node
                 var isTarget = isValue(dropNode.drop);
                 var topQuadrants = (instance.quadrant < 3);
 
@@ -707,8 +698,7 @@ var SortableLayout = A.Component.create({
                     }
                     // interacting with the columns (drop areas only)
                     else {
-                        // find the dropContainer of the dropNode, the default
-                        // DROP_CONTAINER function returns the dropNode
+                        // find the dropContainer of the dropNode, the default DROP_CONTAINER function returns the dropNode
                         var dropContainer = instance.get(DROP_CONTAINER).apply(instance, [dropNode]);
 
                         dropContainer[topQuadrants ? PREPEND : APPEND](dragNode);
@@ -856,17 +846,16 @@ var SortableLayout = A.Component.create({
 
             instance.activeDrop = DDM.activeDrop;
 
-            // check if lazyEvents is true and if there is a lastActiveDrop the
-            // checking for lastActiveDrop prevents fire the _syncPlaceholderUI
-            // when quadrant* events fires
+            // check if lazyEvents is true and if there is a lastActiveDrop
+            // the checking for lastActiveDrop prevents fire the _syncPlaceholderUI when quadrant* events fires
             if (instance.lazyEvents && instance.lastActiveDrop) {
                 instance.lazyEvents = false;
 
                 instance._syncPlaceholderUI(event);
             }
 
-            // lastActiveDrop is always updated by the drag exit, but if there
-            // is no lastActiveDrop update it on drag enter update it
+            // lastActiveDrop is always updated by the drag exit,
+            // but if there is no lastActiveDrop update it on drag enter update it
             if (!instance.lastActiveDrop) {
                 instance.lastActiveDrop = DDM.activeDrop;
             }

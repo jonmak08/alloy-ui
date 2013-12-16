@@ -49,71 +49,52 @@ YUI.add('module-tests', function(Y) {
         },
 
         'getNodeById() should return a valid TreeNode': function() {
-            var childNode,
-                tree;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            childNode = tree.getNodeById('one');
+            var childNode = tree.getNodeById('one');
 
             Y.Assert.isInstanceOf(Y.TreeNode, childNode, 'childNode should be an instance of Y.TreeNode.');
         },
 
         'getNodeById() should not return a valid TreeNode': function() {
-            var childNode,
-                tree;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            childNode = tree.getNodeById('bogey');
+            var childNode = tree.getNodeById('bogey');
 
             Y.Assert.isUndefined(childNode, 'childNode should be undefined.');
         },
 
         'TreeNode should have children': function() {
-            var tree,
-                node;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            node = tree.getNodeById('one');
+            var node = tree.getNodeById('one');
 
             Y.Assert.areSame(4, node.childrenLength, 'node.childrenLength should return 4.');
         },
 
         'TreeNode should not have children': function() {
-            var tree,
-                node;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            node = tree.getNodeById('two');
+            var node = tree.getNodeById('two');
 
             Y.Assert.areSame(0, node.childrenLength, 'node.childrenLength should return 0.');
         },
 
-        'appendChild() should register the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
-            var childTreeNode,
-                rootTreeNode,
-                rootTreeNodeIndex,
-                treeView,
-                treeViewIndex;
+        'appendChild() should regester the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
+            var treeView = new Y.TreeView();
 
-            treeView = new Y.TreeView();
-
-            childTreeNode = new Y.TreeNode({
+            var childTreeNode = new Y.TreeNode({
                 id: 'child'
             });
-
-            rootTreeNode = new Y.TreeNode({
+            var rootTreeNode = new Y.TreeNode({
                 id: 'root'
             });
 
             treeView.appendChild(rootTreeNode);
             rootTreeNode.appendChild(childTreeNode);
 
-            treeViewIndex = treeView.get('index');
-            rootTreeNodeIndex = rootTreeNode.get('index');
+            var treeViewIndex = treeView.get("index");
+            var rootTreeNodeIndex = rootTreeNode.get("index");
 
             Y.Assert.isTrue(
                 treeViewIndex.hasOwnProperty('root'),
@@ -127,12 +108,9 @@ YUI.add('module-tests', function(Y) {
         },
 
         'removeChild() should remove child TreeNode': function() {
-            var node,
-                tree;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            node = tree.getNodeById('two');
+            var node = tree.getNodeById('two');
 
             tree.removeChild(node);
 
@@ -146,12 +124,9 @@ YUI.add('module-tests', function(Y) {
         },
 
         'removeChild() should not remove child TreeNode': function() {
-            var node,
-                tree;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            node = tree.getNodeById('bogey');
+            var node = tree.getNodeById('bogey');
 
             tree.removeChild(node);
 
@@ -161,28 +136,20 @@ YUI.add('module-tests', function(Y) {
         },
 
         'isRegistered() should find TreeNode': function() {
-            var node,
-                tree;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            node = tree.getNodeById('two');
+            var node = tree.getNodeById('two');
 
             Y.Assert.isTrue(tree.isRegistered(node), 'TreeNode should be registered in TreeView');
         },
 
         'isRegistered() should find child TreeNode': function() {
-            var childTreeNode,
-                rootTreeNode,
-                treeView;
+            var treeView = new Y.TreeView();
 
-            treeView = new Y.TreeView();
-
-            childTreeNode = new Y.TreeNode({
+            var childTreeNode = new Y.TreeNode({
                 id: 'child'
             });
-
-            rootTreeNode = new Y.TreeNode({
+            var rootTreeNode = new Y.TreeNode({
                 id: 'root'
             });
 
@@ -198,72 +165,11 @@ YUI.add('module-tests', function(Y) {
         },
 
         'isRegistered() should not find TreeNode': function() {
-            var node,
-                tree;
+            var tree = createNewTreeView();
 
-            tree = createNewTreeView();
-
-            node = new Y.TreeNode();
+            var node = new Y.TreeNode();
 
             Y.Assert.isFalse(tree.isRegistered(node), 'TreeNode should be registered in TreeView');
-        },
-
-        'TreeNodeRadio should only have one treeNode selected': function() {
-            var childTreeNode,
-                rootTreeNode,
-                treeView;
-
-            treeView = new Y.TreeView();
-
-            childTreeNode = new Y.TreeNodeRadio({
-                id: 'one'
-            });
-
-            rootTreeNode = new Y.TreeNodeRadio({
-                id: 'root'
-            });
-
-            treeView.appendChild(rootTreeNode);
-            rootTreeNode.appendChild(childTreeNode);
-
-            rootTreeNode.check();
-
-            Y.Assert.isTrue(
-                rootTreeNode.isChecked(),
-                'rootTreeNode should be checked.');
-
-            Y.Assert.isFalse(
-                childTreeNode.isChecked(),
-                'childTreeNode should not be checked.');
-        },
-
-        'TreeNodeTask should select all child treeNode': function() {
-            var childTreeNode,
-                rootTreeNode,
-                treeView;
-
-            treeView = new Y.TreeView();
-
-            childTreeNode = new Y.TreeNodeTask({
-                id: 'one'
-            });
-
-            rootTreeNode = new Y.TreeNodeTask({
-                id: 'root'
-            });
-
-            treeView.appendChild(rootTreeNode);
-            rootTreeNode.appendChild(childTreeNode);
-
-            rootTreeNode.check();
-
-            Y.Assert.isTrue(
-                rootTreeNode.isChecked(),
-                'rootTreeNode should be checked.');
-
-            Y.Assert.isTrue(
-                childTreeNode.isChecked(),
-                'childTreeNode should be checked.');
         }
     }));
 

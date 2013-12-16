@@ -71,9 +71,10 @@ var Lang = A.Lang,
         t: 'paddingTop'
     };
 
-/* Parts of this file are used from jQuery (http://jquery.com)
- * Dual-licensed under MIT/GPL
- */
+/*
+		Parts of this file are used from jQuery (http://jquery.com)
+		Dual-licensed under MIT/GPL
+	*/
 var div = DOC.createElement('div');
 
 div.style.display = 'none';
@@ -119,15 +120,13 @@ var _setUnselectable = function(element, unselectable, noRecurse) {
 };
 
 /**
- * Augment the [YUI3 Node](Node.html) with more util methods.
+ * Augment the <a href="Node.html">YUI3 Node</a> with more util methods.
  *
  * Check the [live demo](http://alloyui.com/examples/node/).
  *
  * @class A.Node
  * @uses Node
  * @constructor
- * @include http://alloyui.com/examples/node/basic-markup.html
- * @include http://alloyui.com/examples/node/basic.js
  */
 A.mix(NODE_PROTO, {
 
@@ -137,13 +136,12 @@ A.mix(NODE_PROTO, {
      *
      * Example:
      *
-     * ```
+     * <pre><code>
      * A.one('#nodeId').ancestors('div');
-     * ```
+     * </code></pre>
      *
      * @method ancestors
-     * @param {String} selector A selector to filter the ancestor elements
-     *     against.
+     * @param {String} selector A selector to filter the ancestor elements against.
      * @return {NodeList}
      */
     ancestors: function(selector) {
@@ -171,18 +169,16 @@ A.mix(NODE_PROTO, {
 
     /**
      * Return the current ancestors of the node element filtered by a className.
-     * This is an optimized method for finding ancestors by a specific CSS class
-     * name.
+     * This is an optimized method for finding ancestors by a specific CSS class name.
      *
      * Example:
      *
-     * ```
+     * <pre><code>
      * A.one('#nodeId').ancestorsByClassName('aui-hide');
-     * ```
+     * </code></pre>
      *
      * @method ancestorsByClassName
-     * @param {String} className A selector to filter the ancestor elements
-     *     against.
+     * @param {String} className A selector to filter the ancestor elements against.
      * @return {NodeList}
      */
     ancestorsByClassName: function(className) {
@@ -205,17 +201,16 @@ A.mix(NODE_PROTO, {
 
     /**
      * Get or Set the value of an attribute for the first element in the
-     * set of matched elements. If only the `name` is passed it
+     * set of matched elements. If only the <code>name</code> is passed it
      * works as a getter.
      *
      * Example:
      *
-     * ```
-     * var node = A.one('#nodeId');
+     * <pre><code>var node = A.one('#nodeId');
      * node.attr('title', 'Setting a new title attribute');
      * // Alert the value of the title attribute: 'Setting a new title attribute'
      * alert( node.attr('title') );
-     * ```
+     * </code></pre>
      *
      * @method attr
      * @param {String} name The name of the attribute
@@ -258,15 +253,14 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Normalizes the behavior of cloning a node, which by default should not
-     * clone the events that are attached to it.
+     * Normalizes the behavior of cloning a node, which by default should not clone
+     * the events that are attached to it.
      *
      * Example:
      *
-     * ```
-     * var node = A.one('#nodeId');
+     * <pre><code>var node = A.one('#nodeId');
      * node.clone().appendTo('body');
-     * ```
+     * </code></pre>
      *
      * @method clone
      * @return {Node}
@@ -304,21 +298,19 @@ A.mix(NODE_PROTO, {
     }()),
 
     /**
-     * Centralize the current Node instance with the passed `val`
+     * Centralize the current Node instance with the passed <code>val</code>
      * Array, Node, String, or Region, if not specified, the body will be used.
      *
      * Example:
      *
-     * ```
-     * var node = A.one('#nodeId');
-     * // Center the `node` with the `#container`.
+     * <pre><code>var node = A.one('#nodeId');
+     * // Center the <code>node</code> with the <code>#container</code>.
      * node.center('#container');
-     * ```
+     * </code></pre>
      *
      * @method center
      * @chainable
-     * @param {Array|Node|Region|String} val Array, Node, String, or Region to
-     *     center with.
+     * @param {Array | Node | Region | String} val Array, Node, String, or Region to center with
      */
     center: function(val) {
         var instance = this,
@@ -355,10 +347,9 @@ A.mix(NODE_PROTO, {
      *
      * Example:
      *
-     * ```
-     * var node = A.one('#nodeId');
+     * <pre><code>var node = A.one('#nodeId');
      * node.empty();
-     * ```
+     * </code></pre>
      *
      * @method empty
      * @chainable
@@ -378,8 +369,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Retrieves the DOM node bound to a Node instance.
-     * See [getDOMNode](Node.html#method_getDOMNode).
+     * Retrieves the DOM node bound to a Node instance. See
+     * <a href="Node.html#method_getDOMNode">getDOMNode</a>.
      *
      * @method getDOM
      * @return {HTMLNode} The DOM node bound to the Node instance.
@@ -394,9 +385,9 @@ A.mix(NODE_PROTO, {
      * Return the combined width of the border for the specified sides.
      *
      * @method getBorderWidth
-     * @param {String} sides Can be t, r, b, l or any combination of those to
-     *     represent the top, right, bottom, or left sides.
-     * @return {Number}
+     * @param {string} sides Can be t, r, b, l or any combination of
+     * those to represent the top, right, bottom, or left sides.
+     * @return {number}
      */
     getBorderWidth: function(sides) {
         var instance = this;
@@ -422,9 +413,9 @@ A.mix(NODE_PROTO, {
      * Return the combined size of the margin for the specified sides.
      *
      * @method getMargin
-     * @param {String} sides Can be t, r, b, l or any combination of those to
-     *     represent the top, right, bottom, or left sides.
-     * @return {Number}
+     * @param {string} sides Can be t, r, b, l or any combination of
+     * those to represent the top, right, bottom, or left sides.
+     * @return {number}
      */
     getMargin: function(sides) {
         var instance = this;
@@ -436,9 +427,9 @@ A.mix(NODE_PROTO, {
      * Return the combined width of the border for the specified sides.
      *
      * @method getPadding
-     * @param {String} sides Can be t, r, b, l or any combination of those to
-     *     represent the top, right, bottom, or left sides.
-     * @return {Number}
+     * @param {string} sides Can be t, r, b, l or any combination of
+     * those to represent the top, right, bottom, or left sides.
+     * @return {number}
      */
     getPadding: function(sides) {
         var instance = this;
@@ -449,7 +440,7 @@ A.mix(NODE_PROTO, {
     /**
      * Set the id of the Node instance if the object does not have one. The
      * generated id is based on a guid created by the
-     * [stamp](YUI.html#method_stamp) method.
+     * <a href="YUI.html#method_stamp">stamp</a> method.
      *
      * @method guid
      * @return {String} The current id of the node
@@ -471,8 +462,8 @@ A.mix(NODE_PROTO, {
      * Create a hover interaction.
      *
      * @method hover
-     * @param {String} overFn
-     * @param {String} outFn
+     * @param {string} overFn
+     * @param {string} outFn
      * @return {Node} The current Node instance
      */
     hover: function(overFn, outFn) {
@@ -512,22 +503,20 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Get or Set the HTML contents of the node. If the `value`
+     * Get or Set the HTML contents of the node. If the <code>value</code>
      * is passed it's set the content of the element, otherwise it works as a
      * getter for the current content.
      *
      * Example:
      *
-     * ```
-     * var node = A.one('#nodeId');
+     * <pre><code>var node = A.one('#nodeId');
      * node.html('Setting new HTML');
      * // Alert the value of the current content
      * alert( node.html() );
-     * ```
+     * </code></pre>
      *
      * @method html
-     * @param {String} value A string of html to set as the content of the node
-     *     instance.
+     * @param {string} value A string of html to set as the content of the node instance.
      */
     html: function() {
         var args = arguments,
@@ -573,17 +562,16 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Inserts a `newNode` after the node instance (i.e., as the next
+     * Inserts a <code>newNode</code> after the node instance (i.e., as the next
      * sibling). If the reference node has no parent, then does nothing.
      *
      * Example:
      *
-     * ```
-     * var titleNode = A.one('#titleNode');
+     * <pre><code>var titleNode = A.one('#titleNode');
      * var descriptionNode = A.one('#descriptionNode');
      * // the description is usually shown after the title
      * titleNode.placeAfter(descriptionNode);
-     * ```
+     * </code></pre>
      *
      * @method placeAfter
      * @chainable
@@ -596,17 +584,16 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Inserts a `newNode` before the node instance (i.e., as the previous
+     * Inserts a <code>newNode</code> before the node instance (i.e., as the previous
      * sibling). If the reference node has no parent, then does nothing.
      *
      * Example:
      *
-     * ```
-     * var descriptionNode = A.one('#descriptionNode');
+     * <pre><code>var descriptionNode = A.one('#descriptionNode');
      * var titleNode = A.one('#titleNode');
      * // the title is usually shown before the description
      * descriptionNode.placeBefore(titleNode);
-     * ```
+     * </code></pre>
      *
      * @method placeBefore
      * @chainable
@@ -619,20 +606,19 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Inserts the node instance to the begining of the `selector`
-     * node (i.e., insert before the `firstChild` of the
-     * `selector`).
+     * Inserts the node instance to the begining of the <code>selector</code>
+     * node (i.e., insert before the <code>firstChild</code> of the
+     * <code>selector</code>).
      *
      * Example:
      *
-     * ```
-     * var node = A.one('#nodeId');
+     * <pre><code>var node = A.one('#nodeId');
      * node.prependTo('body');
-     * ```
+     * </code></pre>
      *
      * @method prependTo
      * @chainable
-     * @param {Node|String} selector A selector, element, HTML string, Node
+     * @param {Node | String} selector A selector, element, HTML string, Node
      */
     prependTo: function(selector) {
         var instance = this;
@@ -680,7 +666,8 @@ A.mix(NODE_PROTO, {
 
     /**
      * Generate an unique identifier and reset the id attribute of the node
-     * instance using the new value. Invokes the [guid](Node.html#method_guid).
+     * instance using the new value. Invokes the
+     * <a href="Node.html#method_guid">guid</a>.
      *
      * @method resetId
      * @chainable
@@ -712,8 +699,7 @@ A.mix(NODE_PROTO, {
 
         // Some form elements could throw a (NS_ERROR_FAILURE)
         // [nsIDOMNSHTMLInputElement.setSelectionRange] error when invoke the
-        // setSelectionRange on firefox. Wrapping in a try/catch to prevent the
-        // error be thrown
+        // setSelectionRange on firefox. Wrapping in a try/catch to prevent the error be thrown
         try {
             if (textField.setSelectionRange) {
                 textField.setSelectionRange(start, end);
@@ -764,17 +750,14 @@ A.mix(NODE_PROTO, {
      *
      * Example:
      *
-     * ```
-     * var anchor = A.one('a#anchorId');
+     * <pre><code>var anchor = A.one('a#anchorId');
      * anchor.swallowEvent('click');
-     * ```
+     * </code></pre>
      *
      * @method swallowEvent
      * @chainable
-     * @param {String|Array} eventName An event or array of events to stop from
-     *     bubbling
-     * @param {Boolean} preventDefault (optional) true to prevent the default
-     *     action too
+     * @param {String/Array} eventName an event or array of events to stop from bubbling
+     * @param {Boolean} preventDefault (optional) true to prevent the default action too
      */
     swallowEvent: function(eventName, preventDefault) {
         var instance = this;
@@ -810,22 +793,20 @@ A.mix(NODE_PROTO, {
 
     /**
      * Get or Set the combined text contents of the node instance,
-     * including it's descendants. If the `text`
+     * including it's descendants. If the <code>text</code>
      * is passed it's set the content of the element, otherwise it works as a
      * getter for the current content.
      *
      * Example:
      *
-     * ```
-     * var node = A.one('#nodeId');
+     * <pre><code>var node = A.one('#nodeId');
      * node.text('Setting new text content');
      * // Alert the value of the current content
      * alert( node.text() );
-     * ```
+     * </code></pre>
      *
      * @method text
-     * @param {String} text A string of text to set as the content of the node
-     *     instance.
+     * @param {String} text A string of text to set as the content of the node instance.
      */
     text: function(text) {
         var instance = this;
@@ -845,13 +826,12 @@ A.mix(NODE_PROTO, {
      *
      * NOTE: This method assume that your node were hidden
      * because of the 'aui-hide' css class were being used. This won't
-     * manipulate the inline `style.display` property.
+     * manipulate the inline <code>style.display</code> property.
      *
      * @method toggle
      * @chainable
      * @param {Boolean} on Whether to force the toggle. Optional.
-     * @param {Function} callback A function to run after the visibility change.
-     *     Optional.
+     * @param {Function} callback A function to run after the visibility change. Optional.
      */
     toggle: function(on, callback) {
         var instance = this;
@@ -882,20 +862,19 @@ A.mix(NODE_PROTO, {
 
     /**
      * Get or Set the value attribute of the node instance. If the
-     * `value` is passed it's set the value of the element,
+     * <code>value</code> is passed it's set the value of the element,
      * otherwise it works as a getter for the current value.
      *
      * Example:
      *
-     * ```
-     * var input = A.one('#inputId');
+     * <pre><code>var input = A.one('#inputId');
      * input.val('Setting new input value');
      * // Alert the value of the input
      * alert( input.val() );
-     * ```
+     * </code></pre>
      *
      * @method val
-     * @param {String} value Value to be set. Optional.
+     * @param {string} value Value to be set. Optional.
      */
     val: function(value) {
         var instance = this;
@@ -912,11 +891,10 @@ A.mix(NODE_PROTO, {
      * Return the combined size of the box style for the specified sides.
      *
      * @method _getBoxStyleAsNumber
-     * @param {String} sides Can be t, r, b, l or any combination of
+     * @param {string} sides Can be t, r, b, l or any combination of
      * those to represent the top, right, bottom, or left sides.
-     * @param {String} map An object mapping mapping the "sides" param to the a
-     *     CSS value to retrieve
-     * @return {Number}
+     * @param {string} map An object mapping mapping the "sides" param to the a CSS value to retrieve
+     * @return {number}
      * @private
      */
     _getBoxStyleAsNumber: function(sides, map) {
@@ -990,8 +968,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * The event handler for the "out" function that is fired for events
-     * attached via the hover method.
+     * The event handler for the "out" function that is fired for events attached via the hover method.
      *
      * @method _hoverOutHandler
      * @private
@@ -1006,8 +983,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * The event handler for the "over" function that is fired for events
-     * attached via the hover method.
+     * The event handler for the "over" function that is fired for events attached via the hover method.
      *
      * @method _hoverOverHandler
      * @private
@@ -1022,8 +998,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Cancels the over task, and fires the users custom "out" function for the
-     * hover method
+     * Cancels the over task, and fires the users custom "out" function for the hover method
      *
      * @method _hoverOverHandler
      * @private
@@ -1040,8 +1015,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Cancels the out task, and fires the users custom "over" function for the
-     * hover method
+     * Cancels the out task, and fires the users custom "over" function for the hover method
      *
      * @method _hoverOverHandler
      * @private
@@ -1120,11 +1094,10 @@ NODE_PROTO._isHidden = function() {
  *
  * Example:
  *
- * ```
- * var node = A.one('#nodeId');
+ * <pre><code>var node = A.one('#nodeId');
  * node.width(); //return content width
  * node.width(100); // sets box width
- * ```
+ * </code></pre>
  *
  * @method width
  * @return {number}
@@ -1137,11 +1110,10 @@ NODE_PROTO._isHidden = function() {
  *
  * Example:
  *
- * ```
- * var node = A.one('#nodeId');
+ * <pre><code>var node = A.one('#nodeId');
  * node.height(); //return content height
  * node.height(100); // sets box height
- * ```
+ * </code></pre>
  *
  * @method height
  * @return {number}
@@ -1153,10 +1125,9 @@ NODE_PROTO._isHidden = function() {
  *
  * Example:
  *
- * ```
- * var node = A.one('#nodeId');
+ * <pre><code>var node = A.one('#nodeId');
  * node.innerWidth();
- * ```
+ * </code></pre>
  *
  * @method innerWidth
  * @return {number}
@@ -1168,10 +1139,9 @@ NODE_PROTO._isHidden = function() {
  *
  * Example:
  *
- * ```
- * var node = A.one('#nodeId');
+ * <pre><code>var node = A.one('#nodeId');
  * node.innerHeight();
- * ```
+ * </code></pre>
  *
  * @method innerHeight
  * @return {number}
@@ -1183,11 +1153,10 @@ NODE_PROTO._isHidden = function() {
  *
  * Example:
  *
- * ```
- * var node = A.one('#nodeId');
+ * <pre><code>var node = A.one('#nodeId');
  * node.outerWidth();
  * node.outerWidth(true); // includes margin
- * ```
+ * </code></pre>
  *
  * @method outerWidth
  * @return {number}
@@ -1199,11 +1168,10 @@ NODE_PROTO._isHidden = function() {
  *
  * Example:
  *
- * ```
- * var node = A.one('#nodeId');
+ * <pre><code>var node = A.one('#nodeId');
  * node.outerHeight();
  * node.outerHeight(true); // includes margin
- * ```
+ * </code></pre>
  *
  * @method outerHeight
  * @return {number}
@@ -1318,9 +1286,9 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 }
 
 /**
- * Augment the [YUI3 NodeList](NodeList.html) with more util methods.
+ * Augment the <a href="NodeList.html">YUI3 NodeList</a> with more util methods.
  *
- * Check the list of [Methods](NodeList.html#methods) available for
+ * Check the list of <a href="NodeList.html#methods">Methods</a> available for
  * AUI NodeList.
  *
  * @class A.NodeList
@@ -1388,7 +1356,7 @@ ANodeList.importMethod(
 A.mix(
     NODELIST_PROTO, {
         /**
-         * See [Node all](Node.html#method_all).
+         * See <a href="Node.html#method_all">Node all</a>.
          *
          * @method all
          */
@@ -1426,7 +1394,7 @@ A.mix(
         },
 
         /**
-         * See [Node getDOMNode](Node.html#method_getDOMNode).
+         * See <a href="Node.html#method_getDOM">Node getDOM</a>.
          *
          * @method getDOM
          */
@@ -1449,7 +1417,7 @@ A.mix(
         },
 
         /**
-         * See [Node one](Node.html#method_one).
+         * See <a href="Node.html#method_one">Node one</a>.
          *
          * @method one
          */
@@ -1515,7 +1483,7 @@ A.mix(
 A.mix(
     A, {
         /**
-         * Get the body node. Shortcut to `A.one('body')`.
+         * Get the body node. Shortcut to <code>A.one('body')</code>.
          *
          * @method getBody
          */
@@ -1530,7 +1498,7 @@ A.mix(
         },
 
         /**
-         * Get the document node. Shortcut to `A.one(document)`.
+         * Get the document node. Shortcut to <code>A.one(document)</code>.
          *
          * @method getDoc
          */
@@ -1545,7 +1513,7 @@ A.mix(
         },
 
         /**
-         * Get the window node. Shortcut to `A.one(window)`.
+         * Get the window node. Shortcut to <code>A.one(window)</code>.
          *
          * @method getWin
          */

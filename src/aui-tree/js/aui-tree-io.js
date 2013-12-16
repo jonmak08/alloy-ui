@@ -27,8 +27,7 @@ var Lang = A.Lang,
  * A base class for TreeViewIO.
  *
  * @class A.TreeViewIO
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 
@@ -46,7 +45,7 @@ function TreeViewIO(config) {
  * Static property used to define the default attribute
  * configuration for the TreeViewIO.
  *
- * @property ATTRS
+ * @property TreeViewIO.ATTRS
  * @type Object
  * @static
  */
@@ -85,8 +84,8 @@ TreeViewIO.prototype = {
     },
 
     /**
-     * Initialize the IO transaction setup on the
-     * [io](A.TreeViewIO.html#attr_io) attribute.
+     * Initialize the IO transaction setup on the <a
+     * href="TreeNode.html#config_io">io</a> attribute.
      *
      * @method initIO
      */
@@ -212,7 +211,7 @@ TreeViewIO.prototype = {
     },
 
     /**
-     * Setter for [io](A.TreeViewIO.html#attr_io).
+     * Setter for <a href="TreeNodeIO.html#config_io">io</a>.
      *
      * @method _setIO
      * @protected
@@ -248,8 +247,7 @@ TreeViewIO.prototype = {
             fn.defaultFn = true;
 
             if (isFunction(userFn)) {
-                // wrapping user callback and default callback, invoking both
-                // handlers
+                // wrapping user callback and default callback, invoking both handlers
                 var wrappedFn = A.bind(
                     function() {
                         fn.apply(instance, arguments);

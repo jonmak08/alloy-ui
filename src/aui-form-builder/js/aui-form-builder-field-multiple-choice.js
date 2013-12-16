@@ -55,8 +55,7 @@ var Lang = A.Lang,
  *
  * @class A.OptionsEditor
  * @extends A.RadioCellEditor
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var OptionsEditor = A.Component.create({
@@ -64,7 +63,7 @@ var OptionsEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property OptionsEditor.NAME
      * @type String
      * @static
      */
@@ -74,7 +73,7 @@ var OptionsEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the OptionsEditor.
      *
-     * @property ATTRS
+     * @property OptionsEditor.ATTRS
      * @type Object
      * @static
      */
@@ -95,7 +94,7 @@ var OptionsEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property OptionsEditor.EXTENDS
      * @type Object
      * @static
      */
@@ -105,8 +104,7 @@ var OptionsEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
 
         /**
-         * Construction logic executed during OptionsEditor instantiation.
-         * Lifecycle.
+         * Construction logic executed during OptionsEditor instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -141,8 +139,7 @@ var OptionsEditor = A.Component.create({
  *
  * @class A.FormBuilderMultipleChoiceField
  * @extends A.FormBuilderField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var FormBuilderMultipleChoiceField = A.Component.create({
@@ -150,7 +147,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property FormBuilderMultipleChoiceField.NAME
      * @type String
      * @static
      */
@@ -160,7 +157,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderMultipleChoiceField.
      *
-     * @property ATTRS
+     * @property FormBuilderMultipleChoiceField.ATTRS
      * @type Object
      * @static
      */
@@ -228,7 +225,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property UI_ATTRS
+     * @property FormBuilderMultipleChoiceField.UI_ATTRS
      * @type Array
      * @static
      */
@@ -237,7 +234,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property CSS_PREFIX
+     * @property FormBuilderMultipleChoiceField.CSS_PREFIX
      * @type String
      * @static
      */
@@ -246,7 +243,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property EXTENDS
+     * @property FormBuilderMultipleChoiceField.EXTENDS
      * @type Object
      * @static
      */

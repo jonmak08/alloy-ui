@@ -30,16 +30,13 @@ var BODY_CONTENT = 'bodyContent',
  *
  * Check the [live demo](http://alloyui.com/examples/tooltip/).
  *
- * @class A.Tooltip
+ * @class Tooltip
  * @extends Widget
- * @uses A.WidgetCssClass, A.WidgetPosition, A.WidgetStdMod, A.WidgetToggle,
- *     A.WidgetAutohide, A.WidgetToolbars, A.WidgetPositionAlign,
- *     A.WidgetPositionAlignSuggestion, A.WidgetPositionConstrain, A.WidgetStack
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @uses WidgetCssClass, WidgetPosition, WidgetStdMod, WidgetToggle, WidgetAutohide,
+ * WidgetToolbars, WidgetPositionAlign, WidgetPositionAlignSuggestion,
+ * WidgetPositionConstrain, WidgetStack
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/tooltip/basic-markup.html
- * @include http://alloyui.com/examples/tooltip/basic.js
  */
 A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetCssClass,
@@ -84,7 +81,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
-     * Fire after `boundingBox` style changes.
+     * Fire after <code>boundingBox</code> style changes.
      *
      * @method _afterUiSetVisible
      * @param val
@@ -109,7 +106,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
-     * Fire after `trigger` changes.
+     * Fire after <code>trigger</code> changes.
      *
      * @method _afterUiSetTrigger
      * @param val
@@ -156,7 +153,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property CSS_PREFIX
+     * @property Tooltip.CSS_PREFIX
      * @type String
      * @static
      */
@@ -166,7 +163,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Tooltip.
      *
-     * @property ATTRS
+     * @property A.Tooltip.ATTRS
      * @type Object
      * @static
      */
@@ -240,7 +237,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     /**
      * Static property provides a set of reusable templates.
      *
-     * @property TEMPLATES
+     * @property Tooltip.TEMPLATES
      * @type Object
      * @static
      */

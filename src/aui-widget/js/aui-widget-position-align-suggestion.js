@@ -14,7 +14,7 @@ var ALIGN = 'align',
 /**
  * Widget extension, which can be used to suggest alignment points based on
  * position attribute to base Widget class, through the
- * [Base.build](Base.html#method_build) method. It also tries to find
+ * <a href="Base.html#method_build">Base.build</a> method. It also tries to find
  * the best position in case the widget doesn't fit it's constrainment node.
  *
  * @class A.WidgetPositionAlignSuggestion
@@ -27,7 +27,7 @@ function PositionAlignSuggestion() {}
  * Static property used to define the default attribute
  * configuration.
  *
- * @property ATTRS
+ * @property WidgetPositionAlignSuggestion.ATTRS
  * @type Object
  * @static
  */
@@ -50,7 +50,8 @@ PositionAlignSuggestion.ATTRS = {
 
 A.mix(PositionAlignSuggestion.prototype, {
     /**
-     * Property defining the align points based on the suggested `position`.
+     * Property defining the align points based on the suggested
+     * <code>position</code>.
      *
      * @property POSITION_ALIGN_SUGGESTION
      * @type {}
@@ -87,7 +88,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Suggest alignment for the node based on the `position` suggestion.
+     * Suggest alignment for the node based on the <code>position</code> suggestion.
      *
      * @method suggestAlignment
      * @attribute alignNode
@@ -111,7 +112,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Fire after `boundingBox` position changes.
+     * Fire after <code>boundingBox</code> position changes.
      *
      * @method _afterPositionChangePAS
      * @param event
@@ -124,7 +125,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Fire after `renderUI` method.
+     * Fire after <code>renderUI</code> method.
      *
      * @method _afterRenderUIPAS
      * @param event
@@ -182,7 +183,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Guess alignment points for the `position`.
+     * Guess alignment points for the <code>position</code>.
      *
      * @method _getAlignPointsSuggestion
      * @attribute position
@@ -193,7 +194,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Fire before `_uiSetAlign` method.
+     * Fire before <code>_uiSetAlign</code> method.
      *
      * @method _onUISetAlignPAS
      * @param node
@@ -219,7 +220,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Sync the `boundingBox` position CSS classes.
+     * Sync the <code>boundingBox</code> position CSS classes.
      *
      * @method _syncPositionUI
      * @param val
@@ -237,7 +238,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Set the `boundingBox` position on the UI.
+     * Set the <code>boundingBox</code> position on the UI.
      *
      * @method _uiSetPosition
      * @param val

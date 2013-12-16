@@ -14,8 +14,8 @@ var Lang = A.Lang,
 
     CSS_CROP = A.getClassName(NAME, 'crop'),
     CSS_CROP_OUTLINE = A.getClassName(NAME, 'crop', 'outline'),
-    CSS_OVERLAY = A.getClassName(NAME, 'overlay'),
-    CSS_OVERLAY_HOVER = A.getClassName(NAME, 'crop', 'hover');
+    CSS_OVERLAY = A.getClassName(NAME, 'overlay');
+CSS_OVERLAY_HOVER = A.getClassName(NAME, 'crop', 'hover');
 
 /**
  * A base class for Image Cropper.
@@ -23,17 +23,15 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/image-cropper/).
  *
  * @class A.ImageCropper
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Component
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/image-cropper/basic-markup.html
- * @include http://alloyui.com/examples/image-cropper/basic.js
  */
 var ImageCropper = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property ImageCropper.NAME
      * @type String
      * @static
      */
@@ -43,7 +41,7 @@ var ImageCropper = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Image Cropper.
      *
-     * @property ATTRS
+     * @property ImageCropper.ATTRS
      * @type Object
      * @static
      */
@@ -174,7 +172,7 @@ var ImageCropper = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property UI_ATTRS
+     * @property ImageCropper.UI_ATTRS
      * @type Array
      * @static
      */
@@ -693,7 +691,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `cropHeight` attribute on the UI.
+         * Set <code>cropHeight</code> attribute on the UI.
          *
          * @method _uiSetCropHeight
          * @param value
@@ -706,7 +704,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `cropWidth` attribute on the UI.
+         * Set <code>cropWidth</code> attribute on the UI.
          *
          * @method _uiSetCropWidth
          * @param value
@@ -743,7 +741,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `minHeight` attribute on the UI.
+         * Set <code>minHeight</code> attribute on the UI.
          *
          * @method _uiSetMinHeight
          * @param value
@@ -760,7 +758,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `minWidth` attribute on the UI.
+         * Set <code>minWidth</code> attribute on the UI.
          *
          * @method _uiSetMinWidth
          * @param value
@@ -777,7 +775,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `movable` attribute on the UI.
+         * Set <code>movable</code> attribute on the UI.
          *
          * @method _uiSetMovable
          * @param value
@@ -790,7 +788,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `preserveRatio` attribute on the UI.
+         * Set <code>preserveRatio</code> attribute on the UI.
          *
          * @method _uiSetPreserveRatio
          * @param value
@@ -807,7 +805,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `resizable` attribute on the UI.
+         * Set <code>resizable</code> attribute on the UI.
          *
          * @method _uiSetResizable
          * @param value
@@ -832,7 +830,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `x` attribute on the UI.
+         * Set <code>x</code> attribute on the UI.
          *
          * @method _uiSetX
          * @param value
@@ -848,7 +846,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set `y` attribute on the UI.
+         * Set <code>y</code> attribute on the UI.
          *
          * @method _uiSetY
          * @param value

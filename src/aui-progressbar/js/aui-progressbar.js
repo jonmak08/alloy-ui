@@ -58,28 +58,26 @@ var L = A.Lang,
 
 /**
  * A base class for Progressbar, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>A visual means of showing progress of an ongoing operation</li>
+ *    <li>Can be enhanced via CSS styles to provide different colors, shapes and textures</li>
+ *    <li>The bar can move horizontally or vertically</li>
+ *    <li>The movement can be enhanced by using the Animation utility</li>
+ * </ul>
  *
- * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
- * - A visual means of showing progress of an ongoing operation
- * - Can be enhanced via CSS styles to provide different colors, shapes and
- *   textures
- * - The bar can move horizontally or vertically
- * - The movement can be enhanced by using the Animation utility
- *
- * Check the [live demo](http://alloyui.com/examples/progress-bar/).
+ * Check the [live demo](http://alloyui.com/examples/progressbar/).
  *
  * @class A.ProgressBar
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @extends A.Component
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/progress-bar/basic-markup.html
- * @include http://alloyui.com/examples/progress-bar/basic.js
  */
 var ProgressBar = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
+     * @property ProgressBar.NAME
      * @type String
      * @static
      */
@@ -89,7 +87,7 @@ var ProgressBar = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ProgressBar.
      *
-     * @property ATTRS
+     * @property ProgressBar.ATTRS
      * @type Object
      * @static
      */
@@ -123,7 +121,7 @@ var ProgressBar = A.Component.create({
         /**
          * Display label of the progressbar. If not specified try to query
          * using HTML_PARSER an element inside boundingBox which matches
-         * `aui-progressbar-text` and get its innerHTML to be
+         * <code>aui-progressbar-text</code> and get its innerHTML to be
          * used as label.
          *
          * @attribute label
@@ -176,7 +174,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the ratio based on `max` and `min` values.
+         * Calculate the ratio based on <code>max</code> and
+         * <code>min</code> values.
          *
          * @attribute ratio
          * @readOnly
@@ -188,7 +187,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the progressbar step based on `ratio` value.
+         * Calculate the progressbar step based on <code>ratio</code>
+         * value.
          *
          * @attribute step
          * @readOnly
@@ -202,7 +202,7 @@ var ProgressBar = A.Component.create({
         /**
          * DOM Node to display the text of the progressbar. If not
          * specified try to query using HTML_PARSER an element inside
-         * contentBox which matches `aui-progressbar-text`.
+         * contentBox which matches <code>aui-progressbar-text</code>.
          *
          * @attribute textNode
          * @default Generated div element.
@@ -235,7 +235,7 @@ var ProgressBar = A.Component.create({
      * Object hash, defining how attribute values are to be parsed from
      * markup contained in the widget's bounding box.
      *
-     * @property HTML_PARSER
+     * @property ProgressBar.HTML_PARSER
      * @type Object
      * @static
      */
@@ -254,7 +254,7 @@ var ProgressBar = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property UI_ATTRS
+     * @property ProgressBar.UI_ATTRS
      * @type Array
      * @static
      */
@@ -300,7 +300,7 @@ var ProgressBar = A.Component.create({
 
         /**
          * Calculate the boundingBox size based on the
-         * `orientation` of the progressbar. If the orientation
+         * <code>orientation</code> of the progressbar. If the orientation
          * is HORIZONTAL get the width, if the orientation is VERTICAL get
          * the height.
          *
@@ -320,7 +320,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the number of pixels to set the `contentBox` bar.
+         * Calculate the number of pixels to set the <code>contentBox</code> bar.
          *
          * @method _getPixelStep
          * @protected
@@ -333,7 +333,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the ratio based on `max` and `min` values.
+         * Calculate the ratio based on <code>max</code> and
+         * <code>min</code> values.
          *
          * @method _getRatio
          * @protected
@@ -348,7 +349,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the progressbar step based on `ratio` value.
+         * Calculate the progressbar step based on <code>ratio</code>
+         * value.
          *
          * @method _getStep
          * @protected
@@ -359,7 +361,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Render the `textNode` of the progressbar if label is set.
+         * Render the <code>textNode</code> of the progressbar if label is set.
          *
          * @method _renderTextNodeIfLabelSet
          * @protected
@@ -373,8 +375,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Invoked automatically by the UI_ATTRS Widget API when bind or sync
-         * the `label` attribute.
+         * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
+         * <code>label</code> attribute.
          *
          * @method _uiSetLabel
          * @param {String} val Display label
@@ -392,8 +394,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Invoked automatically by the UI_ATTRS Widget API when bind or sync
-         * the `orientation` attribute.
+         * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
+         * <code>orientation</code> attribute.
          *
          * @method _uiSetOrientation
          * @param {String} val Orientation
@@ -412,8 +414,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Invoked automatically by the UI_ATTRS Widget API when bind or sync
-         * the `value` attribute.
+         * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
+         * <code>value</code> attribute.
          *
          * @method _uiSetValue
          * @param {String} val Progress value
