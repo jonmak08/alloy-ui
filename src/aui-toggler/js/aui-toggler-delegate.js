@@ -178,7 +178,7 @@ var TogglerDelegate = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            instance.createAll();
+            instance._createAll();
         },
 
         /**
