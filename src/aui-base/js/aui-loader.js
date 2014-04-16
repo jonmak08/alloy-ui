@@ -616,6 +616,13 @@ Y.mix(YUI.Env[Y.version].modules, {
             "node"
         ]
     },
+    "aui-node-checkpoints": {
+        "requires": [
+            "array-invoke",
+            "aui-base",
+            "resize-base"
+        ]
+    },
     "aui-node-html5": {
         "condition": {
             "name": "aui-node-html5",
