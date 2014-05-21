@@ -1,15 +1,18 @@
 YUI.add('tests-aui-surface-utils', function(Y) {
     Y.mix(Y.Test.Case.prototype, {
-        assertEqualCurrentPath: function(path) {
-            return Y.Assert.areEqual(path, this.getCurrentPath());
+        assertNavigation: function(url, content) {
+            this.assertPath(url);
+            this.assertSurfaceContent('body', content);
+            this.assertSurfaceContent('header', content);
+            Y.Assert.areEqual(content, Y.config.doc.title);
         },
 
-        assertEqualSurfaceContent: function(surfaceId, content) {
-            Y.Assert.areEqual(content, Y.one('#' + surfaceId).get('text').trim());
+        assertPath: function(path) {
+            Y.Assert.areEqual(path, this.getCurrentPath());
         },
 
-        assertNotSameCurrentPath: function(path) {
-            return Y.Assert.areNotSame(path, this.getCurrentPath());
+        assertSurfaceContent: function(surfaceId, content) {
+            Y.Assert.areEqual(content, this.getSurfaceContent(surfaceId));
         },
 
         delay: function(ms, val) {
@@ -26,13 +29,17 @@ YUI.add('tests-aui-surface-utils', function(Y) {
             );
         },
 
-        getBasePath: function() {
-            var basePath = Y.config.win.location.pathname;
-            return basePath.substr(0, basePath.lastIndexOf('/') + 1);
-        },
-
         getCurrentPath: function() {
             return Y.config.win.location.pathname + Y.config.win.location.search;
+        },
+
+        getOriginalBasePath: function() {
+            var path = this.originalPath;
+            return path.substr(0, path.lastIndexOf('/'));
+        },
+
+        getSurfaceContent: function(surfaceId) {
+            return Y.one('#' + surfaceId).one('div').get('text').trim();
         }
     });
 
@@ -40,9 +47,9 @@ YUI.add('tests-aui-surface-utils', function(Y) {
         getSurfaceContent: function(surfaceId) {
             switch (surfaceId) {
                 case 'header':
-                    return 'header-page';
+                    return 'page';
                 case 'body':
-                    return 'body-page';
+                    return 'page';
             }
         },
         getSurfacesContent: function() {
@@ -54,54 +61,60 @@ YUI.add('tests-aui-surface-utils', function(Y) {
                 value: true
             },
             title: {
-                value: 'Page'
+                value: 'page'
             }
         }
     });
 
-    Y.RegexScreen = Y.Base.create('regexScreen', Y.Screen, [], {
+    Y.QueryStringScreen = Y.Base.create('queryStringScreen', Y.Screen, [], {
         getSurfaceContent: function(surfaceId) {
             switch (surfaceId) {
                 case 'header':
-                    return 'header-regex';
+                    return 'querystring';
                 case 'body':
-                    return 'body-regex';
+                    return 'querystring';
             }
         }
     }, {
         ATTRS: {
             title: {
-                value: 'Regex'
+                value: 'querystring'
             }
         }
     });
 
     Y.DelayedScreen = Y.Base.create('delayedScreen', Y.Screen, [], {
-        beforeFlip: function() {
-            return Y.Test.Case.prototype.delay(50);
+        flip: function() {
+            var flip = Y.DelayedScreen.superclass.flip.apply(this, arguments);
+
+            return flip.then(function() {
+                return Y.Test.Case.prototype.delay(200);
+            });
         },
 
         getSurfaceContent: function(surfaceId) {
             switch (surfaceId) {
                 case 'header':
-                    return 'header-delayed';
+                    return 'delayed';
                 case 'body':
-                    return 'body-delayed';
+                    return 'delayed';
             }
         }
     }, {
         ATTRS: {
             title: {
-                value: 'Delayed'
+                value: 'delayed'
             }
         }
     });
 
     Y.LockedScreen = Y.Base.create('lockedScreen', Y.Screen, [], {
         beforeDeactivate: function() {
-            return true;
+            return Y.LockedScreen.locked;
         }
-    }, {});
+    }, {
+        locked: true
+    });
 
     Y.LazySurfaceScreen = Y.Base.create('lazySurfaceScreen', Y.Screen, [], {
         getSurfaceContent: function(surfaceId) {
