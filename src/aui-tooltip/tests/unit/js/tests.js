@@ -283,6 +283,33 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 tooltip.get('contentBox').get('text'),
                 'Body content should have been used as the tooltip\'s content'
             );
+        },
+
+        'should create tooltip with html content': function() {
+            var html = '<b>foo</b>',
+                text = 'foo',
+                tooltip;
+
+            tooltip = new Y.Tooltip({
+                trigger: '#triggerHtml',
+                bodyContent: html,
+                html: true
+            }).render();
+
+            Y.Assert.areEqual(
+                text,
+                tooltip.get('contentBox').get('text'),
+                'Body content text should be with no HTML markup'
+            );
+
+            tooltip.set('html', false);
+            tooltip.set('bodyContent', html);
+
+            Y.Assert.areEqual(
+                html,
+                tooltip.get('contentBox').get('text'),
+                'Body content text should be with no HTML markup'
+            );
         }
     }));
     Y.Test.Runner.add(suite);
