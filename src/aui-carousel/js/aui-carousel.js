@@ -98,6 +98,17 @@ var Carousel = A.Component.create({
             value: 0.5
         },
 
+         /**
+          * Sets the `aria-label` for the carousel.
+          *
+          * @attribute ariaLabel
+          * @type String
+          */
+         ariaLabel: {
+             value: 'Toggle play and pause with spacebar.  Navigate left and right with arrow keys',
+             validator: Lang.isString
+         },
+
         /**
          * Interval time in seconds between an item transition.
          *
@@ -166,7 +177,18 @@ var Carousel = A.Component.create({
          */
         playing: {
             value: true
-        }
+        },
+
+        /**
+         * Specify the tab order of elements.
+         *
+         * @attribute tabIndex
+         * @default 1
+         * @type Number
+         */
+        tabIndex: {
+            value: 1
+        },
     },
 
     UI_ATTRS: ['pauseOnHover'],
@@ -186,6 +208,8 @@ var Carousel = A.Component.create({
          */
         initializer: function() {
             var instance = this;
+
+            instance._setAriaElements();
 
             instance.animation = new A.Anim({
                 duration: instance.get('animationTime'),
@@ -229,6 +253,7 @@ var Carousel = A.Component.create({
             });
 
             instance._bindMenu();
+            instance._bindKeypress();
 
             if (instance.get('playing') === true) {
                 instance._afterPlayingChange({
@@ -443,6 +468,12 @@ var Carousel = A.Component.create({
             instance.nodeMenuItemSelector = nodeMenuItemSelector;
         },
 
+        _bindKeypress: function() {
+            var instance = this;
+
+            instance._keyHandler = A.one('doc').on('keydown', A.bind(instance._handleKeypressEvent, instance));
+        },
+
         /**
          * Clear the rotation task interval.
          *
@@ -486,6 +517,30 @@ var Carousel = A.Component.create({
                 },
                 instance.get('intervalTime') * 1000
             );
+        },
+
+        _handleKeypressEvent: function(event) {
+            var instance = this;
+
+            if (event.target.hasClass('carousel-focused')) {
+
+                var keyCode = event.keyCode;
+
+                if (keyCode === 37) {
+                    instance.prev();
+                }
+                else if (keyCode === 39) {
+                    instance.next();
+                }
+                else if (keyCode === 32) {
+                    if (instance.get('playing')) {
+                        instance.pause();
+                    }
+                    else {
+                        instance.play();
+                    }
+                }
+            }
         },
 
         /**
@@ -739,6 +794,19 @@ var Carousel = A.Component.create({
             }
 
             return val;
+        },
+
+        /**
+         * Set the Aria Elements of the carousel.
+         *
+         * @method _setAriaElements
+         * @protexted
+         */
+        _setAriaElements: function() {
+            var instance = this;
+
+            var contentBox = instance.get('contentBox');
+            contentBox.setAttribute('aria-label', instance.get('ariaLabel'));
         },
 
         /**
