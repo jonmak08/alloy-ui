@@ -1,11 +1,10 @@
-.modal-hidden {
+.modal-dialog-hidden {
     display: none;
 }
 
-.modal-content {
+.modal-content, .scroll-disabled {
     overflow: hidden;
 }
-
 .modal-footer {
     margin-top: 0;
 }
