@@ -188,7 +188,7 @@ var Carousel = A.Component.create({
          */
         tabIndex: {
             value: 1
-        },
+        }
     },
 
     UI_ATTRS: ['pauseOnHover'],
@@ -252,8 +252,9 @@ var Carousel = A.Component.create({
                 playingChange: instance._afterPlayingChange
             });
 
-            instance._bindMenu();
             instance._bindKeypress();
+
+            instance._bindMenu();
 
             if (instance.get('playing') === true) {
                 instance._afterPlayingChange({
@@ -523,7 +524,6 @@ var Carousel = A.Component.create({
             var instance = this;
 
             if (event.target.hasClass('carousel-focused')) {
-
                 var keyCode = event.keyCode;
 
                 if (keyCode === 37) {
@@ -803,9 +803,12 @@ var Carousel = A.Component.create({
          * @protexted
          */
         _setAriaElements: function() {
-            var instance = this;
+            var instance = this,
+                boundingBox = instance.get('boundingBox'),
+                contentBox = instance.get('contentBox');
 
-            var contentBox = instance.get('contentBox');
+            boundingBox.setAttribute('role', 'application');
+
             contentBox.setAttribute('aria-label', instance.get('ariaLabel'));
         },
 
