@@ -665,6 +665,12 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node-base"
         ]
     },
+    "aui-node-accessible": {
+        "requires": [
+            "aui-node-base",
+            "event-custom-base"
+        ]
+    },
     "aui-node-base": {
         "requires": [
             "array-extras",
@@ -1172,4 +1178,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f452b780b344519d5790e322b997d695';
+YUI.Env[Y.version].md5 = '0c3f57f7cbef28bc0d2b9d729b97a33c';
