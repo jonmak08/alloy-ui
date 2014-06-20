@@ -51,6 +51,17 @@ var Video = A.Component.create({
     ATTRS: {
 
         /**
+         * Sets the `aria-label` for Audio.
+         *
+         * @attribute ariaLabel
+         * @type String
+         */
+        ariaLabel: {
+            value: 'Toggle play/pause with spacebar. Rewind with left arrow. Fast forward with right arrow. Increase volume with up arrow. Decrease volume with down arrow.',
+            validator: Lang.isString
+        },
+
+        /**
          * URL used by Video to play.
          *
          * @attribute url
@@ -177,6 +188,8 @@ var Video = A.Component.create({
             instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
 
             instance._renderVideo(!instance.get('ogvUrl'));
+
+            instance._setAriaElements();
         },
 
         /**
@@ -374,6 +387,17 @@ var Video = A.Component.create({
             instance.get('contentBox').append(video);
 
             instance._video = video;
+        },
+
+        _setAriaElements: function() {
+            var instance = this;
+
+            var video = instance._video,
+                boundingBox = instance.get('boundingBox');
+
+            video.setAttribute('aria-label', instance.get('ariaLabel'));
+
+            boundingBox.setAttribute('role', 'application');
         },
 
         /**
