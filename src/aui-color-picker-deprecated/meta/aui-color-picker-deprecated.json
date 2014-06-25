@@ -9,7 +9,7 @@
     "aui-color-picker-base-deprecated": {
     	"requires": [
     		"dd-drag",
-            "panel",
+    		"panel",
     		"slider",
     		"aui-button-item-deprecated",
     		"aui-color-util-deprecated",
