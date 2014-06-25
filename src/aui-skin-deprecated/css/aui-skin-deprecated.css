@@ -525,20 +525,20 @@ shadow or rounded corners.
     border-radius: 0;
 }
 .state-default, .state-disabled, .state-disabled:hover {
-    background: #d4d4d4 url(../images/common/state_default_bg.png) repeat-x 0 0;
+    background: #d4d4d4 url(images/common/state_default_bg.png) repeat-x 0 0;
     border: 1px solid;
     border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
 }
 .state-hover {
-    background: #b9ced9 url(../images/common/state_hover_bg.png) repeat-x 0 0;
+    background: #b9ced9 url(images/common/state_hover_bg.png) repeat-x 0 0;
     border-color: #627782;
 }
 .state-active {
-    background: #ebebeb url(../images/common/state_active_bg.png) repeat-x 0 0;
+    background: #ebebeb url(images/common/state_active_bg.png) repeat-x 0 0;
     border-color: #555;
 }
 .state-active:hover {
-    background: #f2faff url(../images/common/state_selected_hover.png) repeat-x 0 0;
+    background: #f2faff url(images/common/state_selected_hover.png) repeat-x 0 0;
     border-color: #627782;
 }
 /* ---------- Extras ---------- */
