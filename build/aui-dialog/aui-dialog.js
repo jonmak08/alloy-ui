@@ -23,6 +23,8 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
+	CHANGE = 'Change',
+	ClickOutside = "clickoutside",
 	CLOSE = 'close',
 	CLOSETHICK = 'closethick',
 	CONSTRAIN_TO_VIEWPORT = 'constrain2view',
@@ -36,6 +38,7 @@ var Lang = A.Lang,
 	DRAG_GUTTER = 5,
 	DRAG_INSTANCE = 'dragInstance',
 	DRAGGABLE = 'draggable',
+	FocusOutside = "focusoutside",
 	FOOTER_CONTENT = 'footerContent',
 	HD = 'hd',
 	HEIGHT = 'height',
@@ -52,7 +55,9 @@ var Lang = A.Lang,
 	TAB_INDEX = 'tabIndex',
 	USE_ARIA = 'useARIA',
 	VIEWPORT_REGION = 'viewportRegion',
+	VISIBLE = 'visible',
 	WIDTH = 'width',
+	Z_INDEX = 'zIndex',
 
 	EV_RESIZE = 'resize:resize',
 	EV_RESIZE_END = 'resize:end',
@@ -263,6 +268,34 @@ A.mix(
 			},
 
 			/**
+			 * @attribute focusOn
+			 * @type array
+			 *
+			 * @description An array of objects corresponding to the nodes and events that will trigger a re-focus back on the widget.
+			 * The implementer can supply an array of objects, with each object having the following properties:
+			 * <p>eventName: (string, required): The eventName to listen to.</p>
+			 * <p>node: (Y.Node, optional): The Y.Node that will fire the event (defaults to the boundingBox of the widget)</p>
+			 * <p>By default, this attribute consists of two objects which will cause the widget to re-focus if anything
+			 * outside the widget is clicked on or focussed upon.</p>
+			 */
+			focusOn: {
+				valueFn: function() {
+					return [
+						{
+							// node: this.get(BOUNDING_BOX),
+							eventName: ClickOutside
+						},
+						{
+							//node: this.get(BOUNDING_BOX),
+							eventName: FocusOutside
+						}
+					];
+				},
+
+				validator: A.Lang.isArray
+			},
+
+			/**
 			 * True if the Panel should be displayed in a modal fashion,
 			 * automatically creating a transparent mask over the document that
 			 * will not be removed until the Dialog is dismissed. Uses
@@ -365,6 +398,8 @@ A.mix(
 );
 
 Dialog.prototype = {
+	_uiHandlesModal: null,
+
 	/**
 	 * Construction logic executed during Dialog instantiation. Lifecycle.
 	 *
@@ -430,6 +465,10 @@ Dialog.prototype = {
 	 */
 	bindUI: function() {
 		var instance = this;
+
+		if (instance.get('modal')) {
+			instance.after("focusOnChange", instance._afterFocusOnChange());
+		}
 
 		instance._bindLazyComponents();
 	},
@@ -504,6 +543,21 @@ Dialog.prototype = {
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		boundingBox.on('mouseenter', A.bind(instance._initLazyComponents, instance));
+	},
+
+	/**
+	 * Provides mouse and tab focus to the widget's bounding box.
+	 *
+	 * @method _focus
+	 */
+	_focus : function (event) {
+		var instance = this;
+
+		var bb = instance.get(BOUNDING_BOX),
+		oldTI = bb.get('tabIndex');
+
+		bb.set('tabIndex', oldTI >= 0 ? oldTI : 0);
+		instance.focus();
 	},
 
 	/**
@@ -839,6 +893,80 @@ Dialog.prototype = {
 		if (event.prevVal) {
 			event.prevVal.destroy();
 		}
+	},
+
+	/**
+	 * Attaches UI Listeners for "clickoutside" and "focusoutside" on the widget. When these events occur, and the widget is modal, focus is shifted back onto the widget.
+	 *
+	 * @method _attachUIHandlesModal
+	 */
+	_attachUIHandlesModal : function () {
+		var instance = this;
+
+		var bb          = instance.get(BOUNDING_BOX),
+			maskNode    = instance.get('maskNode'),
+			focusOn     = instance.get('focusOn'),
+			focus       = A.bind(instance._focus, instance),
+			uiHandles   = [],
+			i, len, o;
+
+		for (i = 0, len = focusOn.length; i < len; i++) {
+			o = {};
+			o.node = focusOn[i].node;
+			o.ev = focusOn[i].eventName;
+			o.keyCode = focusOn[i].keyCode;
+
+			//no keycode or node defined
+			if (!o.node && !o.keyCode && o.ev) {
+				uiHandles.push(bb.on(o.ev, focus));
+			}
+
+			//node defined, no keycode (not a keypress)
+			else if (o.node && !o.keyCode && o.ev) {
+				uiHandles.push(o.node.on(o.ev, focus));
+			}
+
+			//node defined, keycode defined, event defined (its a key press)
+			else if (o.node && o.keyCode && o.ev) {
+				uiHandles.push(o.node.on(o.ev, focus, o.keyCode));
+			}
+
+			else {
+				Y.Log('focusOn ATTR Error: The event with name "'+o.ev+'" could not be attached.');
+			}
+
+		}
+
+		instance._uiHandlesModal = uiHandles;
+	},
+
+		/**
+	 * Default function called when focusOn Attribute is changed. Remove existing listeners and create new listeners.
+	 *
+	 * @method _afterFocusOnChange
+	 */
+	_afterFocusOnChange : function(event) {
+		var instance = this;
+
+		instance._detachUIHandlesModal();
+
+		if (instance.get(VISIBLE)) {
+			instance._attachUIHandlesModal();
+		}
+	},
+
+		/**
+	 * Detaches all UI Listeners that were set in _attachUIHandlesModal from the widget.
+	 *
+	 * @method _detachUIHandlesModal
+	 */
+	_detachUIHandlesModal : function () {
+		var instance = this;
+
+		A.each(instance._uiHandlesModal, function(h){
+			h.detach();
+		});
+		instance._uiHandlesModal = null;
 	}
 };
 
@@ -1008,4 +1136,4 @@ A.DialogManager = DialogManager;
  * @static
  */
 
-}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
