@@ -1212,6 +1212,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "array-extras",
             "aui-classnamemanager",
+            "aui-base",
             "aui-component",
             "event-focus",
             "event-outside",
@@ -1399,4 +1400,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '4de7c6028802661e84c5fea2a3774920';
+YUI.Env[Y.version].md5 = '18bd8513a16c92d784daf06c033608bf';
