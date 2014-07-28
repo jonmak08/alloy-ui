@@ -12,8 +12,10 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_CHECKBOX = getCN('checkbox'),
     CSS_FIELD = getCN('field'),
     CSS_FIELD_CHECKBOX = getCN('field', 'checkbox'),
+    CSS_FIELD_CHECKBOX_TEXT = getCN('field', 'checkbox', 'text'),
     CSS_FIELD_CHOICE = getCN('field', 'choice'),
     CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
     CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
@@ -116,12 +118,11 @@ var FormBuilderCheckBoxField = A.Component.create({
          */
         renderUI: function() {
             var instance = this,
-                templateNode = instance.get('templateNode'),
-                labelNode = instance.get('labelNode');
+                contentBox = instance.get('contentBox');
 
             A.FormBuilderCheckBoxField.superclass.renderUI.apply(instance, arguments);
 
-            labelNode.insert(templateNode, labelNode, 'before');
+            contentBox.addClass(CSS_CHECKBOX);
         },
 
         /**
@@ -174,6 +175,41 @@ var FormBuilderCheckBoxField = A.Component.create({
                     value: AEscape.html(instance.get('predefinedValue'))
                 }
             );
+        },
+
+        /**
+         * Set the `label` attribute on the UI.
+         *
+         * @method _uiSetLabel
+         * @param val
+         * @protected
+         */
+        _uiSetLabel: function(val) {
+            var instance = this,
+                labelNode = instance.get('labelNode'),
+                templateNode = instance.get('templateNode');
+
+            labelNode.setContent('<span class="' + CSS_FIELD_CHECKBOX_TEXT +
+                '">' + AEscape.html(val) + '</span>');
+
+            labelNode.prepend(templateNode);
+        },
+
+        /**
+         * Set the `showLabel` attribute on the UI.
+         *
+         * @method _uiSetShowLabel
+         * @param val
+         * @protected
+         */
+        _uiSetShowLabel: function(val) {
+            var instance = this,
+                labelNode = instance.get('labelNode'),
+                labelTextNode = labelNode.one('.' + CSS_FIELD_CHECKBOX_TEXT);
+
+            if (labelTextNode) {
+                labelTextNode.toggle(val);
+            }
         },
 
         /**
