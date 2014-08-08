@@ -6,6 +6,10 @@
 
 No registries yet.
 
+## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
+
+* [AUI-1585](https://issues.liferay.com/browse/AUI-1585) aui-form-validator error breaks radio button layout
+
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
 * [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants

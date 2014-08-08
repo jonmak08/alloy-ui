@@ -1022,7 +1022,13 @@ var FormValidator = A.Component.create({
 
                     if (ancestor) {
                         if (ancestor.hasClass(label)) {
-                            target = nextSibling;
+                            var type = field.get('type');
+
+                            if (type === 'radio' || type === 'checkbox') {
+                                target = ancestor.ancestor('.' + CSS_HAS_ERROR).get('lastChild');
+                            } else {
+                                target = nextSibling;
+                            }
                         }
                         else if (A.FormValidator.isCheckable(target)) {
                             label = ancestor.previous('.' + label);
@@ -1119,7 +1125,9 @@ var FormValidator = A.Component.create({
          */
         _findFieldLabel: function(field) {
             var labelCssClass = '.' + this.get('labelCssClass'),
-                label =  A.one('label[for=' + field.get('id') + ']') || field.ancestor().previous(labelCssClass);
+                label =  A.one('label[for=' + field.get('id') + ']') ||
+                    field.ancestor().previous(labelCssClass) ||
+                    field.ancestor('.' + CSS_HAS_ERROR).one(labelCssClass);
 
             if (label) {
                 return label.get('text');
