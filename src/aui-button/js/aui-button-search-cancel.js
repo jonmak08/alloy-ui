@@ -86,22 +86,53 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
      *
      * @method bindUI
      */
-    bindUI: function() {
+    bindUI: function(newTrigger) {
         var instance = this,
             container = instance.get('container'),
             trigger = instance.get('trigger');
 
-        instance._eventHandles = [
-            container.delegate(
-                ['focus', 'input'],
-                A.debounce(instance._onUserInteraction, 50, instance), trigger),
-            container.delegate('blur',
-                A.debounce(instance._onBlur, 25, instance), trigger),
-            // YUI implementation for the windowresize synthetic event do not
-            // support Y.on('windowresize', fn, context) binding, therefore
-            // should be wrapped using Y.bind.
-            A.on('windowresize', A.bind(instance._onWindowResize, instance))
-        ];
+        if (newTrigger) {
+            trigger = newTrigger;
+        }
+
+        if (trigger) {
+            var focusDelegate =  container.delegate(
+                    ['focus', 'input'],
+                    A.debounce(instance._onUserInteraction, 50, instance), trigger),
+                blurDelegate = container.delegate('blur',
+                        A.debounce(instance._onBlur, 25, instance), trigger),
+                resizeDelegate = A.on('windowresize', A.bind(instance._onWindowResize, instance));
+
+            if (!instance._eventHandles) {
+                instance._eventHandles = [
+                    focusDelegate,
+                    blurDelegate,
+                    // YUI implementation for the windowresize synthetic event do not
+                    // support Y.on('windowresize', fn, context) binding, therefore
+                    // should be wrapped using Y.bind.
+                    resizeDelegate
+                ];
+            }
+            else {
+                instance._eventHandles.push(focusDelegate);
+                instance._eventHandles.push(blurDelegate);
+                instance._eventHandles.push(resizeDelegate);
+            }
+        }
+    },
+
+    /**
+    * Binds additional events onto a defined element
+    *
+    * @method addTriggers
+    * @protected
+    */
+    addTriggers: function(newTrigger) {
+        var instance = this;
+
+        if (newTrigger) {
+            instance.bindUI(newTrigger)
+        }
     },
 
     /**
