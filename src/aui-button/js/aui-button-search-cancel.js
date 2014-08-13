@@ -334,7 +334,7 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
          * @writeOnce
          */
         zIndex: {
-            value: 2,
+            value: 3,
             writeOnce: true
         }
     }
