@@ -6,13 +6,25 @@
 
 var DDM = A.DD.DDM,
     DOC = A.config.doc,
-    Lang = A.Lang;
+    Lang = A.Lang,
+
+    KEY_ARROW_LEFT = 37,
+    KEY_ARROW_RIGHT = 39,
+    KEY_SPACE_BAR = 32;
 
 var Drag = A.Component.create({
 
     NAME: A.DD.Drag.NAME,
 
-    ATTRS: {},
+    ATTRS: {
+        keys: {
+            value: {
+                next: KEY_ARROW_RIGHT,
+                previous: KEY_ARROW_LEFT,
+                select: KEY_SPACE_BAR                
+            }
+        }
+    },
 
     EXTENDS: A.DD.Drag,
 
@@ -80,11 +92,12 @@ var Drag = A.Component.create({
          */
         _bindKeyEvents: function() {
             var instance = this,
-                node = instance.get('node');
+                node = instance.get('node'),
+                selectKey = instance.get('keys.select') || KEY_SPACE_BAR;
             
             instance.once('drag:keyDown', A.bind(instance._defKeyDownFn, instance));
             instance.once('drag:start', A.bind(instance._onDragStart, instance));
-            node.once('key', A.bind(instance._onTriggerKeyDown, instance), 'down: 32');
+            node.once('key', A.bind(instance._onTriggerKeyDown, instance), 'down:' + selectKey);
         },
 
         /**
@@ -196,7 +209,9 @@ var Drag = A.Component.create({
 
             if (!instance._isDragging) {
                 var doc = A.one(DOC),
-                    dragNode = DDM.activeDrag.get('node');
+                    dragNode = DDM.activeDrag.get('node'),
+                    nextKey = instance.get('keys.next') || KEY_ARROW_RIGHT,
+                    prevKey = instance.get('keys.previous') || KEY_ARROW_LEFT;
 
                 instance._targets = instance._getDropTargets();
                 
@@ -206,7 +221,7 @@ var Drag = A.Component.create({
                 instance._currentTarget = instance._currentTarget ? instance._currentTarget - 1 : instance._currentTarget;
 
                 instance._eventHandles.push(
-                    doc.on('key', A.bind(instance._setTarget, instance), 'down: 37, 39')
+                    doc.on('key', A.bind(instance._setTarget, instance), 'down:' + nextKey + ',' + prevKey)
                 );
                 
                 instance._isDragging = true;
@@ -221,11 +236,12 @@ var Drag = A.Component.create({
          * @protected
          */
         _onSelectionKeyDown: function(event) {
-            var instance = this;
+            var instance = this,
+                selectKey = instance.get('keys.select') || KEY_SPACE_BAR;
 
             event.preventDefault();
 
-            if (event.charCode === 32 && instance._isDragging) {
+            if (event.charCode === selectKey && instance._isDragging) {
                 instance._handleMouseUp(event);
 
                 (new A.EventHandle(instance._eventHandles)).detach();
@@ -267,16 +283,18 @@ var Drag = A.Component.create({
          */
         _setTarget: function(event) {
             var instance = this,
-                key = event.charCode;
+                key = event.charCode,
+                nextKey = instance.get('keys.next') || KEY_ARROW_RIGHT,
+                prevKey = instance.get('keys.previous') || KEY_ARROW_LEFT;
 
             event.preventDefault();
 
             instance._prevTarget = instance._currentTarget;
 
-            if (key === 37) {
+            if (key === prevKey) {
                 instance._currentTarget = instance._getPrevTarget();
             }
-            else if (key === 39) {
+            else if (key === nextKey) {
                 instance._currentTarget = instance._getNextTarget();
             }
 
