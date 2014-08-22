@@ -9,6 +9,24 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet',
+        ],
+        endsWithStrings = [
+            'novemnonagintillion ',
+            'flibberti gibbet',
+            'balderdash456',
+            'codswallop'
+        ],
+        endsWithStringsSuffixes = [
+            'gintillion ',
+            ' gibbet',
+            '456',
+            'codswallop'
+        ],
+        endsWithStringsWrongSuffixes = [
+            'gintillion',
+            'bet ',
+            'dash',
+            'cods'
         ];
 
     var Assert = Y.Assert,
@@ -106,6 +124,16 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should check for ending suffix correctly': function() {
+            for (var i = 0; i < endsWithStrings.length; i++) {
+                Assert.isTrue(Y.Lang.String.endsWith(endsWithStrings[i], endsWithStringsSuffixes[i]));
+            }
+
+            for (var j = 0; j < endsWithStrings.length; j++) {
+                Assert.isTrue(!Y.Lang.String.endsWith(endsWithStrings[j], endsWithStringsWrongSuffixes[j]));
             }
         }
     }));
