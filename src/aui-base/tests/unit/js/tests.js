@@ -1,6 +1,8 @@
 YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
+        precisionNumberHigher = 1.56789,
+        precisionNumberLower = 1.123456789,
         numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
@@ -105,6 +107,24 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(toBePadded, parseFloat(padded));
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
+                }
+            }
+        },
+
+        'should round numbers to the specified precision correctly': function() {
+            var numArray = precisionNumberLower + "";
+            var numLength = numArray.length;
+            var numOffset;
+
+            for (var i = 2; i < numLength; i++) {
+                numOffset = numLength - i;
+                numArray = (Y.Lang.String.round(precisionNumberLower, numOffset) + '');
+
+                if ((numOffset < 9) && (numOffset > 3)) {
+                    Assert.areEqual(numOffset + 1, numArray[numArray.length - 1]);
+                }
+                else {
+                    Assert.areEqual(numOffset, numArray[numArray.length - 1]);
                 }
             }
         }
