@@ -2,6 +2,27 @@ YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
+        subValues = [
+            0, 1,
+            3, 5,
+            0, 8,
+            1, 6,
+            5, 9
+        ],
+        subbableStrings = [
+            'Fig',
+            'Grape',
+            'Honeydew',
+            'Ita Palm',
+            'June Plum'
+        ],
+        subbedStrings = [
+            'F',
+            'pe',
+            'Honeydew',
+            'ta Pal',
+            'Plum'
+        ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
@@ -106,6 +127,16 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should return a substring correctly': function() {
+            var subbableStringsLength = subbableStrings.length;
+
+            Assert.isTrue((subbableStringsLength == (subValues.length / 2)) && (subbableStringsLength == subbedStrings.length));
+
+            for (var i = 0; i < subbableStringsLength; i++) {
+                Assert.areEqual(Y.Lang.String.substr(subbableStrings[i], subValues[i * 2], subValues[(i * 2) + 1]), subbedStrings[i])
             }
         }
     }));
