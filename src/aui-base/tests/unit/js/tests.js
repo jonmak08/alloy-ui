@@ -2,6 +2,16 @@ YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
+        scriptStrings = [
+            "<p>I am <script>alert('not');</script>hungry</p>",
+            "'<s<script></script>cript>alert('Difficult test')</script>'')",
+            "</script><script>"
+        ],
+        strippedScriptStrings = [
+            "<p>I am hungry</p>",
+            "'<script>alert('Difficult test')</script>'')",
+            "</script><script>"
+        ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
@@ -106,6 +116,16 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should strip scripts correctly': function() {
+            var scriptStringsLength = scriptStrings.length;
+
+            Assert.areEqual(scriptStringsLength, strippedScriptStrings.length);
+
+            for (var i = 0; i < scriptStringsLength; i++) {
+                Assert.areEqual(Y.Lang.String.stripScripts(scriptStrings[i]), strippedScriptStrings[i]);
             }
         }
     }));
