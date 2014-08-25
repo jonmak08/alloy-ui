@@ -2,6 +2,34 @@ YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
+        removalTestStrings = [
+            'broccoli roccoli brocoli broc coli brocoli.',
+            'carrots carrot carrotscarrot carrotcarrot',
+            'not tomatoes,tomato?',
+            '.potato potatoes potahto plobflaybo',
+            'vegetables'
+        ],
+        removedStrings = [
+            ' roccoli brocoli broc coli brocoli.',
+            's  s ',
+            'not es,?',
+            '. es potahto plobflaybo',
+            'tables'
+        ],
+        removalSubstrings = [
+            'broccoli',
+            'carrot',
+            'tomato',
+            'potato',
+            'vege'
+        ],
+        singleRemovedStrings = [
+            ' roccoli brocoli broc coli brocoli.',
+            's carrot carrotscarrot carrotcarrot',
+            'not es,tomato?',
+            '. potatoes potahto plobflaybo',
+            'tables'
+        ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
@@ -106,6 +134,17 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should remove strings correctly': function() {
+            var unremovedStringLength = removalTestStrings.length;
+
+            Assert.isTrue((unremovedStringLength == removalSubstrings.length) && (unremovedStringLength == removedStrings.length));
+
+            for (var i = 0; i < unremovedStringLength; i++) {
+                Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], true), removedStrings[i]);
+                Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], false), singleRemovedStrings[i]);
             }
         }
     }));
