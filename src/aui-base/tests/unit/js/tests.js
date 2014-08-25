@@ -1,6 +1,16 @@
 YUI.add('aui-base-tests', function(Y) {
 
-    var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
+    var definedStrings = [
+            '',
+            '',
+            'defined'
+        ],
+        definitionStrings = [
+            ,
+            '',
+            'defined'
+        ],
+        escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
@@ -106,6 +116,16 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should define undefined values correctly': function() {
+            var definitionStringsLength = definitionStrings.length;
+
+            Assert.areEqual(definitionStringsLength, definedStrings.length);
+
+            for (var i = 0; i < definitionStringsLength; i++) {
+                Assert.areEqual(Y.Lang.String.undef(definitionStrings[i]), definedStrings[i]);
             }
         }
     }));
