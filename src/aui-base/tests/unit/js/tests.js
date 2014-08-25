@@ -9,6 +9,27 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet',
+        ],
+        unremovedStrings = [
+            'vegetables',
+            'carrots carrot carrotscarrot carrotcarrot',
+            'broccoli roccoli brocoli broc coli brocoli.',
+            '.potato potatoes potahto plobflaybo',
+            'not tomatoes,tomato?'
+        ],
+        removalSubstrings = [
+            'vege',
+            'carrot',
+            'broccoli',
+            'potato',
+            'tomato'
+        ],
+        removedStrings = [
+            'tables',
+            's  s ',
+            ' roccoli brocoli broc coli brocoli.',
+            '. es potahto plobflaybo',
+            'not es,?',
         ];
 
     var Assert = Y.Assert,
@@ -106,6 +127,14 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should remove strings correctly': function() {
+            Assert.isTrue(unremovedStrings.length == removalSubstrings.length && removalSubstrings.length == removedStrings.length);
+
+            for (var i = 0; i < unremovedStrings.length; i++) {
+                Assert.areEqual(Y.Lang.String.removeAll(unremovedStrings[i], removalSubstrings[i]), removedStrings[i]);
             }
         }
     }));
