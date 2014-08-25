@@ -2,6 +2,30 @@ YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
+        prefixedStrings = [
+            'apricot',
+            'bananas',
+            ' cantaloupe',
+            'durian',
+            'eggfruit',
+            'fuji apple'
+        ],
+        prefixStrings = [
+            'apr',
+            'banana',
+            ' can',
+            'durian',
+            'e',
+            ''
+        ],
+        prefixStringsIncorrect = [
+            'pricot',
+            's',
+            ' cantanope',
+            'durian ',
+            'egg fruit',
+            'fujiapple'
+        ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
@@ -106,6 +130,17 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should return whether or not a string starts with a specified prefix correctly': function() {
+            var prefixedStringsLength = prefixedStrings.length;
+
+            Assert.isTrue((prefixedStringsLength == prefixStrings.length) && (prefixedStringsLength == prefixStringsIncorrect.length))
+
+            for (var i = 0; i < prefixedStringsLength; i++) {
+                Assert.isTrue(Y.Lang.String.startsWith(prefixedStrings[i], prefixStrings[i]));
+                Assert.isTrue(!Y.Lang.String.startsWith(prefixedStrings[i], prefixStringsIncorrect[i]));
             }
         }
     }));
