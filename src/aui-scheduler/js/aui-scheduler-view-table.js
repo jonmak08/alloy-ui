@@ -745,11 +745,11 @@ var SchedulerTableView = A.Component.create({
 
             if (DateMath.between(todayDate, intervalStartDate, intervalEndDate)) {
                 var firstDayOfWeek = scheduler.get('firstDayOfWeek');
-                var firstWeekDay = instance._findFirstDayOfWeek(todayDate);
+                var firstWeekDay = DateMath.clearTime(instance._findFirstDayOfWeek(todayDate));
 
                 var rowIndex = DateMath.getWeekNumber(todayDate, firstDayOfWeek) - DateMath.getWeekNumber(
                     intervalStartDate, firstDayOfWeek);
-                var colIndex = (todayDate.getDate() - firstWeekDay.getDate());
+                var colIndex = DateMath.getDayOffset(todayDate, firstWeekDay);
                 var celIndex = instance._getCellIndex([colIndex, rowIndex]);
 
                 var todayCel = instance.columnTableGrid.item(celIndex);
@@ -785,10 +785,10 @@ var SchedulerTableView = A.Component.create({
         _findCurrentIntervalEnd: function() {
             var instance = this;
             var scheduler = instance.get('scheduler');
-            var viewDate = scheduler.get('viewDate');
+            var viewDate = instance._findCurrentIntervalStart();
             var displayDaysInterval = instance.get('displayDaysInterval');
 
-            return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
+            return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval - 1);
         },
 
         /**
