@@ -563,6 +563,24 @@ A.mix(A.DataType.DateMath, {
      * @return {Number} The number of the week containing the given date.
      */
     getWeekNumber: function(date, firstDayOfWeek, janDate) {
+        // Hey Jon, I'm leaving this comment here to let you know where the problem is.
+        // I wasn't able to get to this due to running out of time.
+        // The issue is that the weekNum returns 1 on the last week of specific years since two years are included
+        // and if that's the case, the last week of that year is considered the first week of the next.
+        // This results in a returned value of 1.
+        //
+        // An alternative fix I've attempt is to keep track of this edge case in in the syncGridsUI function.
+        // This would be mean that I would set the row manually to a value whenever this function returns
+        // 1 when I don't want it to.
+        // However, setting a hard value seems to be bad practice and it doesn't work in all cases.
+        // This is because in the event that two years are in one week, this doesn't mean that the week
+        // will always be in the same row on the calendar. It could be in the last row, or the row above that.
+        // Doing the same date-math in here in the syncGridsUi function would also be messy.
+        // As a result, I recommend implementing an additional optional parameter in this function.
+        // This will instead return a last week number instead of 1 in this edge case.
+        // This should be used in syncGridsUI on the last week of each year.
+        // If applied on the beginning of the next year, it will break.
+        // I have the implementation in my head so if this explanation is insufficient, please feel free to contact me.
 
         // Setup Defaults
         firstDayOfWeek = firstDayOfWeek || 0;

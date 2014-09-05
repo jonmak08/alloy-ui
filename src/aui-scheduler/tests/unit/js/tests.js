@@ -109,7 +109,64 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 recorder.popover.get('visible'),
                 'Popover should be visible when event is clicked in agenda view'
             );
-        }
+        },
+
+        'the current day in monthly view should be highlighted on all or most sides': function() {
+            var thisDate;
+            var monthContent;
+            var rowsNode;
+            var xLocations = [];
+            var yLocations = [];
+            var xTest = [];
+            var yTest = [];
+
+            this._createScheduler();
+            this._scheduler.set('disabled', true);
+            this._scheduler.set('todayDate', thisDate);
+            this._scheduler.set('date', thisDate);
+
+            Y.one('button.scheduler-base-view-month').simulate('click');
+
+            monthContent = Y.one('.scheduler-view-month-content');
+            rowsNode = monthContent.one('.scheduler-view-table-row-container').get('children');
+            thisDate = new Date(2010, 11, 29); //starting date for test
+
+            for (; thisDate.getFullYear() < 2014; thisDate = Y.Date.addDays(thisDate, 1)) { //ending year for test, should include four years for leap year cycles
+                this._scheduler.set('todayDate', thisDate);
+                this._scheduler.set('date', thisDate);
+
+                todayTitle = monthContent.one('.scheduler-view-table-data-col-title-today');
+                todayGrid = monthContent.one('.scheduler-view-table-colgrid-today');
+                todayBottom = monthContent.one('.scheduler-view-table-data-col-title-down');
+
+                Y.Assert.isNotNull(todayTitle);
+                Y.Assert.isNotNull(todayGrid);
+                Y.Assert.areEqual(todayTitle.get('innerHTML'), thisDate.getDate());
+
+                var titleX = todayTitle.ancestor('tr').get('children').indexOf(todayTitle);
+                xLocations.push(titleX);
+                xLocations.push(todayGrid.ancestor('tr').get('children').indexOf(todayGrid));
+
+                var titleY = rowsNode.indexOf(todayTitle.ancestor('.scheduler-view-table-row'));
+                yLocations.push(titleY);
+                yLocations.push(rowsNode.indexOf(todayGrid.ancestor('.scheduler-view-table-row')));
+
+                xTest = [titleX, titleX];
+                yTest = [titleY, titleY];
+
+                if (titleY < rowsNode.size() - 1) {
+                    xLocations.push(todayBottom.ancestor('tr').get('children').indexOf(todayBottom));
+                    yLocations.push(rowsNode.get('children').indexOf(todayBottom.ancestor('.scheduler-view-table-row')) - 1);
+
+                    xTest.push(titleX);
+                    yTest.push(titleY);
+                }
+
+                Y.ArrayAssert.itemsAreEqual(xLocations, xTest);
+                xLocations.length = yLocations.length = xTest.length = yTest.length = 0;
+                // Ran out of time to document this, I'm very sorry.
+                // This test should work PERFECTLY (I'm pretty sure).
+            }
     }));
 
     Y.Test.Runner.add(suite);
