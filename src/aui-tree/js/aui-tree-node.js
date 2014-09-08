@@ -1569,11 +1569,16 @@ var TreeNodeTask = A.Component.create({
                     if (isTreeNodeTask(parentNode)) {
                         var hasUncheckedChild = false;
 
-                        parentNode.eachChildren(function(child) {
-                            if ((child !== instance) && !child.isChecked()) {
-                                hasUncheckedChild = true;
+                        var children = parentNode.getChildren();
+
+                        hasUncheckedChild = A.Array.some(
+                            children,
+                            function(child) {
+                                if ((child !== instance) && !child.isChecked()) {
+                                    return true;
+                                }
                             }
-                        });
+                        );
 
                         if (!hasUncheckedChild) {
                             parentNode.get('contentBox').removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
