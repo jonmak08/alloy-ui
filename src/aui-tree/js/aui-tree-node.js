@@ -1564,11 +1564,11 @@ var TreeNodeTask = A.Component.create({
                 });
             }
 
+            var hasUncheckedChild;
+
             instance.eachParent(
                 function(parentNode) {
-                    if (isTreeNodeTask(parentNode)) {
-                        var hasUncheckedChild = false;
-
+                    if (isTreeNodeTask(parentNode) && !hasUncheckedChild) {
                         var children = parentNode.getChildren();
 
                         hasUncheckedChild = A.Array.some(
