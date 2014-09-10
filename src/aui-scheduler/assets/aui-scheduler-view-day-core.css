@@ -164,6 +164,7 @@
 
 .scheduler-view-day {
     background: white;
+    padding-top: 45px;
 }
 
 .scheduler-view-day .scheduler-view-table {
