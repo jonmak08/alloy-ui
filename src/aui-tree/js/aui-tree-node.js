@@ -1564,23 +1564,7 @@ var TreeNodeTask = A.Component.create({
                 });
             }
 
-            instance.eachParent(
-                function(parentNode) {
-                    if (isTreeNodeTask(parentNode)) {
-                        var hasUncheckedChild = false;
-
-                        parentNode.eachChildren(function(child) {
-                            if ((child !== instance) && !child.isChecked()) {
-                                hasUncheckedChild = true;
-                            }
-                        });
-
-                        if (!hasUncheckedChild) {
-                            parentNode.get('contentBox').removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-                        }
-                    }
-                }
-            );
+            instance._ancestorUncheckedChildRemoveClass();
 
             contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
@@ -1609,6 +1593,54 @@ var TreeNodeTask = A.Component.create({
                 });
             }
 
+            instance._ancestorUncheckedChildAddClass();
+
+            contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+            // invoke default uncheck logic
+            A.TreeNodeTask.superclass.uncheck.call(this, originalTarget);
+        },
+
+        /**
+         * Removes the class `tree-node-child-unchecked` from ancestor TreeNodeTasks, when all descendant TreeNodeTasks are checked.
+         *
+         * @method _ancestorUncheckedChildRemoveClass
+         */
+        _ancestorUncheckedChildRemoveClass: function() {
+            var instance = this;
+
+            var hasUncheckedChild;
+
+            instance.eachParent(
+                function(parentNode) {
+                    if (isTreeNodeTask(parentNode) && !hasUncheckedChild) {
+                        var children = parentNode.getChildren();
+
+                        hasUncheckedChild = A.Array.some(
+                            children,
+                            function(child) {
+                                if ((child !== instance) && !child.isChecked()) {
+                                    return true;
+                                }
+                            }
+                        );
+
+                        if (!hasUncheckedChild) {
+                            parentNode.get('contentBox').removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                        }
+                    }
+                }
+            );
+        },
+
+        /**
+         * Adds the class `tree-node-child-unchecked` to all checked ancestor TreeNodeTasks.
+         *
+         * @method _ancestorUncheckedChildAddClass
+         */
+        _ancestorUncheckedChildAddClass: function() {
+            var instance = this;
+
             instance.eachParent(
                 function(parentNode) {
                     if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
@@ -1616,11 +1648,6 @@ var TreeNodeTask = A.Component.create({
                     }
                 }
             );
-
-            contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-
-            // invoke default uncheck logic
-            A.TreeNodeTask.superclass.uncheck.call(this, originalTarget);
         }
     }
 });
