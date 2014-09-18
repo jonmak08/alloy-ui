@@ -2,6 +2,10 @@
     display: none;
 }
 
+.scheduler-view-month {
+    padding-top: 45px;
+}
+
 .scheduler-view-month .scheduler-view-table-colgrid-first {
     border-left: 0 none;
 }

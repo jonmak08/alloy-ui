@@ -42,8 +42,8 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
     CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
 
-    TPL_SCHEDULER_CONTROLS = '<div class="col col-lg-7 col-md-7 col-sm-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
-    TPL_SCHEDULER_HD = '<div class="row ' + CSS_SCHEDULER_HD + '"></div>',
+    TPL_SCHEDULER_CONTROLS = '<div class="' + CSS_SCHEDULER_CONTROLS + '"></div>',
+    TPL_SCHEDULER_HD = '<div class="' + CSS_SCHEDULER_HD + '"></div>',
     TPL_SCHEDULER_ICON_NEXT = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
         CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_RIGHT + '"></span></button>',
     TPL_SCHEDULER_ICON_PREV = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN,
@@ -54,7 +54,7 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     TPL_SCHEDULER_VIEW = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="' +
         [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') + '{name}" data-view-name="{name}">{label}</button>',
     TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + '"></div>',
-    TPL_SCHEDULER_VIEWS = '<div class="col col-lg-5 col-md-5 col-sm-5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
+    TPL_SCHEDULER_VIEWS = '<div class="' + CSS_SCHEDULER_VIEWS + '"></div>';
 
 /**
  * A base class for `SchedulerEvents`.
@@ -778,6 +778,7 @@ var SchedulerBase = A.Component.create({
                         instance.setStdModContent(WidgetStdMod.BODY, '');
                     }
 
+                    instance.bodyNode.prepend(instance.viewDateNode);
                     view.render(instance.bodyNode);
                 }
             }
@@ -838,19 +839,18 @@ var SchedulerBase = A.Component.create({
             var instance = this;
             var views = instance.get('views');
 
-            instance.navNode.append(instance.iconPrevNode);
-            instance.navNode.append(instance.iconNextNode);
-
-            instance.controlsNode.append(instance.todayNode);
-            instance.controlsNode.append(instance.navNode);
-            instance.controlsNode.append(instance.viewDateNode);
-
             A.Array.each(views, function(view) {
                 instance.viewsNode.append(instance._createViewTriggerNode(view));
             });
 
+            instance.navNode.append(instance.iconPrevNode);
+            instance.navNode.append(instance.todayNode);
+            instance.navNode.append(instance.iconNextNode);
+
+            instance.controlsNode.append(instance.navNode);
+            instance.controlsNode.append(instance.viewsNode);
+
             instance.header.append(instance.controlsNode);
-            instance.header.append(instance.viewsNode);
 
             instance.setStdModContent(WidgetStdMod.HEADER, instance.header.getDOM());
         },
