@@ -1,6 +1,20 @@
 YUI.add('aui-base-tests', function(Y) {
 
     var caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
+        caseStringsUpper = [
+            'YIELDING GREAT GIVEN',
+            'WATERS WHEREIN CREATURE OVER',
+            'DARKNESS BEHOLD FOWL LIKENESS UPON',
+            'GREEN. THE BEHOLD LIKENESS FISH',
+            'MOVED RULE HEAVEN'
+        ],
+        caseStringsLower = [
+            'yielding great given',
+            'waters wherein creature over',
+            'darkness behold fowl likeness upon',
+            'green. the behold likeness fish',
+            'moved rule heaven'
+        ],
         containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
         definedStrings = [
             '',
@@ -504,6 +518,12 @@ YUI.add('aui-base-tests', function(Y) {
             expected = '...';
 
             Assert.areEqual(expected, actual);
+        },
+
+        'should convert case to upper': function() {
+            for (var i = 0; i < caseStringsLower.length; i++) {
+                Assert.areEqual(Y.Lang.String.toUpperCase(caseStringsLower[i]), caseStringsUpper[i]);
+            }
         }
     }));
 
