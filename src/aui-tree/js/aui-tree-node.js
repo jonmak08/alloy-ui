@@ -566,6 +566,7 @@ var TreeNode = A.Component.create({
             contentBox.append(instance.get('iconEl'));
             contentBox.append(instance.get('labelEl'));
             boundingBox.append(contentBox);
+            boundingBox.addClass(CSS_TREE_NODE);
 
             var nodeContainer = instance.get('container');
 
