@@ -153,6 +153,10 @@ var CharCounter = A.Component.create({
 
                 var counterValue = instance.get('maxLength') - instance._getNormalizedLength(value);
 
+                if (counterValue < 0) {
+                    counterValue = 0;
+                }
+
                 counter.html(counterValue);
             }
         },
