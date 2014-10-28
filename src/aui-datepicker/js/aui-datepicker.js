@@ -180,6 +180,27 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
+     * Selects dates in the 'Calendar' while only allowing
+     * the calendar to fire 'selectionChange' once.
+     *
+     * @method selectDatesFromInputValue
+     * @param dates
+     */
+    selectDatesFromInputValue: function(dates) {
+        var instance = this,
+            calendar = instance.getCalendar();
+
+        A.Array.each(
+            dates,
+            function(date) {
+                calendar._addDateToSelection(date, true);
+            }
+        );
+
+        calendar._fireSelectionChange();
+    },
+
+    /**
      * Renders the widget in an `<input>` node.
      *
      * @method useInputNode
@@ -197,7 +218,7 @@ A.mix(DatePickerBase.prototype, {
         }
 
         instance.clearSelection(true);
-        instance.selectDates(instance.getParsedDatesFromInputValue());
+        instance.selectDatesFromInputValue(instance.getParsedDatesFromInputValue());
     },
 
     /**
@@ -232,7 +253,7 @@ A.mix(DatePickerBase.prototype, {
 
         newDates = A.Array.dedupe(newDates);
 
-        if (newDates.length !== prevDates.length) {
+        if (newDates.length !== prevDates.length || event.newSelection.length < prevDates.length) {
             instance.fire('selectionChange', {
                 newSelection: event.newSelection
             });
