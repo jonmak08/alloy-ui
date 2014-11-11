@@ -55,9 +55,9 @@ var CheckboxCellEditor = A.Component.create({
 
     prototype: {
         ELEMENT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_ELEMENT + '"></div>',
+        OPTION_LABEL: '<label for="{id}"> {label}</label>',
         OPTION_TEMPLATE: '<input class="' +
             CSS_CELLEDITOR_OPTION + '" id="{id}" name="{name}" type="checkbox" value="{value}"/>',
-        OPTION_LABEL: '<label for="{id}"> {label}</label>',
         OPTION_WRAPPER: '<div class="checkbox"></div>',
 
         /**
