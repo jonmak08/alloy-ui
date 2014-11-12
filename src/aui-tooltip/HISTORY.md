@@ -8,6 +8,7 @@ No registries yet.
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
+* [AUI-998](https://issues.liferay.com/browse/AUI-998) TooltipDelegate appears to ignore cssClass option
 * [AUI-1619](https://issues.liferay.com/browse/AUI-1619) Cannot set zIndex on Tooltip
 * [AUI-1310](https://issues.liferay.com/browse/AUI-1310) Make aui-tooltip responsive
 * [AUI-1335](https://issues.liferay.com/browse/AUI-1335) Tooltips should make HTML escaped by default
