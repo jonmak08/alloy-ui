@@ -135,7 +135,7 @@ var Tooltip = A.Component.create(
 
 			/**
 			 * Use the content of the <code>title</code> attribute as the Tooltip
-	         * content.
+			 * content.
 			 *
 			 * @attribute title
 			 * @default false

@@ -192,7 +192,7 @@ var LoadingMask = A.Component.create(
 
 			/**
 			 * Bind events to the
-	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>.
+			 * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>.
 			 *
 			 * @method _bindOverlayMaskUI
 			 * @protected
@@ -205,8 +205,8 @@ var LoadingMask = A.Component.create(
 
 			/**
 			 * Center the
-	         * <a href="LoadingMask.html#config_messageEl">messageEl</a> with the
-	         * <a href="LoadingMask.html#config_target">target</a> node.
+			 * <a href="LoadingMask.html#config_messageEl">messageEl</a> with the
+			 * <a href="LoadingMask.html#config_target">target</a> node.
 			 *
 			 * @method centerMessage
 			 */
@@ -220,8 +220,8 @@ var LoadingMask = A.Component.create(
 
 			/**
 			 * Invoke the
-	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
-	         * <code>refreshMask</code> method.
+			 * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
+			 * <code>refreshMask</code> method.
 			 *
 			 * @method refreshMask
 			 */
@@ -256,8 +256,8 @@ var LoadingMask = A.Component.create(
 
 			/**
 			 * Render
-	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
-	         * instance.
+			 * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>
+			 * instance.
 			 *
 			 * @method _renderOverlayMask
 			 * @protected
@@ -284,8 +284,8 @@ var LoadingMask = A.Component.create(
 
 			/**
 			 * Create dynamic attributes listeners to invoke the setter on
-	         * <a href="LoadingMask.html#property_overlayMask">overlayMask</a> after
-	         * the attribute is set on the LoadingMask instance.
+			 * <a href="LoadingMask.html#property_overlayMask">overlayMask</a> after
+			 * the attribute is set on the LoadingMask instance.
 			 *
 			 * @method _createDynamicAttrs
 			 * @param {Object} config Object literal specifying widget configuration properties.

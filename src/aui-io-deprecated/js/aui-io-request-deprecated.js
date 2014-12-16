@@ -101,8 +101,8 @@ var IORequest = A.Component.create(
 		ATTRS: {
 			/**
 			 * If <code>true</code> invoke the
-	         * <a href="IORequest.html#method_start">start</a> method automatically,
-	         * initializing the IO transaction.
+			 * <a href="IORequest.html#method_start">start</a> method automatically,
+			 * initializing the IO transaction.
 			 *
 			 * @attribute autoLoad
 			 * @default true
@@ -115,7 +115,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * If <code>false</code> the current timestamp will be appended to the
-	         * url, avoiding the url to be cached.
+			 * url, avoiding the url to be cached.
 			 *
 			 * @attribute cache
 			 * @default true
@@ -143,9 +143,9 @@ var IORequest = A.Component.create(
 
 			/**
 			 * This is a normalized attribute for the response data. It's useful
-	         * to retrieve the correct type for the
-	         * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
-	         * requests the <code>responseData</code>) is a JSONObject.
+			 * to retrieve the correct type for the
+			 * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
+			 * requests the <code>responseData</code>) is a JSONObject.
 			 *
 			 * @attribute responseData
 			 * @default null
@@ -189,13 +189,13 @@ var IORequest = A.Component.create(
 
 			/**
 			 * Object containing all the
-	         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
-	         * This Object is passed to the <code>A.io</code> internally.
+			 * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+			 * This Object is passed to the <code>A.io</code> internally.
 			 *
 			 * @attribute cfg
 			 * @default Object containing all the
-	         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
-	         * @readOnly
+			 * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+			 * @readOnly
 			 * @type String
 			 */
 			cfg: {
@@ -372,7 +372,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	         * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute xdr
 			 * @default Value mapped on YUI.AUI.defaults.io.

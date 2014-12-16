@@ -390,7 +390,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Fires the <a href="Editable.html#event_stopEditing">stopEditing</a>
-	         * event.
+			 * event.
 			 *
 			 * @method _afterFocusedChangeEditable
 			 * @param {EventFacade} event
@@ -622,7 +622,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Set the value of the <a
-	         * href="Editable.html#property_inputNode">inputNode</a>.
+			 * href="Editable.html#property_inputNode">inputNode</a>.
 			 *
 			 * @method _setInput
 			 * @param {String} value Value of the input.
@@ -645,7 +645,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Set the <code>innerHTML</code> of the <a
-	         * href="Editable.html#config_node">node</a>.
+			 * href="Editable.html#config_node">node</a>.
 			 *
 			 * @method _setOutput
 			 * @param {String} value
@@ -705,7 +705,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Converts the new lines <code>\n</code> to <code><br/></code> (i.e.,
-	         * nl2br).
+			 * nl2br).
 			 *
 			 * @method _toHTML
 			 * @param {String} text Input text.
