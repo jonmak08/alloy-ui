@@ -85,7 +85,11 @@ DatePickerDelegate.prototype = {
 
             container.delegate(
                 CLICK,
-                A.bind('_onceUserInteractionRelease', instance), trigger)
+                A.bind('_onceUserInteractionRelease', instance), trigger),
+
+            container.delegate(
+                'key', A.bind('_handleTabKeyEvent', instance), 'tab', trigger)
+
         ];
 
         instance.publish(
@@ -185,6 +189,16 @@ DatePickerDelegate.prototype = {
         return A.Date.format(date, {
             format: mask
         });
+    },
+
+    /**
+    * Handles tab key events
+    *
+    * @method _handleTabKeyEvent
+    * @protected
+    */
+    _handleTabKeyEvent: function() {
+        this.hide();
     },
 
     /**
