@@ -53,6 +53,20 @@ TimePickerBase.ATTRS = {
     },
 
     /**
+     * If popover is initially scrolled to the time option nearest the timepicker's
+     * input time value or the time option nearest the current local time when no
+     * input time value is defined.
+     *
+     * @attribute focusCurrentTime
+     * @default true
+     * @type {boolean}
+     */
+    focusCurrentTime: {
+        validator: Lang.isBoolean,
+        value: true
+    },
+
+    /**
      * Format for displayed time.
      *
      * @attribute mask
@@ -158,6 +172,19 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
+     * Triggers `_focusNearestTime` method.
+     *
+     * @method focusNearestValue
+     */
+    focusNearestValue: function() {
+        var instance = this;
+
+        if (instance.get('focusCurrentTime')) {
+            instance._focusNearestTime();
+        }
+    },
+
+    /**
      * Creates and returns a new instance of `AutoComplete`.
      *
      * @method getAutoComplete
@@ -181,6 +208,29 @@ A.mix(TimePickerBase.prototype, {
         autocomplete.after('select', instance._afterAutocompleteSelect, instance);
 
         return autocomplete;
+    },
+
+    /**
+     * Gets the input time value if it exists and returns it as milliseconds since
+     * Jan 1, 1970. Otherwise it gets the current local time and returns it as
+     * milliseconds since Jan 1, 1970.
+     *
+     * @method getInputTime
+     * @return {Int} Current input or local time
+     */
+    getInputTime: function() {
+        var date = new Date(),
+            curTime = Date.parse(date.toUTCString(date.getTime())),
+            instance = this,
+            inputVal = instance.getParsedDatesFromInputValue();
+
+        if (inputVal) {
+            inputVal = inputVal.pop();
+
+            curTime = Date.parse(inputVal);
+        }
+
+        return curTime;
     },
 
     /**
@@ -237,6 +287,48 @@ A.mix(TimePickerBase.prototype, {
 
         if (instance.get('autoHide')) {
             instance.hide();
+        }
+    },
+
+    /**
+     * Scrolls time list to option nearest the current input time or local time.
+     *
+     * @method _focusNearestTime
+     * @protected
+     */
+    _focusNearestTime: function() {
+        var deltaTime,
+            instance = this,
+            curTime = instance.getInputTime(),
+            mask = instance.get('mask'),
+            nodeTime,
+            popoverBody = instance.getPopover().bodyNode,
+            previousTime,
+            nodeList = popoverBody.all('.yui3-aclist-item'),
+            targetNode,
+            timeVals = instance.get('values'),
+            topOffset;
+
+        if (!nodeList.isEmpty()) {
+            targetNode = nodeList.item(0);
+
+            previousTime = (curTime * 2);
+
+            for (var i = 0; i < timeVals.length; i++) {
+                nodeTime = Date.parse(A.Date.parse(mask, timeVals[i]));
+
+                deltaTime = Math.abs(curTime - nodeTime);
+
+                if (deltaTime < previousTime) {
+                    targetNode = nodeList.item(i);
+
+                    previousTime = deltaTime;
+                }
+            }
+
+            topOffset = targetNode.get('offsetTop');
+
+            popoverBody.set('scrollTop', topOffset);
         }
     },
 
