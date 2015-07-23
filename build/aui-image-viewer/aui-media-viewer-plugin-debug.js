@@ -7,7 +7,6 @@ AUI.add('aui-media-viewer-plugin', function(A) {
 
 var Lang = A.Lang,
 	Do = A.Do,
-	IE = A.UA.ie,
 
 	STR_ABOUT_BLANK = 'about:blank',
 	STR_BODY = 'body',
@@ -42,7 +41,7 @@ var MediaViewerPlugin = A.Component.create(
 				validator: Lang.isObject,
 				value: {
 					'flash': {
-						container: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="{width}" height="{height}"><param name="wmode" value="{wmode}" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="{media}" /><embed src="{media}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="{width}" height="{height}" wmode="{wmode}"></embed></object>',
+						container: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="{width}" height="{height}"><param name="wmode" value="{wmode}" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="sameDomain" /><param name="movie" value="{media}" /><embed src="{media}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="sameDomain" width="{width}" height="{height}" wmode="{wmode}"></embed></object>',
 						matcher: /\b.swf\b/i,
 						options: DEFAULT_OPTIONS,
 						mediaRegex: /([^?&#]+)/
@@ -298,4 +297,4 @@ A.MediaViewerPlugin = MediaViewerPlugin;
 
 A.MediaViewer = A.ImageViewer;
 
-}, '@VERSION@' ,{requires:['aui-image-viewer-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-image-viewer-base']});

@@ -126,7 +126,7 @@ var Chart = A.Component.create(
 				var params = {
 					boundingBox: contentBox,
 					fixedAttributes: {
-						allowScriptAccess: 'always'
+						allowScriptAccess: 'sameDomain'
 					},
 					flashVars: {
 						allowedDomain: DOC.location.hostname
