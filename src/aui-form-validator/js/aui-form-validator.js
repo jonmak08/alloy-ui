@@ -16,6 +16,10 @@ var Lang = A.Lang,
     isString = Lang.isString,
     trim = Lang.trim,
 
+    isNode = function(v) {
+        return (v instanceof A.Node);
+    },
+
     defaults = A.namespace('config.FormValidator'),
 
     getRegExp = A.DOM._getRegExp,
@@ -591,15 +595,17 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Deletes the field from the errors property object.
          *
          * @method clearFieldError
-         * @param field
+         * @param {Node|String} field
          */
         clearFieldError: function(field) {
-            var instance = this;
+            var fieldName = isNode(field) ? field.get('name') : field;
 
-            delete instance.errors[field.get(NAME)];
+            if (isString(fieldName)) {
+                delete this.errors[fieldName];
+            }
         },
 
         /**
@@ -858,26 +864,29 @@ var FormValidator = A.Component.create({
 
             instance.eachRule(
                 function(rule, fieldName) {
-                    var field = instance.getField(fieldName);
-
-                    instance.resetField(field);
+                    instance.resetField(fieldName);
                 }
             );
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Resets the CSS class and error status of a field.
          *
          * @method resetField
-         * @param field
+         * @param {Node|String} field
          */
         resetField: function(field) {
-            var instance = this,
-                stackContainer = instance.getFieldStackErrorContainer(field);
+            var fieldNode,
+                stackContainer;
 
-            stackContainer.remove();
-            instance.resetFieldCss(field);
-            instance.clearFieldError(field);
+            this.clearFieldError(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
+
+            if (isNode(fieldNode)) {
+                stackContainer = this.getFieldStackErrorContainer(fieldNode);
+                stackContainer.remove();
+                this.resetFieldCss(fieldNode);
+            }
         },
 
         /**
@@ -948,16 +957,17 @@ var FormValidator = A.Component.create({
          * @param field
          */
         validateField: function(field) {
-            var instance = this,
-                fieldNode = instance.getField(field);
+            var fieldNode,
+                validatable;
 
-            if (fieldNode) {
-                var validatable = instance.validatable(fieldNode);
+            this.resetField(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
 
-                instance.resetField(fieldNode);
+            if (isNode(fieldNode)) {
+                validatable = this.validatable(fieldNode);
 
                 if (validatable) {
-                    instance.fire(EV_VALIDATE_FIELD, {
+                    this.fire('validateField', {
                         validator: {
                             field: fieldNode
                         }
