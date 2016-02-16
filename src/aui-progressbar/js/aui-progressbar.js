@@ -14,6 +14,7 @@ var L = A.Lang,
 
     BLANK = '',
     DOT = '.',
+    PERCENT = '%',
     SPACE = ' ',
 
     AUTO = 'auto',
@@ -423,6 +424,7 @@ var ProgressBar = A.Component.create({
          */
         _uiSetValue: function(val) {
             var instance = this;
+            var percentStep = instance._getStep();
             var pixelStep = instance._getPixelStep();
 
             var styles = {};
@@ -431,7 +433,7 @@ var ProgressBar = A.Component.create({
                 styles = {
                     height: '100%',
                     top: AUTO,
-                    width: pixelStep + PX
+                    width: percentStep + PERCENT
                 };
             }
             else {
