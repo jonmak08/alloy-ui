@@ -22,6 +22,11 @@
 .basecelleditor-hidden, .datecelleditor-hidden, .dropdowncelleditor-hidden, .textcelleditor-hidden, .textareacelleditor-hidden, .checkboxcelleditor-hidden, .radiocelleditor-hidden, .helper-hidden {
     display: none !important;
 }
+@media (max-width: 991px) {
+  .overlay-focused:focus {
+    outline: 0;
+  }
+}
 .helper-hidden-accessible, .overlay-hidden, .overlaycontext-hidden, .overlaymask-hidden, .date-picker-hidden, .datepicker-hidden, .colorpicker-hidden, .tooltip-hidden {
     clip: rect(0 0 0 0) !important;
     position: absolute !important;
