@@ -15,6 +15,7 @@ var Lang = A.Lang,
     CALENDAR = 'calendar',
     DATE = 'date',
     DATE_CLICK = 'dateClick',
+    KEY_DOWN = 'keydown',
     MULTIPLE = 'multiple',
     PANES = 'panes',
     SELECTION_CHANGE = 'selectionChange',
@@ -197,7 +198,7 @@ A.mix(DatePickerBase.prototype, {
             popover = instance.getPopover();
 
         if (instance.get(ACTIVE_INPUT)) {
-            instance.get(ACTIVE_INPUT).detach('keydown', instance._handleKeydownEvent, instance);
+            instance.get(ACTIVE_INPUT).detach(KEY_DOWN, instance._handleKeydownEvent, instance);
         }
 
         popover.set(TRIGGER, node);
@@ -205,7 +206,7 @@ A.mix(DatePickerBase.prototype, {
 
         instance.alignTo(node);
 
-        node.on('keydown', instance._handleKeydownEvent, instance);
+        node.on(KEY_DOWN, instance._handleKeydownEvent, instance);
 
         instance.clearSelection(true);
         instance.selectDates(instance.getParsedDatesFromInputValue());
