@@ -250,17 +250,6 @@ A.mix(DatePickerBase.prototype, {
         instance._setCalendarToFirstSelectedDate();
     },
 
-    /* TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _fireEnterKey
-     * @protected
-     */
-    _fireEnterKey: function() {
-        var instance = this;
-
-        instance.fire('enterKey');
-    },
-
     /**
     * Handles keydown events
     *
@@ -270,8 +259,8 @@ A.mix(DatePickerBase.prototype, {
     _handleKeydownEvent: function(event) {
         var instance = this;
 
-        if (event.isKey('ENTER')) {
-            instance._fireEnterKey();
+        if (event.isKey('enter')) {
+            instance.fire('enterKey');
         }
     },
 
