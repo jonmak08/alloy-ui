@@ -15,6 +15,7 @@ var Lang = A.Lang,
     CALENDAR = 'calendar',
     DATE = 'date',
     DATE_CLICK = 'dateClick',
+    KEY_DOWN = 'keydown',
     MULTIPLE = 'multiple',
     PANES = 'panes',
     SELECTION_CHANGE = 'selectionChange',
@@ -197,9 +198,20 @@ A.mix(DatePickerBase.prototype, {
             popover = instance.getPopover();
 
         popover.set(TRIGGER, node);
+
+        if (instance.get(ACTIVE_INPUT)) {
+            instance.get(ACTIVE_INPUT).detach(KEY_DOWN, instance._handleKeydownEvent);
+        }
+
         instance.set(ACTIVE_INPUT, node);
 
+
         instance.alignTo(node);
+
+        if (node) {
+            node.on(KEY_DOWN, instance._handleKeydownEvent, instance);
+        }
+
         instance.clearSelection(true);
         instance.selectDates(instance.getParsedDatesFromInputValue());
     },
@@ -246,6 +258,22 @@ A.mix(DatePickerBase.prototype, {
 
         instance._setCalendarToFirstSelectedDate();
     },
+
+    /**
+    * Handles keydown events
+    *
+    * @method _handleKeydownEvent
+    * @protected
+    */
+    _handleKeydownEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('enter')) {
+            instance.fire('enterKey');
+        }
+    },
+
+    /**
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
