@@ -4,9 +4,6 @@ YUI.add('module-tests', function(Y) {
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
-        'test is empty': function() {
-            Y.Assert.pass('No Tests Provided For This Module');
-        },
 
         'enterKey event should fire when enter key is pressed in the active input': function() {
             var enterKeydownCount = 0,
@@ -44,5 +41,5 @@ YUI.add('module-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test']
+    requires: ['test', 'aui-datepicker', 'node-event-simulate']
 });
