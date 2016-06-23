@@ -15,6 +15,7 @@ var Lang = A.Lang,
     CLICK = 'click',
     CONTAINER = 'container',
     DATE_SEPARATOR = 'dateSeparator',
+    EVENT_ENTER_KEY = 'enterKey',
     DATEPICKER_SELECTION = 'datepickerSelection',
     FOCUS = 'focus',
     MASK = 'mask',
@@ -23,6 +24,12 @@ var Lang = A.Lang,
     TRIGGER = 'trigger',
     VALUE_EXTRACTOR = 'valueExtractor',
     VALUE_FORMATTER = 'valueFormatter';
+
+/**
+ * Fired when then enter key is pressed on an input node.
+ *
+ * @event enterKey
+ */
 
 /**
  * A base class for DatePickerDelegate.
@@ -93,6 +100,10 @@ DatePickerDelegate.prototype = {
 
         ];
 
+        instance.after(
+            'activeInputChange',
+            A.bind('_afterActiveInputChangeEvent', instance));
+
         instance.publish(
             SELECTION_CHANGE, {
                 defaultFn: instance._defSelectionChangeFn
@@ -159,6 +170,27 @@ DatePickerDelegate.prototype = {
     },
 
     /**
+    * Fires when the 'activeInput' attribute changes.  The keydown listener is
+    * removed from the old active input and is attached to the new one.
+    *
+    * @method _afterActiveInputChange
+    * @param {EventFacade} event
+    * @protected
+    */
+    _afterActiveInputChange: function(event) {
+        var instance = this;
+
+        if (event.prevVal) {
+            event.prevVal.detach(
+                'keydown', instance._handleKeydownEvent, instance);
+        }
+
+        if (event.newVal) {
+            event.newVal.on('keydown', instance._handleKeydownEvent, instance);
+        }
+    },
+
+    /**
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _defSelectionChangeFn
@@ -193,6 +225,21 @@ DatePickerDelegate.prototype = {
     },
 
     /**
+    * Handles keydown events
+    *
+    * @method _handleKeydownEvent
+    * @param event
+    * @protected
+    */
+    _handleKeydownEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('enter')) {
+            instance.fire(EVENT_ENTER_KEY);
+        }
+    },
+
+    /**
     * Handles tab key events
     *
     * @method _handleTabKeyEvent
@@ -201,6 +248,7 @@ DatePickerDelegate.prototype = {
     _handleTabKeyEvent: function() {
         this.hide();
     },
+
 
     /**
      * Fires once user interacts.

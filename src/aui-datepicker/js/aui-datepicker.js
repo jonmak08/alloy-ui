@@ -200,6 +200,7 @@ A.mix(DatePickerBase.prototype, {
         instance.set(ACTIVE_INPUT, node);
 
         instance.alignTo(node);
+
         instance.clearSelection(true);
         instance.selectDates(instance.getParsedDatesFromInputValue());
     },
