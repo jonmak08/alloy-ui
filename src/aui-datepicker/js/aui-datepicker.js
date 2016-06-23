@@ -200,6 +200,9 @@ A.mix(DatePickerBase.prototype, {
         instance.set(ACTIVE_INPUT, node);
 
         instance.alignTo(node);
+
+        node.on('keydown', instance._handleKeydownEvent, instance);
+
         instance.clearSelection(true);
         instance.selectDates(instance.getParsedDatesFromInputValue());
     },
@@ -245,6 +248,32 @@ A.mix(DatePickerBase.prototype, {
         var instance = this;
 
         instance._setCalendarToFirstSelectedDate();
+    },
+
+    /**
+    * TODO. Wanna help? Please send a Pull Request.
+    *
+    * @method _fireEnterKey
+    * @protected
+    */
+    _fireEnterKey: function() {
+        var instance = this;
+
+        instance.fire('enterKey');
+    },
+
+    /**
+    * Handles keydown events
+    *
+    * @method _handleKeydownEvent
+    * @protected
+    */
+    _handleKeydownEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('ENTER')) {
+            instance._fireEnterKey();
+        }
     },
 
     /**
