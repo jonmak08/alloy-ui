@@ -15,11 +15,18 @@ var Lang = A.Lang,
     CALENDAR = 'calendar',
     DATE = 'date',
     DATE_CLICK = 'dateClick',
+    EVENT_ENTER_KEY = 'enterKey',
     MULTIPLE = 'multiple',
     PANES = 'panes',
     SELECTION_CHANGE = 'selectionChange',
     SELECTION_MODE = 'selectionMode',
     TRIGGER = 'trigger';
+
+/**
+ * Fired when then enter key is pressed on an input node.
+ *
+ * @event enterKey
+ */
 
 /**
  * A base class for DatePickerBase.
@@ -267,7 +274,7 @@ A.mix(DatePickerBase.prototype, {
         var instance = this;
 
         if (event.isKey('enter')) {
-            instance.fire('enterKey');
+            instance.fire(EVENT_ENTER_KEY);
         }
     },
 
