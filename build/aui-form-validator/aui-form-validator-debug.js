@@ -227,7 +227,7 @@ var FormValidator = A.Component.create({
 
 		labelCssClass: {
 			validator: isString,
-			value: 'control-label'
+			value: 'aui-field-label'
 		},
 
 		messageContainer: {
@@ -620,6 +620,7 @@ var FormValidator = A.Component.create({
 		},
 
 		_defErrorFieldFn: function(event) {
+			console.log('_defErrorFieldFn()');
 			var instance = this,
 				ancestor,
 				field,
