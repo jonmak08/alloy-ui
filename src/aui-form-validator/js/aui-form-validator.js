@@ -10,6 +10,10 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	trim = Lang.trim,
 
+	isNode = function(v) {
+		return (v instanceof A.Node);
+	},
+
 	getRegExp = A.DOM._getRegExp,
 
 	FORM_VALIDATOR = 'form-validator',
@@ -423,7 +427,7 @@ var FormValidator = A.Component.create({
 
 		getFieldStackErrorContainer: function(field) {
 			var instance = this,
-				name = field.get(NAME),
+				name = isNode(field) ? field.get('name') : field,
 				stackContainers = instance._stackErrorContainers;
 
 			if (!stackContainers[name]) {
