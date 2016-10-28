@@ -502,15 +502,7 @@ var FormValidator = A.Component.create({
 					}
 				}
 				else if (!field.val()) {
-					namedFieldNodes.each(
-						function(node) {
-							node.removeClass(ERROR_CLASS);
-						}
-					);
-
-					if (fieldContainer) {
-						fieldContainer.removeClass(CONTAINER_ERROR_CLASS);
-					}
+					instance.resetField(fieldName);
 				}
 			}
 		},
