@@ -469,15 +469,27 @@ var FormValidator = A.Component.create({
 
 		highlight: function(field, valid) {
 			var instance = this,
-				fieldContainer = instance.findFieldContainer(field);
+					fieldContainer,
+					fieldName,
+					namedFieldNodes;
 
 			if (field) {
+				fieldContainer = instance.findFieldContainer(field);
+
+				fieldName = field.get('name');
+
 				if (this.validatable(field)) {
-					instance._highlightHelper(
-						field,
-						instance.get(ERROR_CLASS),
-						instance.get(VALID_CLASS),
-						valid
+					namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
+					namedFieldNodes.each(
+						function(node) {
+							instance._highlightHelper(
+								node,
+								instance.get(ERROR_CLASS),
+								instance.get(VALID_CLASS),
+								valid
+							);
+						}
 					);
 
 					if (fieldContainer) {
@@ -490,7 +502,11 @@ var FormValidator = A.Component.create({
 					}
 				}
 				else if (!field.val()) {
-					field.removeClass(ERROR_CLASS);
+					namedFieldNodes.each(
+						function(node) {
+							node.removeClass(ERROR_CLASS);
+						}
+					);
 
 					if (fieldContainer) {
 						fieldContainer.removeClass(CONTAINER_ERROR_CLASS);
@@ -547,11 +563,25 @@ var FormValidator = A.Component.create({
 
 		resetField: function(field) {
 			var instance = this,
-				stackContainer = instance.getFieldStackErrorContainer(field);
+					fieldName,
+					namedFieldNodes,
+					stackContainer;
+
+			fieldName = isNode(field) ? field.get('name') : field;
+
+			instance.clearFieldError(fieldName);
+
+			stackContainer = instance.getFieldStackErrorContainer(fieldName);
 
 			stackContainer.remove();
-			instance.resetFieldCss(field);
-			instance.clearFieldError(field);
+
+			namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
+			namedFieldNodes.each(
+				function(node) {
+					instance.resetFieldCss(node);
+				}
+			);
 		},
 
 		resetFieldCss: function(field) {
