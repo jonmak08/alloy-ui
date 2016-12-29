@@ -16,6 +16,7 @@ var Lang = A.Lang,
     CLICK = 'click',
     CLICKOUTSIDE = 'clickoutside',
     ESC = 'esc',
+    TAB = 'tab',
     KEY = 'key',
     POPOVER = 'popover',
     POPOVER_CSS_CLASS = 'popoverCssClass';
@@ -185,6 +186,11 @@ A.mix(DatePickerPopover.prototype, {
                     node: _DOCUMENT,
                     eventName: KEY,
                     keyCode: ESC
+                },
+                {
+                    node: _DOCUMENT,
+                    eventName: KEY,
+                    keyCode: TAB
                 }
             ],
             position: BOTTOM,
