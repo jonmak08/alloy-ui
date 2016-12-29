@@ -177,6 +177,8 @@ TreeViewIO.prototype = {
 
         var io = instance.get(IO);
 
+        var plid = instance.get('id').match(/plid_(\d+)/)[1];
+
         var args = Array.prototype.slice.call(arguments);
         var length = args.length;
 
@@ -196,7 +198,7 @@ TreeViewIO.prototype = {
         var formatter = io.formatter;
 
         if (formatter) {
-            nodes = formatter(nodes);
+            nodes = formatter(nodes, plid);
         }
 
         instance.createNodes(nodes);
