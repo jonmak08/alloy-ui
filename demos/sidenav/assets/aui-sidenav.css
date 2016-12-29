@@ -1,0 +1,65 @@
+.button {
+	display: inline-block;
+	padding: 6px;
+	vertical-align: top;
+}
+
+.gutter {
+	display: inline-block;
+	width: 15px;
+}
+
+.sidenav-container {
+	background-color: #CCC;
+	display: inline-block;
+	height: 100%;
+	left: 250px;
+	margin-left: -250px;
+	overflow-y: auto;
+	position: fixed;
+	transition: left 0.5s ease-in-out;
+}
+
+.sidenav-container.closed {
+	left: -250px;
+	transition: left 0.5s ease-in-out;
+}
+
+.sidenav-menu-slider {
+	background-color: #CCC;
+	height: 100vh;
+}
+
+.sidenav-right-container {
+	float: right;
+	position: relative;
+	transition: right 0.5s ease-in-out;
+}
+
+.sidenav-right-container.right-closed {
+	transition: width 0.5s ease-in-out;
+	width: 0;
+}
+
+.main-content {
+	display: inline-block;
+	left: 250px;
+	position: relative;
+	transition: left 0.5s ease-in-out;
+	width: 70%;
+}
+
+.main-content.expanded {
+	left: 25px;
+	transition: left 0.5s ease-in-out;
+}
+
+.main-content-right {
+	display: inline-block;
+	left: 25px;
+}
+
+.main-content.expanded-right {
+	transition: width 0.5s ease-in-out;
+	width: 85%;
+}

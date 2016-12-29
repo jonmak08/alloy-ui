@@ -1,0 +1,10 @@
+{
+    "name": "aui-sidenav",
+    "builds": {
+        "aui-sidenav": {
+            "jsfiles": [
+                "js/aui-sidenav.js"
+            ]
+        }
+    }
+}
