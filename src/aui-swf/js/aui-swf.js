@@ -51,7 +51,7 @@ if (UA.gecko || UA.webkit || UA.opera) {
 else if (UA.ie) {
 	try {
 		var activeX6 = new ActiveXObject(SF + '.' + '6');
-		activeX6.AllowScriptAccess = 'always';
+		activeX6.AllowScriptAccess = 'sameDomain';
 	}
 	catch (e) {
 		if (activeX6 != null) {
