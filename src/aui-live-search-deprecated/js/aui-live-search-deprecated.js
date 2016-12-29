@@ -80,8 +80,8 @@ var LiveSearch = A.Component.create(
 		ATTRS: {
 			/**
 			 * <p>Function to extract the content from the node for the indexing. The
-	         * default uses the <code>node.html()</code>. In case if you need to
-	         * index the id of the nodes, here goes one example:</p>
+			 * default uses the <code>node.html()</code>. In case if you need to
+			 * index the id of the nodes, here goes one example:</p>
 			 *
 			 * Example indexing the id of the node instead of the HTML:
 			 *
@@ -103,7 +103,7 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * Number of milliseconds the filter will be applied to the node list
-	         * after the user stop typing.
+			 * after the user stop typing.
 			 *
 			 * @attribute delay
 			 * @default 250
@@ -115,7 +115,7 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * Function to be executed to hide the node when the data of that node
-	         * not matches with the filter.
+			 * not matches with the filter.
 			 *
 			 * @attribute hide
 			 * @default function(node) { return node.hide(); }
@@ -142,7 +142,7 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * The <code>value</code> of this input node is used to filter the
-	         * results.
+			 * results.
 			 *
 			 * @attribute input
 			 * @type Node | String
@@ -153,8 +153,8 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * The input <code>value</code> need to matches with this RegExp to be
-	         * accept as a filter (i.e., in order to accept only digits you
-	         * could use /\d+/g).
+			 * accept as a filter (i.e., in order to accept only digits you
+			 * could use /\d+/g).
 			 *
 			 * @attribute matchRegex
 			 * @default (.)*
@@ -191,7 +191,7 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * Function to be executed to show the node when the data of that node
-	         * matches with the filter.
+			 * matches with the filter.
 			 *
 			 * @attribute show
 			 * @default function(node) { return node.show(); }
@@ -210,7 +210,7 @@ var LiveSearch = A.Component.create(
 		prototype: {
 			/**
 			 * Stores the normalized query value given from
-		     * <a href="LiveSearch.html#config__normalizeQuery">_normalizeQuery</a>.
+			 * <a href="LiveSearch.html#config__normalizeQuery">_normalizeQuery</a>.
 			 *
 			 * @property normalizedQuery
 			 * @type String
@@ -292,7 +292,7 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * Filter the <a href="LiveSearch.html#config_nodes">nodes</a> based on
-		     * the input value.
+			 * the input value.
 			 *
 			 * @method filter
 			 * @param {String} query Query to filter results
@@ -382,7 +382,20 @@ var LiveSearch = A.Component.create(
 				var instance = this;
 
 				if (event.SRC == UI_SRC) {
-					instance.get(INPUT).val(event.newVal);
+					var input = instance.get(INPUT);
+
+					input.val(event.newVal);
+
+					instance.fire(
+						'search',
+						{
+							liveSearch: {
+								inputEvent: {
+									currentTarget: input
+								}
+							}
+						}
+					);
 				}
 			},
 
@@ -471,8 +484,8 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * Normalize the input query. With <code>trim</code>,
-		     * <code>matchRegex</code> and replace '*' to '' (on a regex empty match
-		     * with everything like *).
+			 * <code>matchRegex</code> and replace '*' to '' (on a regex empty match
+			 * with everything like *).
 			 *
 			 * @method _normalizeQuery
 			 * @param {String} query Query to filter results
@@ -500,7 +513,7 @@ var LiveSearch = A.Component.create(
 
 			/**
 			 * Fires the keyup event on
-		     * <a href="LiveSearch.html#config_input">input</a>.
+			 * <a href="LiveSearch.html#config_input">input</a>.
 			 *
 			 * @method _inputKeyUp
 			 * @param {EventFacade} event keyup event facade

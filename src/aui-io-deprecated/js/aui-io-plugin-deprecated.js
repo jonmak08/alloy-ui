@@ -95,7 +95,7 @@ var IOPlugin = A.Component.create(
 		ATTRS: {
 			/**
 			 * Plug IO in any object we want, the setContent will use the node to
-	         * set the content.
+			 * set the content.
 			 *
 			 * @attribute node
 			 * @default null
@@ -155,7 +155,7 @@ var IOPlugin = A.Component.create(
 
 			/**
 			 * If true the <a href="ParseContent.html">ParseContent</a> plugin
-	         * will be plugged to the <a href="A.Plugin.IO.html#config_node">node</a>.
+			 * will be plugged to the <a href="A.Plugin.IO.html#config_node">node</a>.
 			 *
 			 * @attribute parseContent
 			 * @default true
@@ -168,7 +168,7 @@ var IOPlugin = A.Component.create(
 
 			/**
 			 * Show the <a href="LoadingMask.html">LoadingMask</a> covering the <a
-	         * href="A.Plugin.IO.html#config_node">node</a> while loading.
+			 * href="A.Plugin.IO.html#config_node">node</a> while loading.
 			 *
 			 * @attribute showLoading
 			 * @default true
@@ -181,7 +181,7 @@ var IOPlugin = A.Component.create(
 
 			/**
 			 * Section where the content will be set in case you are plugging it
-	         * on a instace of <a href="WidgetStdMod.html">WidgetStdMod</a>.
+			 * on a instace of <a href="WidgetStdMod.html">WidgetStdMod</a>.
 			 *
 			 * @attribute section
 			 * @default StdMod.BODY
@@ -196,7 +196,7 @@ var IOPlugin = A.Component.create(
 
 			/**
 			 * Type of the <code>instance</code> we are pluggin the A.Plugin.IO.
-	         * Could be a Node, or a Widget.
+			 * Could be a Node, or a Widget.
 			 *
 			 * @attribute type
 			 * @default 'Node'

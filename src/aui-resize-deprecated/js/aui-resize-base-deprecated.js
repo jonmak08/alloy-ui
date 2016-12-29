@@ -210,8 +210,8 @@ var Resize = A.Component.create(
 			},
 
 			/**
-	         * False to ensure that the resize handles are always visible, true to
-	         * display them only when the user mouses over the resizable borders.
+			 * False to ensure that the resize handles are always visible, true to
+			 * display them only when the user mouses over the resizable borders.
 			 *
 			 * @attribute autoHide
 			 * @default false
@@ -223,13 +223,13 @@ var Resize = A.Component.create(
 			},
 
 	        /**
-	         * The handles to use (any combination of): 't', 'b', 'r', 'l', 'bl',
-	         * 'br', 'tl', 'tr'. Can use a shortcut of All.
-	         *
-	         * @attribute handles
-	         * @default all
-	         * @type Array | String
-	         */
+			 * The handles to use (any combination of): 't', 'b', 'r', 'l', 'bl',
+			 * 'br', 'tl', 'tr'. Can use a shortcut of All.
+			 *
+			 * @attribute handles
+			 * @default all
+			 * @type Array | String
+			 */
 			handles: {
 				setter: function(val) {
 					var instance = this;
@@ -266,34 +266,34 @@ var Resize = A.Component.create(
 			},
 
 			/**
-	         * The selector or element to resize. Required.
-	         *
-	         * @attribute node
-	         * @type Node
-	         */
+			 * The selector or element to resize. Required.
+			 *
+			 * @attribute node
+			 * @type Node
+			 */
 			node: {
 				setter: A.one
 			},
 
 			/**
-	         * Resize a proxy element instead of the real element.
-	         *
-	         * @attribute proxy
-	         * @default false
-	         * @type boolean
-	         */
+			 * Resize a proxy element instead of the real element.
+			 *
+			 * @attribute proxy
+			 * @default false
+			 * @type boolean
+			 */
 			proxy: {
 				value: false,
 				validator: isBoolean
 			},
 
 			/**
-	         * The Resize proxy element.
-	         *
-	         * @attribute proxyEl
-	         * @default Generated using an internal HTML markup
-	         * @type String | Node
-	         */
+			 * The Resize proxy element.
+			 *
+			 * @attribute proxyEl
+			 * @default Generated using an internal HTML markup
+			 * @type String | Node
+			 */
 			proxyEl: {
 				setter: A.one,
 				valueFn: function() {
@@ -302,12 +302,12 @@ var Resize = A.Component.create(
 			},
 
 			/**
-	         * True when the element is being Resized.
-	         *
-	         * @attribute resizing
-	         * @default false
-	         * @type boolean
-	         */
+			 * True when the element is being Resized.
+			 *
+			 * @attribute resizing
+			 * @default false
+			 * @type boolean
+			 */
 			resizing: {
 				value: false,
 				validator: isBoolean
@@ -315,9 +315,9 @@ var Resize = A.Component.create(
 
 			/**
 			 * True to wrap an element with a div if needed (required for textareas
-	         * and images, defaults to false) in favor of the handles config option.
-	         * The wrapper element type (default div) could be over-riden passing the
-	         * <code>wrapper</code> attribute.
+			 * and images, defaults to false) in favor of the handles config option.
+			 * The wrapper element type (default div) could be over-riden passing the
+			 * <code>wrapper</code> attribute.
 			 *
 			 * @attribute wrap
 			 * @default false
@@ -343,7 +343,7 @@ var Resize = A.Component.create(
 
 			/**
 			 * Elements that requires a wrapper by default. Normally are elements
-	         * which cannot have children elements.
+			 * which cannot have children elements.
 			 *
 			 * @attribute wrapTypes
 			 * @default /canvas|textarea|input|select|button|img/i
@@ -357,7 +357,7 @@ var Resize = A.Component.create(
 
 			/**
 			 * Element to wrap the <code>wrapTypes</code>. This element will house
-	         * the handles elements.
+			 * the handles elements.
 			 *
 			 * @attribute wrapper
 			 * @default div
@@ -689,14 +689,14 @@ var Resize = A.Component.create(
 
 				/**
 				 * Handles the resize start event. Fired when a handle starts to be
-		         * dragged.
+				 * dragged.
 				 *
-		         * @event resize:start
-		         * @preventable _defResizeStartFn
-		         * @param {Event.Facade} event The resize start event.
-		         * @bubbles Resize
-		         * @type {Event.Custom}
-		         */
+				 * @event resize:start
+				 * @preventable _defResizeStartFn
+				 * @param {Event.Facade} event The resize start event.
+				 * @bubbles Resize
+				 * @type {Event.Custom}
+				 */
 				publish(
 					EV_RESIZE_START,
 					this._defResizeStartFn
@@ -704,14 +704,14 @@ var Resize = A.Component.create(
 
 				/**
 				 * Handles the resize event. Fired on each pixel when the handle is
-		         * being dragged.
+				 * being dragged.
 				 *
-		         * @event resize:resize
-		         * @preventable _defResizeFn
-		         * @param {Event.Facade} event The resize event.
-		         * @bubbles Resize
-		         * @type {Event.Custom}
-		         */
+				 * @event resize:resize
+				 * @preventable _defResizeFn
+				 * @param {Event.Facade} event The resize event.
+				 * @bubbles Resize
+				 * @type {Event.Custom}
+				 */
 				publish(
 					EV_RESIZE,
 					this._defResizeFn
@@ -720,12 +720,12 @@ var Resize = A.Component.create(
 				/**
 				 * Handles the resize align event.
 				 *
-		         * @event resize:align
-		         * @preventable _defResizeAlignFn
-		         * @param {Event.Facade} event The resize align event.
-		         * @bubbles Resize
-		         * @type {Event.Custom}
-		         */
+				 * @event resize:align
+				 * @preventable _defResizeAlignFn
+				 * @param {Event.Facade} event The resize align event.
+				 * @bubbles Resize
+				 * @type {Event.Custom}
+				 */
 				publish(
 					EV_RESIZE_ALIGN,
 					this._defResizeAlignFn
@@ -733,14 +733,14 @@ var Resize = A.Component.create(
 
 				/**
 				 * Handles the resize end event. Fired when a handle stop to be
-		         * dragged.
+				 * dragged.
 				 *
-		         * @event resize:end
-		         * @preventable _defResizeEndFn
-		         * @param {Event.Facade} event The resize end event.
-		         * @bubbles Resize
-		         * @type {Event.Custom}
-		         */
+				 * @event resize:end
+				 * @preventable _defResizeEndFn
+				 * @param {Event.Facade} event The resize end event.
+				 * @bubbles Resize
+				 * @type {Event.Custom}
+				 */
 				publish(
 					EV_RESIZE_END,
 					this._defResizeEndFn
@@ -748,14 +748,14 @@ var Resize = A.Component.create(
 
 				/**
 				 * Handles the resize mouseUp event. Fired when a mouseUp event happens on a
-		         * handle.
+				 * handle.
 				 *
-		         * @event resize:mouseUp
-		         * @preventable _defMouseUpFn
-		         * @param {Event.Facade} event The resize mouseUp event.
-		         * @bubbles Resize
-		         * @type {Event.Custom}
-		         */
+				 * @event resize:mouseUp
+				 * @preventable _defMouseUpFn
+				 * @param {Event.Facade} event The resize mouseUp event.
+				 * @bubbles Resize
+				 * @type {Event.Custom}
+				 */
 				publish(
 					EV_MOUSE_UP,
 					this._defMouseUpFn

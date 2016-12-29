@@ -95,7 +95,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Cancel auto hide delay if the user interact with the Overlay
-	         * (focus, click, mouseover)
+			 * (focus, click, mouseover)
 			 *
 			 * @attribute cancellableHide
 			 * @default true
@@ -108,12 +108,12 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * OverlayContext allow multiple elements to be the
-	         * <a href="OverlayContext.html#config_trigger">trigger</a>, the
-	         * currentNode stores the current active one.
+			 * <a href="OverlayContext.html#config_trigger">trigger</a>, the
+			 * currentNode stores the current active one.
 			 *
 			 * @attribute currentNode
 			 * @default First item of the
-	         * <a href="OverlayContext.html#config_trigger">trigger</a> NodeList.
+			 * <a href="OverlayContext.html#config_trigger">trigger</a> NodeList.
 			 * @type Node
 			 */
 			currentNode: {
@@ -145,8 +145,8 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * If true the instance is registered on the
-	         * <a href="OverlayContextManager.html">OverlayContextManager</a> static
-	         * class and will be hide when the user click on document.
+			 * <a href="OverlayContextManager.html">OverlayContextManager</a> static
+			 * class and will be hide when the user click on document.
 			 *
 			 * @attribute hideOnDocumentClick
 			 * @default true
@@ -163,7 +163,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Number of milliseconds after the hide method is invoked to hide the
-	         * OverlayContext.
+			 * OverlayContext.
 			 *
 			 * @attribute hideDelay
 			 * @default 0
@@ -193,7 +193,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Number of milliseconds after the show method is invoked to show the
-	         * OverlayContext.
+			 * OverlayContext.
 			 *
 			 * @attribute showDelay
 			 * @default 0
@@ -208,7 +208,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Node, NodeList or Selector which will be used as trigger elements
-	         * to show or hide the OverlayContext.
+			 * to show or hide the OverlayContext.
 			 *
 			 * @attribute trigger
 			 * @default null
@@ -241,7 +241,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * If true the OverlayContext is visible by default after the render phase.
-	         * Inherited from <a href="Overlay.html">Overlay</a>.
+			 * Inherited from <a href="Overlay.html">Overlay</a>.
 			 *
 			 * @attribute visible
 			 * @default false

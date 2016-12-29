@@ -75,7 +75,7 @@ var OverlayMask = A.Component.create(
 		ATTRS: {
 			/**
 			 * Points to align the <a href="Overlay.html">Overlay</a> used as
-	         * mask.
+			 * mask.
 			 *
 			 * @attribute alignPoints
 			 * @default [ 'tl', 'tl' ]
@@ -108,8 +108,8 @@ var OverlayMask = A.Component.create(
 
 			/**
 			 * Node where the mask will be positioned and re-dimensioned. The
-	         * default is the document, which means that if not specified the mask
-	         * takes the full screen.
+			 * default is the document, which means that if not specified the mask
+			 * takes the full screen.
 			 *
 			 * @attribute target
 			 * @default document
@@ -161,7 +161,7 @@ var OverlayMask = A.Component.create(
 
 			/**
 			 * If true the Overlay is visible by default after the render phase.
-	         * Inherited from <a href="Overlay.html">Overlay</a>.
+			 * Inherited from <a href="Overlay.html">Overlay</a>.
 			 *
 			 * @attribute visible
 			 * @default false

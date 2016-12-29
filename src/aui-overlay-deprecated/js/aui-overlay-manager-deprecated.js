@@ -100,7 +100,7 @@ var Lang = A.Lang,
 				 *
 				 * @method bringToTop
 				 * @param {Overlay} overlay Instance of
-		         * <a href="Overlay.html">Overlay</a>.
+				 * <a href="Overlay.html">Overlay</a>.
 				 */
 				bringToTop: function(overlay) {
 					var instance = this;
@@ -134,7 +134,7 @@ var Lang = A.Lang,
 
 				/**
 				 * Register the passed <a href="Overlay.html">Overlay</a> to this
-		         * OverlayManager.
+				 * OverlayManager.
 				 *
 				 * @method register
 				 * @param {Overlay} overlay <a href="Overlay.html">Overlay</a> instance to be registered
@@ -178,7 +178,7 @@ var Lang = A.Lang,
 
 				/**
 				 * Remove the passed <a href="Overlay.html">Overlay</a> from this
-		         * OverlayManager.
+				 * OverlayManager.
 				 *
 				 * @method remove
 				 * @param {Overlay} overlay <a href="Overlay.html">Overlay</a> instance to be removed
@@ -198,11 +198,11 @@ var Lang = A.Lang,
 
 				/**
 				 * Loop through all registered <a href="Overlay.html">Overlay</a> and
-		         * execute a callback.
+				 * execute a callback.
 				 *
 				 * @method each
 				 * @param {function} fn Callback to be executed on the
-		         * <a href="Array.html#method_each">Array.each</a>
+				 * <a href="Array.html#method_each">Array.each</a>
 				 * @return {null}
 				 */
 				each: function(fn) {
@@ -215,7 +215,7 @@ var Lang = A.Lang,
 
 				/**
 				 * Invoke the <a href="Overlay.html#method_show">show</a> method from
-		         * all registered Overlays.
+				 * all registered Overlays.
 				 *
 				 * @method showAll
 				 */
@@ -229,7 +229,7 @@ var Lang = A.Lang,
 
 				/**
 				 * Invoke the <a href="Overlay.html#method_hide">hide</a> method from
-		         * all registered Overlays.
+				 * all registered Overlays.
 				 *
 				 * @method hideAll
 				 */
@@ -283,7 +283,7 @@ var Lang = A.Lang,
 
 				/**
 				 * Mousedown event handler, used to invoke
-		         * <a href="OverlayManager.html#method_bringToTop">bringToTop</a>.
+				 * <a href="OverlayManager.html#method_bringToTop">bringToTop</a>.
 				 *
 				 * @method _onMouseDown
 				 * @param {EventFacade} event
@@ -301,8 +301,8 @@ var Lang = A.Lang,
 
 				/**
 				 * Fires when the <a href="Widget.html#config_focused">focused</a>
-		         * attribute change. Used to invoke
-		         * <a href="OverlayManager.html#method_bringToTop">bringToTop</a>.
+				 * attribute change. Used to invoke
+				 * <a href="OverlayManager.html#method_bringToTop">bringToTop</a>.
 				 *
 				 * @method _onFocusedChange
 				 * @param {EventFacade} event
