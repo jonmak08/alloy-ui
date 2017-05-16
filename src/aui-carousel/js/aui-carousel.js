@@ -78,6 +78,8 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
         });
 
         this._bindPauseOnHover();
+
+        this._bindFocusManager();
     },
 
     /**
@@ -88,6 +90,12 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
      */
     syncUI: function() {
         this._syncNodeMenuPositionUI();
+
+        // if (this.get('accessible')) {
+        //     // this.plug(A.Plugin.PaginationAccessibility);
+        // }
+
+        this._setInitAriaState();
     },
 
     /**
@@ -187,6 +195,24 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
             this.get('nodeMenuItemSelector'),
             this
         );
+    },
+
+    /**
+     * Setup the `Plugin.NodeFocusManager` that handles keyboard
+     * navigation.
+     *
+     * @method _bindFocusManager
+     * @protected
+     */
+    _bindFocusManager: function() {
+        var boundingBox = this.get('boundingBox');
+        var config = this.get('focusManagerConfig');
+
+        boundingBox.plug(A.Plugin.NodeFocusManager, config);
+
+
+
+
     },
 
     /**
@@ -407,6 +433,20 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
     },
 
     /**
+     * Sets initial ARIA-WAI state.
+     *
+     * @method _setInitAriaState
+     * @protected
+     */
+    _setInitAriaState: function() {
+        // var boundingBox = this.get('boundingBox');
+
+        // set roles
+
+        // set attributes
+    },
+
+    /**
      * Set the `nodeMenu` attribute.
      *
      * @method _setNodeMenu
@@ -502,6 +542,18 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
      */
     ATTRS: {
         /**
+         * Boolean indicating if accessibility should be enabled.
+         *
+         * @attribute accessible
+         * @default true
+         * @type Boolean
+         */
+        // accessible: {
+        //     value: true,
+        //     validator: A.Lang.isBoolean
+        // },
+
+        /**
          * If the carousel will be circular or not.
          *
          * @attribute circular
@@ -541,6 +593,26 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
             },
             value: null,
             validator: A.Lang.isNode
+        },
+
+        /**
+         * Config object for `Plugin.NodeFocusManager`,
+         *
+         * @attribute focusManagerConfig
+         * @default Config object
+         * @type Object
+         */
+        focusManagerConfig: {
+            value: {
+                descendants: 'div',
+                keys: {
+                    next: 'down:40', // Down arrow
+                    previous: 'down:38' // Up arrow
+                },
+                focusClass: 'focused',
+                circular: true
+            },
+            validator: A.Lang.isObject
         },
 
         /**
