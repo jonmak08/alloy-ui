@@ -57,29 +57,10 @@
         </div>
     </div>
 
-    <h2>With slideshow</h2>
-    <div id="slideshow"></div>
-
     <script>
         YUI({ filter: 'raw' }).use(
             'aui-image-viewer-base',
-            'aui-image-viewer-slideshow',
             function(Y) {
-                var ImageViewerWithSlideshow = Y.Base.create(
-                    'viewer-slideshow',
-                    Y.ImageViewerBase,
-                    [Y.ImageViewerSlideshow]
-                );
-                ImageViewerWithSlideshow.CSS_PREFIX = 'image-viewer-base';
-                new ImageViewerWithSlideshow({
-                    intervalTime: 4,
-                    sources: [
-                        'assets/lfr-soccer-1.jpg',
-                        'assets/lfr-soccer-2.jpg',
-                        'assets/lfr-soccer-3.jpg',
-                    ]
-                }).render('#slideshow');
-
                 new Y.ImageViewerBase({
                     boundingBox: '#boundingBox',
                     srcNode: '#srcNode'

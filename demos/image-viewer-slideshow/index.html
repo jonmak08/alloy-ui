@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+        .image-viewer-base-control {
+            bottom: 0;
+            color: black;
+            padding: 5px;
+            text-align: center;
+            top: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .image-viewer-base-control-right {
+            right: 0;
+        }
+
+        .image-viewer-base-image-list {
+            display: inline-block;
+            overflow: hidden;
+            text-align: center;
+            width: 100%;
+        }
+
+        .image-viewer-base-image {
+            display: inline;
+            max-width: 100%
+        }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - Image Viewer Slideshow</h1>
+
+    <h2>With slideshow</h2>
+
+    <div style="height: 350px; width: 560px;">
+        <div id="slideshow"></div>
+    </div>
+
+    <script>
+        YUI({ filter: 'raw' }).use(
+            'aui-image-viewer-base',
+            'aui-image-viewer-slideshow',
+            function(Y) {
+                var ImageViewerWithSlideshow = Y.Base.create(
+                    'viewer-slideshow',
+                    Y.ImageViewerBase,
+                    [Y.ImageViewerSlideshow]
+                );
+                ImageViewerWithSlideshow.CSS_PREFIX = 'image-viewer-base';
+                new ImageViewerWithSlideshow({
+                    intervalTime: 4,
+                    sources: [
+                        'assets/lfr-soccer-1.jpg',
+                        'assets/lfr-soccer-2.jpg',
+                        'assets/lfr-soccer-3.jpg',
+                    ]
+                }).render('#slideshow');
+            }
+        );
+    </script>
+</body>
+</html>
