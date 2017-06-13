@@ -1102,6 +1102,13 @@
             "aui-map"
         ]
     },
+    "aui-sidenav": {
+        "requires": [
+            "anim",
+            "aui-node",
+            "aui-component"
+        ]
+    },
     "aui-simple-anim-deprecated": {
         "requires": [
             "aui-base-deprecated"

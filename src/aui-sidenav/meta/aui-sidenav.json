@@ -1,0 +1,10 @@
+{
+    "aui-sidenav": {
+        "requires": [
+        	"anim",
+            "aui-node",
+            "aui-component"
+        ]
+    }
+}
+
