@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
     <style>
-        #srcNode {
-            position: relative;
-            white-space: nowrap;
-        }
-
         .image-viewer-base-control {
             bottom: 0;
             color: black;
@@ -40,26 +35,16 @@
     </style>
 </head>
 <body class="yui3-skin-sam">
-    <h1>AlloyUI - Image Viewer Base</h1>
+    <h1>AlloyUI - Image Viewer Slideshow</h1>
     <p>Some content before Carousel.</p>
     <p><a href="#">2 Some content before Carousel.</a></p>
-    <h2>Sources from DOM</h2>
+
+    <h2>With slideshow</h2>
+
     <div style="height: 350px; width: 560px;">
-        <div id="boundingBox">
-            <div id="srcNode">
-                <a href="#" class="image-viewer-base-control image-viewer-base-control-left invisible"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <div class="image-viewer-base-image-list">
-                    <img class="image-viewer-base-image" src="assets/lfr-soccer-1.jpg"></img>
-                    <span class="image-viewer-base-image">
-                        <img src="assets/lfr-soccer-4.jpg"></img>
-                    </span>
-                    <div class="image-viewer-base-image" style="background: url(assets/lfr-soccer-2.jpg); width: 500px; height: 333px;"></div>
-                    <img class="image-viewer-base-image" style="display: none;" src="assets/lfr-soccer-3.jpg"></img>
-                </div>
-                <a href="#" class="image-viewer-base-control image-viewer-base-control-right"><span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
+        <div id="slideshow"></div>
     </div>
+
     <p>1 Some content after Carousel.</p>
     <p><a href="#">2 Some content after Carousel.</a></p>
     <p>3 Some content after Carousel.</p>
@@ -70,11 +55,22 @@
     <script>
         YUI({ filter: 'raw' }).use(
             'aui-image-viewer-base',
+            'aui-image-viewer-slideshow',
             function(Y) {
-                new Y.ImageViewerBase({
-                    boundingBox: '#boundingBox',
-                    srcNode: '#srcNode'
-                }).render();
+                var ImageViewerWithSlideshow = Y.Base.create(
+                    'viewer-slideshow',
+                    Y.ImageViewerBase,
+                    [Y.ImageViewerSlideshow]
+                );
+                ImageViewerWithSlideshow.CSS_PREFIX = 'image-viewer-base';
+                new ImageViewerWithSlideshow({
+                    intervalTime: 4,
+                    sources: [
+                        'assets/lfr-soccer-1.jpg',
+                        'assets/lfr-soccer-2.jpg',
+                        'assets/lfr-soccer-3.jpg',
+                    ]
+                }).render('#slideshow');
             }
         );
     </script>

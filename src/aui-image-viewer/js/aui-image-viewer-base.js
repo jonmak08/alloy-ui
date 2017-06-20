@@ -97,6 +97,8 @@ A.ImageViewerBase = A.Base.create(
             );
 
             this._bindControls();
+
+            this._bindFocusManager();
         },
 
         /**
@@ -248,6 +250,55 @@ A.ImageViewerBase = A.Base.create(
         },
 
         /**
+         * Setup the `Plugin.NodeFocusManager` that handles keyboard
+         * navigation.
+         *
+         * @method _bindFocusManager
+         * @protected
+         */
+        _bindFocusManager: function() {
+            var boundingBox = this.get('boundingBox');
+            var circular = this.get('circular');
+            var imageContainers = this._getCurrentImageContainers();
+            var focusClass = this.get('focusClass');
+            var keyMap = this.get('keyMap');
+
+            boundingBox.plug(
+                A.Plugin.NodeFocusManager,
+                {
+                    activeDescendant: 0,
+                    circular: circular,
+                    descendants: imageContainers,
+                    focusClass: focusClass,
+                    keys: keyMap
+                }
+            );
+
+            var focusManager = this._focusManager = boundingBox.focusManager;
+
+            focusManager.after(
+                'focusedChange',
+                function(event) {
+                    // if (!event.newVal) {
+                           // May not want this. Would always have to start at the beginning.
+                    //     this.set('activeDescendant', 0);
+                    // }
+
+                    // DEBUG
+                    if (event.newVal) {
+                        console.log('The image viewer has focus');
+                    }
+                    else {
+                        console.log('The image viewer lost focus');
+                    }
+                }
+            );
+
+            boundingBox.delegate('keydown', instance._handleKeyDown, imageContainers, instance);
+
+        },
+
+        /**
          * Default behavior for animating the current image in the viewer.
          *
          * @method _defAnimateFn
@@ -298,6 +349,16 @@ A.ImageViewerBase = A.Base.create(
         },
 
         /**
+         * Returns a Nodelist of all container nodes.
+         *
+         * @method _getCurrentImageContainers
+         * @protected
+         */
+        _getCurrentImageContainers: function() {
+            return this.get('contentBox').all('.' + CSS_IMAGE_CONTAINER);
+        }
+
+        /**
          * Returns the container node at the requested index.
          *
          * @method _getImageContainerAtIndex
@@ -306,6 +367,40 @@ A.ImageViewerBase = A.Base.create(
          */
         _getImageContainerAtIndex: function(index) {
             return this.get('contentBox').all('.' + CSS_IMAGE_CONTAINER).item(index);
+        },
+
+        /**
+         * Fired when the user presses a key on the keyboard.
+         *
+         * @method _handleKeyDown
+         * @param {EventFacade} event
+         * @protected
+         */
+        _handleKeyDown: function(event) {
+            var handler;
+
+            if (event.isKey('TAB') || event.isKey('ESC')) {
+                handler = '_handleExit';
+            }
+
+            if (handler) {
+                this[handler](event);
+            }
+        },
+
+        /**
+         * Fired when the user presses an exit key.
+         *
+         * @method _handleExit
+         * @param {EventFacade} event
+         * @protected
+         */
+        _handleExit: function(event) {
+            var focusManager = this._focusManager;
+
+            if (focusManager.get('activeDescendant')) {
+                focusManager.blur();
+            }
         },
 
         /**
@@ -693,6 +788,41 @@ A.ImageViewerBase = A.Base.create(
                 validator: function(val) {
                     return A.Lang.isNumber(val) || A.Lang.isString(val);
                 }
+            },
+
+            /**
+             * Class name used to indicate which image container has
+             * focus.
+             *
+             * @attribute focusClass
+             * @default 'focus'
+             * @type String
+             */
+            focusClass: {
+                value: 'focus',
+                validator: A.Lang.isString
+            },
+
+            /**
+             * Object used to configure the keys used to navigate
+             * between image containers and exit the image viewer.
+             *
+             * @attribute keyMap
+             * @default {next: 'down:40', previous: 'down:38'}
+             * @type Object
+             */
+            keyMap: {
+                value: {
+                    exit: [
+                        'down:9', // Tab
+                        'down:27' // Esc
+                    ],
+                    // next: 'down:40', // Down arrow
+                    // previous: 'down:38' // Up arrow
+                    next: 'down:39', // Right arrow
+                    previous: 'down:37' // Left arrow
+                },
+                validator: A.Lang.isObject
             },
 
             /**
