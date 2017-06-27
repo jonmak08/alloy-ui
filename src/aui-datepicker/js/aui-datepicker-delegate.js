@@ -352,18 +352,21 @@ DatePickerDelegate.prototype = {
      * @protected
      */
     _onceUserInteraction: function(event) {
-        var instance = this,
-            calendarClassName = A.one('#' + instance.getCalendar()._calendarId)._node.parentNode.parentNode.parentNode.parentNode.parentNode.className;
+        var instance = this;
 
         instance.useInputNodeOnce(event.currentTarget);
 
         instance._userInteractionInProgress = true;
 
-        if(correspondingNode && instance._userInteractionInProgress && !calendarClassName.includes('popover-hidden')) {
-            correspondingNode.focus();
-        }
+        if(event.currentTarget._node.parentNode.id !== 'delegateNative') {
+            var calendarClassName = A.one('#' + instance.getCalendar()._calendarId)._node.parentNode.parentNode.parentNode.parentNode.parentNode.className;
 
-        instance._focusOnActiveCalendarNode();
+            if(correspondingNode && instance._userInteractionInProgress && !calendarClassName.includes('popover-hidden')) {
+                correspondingNode.focus();
+            }
+
+            instance._focusOnActiveCalendarNode();
+        }
     },
 
     /**
