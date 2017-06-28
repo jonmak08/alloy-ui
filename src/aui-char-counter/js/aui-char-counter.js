@@ -80,11 +80,14 @@ var CharCounter = A.Component.create({
         label: {
             validator: isString,
             valueFn: function() {
-                var instance = this,
-                    counter = instance.get('counter');
+                var instance = this;
+
+                if (!counter) {
+                    var counter = instance.get('counter');
+                }
 
                 if (counter) {
-                    var labelName = parent.text().match(REGEX_STR),
+                    var labelName =  counter._node.nextSibling.toString().match(REGEX_STR),
                         maxLength = instance.get('maxLength');
                 }
 
@@ -92,7 +95,6 @@ var CharCounter = A.Component.create({
                     labelName = maxLength + ' ' + labelName;
                     return labelName;
                 }
-
                 return maxLength;
             }
         },
@@ -400,10 +402,10 @@ var CharCounter = A.Component.create({
          * @protected
          */
         _updateAriaLabel: function(counterValue) {
-            var instance = this;
-            input = instance.get('input'),
-            parent = instance.get('counter').get('parentNode'),
-            labelName = parent.text().match(REGEX_STR);
+            var instance = this,
+                input = instance.get('input'),
+                parent = instance.get('counter').get('parentNode'),
+                labelName = parent.text().match(REGEX_STR);
 
             if (!labelName) {
                 labelName = counterValue;
