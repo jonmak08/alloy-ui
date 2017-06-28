@@ -57,10 +57,15 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
 
         buttonSwitch.append(content);
         buttonSwitch.setAttribute('role', 'switch');
-
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
         this._uiSetInnerLabelRight(this.get('innerLabelRight'));
+
+        if (this.get('activated')) {
+            buttonSwitch.setAttribute('aria-checked', 'true');
+        } else {
+            buttonSwitch.setAttribute('aria-checked', 'false');
+        }
     },
 
     /**
@@ -127,6 +132,12 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      */
     _onButtonSwitchInteraction: function() {
         this.set('activated', !this.get('activated'));
+
+        if (this.get('activated')) {
+            this.get('contentBox').setAttribute('aria-checked', 'true');
+        } else {
+            this.get('contentBox').setAttribute('aria-checked', 'false');
+        }
     },
 
     /**
