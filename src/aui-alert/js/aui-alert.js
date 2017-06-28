@@ -40,6 +40,9 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     renderUI: function() {
         this._uiSetCloseable(this.get('closeable'));
+        var alertDiv = this._stdModNode._node;
+        A.one(alertDiv).set('role', 'alert');
+        A.one(alertDiv).all('button').set('aria-hidden', 'true');
     },
 
     /**
@@ -140,12 +143,12 @@ A.Alert = A.Base.create('alert', A.Widget, [
          * Node used to generate a close button.
          *
          * @attribute closeableNode
-         * @default `<button type="button" class="close">×</button>`
+         * @default `<button aria-hidden"true" type="button" class="close">×</button>`
          * @type {Node}
          */
         closeableNode: {
             valueFn: function() {
-                return A.Node.create('<button type="button" class="close">×</button>');
+                return A.Node.create('<button aria-hidden="true" type="button" class="close">×</button>');
             }
         },
 
