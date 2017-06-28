@@ -52,9 +52,11 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     renderUI: function() {
+        var buttonSwitch = this.get('contentBox');
         var content = this.get('content');
 
-        this.get('contentBox').append(content);
+        buttonSwitch.append(content);
+        buttonSwitch.setAttribute('role', 'switch');
 
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
