@@ -137,6 +137,31 @@ YUI.add('aui-datepicker-tests', function(Y) {
             Y.Assert.areEqual(5, selectionChangeCount);
         },
 
+        'enterKey should open up calendar when focus is on element': function() {
+            var test = this,
+                trigger = Y.one('#trigger');
+
+            this.datePicker = new Y.DatePicker({
+                trigger: '#trigger'
+            });
+
+            function calendarIsHidden() {
+                return this.datePicker.getCalendar()._parentNode._node.parentNode.parentNode.className.includes('popover-hidden');
+            };
+
+            calendarIsHidden = calendarIsHidden.bind(this)
+
+            Y.Assert.areEqual(true, calendarIsHidden());
+
+            trigger.simulate('focus');
+
+            trigger.simulate('keydown', { keyCode: 13 });
+
+            Y.Assert.areEqual(false, calendarIsHidden());
+
+            Y.one('body')._node.click();
+        },
+
         'enterKey event should fire when enter key is pressed in the active input': function() {
             var test = this,
                 enterKeydownCount = 0,
