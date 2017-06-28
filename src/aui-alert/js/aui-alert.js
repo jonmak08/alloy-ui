@@ -46,6 +46,28 @@ A.Alert = A.Base.create('alert', A.Widget, [
     },
 
     /**
+     * Adds role of alert to the Alert component instance.
+     *
+     * @method setAlertRole
+     * @protected
+     */
+    setAlertRole: function() {
+        var alertDiv = this._stdModNode._node;
+        A.one(alertDiv).set('role', 'alert');
+    },
+
+    /**
+     * Adds aria-hidden = true to the Alert button.
+     *
+     * @method setButtonAriaHidden
+     * @protected
+     */
+    setButtonAriaHidden: function() {
+        var alertDiv = this._stdModNode._node;
+        A.one(alertDiv).all('button').set('aria-hidden', 'true');
+    },
+
+    /**
      * Binds the events on the Alert UI. Lifecycle.
      *
      * @method bindUI

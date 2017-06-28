@@ -34,6 +34,24 @@ YUI.add('aui-alert-tests', function(Y) {
             Assert.isFalse(alert2.get('closeable'));
         },
 
+        'should check that alerts have role set to alert': function () {
+            var alert1Role = Y.one('#info').getAttribute('role');
+            var alert2Role = Y.one('#danger').getAttribute('role');
+            var alert3Role = Y.one('#warning').getAttribute('role');
+
+            Assert.isTrue(alert1Role == 'alert');
+            Assert.isTrue(alert2Role == 'alert');
+            Assert.isTrue(alert3Role == 'alert');
+        },
+
+        'should check that alert buttons have aria hidden set to true': function () {
+            var alert1ButtonAriaHidden = Y.one('#info').all('button').getAttribute('aria-hidden');
+            var alert3ButtonAriaHidden = Y.one('#warning').all('button').getAttribute('aria-hidden');
+
+            Assert.isTrue(alert1ButtonAriaHidden == 'true');
+            Assert.isTrue(alert3ButtonAriaHidden == 'true');
+        },
+
         'should not be the close button when closeable is false': function() {
             alert1.set('closeable', false);
             alert3.set('closeable', false);
