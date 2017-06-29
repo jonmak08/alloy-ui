@@ -40,7 +40,7 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
             content.simulate('click');
-            
+
             Y.Assert.isTrue(buttonSwitch.get('activated'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
@@ -57,7 +57,7 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
             content.simulate('click');
-            
+
             Y.Assert.isFalse(this._buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
@@ -128,6 +128,13 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isFalse(buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
+        },
+
+        'shouuld have role="switch" attribute in the button': function() {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            Y.Assert.isTrue(content.getAttribute('role') == 'switch');
         }
     }));
 
