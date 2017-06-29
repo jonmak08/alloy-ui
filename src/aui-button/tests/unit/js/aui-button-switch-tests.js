@@ -135,6 +135,22 @@ YUI.add('aui-button-switch-tests', function(Y) {
                 content = buttonSwitch.get('content');
 
             Y.Assert.isTrue(content.getAttribute('role') == 'switch');
+        },
+
+        'should toggle aria-checked attribute on interaction': function() {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.getAttribute('aria-checked') == 'true');
+
+            content.simulate('click');
+            Y.Assert.isTrue(buttonSwitch.get('activated'));
+            Y.Assert.isTrue(content.getAttribute('aria-checked') == 'true');
+
+            content.simulate('click');
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.getAttribute('aria-checked') == 'true');
         }
     }));
 
