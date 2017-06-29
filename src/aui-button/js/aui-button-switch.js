@@ -60,15 +60,15 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         var content = this.get('content');
 
         buttonSwitch.append(content);
-        buttonSwitch.setAttribute('role', 'switch');
+        content.setAttribute('role', 'switch');
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
         this._uiSetInnerLabelRight(this.get('innerLabelRight'));
 
         if (this.get('activated')) {
-            buttonSwitch.setAttribute('aria-checked', 'true');
+            content.setAttribute('aria-checked', true);
         } else {
-            buttonSwitch.setAttribute('aria-checked', 'false');
+            content.setAttribute('aria-checked', false);
         }
     },
 
@@ -138,9 +138,9 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         this.set('activated', !this.get('activated'));
 
         if (this.get('activated')) {
-            this.get('contentBox').setAttribute('aria-checked', 'true');
+            this.get('content').setAttribute('aria-checked', true);
         } else {
-            this.get('contentBox').setAttribute('aria-checked', 'false');
+            this.get('content').setAttribute('aria-checked', false);
         }
     },
 
