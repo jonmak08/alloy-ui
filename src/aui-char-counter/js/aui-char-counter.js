@@ -236,7 +236,7 @@ var CharCounter = A.Component.create({
                     attributes: {
                         live: 'live',
                         label: 'label',
-                        maxLength: 'valuemax',
+                        label: 'valuenow', // Allow screen reader to read current number of characters remaining.
                     },
                     attributeNode: instance.get('input'),
                     roleName: 'textbox',
@@ -411,7 +411,8 @@ var CharCounter = A.Component.create({
                 labelName = counterValue;
             }
 
-            input.setAttribute('aria-label', labelName);
+            input.setAttribute('aria-valuenow', labelName);
+            input.setAttribute('aria-label', input.get('role') + ' with ' + labelName);
         },
     }
 });
