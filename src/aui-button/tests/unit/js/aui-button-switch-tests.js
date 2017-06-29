@@ -81,11 +81,11 @@ YUI.add('aui-button-switch-tests', function(Y) {
             var buttonSwitch = this._buttonSwitch,
                 content = buttonSwitch.get('content');
 
-            Y.Assert.isFalse(this._buttonSwitch.get('activated'));
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
-            this._buttonSwitch.get('content').simulate('keydown', {
+            buttonSwitch.get('content').simulate('keydown', {
                 keyCode: 13
             });
 
@@ -98,11 +98,11 @@ YUI.add('aui-button-switch-tests', function(Y) {
             var buttonSwitch = this._buttonSwitch,
                 content = buttonSwitch.get('content');
 
-            Y.Assert.isFalse(this._buttonSwitch.get('activated'));
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
-            this._buttonSwitch.get('content').simulate('keydown', {
+            buttonSwitch.get('content').simulate('keydown', {
                 keyCode: 32
             });
 
@@ -115,17 +115,35 @@ YUI.add('aui-button-switch-tests', function(Y) {
             var buttonSwitch = this._buttonSwitch,
                 content = buttonSwitch.get('content');
 
-            Y.Assert.isFalse(this._buttonSwitch.get('activated'));
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
-            this._buttonSwitch.get('content').simulate('keydown', {
+            buttonSwitch.get('content').simulate('keydown', {
                 keyCode: 39
             });
 
             Y.Assert.isTrue(buttonSwitch.get('activated'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
+        },
+
+        'should deactivate on key leftarrow interaction': function () {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            buttonSwitch.set('activated', true);
+            Y.Assert.isTrue(buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
+
+            buttonSwitch.get('content').simulate('keydown', {
+                keyCode: 37
+            });
+
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
         },
 
         'should toggle on interaction': function () {
