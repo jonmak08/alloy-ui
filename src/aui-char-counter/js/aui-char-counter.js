@@ -87,7 +87,7 @@ var CharCounter = A.Component.create({
                 }
 
                 if (counter) {
-                    var labelName =  counter._node.nextSibling.toString().match(REGEX_STR),
+                    var labelName = counter._node.nextSibling.toString().match(REGEX_STR),
                         maxLength = instance.get('maxLength');
                 }
 
@@ -123,7 +123,8 @@ var CharCounter = A.Component.create({
         maxLength: {
             lazyAdd: false,
             setter: function(v) {
-                return this._setMaxLength(v);
+                var instance = this;
+                return instance._setMaxLength(v);
             },
             validator: isNumber,
             value: Infinity
@@ -403,13 +404,20 @@ var CharCounter = A.Component.create({
          */
         _updateAriaLabel: function(counterValue) {
             var instance = this,
-                input = instance.get('input'),
-                parent = instance.get('counter').get('parentNode'),
-                labelName = parent.text().match(REGEX_STR);
+                input = instance.get('input');
 
-            if (!labelName) {
-                labelName = counterValue;
+            if (!counter) {
+                var counter = instance.get('counter');
             }
+
+            if (counter) {
+                var counterText = counter._node.nextSibling.textContent.match(REGEX_STR);
+            }
+            else {
+                var counterText = '';
+            }
+
+            var labelName = counterValue + ' ' + counterText;
 
             input.setAttribute('aria-valuenow', labelName);
             input.setAttribute('aria-label', input.get('role') + ' with ' + labelName);
