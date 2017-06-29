@@ -114,7 +114,14 @@ A.mix(CellEditorSupport.prototype, {
      * @protected
      */
     _afterCellEditorSupportRender: function() {
-        var instance = this;
+        var instance = this,
+            tableHeaderArray = A.all('.table-header');
+
+        tableHeaderArray._nodes.forEach(function(header) {
+            if(!header.children.length > 0 ) {
+                header.setAttribute('tabindex', '0');
+            }
+        });
 
         instance._syncModelsReadOnlyUI();
 
