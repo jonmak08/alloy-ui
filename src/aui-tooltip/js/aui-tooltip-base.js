@@ -80,6 +80,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
 
         contentBox.addClass(CSS_TOOLTIP_INNER);
         boundingBox.append(A.Tooltip.TEMPLATES.arrow);
+        contentBox.setAttribute('role', 'tooltip');
     },
 
     /**
@@ -210,6 +211,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      */
     _onBoundingBoxMouseenter: function() {
         this.show();
+        console.log(this.bodyNode._node);
     },
 
     /**
