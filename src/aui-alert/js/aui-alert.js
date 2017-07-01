@@ -41,19 +41,34 @@ A.Alert = A.Base.create('alert', A.Widget, [
     renderUI: function() {
         this._uiSetCloseable(this.get('closeable'));
         var alertDiv = this._stdModNode._node;
-        A.one(alertDiv).set('role', 'alert');
         A.one(alertDiv).all('button').set('aria-hidden', 'true');
+
+        if (this.get('role')) {
+            console.log('role is ' + this.get('role'));
+        } else {
+            console.log('role is ' + this.get('role'));
+        }
+
+        var role = this.get('role');
+
+        if (role) {
+            A.one(alertDiv).set('role', role);
+        }
     },
 
     /**
-     * Adds role of alert to the Alert component instance.
+     * Sets the role attribute.
      *
-     * @method setAlertRole
+     * @method _setRole
      * @protected
      */
-    setAlertRole: function() {
-        var alertDiv = this._stdModNode._node;
-        A.one(alertDiv).set('role', 'alert');
+    _setRole: function() {
+        var alertDiv = this._stdModNode._node,
+            role = this.get('role');
+
+        if (role) {
+            A.one(alertDiv).set('role', role);
+        }
     },
 
     /**
@@ -183,6 +198,17 @@ A.Alert = A.Base.create('alert', A.Widget, [
          */
         cssClass: {
             value: CSS_INFO
+        },
+
+        /**
+         * Role attribute for alert.
+         *
+         * @attribute role
+         * @default 'alert'
+         * @type {Boolean}
+         */
+        role: {
+            value: 'alert'
         },
 
         /**
