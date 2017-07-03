@@ -40,20 +40,8 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     renderUI: function() {
         this._uiSetCloseable(this.get('closeable'));
-        var alertDiv = this._stdModNode._node;
-        A.one(alertDiv).all('button').set('aria-hidden', 'true');
-
-        if (this.get('role')) {
-            console.log('role is ' + this.get('role'));
-        } else {
-            console.log('role is ' + this.get('role'));
-        }
-
-        var role = this.get('role');
-
-        if (role) {
-            A.one(alertDiv).set('role', role);
-        }
+        this._setRole();
+        this._setButtonAriaHidden();
     },
 
     /**
@@ -63,23 +51,22 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     _setRole: function() {
-        var alertDiv = this._stdModNode._node,
-            role = this.get('role');
+        var role = this.get('role');
+            contentBox = this.get('contentBox');
 
         if (role) {
-            A.one(alertDiv).set('role', role);
+            contentBox.set('role', role);
         }
     },
 
     /**
-     * Adds aria-hidden = true to the Alert button.
+     * Adds aria-hidden attribute to the alert button is useARIA is enabled.
      *
-     * @method setButtonAriaHidden
+     * @method _setButtonAriaHidden
      * @protected
      */
-    setButtonAriaHidden: function() {
-        var alertDiv = this._stdModNode._node;
-        A.one(alertDiv).all('button').set('aria-hidden', 'true');
+    _setButtonAriaHidden: function() {
+        console.log('hello');
     },
 
     /**
@@ -180,12 +167,12 @@ A.Alert = A.Base.create('alert', A.Widget, [
          * Node used to generate a close button.
          *
          * @attribute closeableNode
-         * @default `<button aria-hidden"true" type="button" class="close">×</button>`
+         * @default `<button type="button" class="close">×</button>`
          * @type {Node}
          */
         closeableNode: {
             valueFn: function() {
-                return A.Node.create('<button aria-hidden="true" type="button" class="close">×</button>');
+                return A.Node.create('<button type="button" class="close">×</button>');
             }
         },
 
@@ -201,17 +188,6 @@ A.Alert = A.Base.create('alert', A.Widget, [
         },
 
         /**
-         * Role attribute for alert.
-         *
-         * @attribute role
-         * @default 'alert'
-         * @type {Boolean}
-         */
-        role: {
-            value: 'alert'
-        },
-
-        /**
          * Determine if Alert should be destroyed when hidden.
          *
          * @attribute destroyOnHide
@@ -221,6 +197,30 @@ A.Alert = A.Base.create('alert', A.Widget, [
         destroyOnHide: {
             validator: A.Lang.isBoolean,
             value: false
+        },
+
+        /**
+        * Role attribute for alert.
+        *
+        * @attribute role
+        * @default 'alert'
+        * @type {String}
+        */
+        role: {
+            value: 'alert'
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     },
 
