@@ -63,7 +63,7 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     _setRole: function() {
-        var role = this.get('role');
+        var role = this.get('role'),
             contentBox = this.get('contentBox');
 
         if (role) {
@@ -78,7 +78,7 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     _setAriaHidden: function() {
-        var ariaHidden = this.get('ariaHidden');
+        var ariaHidden = this.get('ariaHidden'),
             closeableNode = this.get('closeableNode');
 
         closeableNode.set('aria-hidden', ariaHidden);
