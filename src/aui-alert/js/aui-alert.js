@@ -40,8 +40,20 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     renderUI: function() {
         this._uiSetCloseable(this.get('closeable'));
-        this._setRole();
-        this._setButtonAriaHidden();
+        this._syncAriaMenuUI();
+    },
+
+    /**
+     * Update the aria attributes for the 'A.Alert' UI.
+     *
+     * @method _syncAriaMenuUI
+     * @protected
+     */
+    _syncAriaMenuUI: function() {
+        if (this.get('useARIA')) {
+            this._setRole();
+            this._setAriaHidden();
+        }
     },
 
     /**
@@ -60,13 +72,16 @@ A.Alert = A.Base.create('alert', A.Widget, [
     },
 
     /**
-     * Adds aria-hidden attribute to the alert button is useARIA is enabled.
+     * Sets the aria-hidden attribute.
      *
-     * @method _setButtonAriaHidden
+     * @method _setAriaHidden
      * @protected
      */
-    _setButtonAriaHidden: function() {
-        console.log('hello');
+    _setAriaHidden: function() {
+        var ariaHidden = this.get('ariaHidden');
+            closeableNode = this.get('closeableNode');
+
+        closeableNode.set('aria-hidden', ariaHidden);
     },
 
     /**
@@ -200,6 +215,19 @@ A.Alert = A.Base.create('alert', A.Widget, [
         },
 
         /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
+        },
+
+        /**
         * Role attribute for alert.
         *
         * @attribute role
@@ -211,16 +239,14 @@ A.Alert = A.Base.create('alert', A.Widget, [
         },
 
         /**
-        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        * Aria-hidden attribute for alert.
         *
-        * @attribute useARIA
+        * @attribute ariaHidden
         * @default true
         * @type {Boolean}
         */
-        useARIA: {
-            validator: A.Lang.isBoolean,
-            value: true,
-            writeOnce: 'initOnly'
+        ariaHidden: {
+            value: true
         }
     },
 
