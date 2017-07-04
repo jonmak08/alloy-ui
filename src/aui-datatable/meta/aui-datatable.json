@@ -11,9 +11,9 @@
     "aui-datatable-body": {
         "requires": [
             "aui-classnamemanager",
+            "aui-event-base",
             "datatable-base",
-            "event-key",
-            "aui-event-base"
+            "event-key"
         ]
     },
 

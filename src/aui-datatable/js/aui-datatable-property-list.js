@@ -183,6 +183,22 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     ATTRS: {
 
         /**
+         * Turns ARIA functionality on or off.
+         *
+         * @attribute aria
+         * @type Boolean
+         */
+        aria: {
+            getter: function() {
+                return this.value;
+            },
+            setter: function(aria) {
+                return aria;
+            },
+            value: true
+        },
+
+        /**
          * Defines the `column` config for `A.PropertyList`.
          *
          * @attribute columns
@@ -224,17 +240,6 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * Determines if the `A.PropertyList` is scrollable.
-         *
-         * @attribute scrollable
-         * @default true
-         * @type Boolean
-         */
-        scrollable: {
-            value: true
-        },
-
-        /**
          * The event type that will be used to trigger edit mode for a datatable
          * cell.
          *
@@ -254,16 +259,14 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * Defines the width of the `A.PropertyList`.
+         * Determines if the `A.PropertyList` is scrollable.
          *
-         * DataTable scroll breaks when width value is a number
-         * See http://yuilibrary.com/projects/yui3/ticket/2532600
-         *
-         * @attribute width
-         * @type String|Number
+         * @attribute scrollable
+         * @default true
+         * @type Boolean
          */
-        width: {
-            setter: String
+        scrollable: {
+            value: true
         },
 
         /**
@@ -277,6 +280,19 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
                 propertyName: 'Property Name',
                 value: 'Value'
             }
+        },
+
+        /**
+         * Defines the width of the `A.PropertyList`.
+         *
+         * DataTable scroll breaks when width value is a number
+         * See http://yuilibrary.com/projects/yui3/ticket/2532600
+         *
+         * @attribute width
+         * @type String|Number
+         */
+        width: {
+            setter: String
         }
     }
 });

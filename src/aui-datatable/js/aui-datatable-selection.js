@@ -211,22 +211,6 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * Focus the active cell on datatable sorting.
-     *
-     * @method _afterActiveCoordChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterActiveCoordChange: function(event) {
-        var instance = this,
-            activeCell = instance.getCell(event.newVal);
-
-        if (activeCell) {
-            activeCell.setAttribute('tabindex', 0).focus();
-        }
-    },
-
-    /**
      * Bind the selection UI.
      *
      * @method _bindSelectionUI
@@ -239,7 +223,10 @@ A.mix(DataTableSelection.prototype, {
         instance._selectionKeyHandler = A.getDoc().on(
             'key', A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
 
+        instance.delegate('key', A.bind(instance._onTabKey, instance), 'tab', 'td, th');
+
         instance.after('activeCoordChange', instance._afterActiveCoordChange);
+
         instance.delegate('mouseup', A.bind(instance._onSelectionMouseUp, instance), '.' + classNames.cell);
         instance.delegate('mousedown', A.bind(instance._onSelectionMouseDown, instance), '.' + classNames.cell);
         instance.delegate('mouseenter', A.bind(instance._onSelectionMouseEnter, instance), '.' + classNames.cell);
@@ -282,6 +269,23 @@ A.mix(DataTableSelection.prototype, {
         return null;
     },
 
+
+    /**
+     * Focus the active cell on datatable sorting.
+     *
+     * @method _afterActiveCoordChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterActiveCoordChange: function(event) {
+        var instance = this,
+            activeCell = instance.getCell(event.newVal);
+
+        if (activeCell) {
+            activeCell.setAttribute('tabindex', 0).focus();
+        }
+    },
+
     /**
      * Fires on `mousedown` event.
      *
@@ -302,30 +306,6 @@ A.mix(DataTableSelection.prototype, {
         instance._selectionStart = instance._selectionEnd = instance.getCoord(seed);
 
         instance.set('activeCoord', coords);
-    },
-
-    /**
-     * Fires on `mouseenter` event.
-     *
-     * @method _onSelectionMouseEnter
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onSelectionMouseEnter: function(event) {
-        var instance = this,
-            seed = event.currentTarget;
-
-        if (!instance._capturing) {
-            return;
-        }
-
-        instance._selectionSeed = seed;
-        instance._selectionEnd = instance.getCoord(seed);
-
-        instance.set('selection', {
-            start: instance._selectionStart,
-            end: instance._selectionEnd
-        });
     },
 
     /**
@@ -351,6 +331,30 @@ A.mix(DataTableSelection.prototype, {
         boundingBox.selectable();
 
         instance._capturing = false;
+    },
+
+    /**
+     * Fires on `mouseenter` event.
+     *
+     * @method _onSelectionMouseEnter
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onSelectionMouseEnter: function(event) {
+        var instance = this,
+            seed = event.currentTarget;
+
+        if (!instance._capturing) {
+            return;
+        }
+
+        instance._selectionSeed = seed;
+        instance._selectionEnd = instance.getCoord(seed);
+
+        instance.set('selection', {
+            start: instance._selectionStart,
+            end: instance._selectionEnd
+        });
     },
 
     /**
@@ -403,6 +407,28 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
+     * Fires on `tab` event to properly select cells.
+     *
+     * @method _onTabKey
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onTabKey: function(event) {
+        var instance = this,
+        contentBox =instance.get('contentBox').getDOM().id,
+        thArray = A.all('#' + contentBox + ' .table-header').getDOM(),
+        lastHeader = thArray[thArray.length - 1].id;
+
+        A.one('#' + lastHeader).delegate('blur', function(event) {
+            var firstCell = instance.getCell([0, 0]);
+
+            instance.tabToFirstCell = true;
+
+            instance._selectCellByTab({currentTarget: A.one(firstCell)});
+        }, '#' + lastHeader);
+    },
+
+    /**
      * Parse selection coordinates range.
      *
      * @method _parseRange
@@ -427,6 +453,35 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
+     * Selects cells by tab key.
+     *
+     * @method _selectCellByTab
+     * @param {EventFacade} event
+     * @protected
+     */
+    _selectCellByTab: function(event) {
+        var instance = this,
+            boundingBox = instance.get('boundingBox'),
+            seed = event.currentTarget,
+            coords = instance.getCoord(seed);
+
+        instance._selectionSeed = seed;
+        instance._selectionStart = coords;
+        instance._selectionEnd = coords;
+
+        instance.set('selection', {
+            start: instance._selectionStart,
+            end: instance._selectionEnd
+        });
+
+        instance.set('activeCoord', coords);
+
+        boundingBox.selectable();
+
+        instance._capturing = false;
+    },
+
+    /**
      * Set selection.
      *
      * @method _setSelection
@@ -436,7 +491,6 @@ A.mix(DataTableSelection.prototype, {
      */
     _setSelection: function(val) {
         var instance = this;
-
         if (isArray(val)) {
             if (!isArray(val[0])) {
                 val = [val];
@@ -446,6 +500,7 @@ A.mix(DataTableSelection.prototype, {
             val = instance._parseRange([val.start, val.end]);
         }
         else if (A.instanceOf(val, A.Node)) {
+
             val = [instance.getCoord(val)];
         }
 

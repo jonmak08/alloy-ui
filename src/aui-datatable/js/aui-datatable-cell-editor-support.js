@@ -107,6 +107,35 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
+     * Adds tabbable headers to the table
+     *
+     * @method _addTabIndexes
+     * @protected
+     */
+    _addTabIndexes: function() {
+        var instance = this,
+            contentBox =instance.get('contentBox').getDOM().id,
+            firstCell,
+            rows = A.all('#' + contentBox + ' tr').getDOM(),
+            tableHeaderArray = A.all('#' + contentBox + ' .table-header');
+
+        rows.forEach(function(row, i) {
+            if (i !== 0) {
+                firstCell = A.one('#' + row.id + ' td').getDOM();
+                firstCell.setAttribute('tabindex', '0');
+            }
+        })
+
+        tableHeaderArray._nodes.forEach(function(header) {
+            header.setAttribute('tabindex', '0');
+
+            if (header.children.length > 0 ) {
+                header.children[0].removeAttribute('tabindex');
+            }
+        });
+    },
+
+    /**
      * Fires after the `A.CellEditorSupport` has rendered, and calls
      * `_syncModelsReadOnlyUI`.
      *
@@ -114,18 +143,13 @@ A.mix(CellEditorSupport.prototype, {
      * @protected
      */
     _afterCellEditorSupportRender: function() {
-        var instance = this,
-            tableHeaderArray = A.all('.table-header');
-
-        tableHeaderArray._nodes.forEach(function(header) {
-            if(!header.children.length > 0 ) {
-                header.setAttribute('tabindex', '0');
-            }
-        });
+        var instance = this;
 
         instance._syncModelsReadOnlyUI();
 
         instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, 'render');
+
+        instance._addTabIndexes();
     },
 
     /**
