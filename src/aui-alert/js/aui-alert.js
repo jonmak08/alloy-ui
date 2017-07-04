@@ -51,37 +51,12 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     _syncAriaMenuUI: function() {
         if (this.get('useARIA')) {
-            this._setRole();
-            this._setAriaHidden();
+            this.plug(A.Plugin.Aria);
         }
-    },
 
-    /**
-     * Sets the role attribute.
-     *
-     * @method _setRole
-     * @protected
-     */
-    _setRole: function() {
-        var role = this.get('role'),
-            contentBox = this.get('contentBox');
+        var closeableNode = this.get('closeableNode');
 
-        if (role) {
-            contentBox.set('role', role);
-        }
-    },
-
-    /**
-     * Sets the aria-hidden attribute.
-     *
-     * @method _setAriaHidden
-     * @protected
-     */
-    _setAriaHidden: function() {
-        var ariaHidden = this.get('ariaHidden'),
-            closeableNode = this.get('closeableNode');
-
-        closeableNode.set('aria-hidden', ariaHidden);
+        this.aria.setAttribute('hidden', true, closeableNode);
     },
 
     /**
@@ -225,28 +200,6 @@ A.Alert = A.Base.create('alert', A.Widget, [
             validator: A.Lang.isBoolean,
             value: true,
             writeOnce: 'initOnly'
-        },
-
-        /**
-        * Role attribute for alert.
-        *
-        * @attribute role
-        * @default 'alert'
-        * @type {String}
-        */
-        role: {
-            value: 'alert'
-        },
-
-        /**
-        * Aria-hidden attribute for alert.
-        *
-        * @attribute ariaHidden
-        * @default true
-        * @type {Boolean}
-        */
-        ariaHidden: {
-            value: true
         }
     },
 

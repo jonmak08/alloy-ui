@@ -1,6 +1,7 @@
 {
     "aui-alert": {
         "requires": [
+            "aui-aria",
             "aui-classnamemanager",
             "aui-widget-cssclass",
             "aui-widget-transition",
