@@ -37,13 +37,11 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      */
     bindUI: function() {
         var content = this.get('content');
-        A.Node.DOM_EVENTS.key.eventDef.KEY_MAP.arrowleft = 37;
-        A.Node.DOM_EVENTS.key.eventDef.KEY_MAP.arrowright = 39;
 
         content.on('click', this._onButtonSwitchClick, this);
         content.on('key', this._onButtonSwitchKey, 'enter,space', this);
-        content.on('key', this._onButtonSwitchRightKey, 'arrowright', this);
-        content.on('key', this._onButtonSwitchLeftKey, 'arrowleft', this);
+        content.on('key', this._onButtonSwitchRightKey, 'down: 39', this);
+        content.on('key', this._onButtonSwitchLeftKey, 'down: 37', this);
         this.after('activatedChange', this._afterActivatedChange, this);
         this.after('innerLabelLeftChange', this._afterInnerLabelLeftChange, this);
         this.after('innerLabelRightChange', this._afterInnerLabelRightChange, this);
