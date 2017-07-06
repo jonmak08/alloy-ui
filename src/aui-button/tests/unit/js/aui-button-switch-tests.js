@@ -31,7 +31,7 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.areEqual(content.one('.button-switch-inner-label-right').getHTML(), 'right');
         },
 
-        'should active on click': function () {
+        'should activate on click': function () {
             var buttonSwitch = this._buttonSwitch,
                 content = buttonSwitch.get('content');
 
@@ -40,7 +40,7 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
             content.simulate('click');
-            
+
             Y.Assert.isTrue(buttonSwitch.get('activated'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
@@ -57,7 +57,7 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
             content.simulate('click');
-            
+
             Y.Assert.isFalse(this._buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
@@ -77,15 +77,15 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isFalse(content.one('.button-switch-inner-circle').hasClass('button-switch-right'));
         },
 
-        'should active on key enter interaction': function () {
+        'should activate on key enter interaction': function () {
             var buttonSwitch = this._buttonSwitch,
                 content = buttonSwitch.get('content');
 
-            Y.Assert.isFalse(this._buttonSwitch.get('activated'));
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
-            this._buttonSwitch.get('content').simulate('keydown', {
+            buttonSwitch.get('content').simulate('keydown', {
                 keyCode: 13
             });
 
@@ -94,21 +94,56 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
         },
 
-        'should active on key space interaction': function () {
+        'should activate on key space interaction': function () {
             var buttonSwitch = this._buttonSwitch,
                 content = buttonSwitch.get('content');
 
-            Y.Assert.isFalse(this._buttonSwitch.get('activated'));
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
 
-            this._buttonSwitch.get('content').simulate('keydown', {
+            buttonSwitch.get('content').simulate('keydown', {
                 keyCode: 32
             });
 
             Y.Assert.isTrue(buttonSwitch.get('activated'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
+        },
+
+        'should activate on key rightarrow interaction': function () {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
+
+            buttonSwitch.get('content').simulate('keydown', {
+                keyCode: 39
+            });
+
+            Y.Assert.isTrue(buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
+        },
+
+        'should deactivate on key leftarrow interaction': function () {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            buttonSwitch.set('activated', true);
+            Y.Assert.isTrue(buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
+
+            buttonSwitch.get('content').simulate('keydown', {
+                keyCode: 37
+            });
+
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
         },
 
         'should toggle on interaction': function () {
@@ -128,6 +163,29 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isFalse(buttonSwitch.get('activated'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
+        },
+
+        'shouuld have role="switch" attribute in the button': function() {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            Y.Assert.isTrue(content.getAttribute('role') == 'switch');
+        },
+
+        'should toggle aria-checked attribute on interaction': function() {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.getAttribute('aria-checked') == 'true');
+
+            content.simulate('click');
+            Y.Assert.isTrue(buttonSwitch.get('activated'));
+            Y.Assert.isTrue(content.getAttribute('aria-checked') == 'true');
+
+            content.simulate('click');
+            Y.Assert.isFalse(buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.getAttribute('aria-checked') == 'true');
         }
     }));
 

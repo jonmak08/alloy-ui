@@ -35,6 +35,7 @@
 
     "aui-button-switch": {
         "requires": [
+            "aui-aria",
             "aui-node-base",
             "base-build",
             "event-key",

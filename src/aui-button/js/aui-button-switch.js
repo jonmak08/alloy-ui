@@ -40,9 +40,12 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
 
         content.on('click', this._onButtonSwitchClick, this);
         content.on('key', this._onButtonSwitchKey, 'enter,space', this);
+        content.on('key', this._onButtonSwitchRightKey, 'down: 39', this);
+        content.on('key', this._onButtonSwitchLeftKey, 'down: 37', this);
         this.after('activatedChange', this._afterActivatedChange, this);
         this.after('innerLabelLeftChange', this._afterInnerLabelLeftChange, this);
         this.after('innerLabelRightChange', this._afterInnerLabelRightChange, this);
+        this._syncAriaMenuUI();
     },
 
     /**
@@ -52,13 +55,35 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     renderUI: function() {
+        var buttonSwitch = this.get('contentBox');
         var content = this.get('content');
 
-        this.get('contentBox').append(content);
-
+        buttonSwitch.append(content);
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
         this._uiSetInnerLabelRight(this.get('innerLabelRight'));
+    },
+
+    /**
+     * Update the aria attributes for the button switch UI.
+     *
+     * @method _syncAriaMenuUI
+     * @protected
+     */
+    _syncAriaMenuUI: function() {
+        var content = this.get('content');
+
+        if (this.get('useARIA')) {
+            this.plug(A.Plugin.Aria);
+        }
+
+        if (this.get('activated')) {
+            this.aria.setAttribute('checked', true, content);
+        } else {
+            this.aria.setAttribute('checked', false, content)
+        }
+
+        content.setAttribute('role', 'switch');
     },
 
     /**
@@ -124,17 +149,49 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     _onButtonSwitchInteraction: function() {
+        var content = this.get('content');
+
         this.set('activated', !this.get('activated'));
+
+        if (this.get('activated')) {
+            this.aria.setAttribute('checked', true, content);
+        } else {
+            this.aria.setAttribute('checked', false, content);
+        }
     },
 
     /**
-     * Fires when a pres space or enter key.
+     * Fires when space or enter key is pressed.
      *
      * @method _onButtonSwitchKey
      * @protected
      */
     _onButtonSwitchKey: function() {
         this._onButtonSwitchInteraction();
+    },
+
+    /**
+     * Adds value 'activated' when right arrow key is pressed.
+     *
+     * @method _onButtonSwitchRightKey
+     * @protected
+     */
+    _onButtonSwitchRightKey: function() {
+        if (!this.get('activated')) {
+            this._onButtonSwitchInteraction();
+        }
+    },
+
+    /**
+     * Removes value 'activated' when left arrow key is pressed.
+     *
+     * @method _onButtonSwitchLeftKey
+     * @protected
+     */
+    _onButtonSwitchLeftKey: function() {
+        if (this.get('activated')) {
+            this._onButtonSwitchInteraction();
+        }
     },
 
     /**
@@ -279,6 +336,19 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         innerLabelRight: {
             value: '',
             validator: A.Lang.isString
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     }
 });
