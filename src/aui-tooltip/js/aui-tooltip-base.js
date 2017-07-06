@@ -48,13 +48,21 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     initializer: function() {
-        var instance = this;
+        var instance = this,
+            triggerId = instance.get('trigger').getDOM().id,
+            boundingBox = instance.get('boundingBox');
 
         instance._eventHandles = [
             A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger'),
             A.on('scroll', A.debounce(instance._onScroll, 100, instance)),
             A.on('windowresize', A.bind(instance._onResize, instance))
         ];
+
+        if (instance.get('useARIA')) {
+            instance.plug(A.Plugin.Aria);
+        }
+
+        this.aria.setAttribute('describedby', triggerId, boundingBox);
     },
 
     /**
@@ -80,7 +88,6 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
 
         contentBox.addClass(CSS_TOOLTIP_INNER);
         boundingBox.append(A.Tooltip.TEMPLATES.arrow);
-        contentBox.setAttribute('role', 'tooltip');
     },
 
     /**
@@ -210,8 +217,10 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseenter: function() {
+        var boundingBox = this.get('boundingBox');
+
         this.show();
-        console.log(this.bodyNode._node);
+        this.aria.setAttribute('hidden', false, boundingBox);
     },
 
     /**
@@ -222,7 +231,13 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseleave: function() {
+        var boundingBox = this.get('boundingBox');
+
         this.hide();
+
+        if (this.hide()) {
+            this.aria.setAttribute('hidden', true, boundingBox);
+        }
     },
 
     /**
@@ -368,6 +383,31 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
          */
         zIndex: {
             value: 1030
+        },
+
+        /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
+        },
+
+        /**
+         * Aria attribute role = 'tooltip'.
+         *
+         * @attribute role
+         * @default 'tooltip'
+         * @type Boolean
+         */
+        role: {
+            value: 'tooltip'
         }
     },
 
