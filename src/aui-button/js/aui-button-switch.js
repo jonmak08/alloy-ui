@@ -45,6 +45,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         this.after('activatedChange', this._afterActivatedChange, this);
         this.after('innerLabelLeftChange', this._afterInnerLabelLeftChange, this);
         this.after('innerLabelRightChange', this._afterInnerLabelRightChange, this);
+        this._syncAriaMenuUI();
     },
 
     /**
@@ -58,16 +59,31 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         var content = this.get('content');
 
         buttonSwitch.append(content);
-        content.setAttribute('role', 'switch');
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
         this._uiSetInnerLabelRight(this.get('innerLabelRight'));
+    },
+
+    /**
+     * Update the aria attributes for the button switch UI.
+     *
+     * @method _syncAriaMenuUI
+     * @protected
+     */
+    _syncAriaMenuUI: function() {
+        var content = this.get('content');
+
+        if (this.get('useARIA')) {
+            this.plug(A.Plugin.Aria);
+        }
 
         if (this.get('activated')) {
-            content.setAttribute('aria-checked', true);
+            this.aria.setAttribute('checked', true, content);
         } else {
-            content.setAttribute('aria-checked', false);
+            this.aria.setAttribute('checked', false, content)
         }
+
+        content.setAttribute('role', 'switch');
     },
 
     /**
@@ -133,12 +149,14 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     _onButtonSwitchInteraction: function() {
+        var content = this.get('content');
+
         this.set('activated', !this.get('activated'));
 
         if (this.get('activated')) {
-            this.get('content').setAttribute('aria-checked', true);
+            this.aria.setAttribute('checked', true, content);
         } else {
-            this.get('content').setAttribute('aria-checked', false);
+            this.aria.setAttribute('checked', false, content);
         }
     },
 
@@ -318,6 +336,19 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         innerLabelRight: {
             value: '',
             validator: A.Lang.isString
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     }
 });
