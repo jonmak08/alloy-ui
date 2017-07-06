@@ -254,13 +254,18 @@ var AudioImpl = A.Component.create({
          * @protected
          */
         syncUI: function() {
-            var instance = this;
+            var instance = this,
+                pauseBtn = A.one('#pause-btn'),
+                playBtn = A.one('#play-btn');
 
             if (instance.get('useARIA')) {
                 instance.plug(A.Plugin.Aria, {
                     roleName: instance.get('role')
                 });
             }
+
+            this.aria.setAttribute('pressed', false, pauseBtn);
+            this.aria.setAttribute('pressed', false, playBtn);
         },
 
         /**
@@ -282,10 +287,17 @@ var AudioImpl = A.Component.create({
          * @method pause
          */
         pause: function() {
-            var instance = this;
+            var instance = this,
+                pauseBtn = A.one('#pause-btn'),
+                playBtn = A.one('#play-btn');
 
             if (instance._audio.hasMethod('pause')) {
                 instance._audio.invoke('pause');
+            }
+
+            if (instance._audio.invoke('pause')) {
+                instance.aria.setAttribute('pressed', false, playBtn);
+                instance.aria.setAttribute('pressed', true, pauseBtn);
             }
         },
 
@@ -295,10 +307,14 @@ var AudioImpl = A.Component.create({
          * @method play
          */
         play: function() {
-            var instance = this;
+            var instance = this,
+                pauseBtn = A.one('#pause-btn'),
+                playBtn = A.one('#play-btn');
 
             if (instance._audio.hasMethod('play')) {
                 instance._audio.invoke('play');
+                instance.aria.setAttribute('pressed', false, pauseBtn);
+                instance.aria.setAttribute('pressed', true, playBtn);
             }
         },
 
