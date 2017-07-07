@@ -50,13 +50,12 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     _syncAriaMenuUI: function() {
-        if (this.get('useARIA')) {
-            this.plug(A.Plugin.Aria);
-        }
-
         var closeableNode = this.get('closeableNode');
 
-        this.aria.setAttribute('hidden', true, closeableNode);
+        if (this.get('useARIA')) {
+            this.plug(A.Plugin.Aria);
+            this.aria.setAttribute('hidden', true, closeableNode);
+        }
     },
 
     /**
