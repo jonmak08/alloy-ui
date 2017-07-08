@@ -67,6 +67,19 @@ DataTableSelection.ATTRS = {
     },
 
     /**
+     * Turns keyboard accessibility on or off.
+     *
+     * @attribute keyboard
+     * @type Boolean
+     */
+    keyboardAccessibility: {
+        setter: function(keyboard) {
+            this.value = keyboard;
+        },
+        value: true
+    },
+
+    /**
      * Defines the selected cells and rows of the `A.DataTableSelection`.
      *
      * @attribute selection
@@ -218,18 +231,19 @@ A.mix(DataTableSelection.prototype, {
      */
     _bindSelectionUI: function() {
         var instance = this,
-            classNames = instance.CLASS_NAMES_SELECTION;
+            classNames = instance.CLASS_NAMES_SELECTION,
+            keyboardAccessibility = instance.get('keyboardAccessibility');
 
         instance._selectionKeyHandler = A.getDoc().on(
             'key', A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
-
-        instance.delegate('key', A.bind(instance._onTabKey, instance), 'tab', 'td, th');
-
         instance.after('activeCoordChange', instance._afterActiveCoordChange);
-
         instance.delegate('mouseup', A.bind(instance._onSelectionMouseUp, instance), '.' + classNames.cell);
         instance.delegate('mousedown', A.bind(instance._onSelectionMouseDown, instance), '.' + classNames.cell);
         instance.delegate('mouseenter', A.bind(instance._onSelectionMouseEnter, instance), '.' + classNames.cell);
+
+        if (keyboardAccessibility) {
+            instance.delegate('key', A.bind(instance._onTabKey, instance), 'tab', 'td, th');
+        }
     },
 
     /**
@@ -415,9 +429,9 @@ A.mix(DataTableSelection.prototype, {
      */
     _onTabKey: function(event) {
         var instance = this,
-        contentBox =instance.get('contentBox').getDOM().id,
-        thArray = A.all('#' + contentBox + ' .table-header').getDOM(),
-        lastHeader = thArray[thArray.length - 1].id;
+            contentBox =instance.get('contentBox').getDOM().id,
+            thArray = A.all('#' + contentBox + ' .table-header').getDOM(),
+            lastHeader = thArray[thArray.length - 1].id;
 
         A.one('#' + lastHeader).delegate('blur', function(event) {
             var firstCell = instance.getCell([0, 0]);
@@ -491,6 +505,7 @@ A.mix(DataTableSelection.prototype, {
      */
     _setSelection: function(val) {
         var instance = this;
+
         if (isArray(val)) {
             if (!isArray(val[0])) {
                 val = [val];
@@ -500,7 +515,6 @@ A.mix(DataTableSelection.prototype, {
             val = instance._parseRange([val.start, val.end]);
         }
         else if (A.instanceOf(val, A.Node)) {
-
             val = [instance.getCoord(val)];
         }
 

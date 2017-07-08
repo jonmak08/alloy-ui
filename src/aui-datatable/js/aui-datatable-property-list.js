@@ -181,23 +181,6 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
      * @static
      */
     ATTRS: {
-
-        /**
-         * Turns ARIA functionality on or off.
-         *
-         * @attribute aria
-         * @type Boolean
-         */
-        aria: {
-            getter: function() {
-                return this.value;
-            },
-            setter: function(aria) {
-                return aria;
-            },
-            value: true
-        },
-
         /**
          * Defines the `column` config for `A.PropertyList`.
          *

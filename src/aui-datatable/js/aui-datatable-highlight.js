@@ -196,7 +196,8 @@ var DataTableHighlight = A.Base.create(
 
             if (host.tabToFirstCell) {
                 host.tabToFirstCell = false;
-            } else {
+            }
+            else {
                 this.clear();
             }
         },
@@ -220,10 +221,9 @@ var DataTableHighlight = A.Base.create(
          * @protected
          */
         _afterSelectionChange: function(event) {
-
             var instance = this,
-                nodes,
                 highlightRange = instance.get('highlightRange'),
+                nodes,
                 overlayNode = instance.get('overlayNode'),
                 rangeBorderWidth = instance.get('rangeBorderWidth');
 
@@ -234,7 +234,6 @@ var DataTableHighlight = A.Base.create(
             instance._clearHighlights();
 
             nodes = instance._collectNodes(event.newVal);
-
 
             if (highlightRange && nodes && (nodes.length > 1)) {
                 instance._alignBorder(

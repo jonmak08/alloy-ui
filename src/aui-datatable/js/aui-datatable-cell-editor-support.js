@@ -126,7 +126,7 @@ A.mix(CellEditorSupport.prototype, {
             }
         })
 
-        tableHeaderArray._nodes.forEach(function(header) {
+        tableHeaderArray.getDOM().forEach(function(header) {
             header.setAttribute('tabindex', '0');
 
             if (header.children.length > 0 ) {
@@ -143,13 +143,16 @@ A.mix(CellEditorSupport.prototype, {
      * @protected
      */
     _afterCellEditorSupportRender: function() {
-        var instance = this;
+        var instance = this,
+            keyboardAccessibility = instance.get('keyboardAccessibility');
 
         instance._syncModelsReadOnlyUI();
 
         instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, 'render');
 
-        instance._addTabIndexes();
+        if (keyboardAccessibility) {
+            instance._addTabIndexes();
+        }
     },
 
     /**
@@ -163,7 +166,7 @@ A.mix(CellEditorSupport.prototype, {
         var instance = this,
             activeCell = instance.get('activeCell');
 
-        if (activeCell && (event.keyCode === 13)) {
+        if (activeCell && (event.keyCode === 13) && instance.get('focused')) {
             instance._onEditCell(activeCell);
         }
     },
