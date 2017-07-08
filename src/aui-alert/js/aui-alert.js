@@ -40,21 +40,9 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     renderUI: function() {
         this._uiSetCloseable(this.get('closeable'));
-        this._syncAriaMenuUI();
-    },
-
-    /**
-     * Update the aria attributes for the 'A.Alert' UI.
-     *
-     * @method _syncAriaMenuUI
-     * @protected
-     */
-    _syncAriaMenuUI: function() {
-        var closeableNode = this.get('closeableNode');
-
+        
         if (this.get('useARIA')) {
-            this.plug(A.Plugin.Aria);
-            this.aria.setAttribute('hidden', true, closeableNode);
+            this._syncAriaMenuUI();
         }
     },
 
@@ -104,6 +92,19 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     _onCloseableChange: function(event) {
         this._uiSetCloseable(event.newVal);
+    },
+    
+    /**
+     * Update the aria attributes for the 'A.Alert' UI.
+     *
+     * @method _syncAriaMenuUI
+     * @protected
+     */
+    _syncAriaMenuUI: function() {
+        var closeableNode = this.get('closeableNode');
+
+        this.plug(A.Plugin.Aria);
+        this.aria.setAttribute('hidden', true, closeableNode);
     },
 
     /**
