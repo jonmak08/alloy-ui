@@ -8,7 +8,6 @@
     "aui-tooltip-base": {
         "requires": [
             "aui-aria",
-            "escape",
             "aui-classnamemanager",
             "aui-component",
             "aui-debounce",
@@ -20,6 +19,7 @@
             "aui-widget-position-align-suggestion",
             "event-hover",
             "event-resize",
+            "escape",
             "widget",
             "widget-autohide",
             "widget-position",
@@ -32,8 +32,8 @@
     },
     "aui-tooltip-delegate": {
         "requires": [
-            "node-event-delegate",
-            "aui-tooltip-base"
+            "aui-tooltip-base",
+            "node-event-delegate"
         ]
     }
 }

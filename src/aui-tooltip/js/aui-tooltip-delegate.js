@@ -111,6 +111,9 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
         var instance = this;
 
         instance.getTooltip().hide();
+
+        instance.plug(A.Plugin.Aria);
+        instance.aria.setAttribute('hidden', true, instance.getTooltip().get('boundingBox'));
     },
 
     /**
@@ -127,6 +130,10 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
         trigger = event.currentTarget;
 
         instance.getTooltip().show().set('trigger', trigger).render();
+
+        instance.plug(A.Plugin.Aria);
+        instance.aria.setAttribute('hidden', false, instance.getTooltip().get('boundingBox'));
+        instance.aria.setAttribute('describedby', trigger, instance.getTooltip().get('boundingBox'));
     },
 
     /**
