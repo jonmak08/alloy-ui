@@ -67,6 +67,7 @@ A.Plugin.Aria.W3C_ROLES = {
     'spinbutton': 1,
     'status': 1,
     'structure': 1,
+    'switch': 1,
     'tab': 1,
     'tablist': 1,
     'tabpanel': 1,
