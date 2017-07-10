@@ -35,21 +35,25 @@ YUI.add('aui-alert-tests', function(Y) {
         },
 
         'should check that alerts have role set to alert': function () {
-            var alert1Role = Y.one('#info').getAttribute('role');
-            var alert2Role = Y.one('#danger').getAttribute('role');
-            var alert3Role = Y.one('#warning').getAttribute('role');
+            if (alert1.get('useARIA') && alert2.get('useARIA') && alert3.get('useARIA')) {
+                var alert1Role = alert1.get('boundingBox').get('role');
+                var alert2Role = alert2.get('boundingBox').get('role');
+                var alert3Role = alert3.get('boundingBox').get('role');
 
-            Assert.isTrue(alert1Role == 'alert');
-            Assert.isTrue(alert2Role == 'alert');
-            Assert.isTrue(alert3Role == 'alert');
+                Assert.isTrue(alert1Role == 'alert');
+                Assert.isTrue(alert2Role == 'alert');
+                Assert.isTrue(alert3Role == 'alert');
+            }
         },
 
-        'should check that alert buttons have aria hidden set to true': function () {
-            var alert1ButtonAriaHidden = Y.one('#info').all('button').getAttribute('aria-hidden');
-            var alert3ButtonAriaHidden = Y.one('#warning').all('button').getAttribute('aria-hidden');
+        'should check that alert buttons have aria-hidden set to true': function () {
+            if (alert1.get('useARIA') && alert3.get('useARIA')) {
+                var alert1ButtonAriaHidden = alert1.get('closeableNode').get('aria-hidden');
+                var alert3ButtonAriaHidden = alert3.get('closeableNode').get('aria-hidden');
 
-            Assert.isTrue(alert1ButtonAriaHidden == 'true');
-            Assert.isTrue(alert3ButtonAriaHidden == 'true');
+                Assert.isTrue(alert1ButtonAriaHidden == 'true');
+                Assert.isTrue(alert3ButtonAriaHidden == 'true');
+            }
         },
 
         'should not be the close button when closeable is false': function() {
