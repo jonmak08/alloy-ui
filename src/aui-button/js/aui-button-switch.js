@@ -36,16 +36,18 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     bindUI: function() {
-        var content = this.get('content');
+        var aria = this.get('useARIA'),
+            content = this.get('content');
 
         content.on('click', this._onButtonSwitchClick, this);
-        content.on('key', this._onButtonSwitchKey, 'enter,space', this);
-        content.on('key', this._onButtonSwitchRightKey, 'down: 39', this);
-        content.on('key', this._onButtonSwitchLeftKey, 'down: 37', this);
+        content.on('key', this._onButtonSwitchKey, 'enter,space,37,39', this);
         this.after('activatedChange', this._afterActivatedChange, this);
         this.after('innerLabelLeftChange', this._afterInnerLabelLeftChange, this);
         this.after('innerLabelRightChange', this._afterInnerLabelRightChange, this);
-        this._syncAriaMenuUI();
+
+        if (aria) {
+            this._setAriaAttributes();
+        }
     },
 
     /**
@@ -55,35 +57,13 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     renderUI: function() {
-        var buttonSwitch = this.get('contentBox');
-        var content = this.get('content');
+        var content = this.get('content'),
+            contentBox = this.get('contentBox');
 
-        buttonSwitch.append(content);
+        contentBox.append(content);
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
         this._uiSetInnerLabelRight(this.get('innerLabelRight'));
-    },
-
-    /**
-     * Update the aria attributes for the button switch UI.
-     *
-     * @method _syncAriaMenuUI
-     * @protected
-     */
-    _syncAriaMenuUI: function() {
-        var content = this.get('content');
-
-        if (this.get('useARIA')) {
-            this.plug(A.Plugin.Aria);
-        }
-
-        if (this.get('activated')) {
-            this.aria.setAttribute('checked', true, content);
-        } else {
-            this.aria.setAttribute('checked', false, content)
-        }
-
-        content.setAttribute('role', 'switch');
     },
 
     /**
@@ -149,14 +129,14 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     _onButtonSwitchInteraction: function() {
-        var content = this.get('content');
+        var activated = this.get('activated'),
+            aria = this.get('useARIA'),
+            content = this.get('content');
 
-        this.set('activated', !this.get('activated'));
+        this.set('activated', !activated);
 
-        if (this.get('activated')) {
-            this.aria.setAttribute('checked', true, content);
-        } else {
-            this.aria.setAttribute('checked', false, content);
+        if (aria) {
+            this.aria.setAttribute('checked', !activated, content);
         }
     },
 
@@ -167,31 +147,34 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @protected
      */
     _onButtonSwitchKey: function() {
-        this._onButtonSwitchInteraction();
-    },
+        var activated = this.get('activated');
+            keyCode = event.keyCode;
 
-    /**
-     * Adds value 'activated' when right arrow key is pressed.
-     *
-     * @method _onButtonSwitchRightKey
-     * @protected
-     */
-    _onButtonSwitchRightKey: function() {
-        if (!this.get('activated')) {
+        if ((keyCode == 32 || keyCode == 13) || (keyCode == 39 && !activated) || (keyCode == 37 && activated)) {
             this._onButtonSwitchInteraction();
         }
     },
 
     /**
-     * Removes value 'activated' when left arrow key is pressed.
+     * Update the aria attributes for the button switch UI.
      *
-     * @method _onButtonSwitchLeftKey
+     * @method _setAriaAttributes
      * @protected
      */
-    _onButtonSwitchLeftKey: function() {
-        if (this.get('activated')) {
-            this._onButtonSwitchInteraction();
-        }
+    _setAriaAttributes: function() {
+        var activated = this.get('activated'),
+            content = this.get('content'),
+            role = this.get('role');
+
+        this.plug(
+            A.Plugin.Aria,
+            {
+                roleName: role,
+                roleNode: content
+            }
+        )
+
+        this.aria.setAttribute('checked', activated, content);
     },
 
     /**
@@ -335,6 +318,17 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
          */
         innerLabelRight: {
             value: '',
+            validator: A.Lang.isString
+        },
+
+        /**
+         * Attribute role = 'switch'.
+         *
+         * @attribute role
+         * @type String
+         */
+        role: {
+            value: 'switch',
             validator: A.Lang.isString
         },
 
