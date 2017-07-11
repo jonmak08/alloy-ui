@@ -114,19 +114,6 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Total number of page links available. If set, the new
-         * [items](A.Pagination.html#attr_items) node list will be rendered.
-         *
-         * @attribute total
-         * @default 0
-         * @type {Number}
-         */
-        total: {
-            setter: '_setInt',
-            value: 0
-        },
-
-        /**
          * Determines if pagination controls (Next and Prev) are rendered.
          *
          * @attribute page
@@ -149,6 +136,31 @@ var Pagination = A.Component.create({
                 next: 'Next',
                 prev: 'Prev'
             }
+        },
+
+        /**
+         * Total number of page links available. If set, the new
+         * [items](A.Pagination.html#attr_items) node list will be rendered.
+         *
+         * @attribute total
+         * @default 0
+         * @type {Number}
+         */
+        total: {
+            setter: '_setInt',
+            value: 0
+        },
+
+        /**
+         * Determines whether or not ARIA attributes will be used
+         *
+         * @attribute useAria
+         * @default true
+         * @type {Boolean}
+         */
+        useAria: {
+            setter: '_setAria',
+            value: true
         }
     },
 
@@ -227,6 +239,7 @@ var Pagination = A.Component.create({
             instance.publish('changeRequest', {
                 defaultFn: instance._defChangeRequest
             });
+            boundingBox.on('keydown', A.bind(instance._onArrowKeyPress, instance));
             boundingBox.delegate('click', instance._onClickItem, 'li', instance);
         },
 
@@ -426,6 +439,38 @@ var Pagination = A.Component.create({
         },
 
         /**
+         * Returns a ref to the instance's next control button.
+         *
+         * @method _getNextButton
+         * @protected
+         * @return {Object} control node for next button
+         */
+        _getNextButton: function() {
+            var instance = this,
+                boundingBoxId = '#' + instance.get('boundingBox').getDOM().id,
+                nextButtonClass = '.' + CSS_PAGINATION_CONTROL,
+                nextButton = A.all(boundingBoxId + ' ' + nextButtonClass + ' a').getDOM()[1];
+
+            return A.one(nextButton);
+        },
+
+        /**
+         * Returns a ref to the instance's previous control button.
+         *
+         * @method _getPreviousButton
+         * @protected
+         * @return {Object} control node for previous button
+         */
+        _getPreviousButton: function() {
+            var instance = this,
+                boundingBoxId = '#' + instance.get('boundingBox').getDOM().id,
+                prevButtonClass = '.' + CSS_PAGINATION_CONTROL,
+                prevButton = A.all(boundingBoxId + ' ' + prevButtonClass + ' a').getDOM()[0];
+
+            return A.one(prevButton);
+        },
+
+        /**
          * Returns all child list items of `srcNode`.
          *
          * @method _queryItemsIfNotSet
@@ -440,6 +485,28 @@ var Pagination = A.Component.create({
                 instance.items = srcNode.all('li');
             }
             return instance.items;
+        },
+
+        /**
+         * `_onArrowKeyPress` handler that allows user to navigate prev and next controls
+         * with left and right arrow keys when the cyclical attribute is set to false
+         *
+         * @method _onArrowKeyPress
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onArrowKeyPress: function(event) {
+            var instance = this,
+                nextButton = instance._getNextButton(),
+                previousButton = instance._getPreviousButton(),
+                keyCode = event.keyCode;
+
+            if (keyCode === 37 && previousButton) {
+                previousButton.getDOM().focus()
+            }
+            else if (keyCode === 39 && nextButton) {
+                nextButton.getDOM().focus()
+            }
         },
 
         /**
@@ -558,13 +625,22 @@ var Pagination = A.Component.create({
          */
         _syncNavigationUI: function() {
             var instance = this,
-                items = instance.get('items');
+                disableNextButton = instance.get('page') === instance.get('total'),
+                disablePrevButton = instance.get('page') === 1,
+                items = instance.get('items'),
+                nextButton = instance._getNextButton(),
+                previousButton = instance._getPreviousButton();
 
             items.first().toggleClass(
-                CSS_DISABLED, instance.get('page') === 1);
+                CSS_DISABLED, disablePrevButton);
 
             items.last().toggleClass(
-                CSS_DISABLED, instance.get('page') === instance.get('total'));
+                CSS_DISABLED, disableNextButton);
+
+            if (instance.get('useAria')) {
+                previousButton.attr('aria-disabled', disablePrevButton);
+                nextButton.attr('aria-disabled', disableNextButton);
+            }
         },
 
         /**
@@ -630,6 +706,17 @@ var Pagination = A.Component.create({
             var instance = this;
 
             instance._renderItemsUI(val);
+        },
+
+        /**
+         * Setter for useAria attribute.
+         *
+         * @method _useAria
+         * @param {Number} val
+         * @protected
+         */
+        _useAria: function(val) {
+            return val;
         }
     }
 });
