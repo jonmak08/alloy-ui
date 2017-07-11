@@ -394,17 +394,6 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         },
 
         /**
-        * Aria attribute role = 'tooltip'.
-        *
-        * @attribute role
-        * @default 'tooltip'
-        * @type Boolean
-        */
-        role: {
-            value: 'tooltip'
-        },
-
-        /**
          * DOM event to show the tooltip.
          *
          * @attribute triggerShowEvent
