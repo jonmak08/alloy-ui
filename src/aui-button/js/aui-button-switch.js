@@ -141,7 +141,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
     },
 
     /**
-     * Fires when space or enter key is pressed.
+     * Fires when space, enter, right, or left key is pressed.
      *
      * @method _onButtonSwitchKey
      * @protected
