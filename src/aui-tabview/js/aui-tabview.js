@@ -294,7 +294,14 @@ A.TabView = A.Component.create({
          * @protected
          */
         initializer: function() {
-            var instance = this;
+            var instance = this,
+                boundingBox = instance.get('boundingBox'),
+                stacked = instance.get('stacked'),
+                type = instance.get('type');
+
+            if (stacked || type === 'list') {
+                boundingBox.on('keydown', A.bind(instance._onArrowKeyPress, instance));
+            }
 
             instance.after(instance._afterSyncUI, instance, 'syncUI');
             instance.after('typeChange', instance._afterTypeChange);
@@ -325,6 +332,17 @@ A.TabView = A.Component.create({
         },
 
         /**
+         * Focus on tab
+         *
+         * @method focusTab
+         * @param tab
+         */
+        focusTab: function(tab) {
+            tab.setAttribute('tabindex', '0');
+            tab.focus();
+        },
+
+        /**
          * Get the active tab.
          *
          * @method getActiveTab
@@ -334,6 +352,51 @@ A.TabView = A.Component.create({
                 _queries = A.TabviewBase._queries;
 
             return instance.get('contentBox').one(_queries.selectedTab);
+        },
+
+        /**
+         * Get the focused tab index.
+         *
+         * @method getFocusedTabIndex
+         * @param tabArray
+         */
+        getFocusedTabIndex: function(tabArray) {
+            var index;
+
+            tabArray.forEach(function(node, i) {
+                if (node.className.includes('focused')) {
+                    index = i;
+                }
+            })
+
+            return index;
+        },
+
+        /**
+         * Get the next tab index.
+         *
+         * @method getNextTabIndex
+         * @param tabArray, currentIndex
+         */
+        getNextTabIndex: function(tabArray, currentIndex) {
+            if (currentIndex + 1 < tabArray.length) {
+                return currentIndex + 1;
+            }
+
+            return 0;
+        },
+
+        /**
+         * Get the previous tab index.
+         * @method getPrevTabIndex
+         * @param tabArray, currentIndex
+         */
+        getPrevTabIndex: function(tabArray, currentIndex) {
+            if (currentIndex > 0) {
+                return currentIndex - 1;
+            }
+
+            return tabArray.length - 1;
         },
 
         /**
@@ -347,6 +410,19 @@ A.TabView = A.Component.create({
 
             return instance.get('contentBox').all(_queries.tab);
         },
+
+        /**
+         * Set active tab's tabindex to -1
+         *
+         * @method unFocusActiveTab
+         */
+        unFocusActiveTab: function() {
+            var instance = this,
+                activeTabChild = instance.getActiveTab()._node.children[0];
+
+            activeTabChild.setAttribute('tabindex', '-1');
+        },
+
 
         /**
          * Fire after selected tab changes.
@@ -385,6 +461,42 @@ A.TabView = A.Component.create({
 
             if (event.prevVal) {
                 listNode.removeClass(getClassName('nav', event.prevVal));
+            }
+        },
+
+        /**
+         * `_onArrowKeyPress` handler that allows user to navigate to tabs above and below
+         * current tab given that the `stacked` attr is true or the `type` attr is a list
+         *
+         * @method _onArrowKeyPress
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onArrowKeyPress: function(event) {
+            var instance = this,
+                currentIndex,
+                keyCode = event.keyCode,
+                keyCodeDown = event.keyCode === 40,
+                keyCodeUp = event.keyCode === 38,
+                nextIndex,
+                prevIndex,
+                tabs;
+
+            if (keyCodeDown || keyCodeUp) {
+                event.preventDefault();
+                instance.unFocusActiveTab();
+
+                tabs = instance.getTabs()._nodes;
+                currentIndex = instance.getFocusedTabIndex(tabs);
+
+                if (keyCodeUp) {
+                    prevIndex = instance.getPrevTabIndex(tabs, currentIndex);
+                    instance.focusTab(tabs[prevIndex].children[0]);
+                }
+                else if (keyCodeDown) {
+                    nextIndex = instance.getNextTabIndex(tabs, currentIndex);
+                    instance.focusTab(tabs[nextIndex].children[0]);
+                }
             }
         },
 
