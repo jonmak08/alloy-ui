@@ -58,7 +58,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
 
         if (instance.get('useARIA')) {
             instance.plug(A.Plugin.Aria);
-            instance._setAriaUI();
+            instance._setAriaAttributes();
         }
     },
 
@@ -104,13 +104,15 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             trigger.on(
                 'hover',
                 A.bind(instance._onBoundingBoxMouseenter, instance),
-                A.bind(instance._onBoundingBoxMouseleave, instance));
+                A.bind(instance._onBoundingBoxMouseleave, instance)
+            );
         }
 
         instance.get('boundingBox').on(
             'hover',
             A.bind(instance._onBoundingBoxMouseenter, instance),
-            A.bind(instance._onBoundingBoxMouseleave, instance));
+            A.bind(instance._onBoundingBoxMouseleave, instance)
+        );
     },
 
     /**
@@ -158,6 +160,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         this._borrowTitleAttribute();
 
         title = trigger.getAttribute('data-title');
+
         if (title) {
             this.setStdModContent(A.WidgetStdMod.BODY, title);
         }
@@ -222,34 +225,28 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     /**
      * Set aria attributes for 'A.Tooltip' if useARIA is set to true.
      *
-     * @method _setAriaUI
+     * @method _setAriaAttributes
      * @protected
      */
-    _setAriaUI: function() {
+    _setAriaAttributes: function() {
         var boundingBox = this.get('boundingBox'),
             trigger = this.get('trigger'),
             visible = this.get('visible');
 
-        // if (trigger.get('id')) {
-            this.aria.setAttribute('describedby', trigger, boundingBox);
-        // }
-
-        this.aria.setAttribute('hidden', !visible, boundingBox);
-
-        // this.aria.setAttributes(
-        //     [
-        //         {
-        //             name: 'describedby',
-        //             node: boundingBox,
-        //             value: trigger.get('id')
-        //         },
-        //         {
-        //             name: 'hidden',
-        //             node: boundingBox,
-        //             value: !visible
-        //         }
-        //     ]
-        // );
+        this.aria.setAttributes(
+            [
+                {
+                    name: 'describedby',
+                    node: boundingBox,
+                    value: trigger
+                },
+                {
+                    name: 'hidden',
+                    node: boundingBox,
+                    value: !visible
+                }
+            ]
+        );
     },
 
     /**
