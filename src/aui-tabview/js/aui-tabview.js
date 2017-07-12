@@ -255,6 +255,20 @@ A.TabView = A.Component.create({
                     val === A.TabView.TYPE_PILLS;
             },
             value: 'tabs'
+        },
+
+         /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            value: true,
+            validator: Lang.isBoolean,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -297,15 +311,21 @@ A.TabView = A.Component.create({
             var instance = this,
                 boundingBox = instance.get('boundingBox'),
                 stacked = instance.get('stacked'),
+                tabSelector = '.' + A.TabviewBase._classNames.tab,
                 type = instance.get('type');
 
-            if (stacked || type === 'list') {
-                boundingBox.on('keydown', A.bind(instance._onArrowKeyPress, instance));
-            }
-
-            boundingBox.on('key', A.bind(instance._onSpacePress, instance), '32');
             instance.after(instance._afterSyncUI, instance, 'syncUI');
             instance.after('typeChange', instance._afterTypeChange);
+
+            if (instance.get('useARIA')) {
+                instance.after({render: instance._uiSetAria});
+                boundingBox.delegate('click', A.bind(instance._selectTab, instance), tabSelector);
+                boundingBox.delegate('key', A.bind(instance._selectTab, instance), 'down:enter, 32', tabSelector);
+            }
+
+            if (stacked || type === 'list') {
+                boundingBox.delegate('key', A.bind(instance._onArrowKeyPress, instance), 'down:38, 40', tabSelector);
+            }
         },
 
         /**
@@ -424,7 +444,6 @@ A.TabView = A.Component.create({
             activeTabChild.setAttribute('tabindex', '-1');
         },
 
-
         /**
          * Fire after selected tab changes.
          *
@@ -483,39 +502,41 @@ A.TabView = A.Component.create({
                 prevIndex,
                 tabs;
 
-            if (keyCodeDown || keyCodeUp) {
-                event.preventDefault();
-                instance.unFocusActiveTab();
+            event.preventDefault();
+            instance.unFocusActiveTab();
 
-                tabs = instance.getTabs()._nodes;
-                currentIndex = instance.getFocusedTabIndex(tabs);
+            tabs = instance.getTabs()._nodes;
+            currentIndex = instance.getFocusedTabIndex(tabs);
 
-                if (keyCodeUp) {
-                    prevIndex = instance.getPrevTabIndex(tabs, currentIndex);
-                    instance.focusTab(tabs[prevIndex].children[0]);
-                }
-                else if (keyCodeDown) {
-                    nextIndex = instance.getNextTabIndex(tabs, currentIndex);
-                    instance.focusTab(tabs[nextIndex].children[0]);
-                }
+            if (keyCodeUp) {
+                prevIndex = instance.getPrevTabIndex(tabs, currentIndex);
+                instance.focusTab(tabs[prevIndex].children[0]);
+            }
+            else if (keyCodeDown) {
+                nextIndex = instance.getNextTabIndex(tabs, currentIndex);
+                instance.focusTab(tabs[nextIndex].children[0]);
             }
         },
 
         /**
-         * `_onSpacePress` handler that mirrors the enter keypress functionality
+         * `_selectTab` handler that mirrors the enter keypress functionality
          *
-         * @method _onSpacePress
+         * @method _selectTab
          * @param {EventFacade} event
          * @protected
          */
-        _onSpacePress: function(event) {
+        _selectTab: function(event) {
             event.preventDefault();
 
             var instance = this,
                 tabs = instance.getTabs()._nodes,
                 currentIndex = instance.getFocusedTabIndex(tabs);
 
+            instance.getActiveTab().setAttribute('aria-selected', 'false');
+
             instance.item(currentIndex).set('selected', 1);
+
+            instance.getActiveTab().setAttribute('aria-selected', 'true');
         },
 
         /**
@@ -537,6 +558,41 @@ A.TabView = A.Component.create({
                 }
                 child.render(renderTo);
             });
+        },
+
+         /**
+         * Set the `aria-selected` and the `aria-orientation` attributes.
+         *
+         * @method _uiSetAria
+         * @protected
+         */
+        _uiSetAria: function() {
+            var child,
+                instance = this,
+                listNode = instance.get('listNode'),
+                listNodeChildren = listNode._node.children,
+                selected = A.TabviewBase._classNames.selectedTab,
+                tab = A.TabviewBase._classNames.tab;
+
+            if (instance.get('stacked') || instance.get('type') === 'list') {
+                listNode.setAttribute('aria-orientation', 'vertical');
+            }
+            else {
+                listNode.setAttribute('aria-orientation', 'horizontal');
+            }
+
+            for (var i = 0; i < listNodeChildren.length; i++) {
+                child = listNodeChildren[i];
+
+                if (child.className.includes(tab)) {
+                    if (child.className.includes(selected)) {
+                        child.setAttribute('aria-selected', 'true');
+                    }
+                    else {
+                        child.setAttribute('aria-selected', 'false');
+                    }
+                }
+            }
         },
 
         /**
