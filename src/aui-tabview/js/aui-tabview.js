@@ -303,6 +303,7 @@ A.TabView = A.Component.create({
                 boundingBox.on('keydown', A.bind(instance._onArrowKeyPress, instance));
             }
 
+            boundingBox.on('key', A.bind(instance._onSpacePress, instance), '32');
             instance.after(instance._afterSyncUI, instance, 'syncUI');
             instance.after('typeChange', instance._afterTypeChange);
         },
@@ -498,6 +499,23 @@ A.TabView = A.Component.create({
                     instance.focusTab(tabs[nextIndex].children[0]);
                 }
             }
+        },
+
+        /**
+         * `_onSpacePress` handler that mirrors the enter keypress functionality
+         *
+         * @method _onSpacePress
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onSpacePress: function(event) {
+            event.preventDefault();
+
+            var instance = this,
+                tabs = instance.getTabs()._nodes,
+                currentIndex = instance.getFocusedTabIndex(tabs);
+
+            instance.item(currentIndex).set('selected', 1);
         },
 
         /**
