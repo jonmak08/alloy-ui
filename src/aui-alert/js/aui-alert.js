@@ -40,6 +40,10 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     renderUI: function() {
         this._uiSetCloseable(this.get('closeable'));
+
+        if (this.get('useARIA')) {
+            this._setAriaAttributes();
+        }
     },
 
     /**
@@ -88,6 +92,19 @@ A.Alert = A.Base.create('alert', A.Widget, [
      */
     _onCloseableChange: function(event) {
         this._uiSetCloseable(event.newVal);
+    },
+
+    /**
+     * Update the aria attributes for the 'A.Alert' UI.
+     *
+     * @method _setAriaAttributes
+     * @protected
+     */
+    _setAriaAttributes: function() {
+        var closeableNode = this.get('closeableNode');
+
+        this.plug(A.Plugin.Aria);
+        this.aria.setAttribute('hidden', true, closeableNode);
     },
 
     /**
@@ -170,6 +187,19 @@ A.Alert = A.Base.create('alert', A.Widget, [
         destroyOnHide: {
             validator: A.Lang.isBoolean,
             value: false
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     },
 
