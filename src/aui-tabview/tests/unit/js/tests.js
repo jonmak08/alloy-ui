@@ -101,11 +101,42 @@ YUI.add('aui-tabview-tests', function(Y) {
             Y.Assert.areEqual(1, disabledTabs.length, 'Only one tab marked as disabled is expected.');
             Y.Assert.areEqual(1, tabs.indexOf(disabledTabs[0]),
                 'The disabled tab should be the second one.');
-        }
+        },
+
+        /*
+         * Tests: AUI-1362
+         */
+        'verify set aria-selected attribute on tab when tab is selected': function() {
+            var defaultTab = myTabView.getActiveTab()._node.children[0],
+                firstTab = myTabView.getTabs()._nodes[0],
+                firstTabChild = Y.one(firstTab.children[0]);
+
+            Y.Assert.areEqual(firstTab.getAttribute('aria-selected'), 'false');
+
+            Y.one(firstTab).addClass('focused');
+
+            firstTabChild.simulate('click');
+
+            Y.Assert.areEqual(firstTab.getAttribute('aria-selected'), 'true');
+
+            Y.one(defaultTab).simulate('click');
+        },
+
+        /*
+         * Tests: AUI-1362
+         */
+        'verify space bar keypress properly selects cell': function() {
+            var firstTab = myTabView.getTabs()._nodes[0],
+                firstTabChild = Y.one(firstTab.children[0]);
+
+            firstTabChild.simulate('keydown', {keyCode: 32});
+
+            Y.Assert.areEqual(myTabView.getActiveTab()._node, firstTab);
+        },
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test', 'aui-tabview']
+    requires: ['test', 'aui-tabview', 'node-event-simulate']
 });
