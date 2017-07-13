@@ -446,6 +446,34 @@ var Lang = A.Lang,
                     value: MAX_ALPHA
                 }
             );
+
+            var fieldInput = instance._aContainer.one('input'),
+                valuemax = fieldInput.get('max'),
+                valuemin = fieldInput.get('min'),
+                valuenow = fieldInput.get('value');
+
+            if (instance.get('useARIA')) {
+                instance.plug(A.Plugin.Aria);
+                instance.aria.setAttributes(
+                    [
+                        {
+                            name: 'valuemax',
+                            node: fieldInput,
+                            value: valuemax
+                        },
+                        {
+                            name: 'valuemin',
+                            node: fieldInput,
+                            value: valuemin
+                        },
+                        {
+                            name: 'valuenow',
+                            node: fieldInput,
+                            value: valuenow
+                        }
+                    ]
+                )
+            }
         },
 
         /**

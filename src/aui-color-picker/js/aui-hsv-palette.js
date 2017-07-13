@@ -205,6 +205,13 @@ var AColor = A.Color,
             instance._hsContainerHeight = instance._hsContainer.get('offsetHeight');
 
             this._createSliders();
+
+            if (instance.get('useARIA')) {
+                var paletteInputs = instance.get('contentBox').all('input');
+
+                instance.plug(A.Plugin.Aria);
+                instance.aria.setAttribute('label', CSS_VALUE, paletteInputs);
+            }
         },
 
         /**
@@ -235,6 +242,10 @@ var AColor = A.Color,
 
             if (!instance._paletteContainer.one(SELECTOR_FORM_GROUP_ERROR)) {
                 instance._updateViewFromInput(fieldNode);
+            }
+
+            if (instance.get('useARIA')) {
+                instance.aria.setAttribute('valuenow', value, fieldNode);
             }
         },
 
@@ -1192,7 +1203,35 @@ var AColor = A.Color,
          * @protected
          */
         _setFieldValue: function(fieldNode, value) {
+            var instance = this,
+                fieldInput = fieldNode.one('.' + CSS_VALUE),
+                valuemax = fieldInput.get('max'),
+                valuemin = fieldInput.get('min'),
+                valuenow = fieldInput.get('value');
+
             fieldNode.one('.' + CSS_VALUE).set('value', value);
+
+            if (instance.get('useARIA')) {
+                instance.aria.setAttributes(
+                    [
+                        {
+                            name: 'valuemax',
+                            node: fieldInput,
+                            value: valuemax
+                        },
+                        {
+                            name: 'valuemin',
+                            node: fieldInput,
+                            value: valuemin
+                        },
+                        {
+                            name: 'valuenow',
+                            node: fieldInput,
+                            value: valuenow
+                        }
+                    ]
+                )
+            }
         },
 
         /**
@@ -1636,6 +1675,20 @@ var AColor = A.Color,
                     s: 'S',
                     v: 'V'
                 }
+            },
+
+            /**
+             * Boolean indicating if use of the WAI-ARIA Role and States
+             * should be enabled.
+             *
+             * @attribute useARIA
+             * @default true
+             * @type Boolean
+             */
+            useARIA: {
+                validator: Lang.isBoolean,
+                value: true,
+                writeOnce: 'initOnly'
             }
         },
 
