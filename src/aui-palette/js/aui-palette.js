@@ -79,6 +79,13 @@ var Lang = A.Lang,
             var instance = this;
 
             instance._uiSetItems(instance.get('items'));
+
+            if (instance.get('useARIA')) {
+                instance.plug(A.Plugin.Aria);
+
+                this.aria.setRole('listbox', A.all('.' + CSS_PALETTE_ITEMS_CONTAINER));
+                this.aria.setAttribute('selected', false, A.all('.' + CSS_PALETTE_ITEM));
+            }
         },
 
         /**
@@ -203,6 +210,11 @@ var Lang = A.Lang,
             instance._items = null;
 
             instance._uiSetItems(event.newVal);
+
+            if (instance.get('useARIA')) {
+                instance.aria.setRole('listbox', A.all('.' + CSS_PALETTE_ITEMS_CONTAINER));
+                instance.aria.setAttribute('selected', false, A.all('.' + CSS_PALETTE_ITEM));
+            }
         },
 
         /**
@@ -273,6 +285,11 @@ var Lang = A.Lang,
 
             if (event.src === UI_SRC) {
                 instance.set('selected', event.index);
+            }
+
+            if (instance.get('useARIA')) {
+                instance.aria.setAttribute('selected', false, A.all('.' + CSS_PALETTE_ITEM));
+                instance.aria.setAttribute('selected', true, event.item);
             }
         },
 
@@ -629,6 +646,20 @@ var Lang = A.Lang,
             toggleSelection: {
                 validator: Lang.isBoolean,
                 value: true
+            },
+
+            /**
+             * Boolean indicating if use of the WAI-ARIA Role and States
+             * should be enabled.
+             *
+             * @attribute useARIA
+             * @default true
+             * @type Boolean
+             */
+            useARIA: {
+                validator: Lang.isBoolean,
+                value: true,
+                writeOnce: 'initOnly'
             }
         }
     });

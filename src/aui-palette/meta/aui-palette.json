@@ -1,13 +1,14 @@
 {
     "aui-palette": {
         "requires": [
-            "base-build",
-            "event-hover",
-            "widget",
+            "aui-aria",
             "aui-classnamemanager",
             "aui-base",
             "aui-widget-cssclass",
-            "aui-widget-toggle"
+            "aui-widget-toggle",
+            "base-build",
+            "event-hover",
+            "widget"
         ],
         "skinnable": true
     }
