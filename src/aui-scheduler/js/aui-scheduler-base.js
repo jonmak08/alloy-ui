@@ -44,6 +44,7 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
     CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
 
+    SCHEDULER_CONTAINER = ".scheduler-view-table-row-container",
     TPL_SCHEDULER_CONTROLS = '<div class="col-xs-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row ' + CSS_SCHEDULER_HD + '"></div>',
     TPL_SCHEDULER_ICON_NEXT = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
@@ -593,6 +594,19 @@ var SchedulerBase = A.Component.create({
             writeOnce: 'initOnly'
         },
 
+        focusmanagerDates: {
+            value: {
+                descendants: 'td.scheduler-view-table-colgrid',
+                keys: {
+                    next: 'down:39',
+                    previous: 'down:37'
+                },
+                focusClass: 'focus',
+                circular: false
+            },
+            writeOnce: 'initOnly'
+        },
+
         /**
          * Contains the `Scheduler`'s `SchedulerEventRecorder` instance.
          *
@@ -653,6 +667,18 @@ var SchedulerBase = A.Component.create({
             validator: A.Lang.isBoolean,
             value: true,
             writeOnce: 'initOnly'
+        },
+
+        /**
+         * Stores a trigger.
+         *
+         * @attribute trigger
+         * @type {String}
+         * @writeOnce
+         */
+        trigger: {
+            validator: isString,
+            writeOnce: true
         },
 
         /**
@@ -944,7 +970,7 @@ var SchedulerBase = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            instance._bindDelegate();
+            // instance._bindDelegate();
         },
 
         /**
@@ -1193,6 +1219,8 @@ var SchedulerBase = A.Component.create({
             instance._uiSetActiveView(activeView);
 
             instance._plugFocusManager();
+
+            instance._bindDelegate();
         },
 
         /**
@@ -1203,14 +1231,28 @@ var SchedulerBase = A.Component.create({
          */
         _bindDelegate: function() {
             var instance = this;
+            var trigger = instance.get('trigger');
 
-            instance.controlsNode.delegate('click', instance._onClickPrevIcon, '.' + CSS_SCHEDULER_ICON_PREV,
-                instance);
-            instance.controlsNode.delegate('click', instance._onClickNextIcon, '.' + CSS_SCHEDULER_ICON_NEXT,
-                instance);
+            instance.controlsNode.delegate('click', instance._onClickPrevIcon, '.' + CSS_SCHEDULER_ICON_PREV, instance);
+            instance.controlsNode.delegate('click', instance._onClickNextIcon, '.' + CSS_SCHEDULER_ICON_NEXT, instance);
             instance.controlsNode.delegate('click', instance._onClickToday, '.' + CSS_SCHEDULER_TODAY, instance);
+
+            instance.bodyNode.delegate('key', A.bind('_handleKeyEvent', instance), 'enter', trigger);
         },
 
+        _handleKeyEvent: function(event) {
+            var instance = this;
+
+
+console.log(event);
+
+            if (event.keyCode === 13) {
+
+
+                event.preventDefault();
+            }
+
+        },
         /**
          * Creates the given `SchedulerView`'s trigger `Node`.
          *
@@ -1384,8 +1426,10 @@ var SchedulerBase = A.Component.create({
         _plugFocusManager: function() {
             var instance = this;
 
+
             instance.viewsNode.plug(A.Plugin.NodeFocusManager, this.get('focusmanager'));
             instance.navNode.plug(A.Plugin.NodeFocusManager, this.get('focusmanager'));
+            A.one(SCHEDULER_CONTAINER).plug(A.Plugin.NodeFocusManager, this.get('focusmanagerDates'));
         },
 
         /**
@@ -1471,8 +1515,10 @@ var SchedulerBase = A.Component.create({
 
                 if (activeNav) {
                     instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', false);
+                    instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-selected', false);
                     instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
                     activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', true);
+                    activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-selected', true);
                 }
             }
         },
