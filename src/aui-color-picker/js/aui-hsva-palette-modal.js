@@ -84,6 +84,8 @@ var AWidget = A.Widget,
 
             hsvOptions = instance.get('hsv');
 
+            hsvOptions.useARIA = instance.get('useARIA');
+
             useAlpha = hsvOptions.alpha;
 
             HsvClass = A.HSVPalette;
@@ -147,6 +149,20 @@ var AWidget = A.Widget,
                 getter: '_getSelected',
                 validator: Lang.isString,
                 value: ''
+            },
+
+            /**
+             * Boolean indicating if use of the WAI-ARIA Role and States
+             * should be enabled.
+             *
+             * @attribute useARIA
+             * @default true
+             * @type Boolean
+             */
+            useARIA: {
+                validator: Lang.isBoolean,
+                value: true,
+                writeOnce: 'initOnly'
             }
         },
 

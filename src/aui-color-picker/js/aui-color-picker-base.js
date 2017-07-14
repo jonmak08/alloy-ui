@@ -316,6 +316,7 @@ ColorPickerBase.prototype = {
                         }
                     ]
                 },
+                useARIA: instance.get('useARIA'),
                 zIndex: zIndex
             }).render();
         }
@@ -629,6 +630,8 @@ ColorPickerBase.prototype = {
 
         colorPaletteOptions = instance._getDefaultAttributeValue('colorPalette');
 
+        colorPaletteOptions.useARIA = instance.get('useARIA');
+
         instance._colorPalette = new A.ColorPalette(colorPaletteOptions).render(body);
 
         instance._colorPalette.on('selectedChange', instance._onColorPaletteSelectChange, instance);
@@ -690,6 +693,8 @@ ColorPickerBase.prototype = {
         recentColors = instance._getDefaultAttributeValue('recentColors');
 
         body = instance.getStdModNode(A.WidgetStdMod.BODY);
+
+        recentColors.useARIA = instance.get('useARIA');
 
         recentColorsPalette = new A.ColorPalette(recentColors);
 
@@ -1025,6 +1030,20 @@ ColorPickerBase.ATTRS = {
     triggerEvent: {
         validator: Lang.isString,
         value: 'click'
+    },
+
+    /**
+     * Boolean indicating if use of the WAI-ARIA Role and States
+     * should be enabled.
+     *
+     * @attribute useARIA
+     * @default true
+     * @type Boolean
+     */
+    useARIA: {
+        validator: Lang.isBoolean,
+        value: true,
+        writeOnce: 'initOnly'
     }
 };
 
