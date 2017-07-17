@@ -114,7 +114,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
         instance.rowsContainerNode.on({
             mousedown: A.bind(instance._onMouseDownGrid, instance),
             mousemove: A.bind(instance._onMouseMoveGrid, instance),
-            mouseup: A.bind(instance._onMouseUpGrid, instance)
+            mouseup: A.bind(instance._onMouseUpGrid, instance),
+            keydown: A.bind(instance._onKeyDownGrid, instance),
+            keyup: A.bind(instance._onKeyUpGrid, instance)
         });
 
         instance.after('drag:align', instance._afterDragAlign);
@@ -435,6 +437,73 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             instance.originalDragNode = event.target.get('dragNode');
 
             event.target.set('dragNode', instance.proxyNode);
+        }
+    },
+
+    /**
+     * Handles keydown event.
+     *
+     * @method _onKeyDownGrid
+     */
+    _onKeyDownGrid: function() {
+        if (event.keyCode == 13) {
+            var instance = this;
+            var scheduler = instance.get('scheduler');
+            var recorder = scheduler.get('eventRecorder');
+            var target = event.target;
+            var tableRows = instance.tableRows._nodes;
+            var eventX = target.cellIndex;
+            var eventY;
+
+            for (var i = 0; i < tableRows.length; i++) {
+                if (tableRows[i] == event.path[5]) {
+                    eventY = i;
+                }
+            }
+
+            if (recorder && !scheduler.get('disabled')) {
+
+                instance._recording = true;
+
+                instance._syncCellDimensions();
+
+                instance.lassoStartPosition = instance.lassoLastPosition = [eventX, eventY];
+
+                instance.renderLasso(instance.lassoStartPosition, instance.lassoLastPosition);
+
+                instance.rowsContainerNode.unselectable();
+            }
+        }
+    },
+
+    /**
+     * Handles keyup event.
+     *
+     * @method _onKeyUpGrid
+     */
+    _onKeyUpGrid: function() {
+        if (event.keyCode == 13) {
+            var instance = this;
+
+            instance._onMouseUpGrid();
+            //
+            // if (instance.get('useARIA')) {
+            //     instance.plug(A.Plugin.Aria);
+            //     instance.aria.setAttributes(
+            //         [
+            //             {
+            //                 name: 'selected',
+            //                 node: A.all('.' + CSS_SVT_COLGRID),
+            //                 value: false
+            //             },
+            //             {
+            //                 name: 'selected',
+            //                 node: A.one('.focus'),
+            //                 value: true
+            //             }
+            //         ]
+            //     );
+            // }
         }
     },
 

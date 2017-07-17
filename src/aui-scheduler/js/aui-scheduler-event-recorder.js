@@ -447,10 +447,8 @@ var SchedulerEventRecorder = A.Component.create({
             var scheduler = event.newVal;
             var schedulerBB = scheduler.get('boundingBox');
 
-            schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), '.' +
-                CSS_SCHEDULER_EVENT);
-
-            schedulerBB.on('keypress', instance._onKeySchedulerEvent);
+            schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), '.' + CSS_SCHEDULER_EVENT);
+            schedulerBB.delegate('keyup', A.bind(instance._onKeyUpSchedulerEvent, instance), '.' + CSS_SCHEDULER_EVENT);
         },
 
         /**
@@ -651,33 +649,6 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handles `key` event on the scheduler.
-         *
-         * @method _onKeySchedulerEvent
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onKeySchedulerEvent: function(event) {
-            var instance = this;
-            var evt = event.currentTarget.getData('scheduler-event'); // DEBUG this is undefined for some reason
-
-            if (event.keyCode === 13) {
-console.log('enter key fired!');
-
-                event.preventDefault();
-                if (evt) { // DEBUG this is not being invoked because evt undefined
-                    instance.set('event', evt, {
-                        silent: true
-                    });
-
-                    instance.showPopover(event.currentTarget);
-
-                    instance.get('node').remove();
-
-}            }
-        },
-
-        /**
          * Handles `click` event on the scheduler.
          *
          * @method _onClickSchedulerEvent
@@ -689,6 +660,29 @@ console.log('enter key fired!');
             var evt = event.currentTarget.getData('scheduler-event');
 
             if (evt) {
+                instance.set('event', evt, {
+                    silent: true
+                });
+
+                instance.showPopover(event.currentTarget);
+
+                instance.get('node').remove();
+            }
+        },
+
+
+        /**
+         * Handles `keyup` event on the scheduler.
+         *
+         * @method _onKeyUpSchedulerEvent
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onKeyUpSchedulerEvent: function(event) {
+            var instance = this;
+            var evt = event.currentTarget.getData('scheduler-event');
+
+            if (evt && event.keyCode == 13) {
                 instance.set('event', evt, {
                     silent: true
                 });
