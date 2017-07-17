@@ -486,24 +486,24 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             var instance = this;
 
             instance._onMouseUpGrid();
-            //
-            // if (instance.get('useARIA')) {
-            //     instance.plug(A.Plugin.Aria);
-            //     instance.aria.setAttributes(
-            //         [
-            //             {
-            //                 name: 'selected',
-            //                 node: A.all('.' + CSS_SVT_COLGRID),
-            //                 value: false
-            //             },
-            //             {
-            //                 name: 'selected',
-            //                 node: A.one('.focus'),
-            //                 value: true
-            //             }
-            //         ]
-            //     );
-            // }
+
+            if (instance.get('useARIA')) {
+                instance.plug(A.Plugin.Aria);
+                instance.aria.setAttributes(
+                    [
+                        {
+                            name: 'selected',
+                            node: A.all('.' + CSS_SVT_COLGRID),
+                            value: false
+                        },
+                        {
+                            name: 'selected',
+                            node: A.one('.focus'),
+                            value: true
+                        }
+                    ]
+                );
+            }
         }
     },
 

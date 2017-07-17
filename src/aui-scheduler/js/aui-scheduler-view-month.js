@@ -12,6 +12,8 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_SVT_COLGRID = getCN('scheduler-view', 'table', 'colgrid'),
+    CSS_SVT_CONTAINER = getCN('scheduler-view', 'table', 'container'),
     CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN('scheduler-view-month', 'table', 'data', 'col', 'nomonth'),
     CSS_SVT_TABLE_DATA_COL_TITLE = getCN('scheduler-view', 'table', 'data', 'col', 'title');
 
@@ -173,6 +175,23 @@ var SchedulerMonthView = A.Component.create({
                     colTitleNode.addClass(CSS_SVM_TABLE_DATA_COL_NOMONTH);
                 }
             });
+
+            if (instance.get('useARIA')) {
+                instance.plug(
+                    A.Plugin.Aria,
+                    {
+                        roleName: 'grid',
+                        roleNode: A.one('.' + CSS_SVT_CONTAINER)
+                    }
+                );
+
+                var colGridNodes = instance.tableRowContainer.all('.' + CSS_SVT_COLGRID);
+
+                colGridNodes.each(function(colGridNode) {
+                    instance.aria.setAttribute('selected', false, colGridNode);
+                    instance.aria.setRole('gridcell', colGridNode);
+                });
+            }
         },
 
         /**
