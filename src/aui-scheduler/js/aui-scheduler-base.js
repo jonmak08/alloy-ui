@@ -870,6 +870,19 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
+        },
+
+        /**
          * Contains the node container that holds the nodes to change `Scheduler`'s
          * `activeView`.
          *
@@ -954,9 +967,9 @@ var SchedulerBase = A.Component.create({
                 render: instance._afterRender
             });
 
-            this.publish({
+            instance.publish({
                 plotViewEvents: {
-                    defaultFn: this._defPlotViewEventsFn
+                    defaultFn: instance._defPlotViewEventsFn
                 }
             });
         },
@@ -970,7 +983,7 @@ var SchedulerBase = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            // instance._bindDelegate();
+            instance._bindDelegate();
         },
 
         /**
@@ -1219,8 +1232,6 @@ var SchedulerBase = A.Component.create({
             instance._uiSetActiveView(activeView);
 
             instance._plugFocusManager();
-
-            instance._bindDelegate();
         },
 
         /**
@@ -1236,7 +1247,6 @@ var SchedulerBase = A.Component.create({
             instance.controlsNode.delegate('click', instance._onClickPrevIcon, '.' + CSS_SCHEDULER_ICON_PREV, instance);
             instance.controlsNode.delegate('click', instance._onClickNextIcon, '.' + CSS_SCHEDULER_ICON_NEXT, instance);
             instance.controlsNode.delegate('click', instance._onClickToday, '.' + CSS_SCHEDULER_TODAY, instance);
-
         },
 
         /**
@@ -1499,12 +1509,14 @@ var SchedulerBase = A.Component.create({
                 var activeView = val.get('name'),
                     activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
 
-                if (activeNav) {
-                    instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', false);
-                    instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-selected', false);
+                if (activeNav && instance.get('useARIA')) {
+                    instance.plug(A.Plugin.Aria);
+
+                    instance.aria.setAttribute('pressed', false, instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED));
+                    instance.aria.setAttribute('selected', false, instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED));
                     instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
-                    activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', true);
-                    activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-selected', true);
+                    instance.aria.setAttribute('pressed', true, activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED));
+                    instance.aria.setAttribute('selected', true, activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED));
                 }
             }
         },

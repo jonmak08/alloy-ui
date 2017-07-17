@@ -308,19 +308,6 @@ var SchedulerTableView = A.Component.create({
          */
         tableGridNode: {
             valueFn: '_valueTableGridNode'
-        },
-
-        /**
-        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
-        *
-        * @attribute useARIA
-        * @default true
-        * @type {Boolean}
-        */
-        useARIA: {
-            validator: A.Lang.isBoolean,
-            value: true,
-            writeOnce: 'initOnly'
         }
     },
 

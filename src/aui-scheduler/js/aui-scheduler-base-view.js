@@ -211,16 +211,6 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * Set default value for useAria
-         *
-         * @default true
-         * @type {Boolean}
-         */
-        useARIA: {
-            value: true,
-        },
-
-        /**
          * Indicates whether the calendar is visible.
          *
          * @attribute visible

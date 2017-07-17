@@ -90,6 +90,7 @@
     "aui-scheduler-view-table": {
         "requires": [
             "overlay",
+            "aui-aria",
             "aui-scheduler-base"
         ],
         "skinnable": true
