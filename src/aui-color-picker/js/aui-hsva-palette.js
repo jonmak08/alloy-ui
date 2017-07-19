@@ -430,7 +430,11 @@ var Lang = A.Lang,
          * @protected
          */
         _renderFields: function() {
-            var instance = this;
+            var instance = this,
+                fieldInput,
+                valueMax,
+                valueMin,
+                valueNow;
 
             A.HSVAPalette.superclass._renderFields.apply(instance, arguments);
 
@@ -447,10 +451,10 @@ var Lang = A.Lang,
                 }
             );
 
-            var fieldInput = instance._aContainer.one('input'),
-                valuemax = fieldInput.get('max'),
-                valuemin = fieldInput.get('min'),
-                valuenow = fieldInput.get('value');
+            fieldInput = instance._aContainer.one('input'),
+            valueMax = fieldInput.get('max'),
+            valueMin = fieldInput.get('min'),
+            valueNow = fieldInput.get('value');
 
             if (instance.get('useARIA')) {
                 instance.plug(A.Plugin.Aria);
@@ -459,17 +463,17 @@ var Lang = A.Lang,
                         {
                             name: 'valuemax',
                             node: fieldInput,
-                            value: valuemax
+                            value: valueMax
                         },
                         {
                             name: 'valuemin',
                             node: fieldInput,
-                            value: valuemin
+                            value: valueMin
                         },
                         {
                             name: 'valuenow',
                             node: fieldInput,
-                            value: valuenow
+                            value: valueNow
                         }
                     ]
                 )

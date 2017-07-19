@@ -83,8 +83,9 @@ var Lang = A.Lang,
             if (instance.get('useARIA')) {
                 instance.plug(A.Plugin.Aria);
 
-                this.aria.setRole('listbox', A.all('.' + CSS_PALETTE_ITEMS_CONTAINER));
                 this.aria.setAttribute('selected', false, A.all('.' + CSS_PALETTE_ITEM));
+
+                this.aria.setRole('listbox', A.all('.' + CSS_PALETTE_ITEMS_CONTAINER));
             }
         },
 
@@ -212,8 +213,9 @@ var Lang = A.Lang,
             instance._uiSetItems(event.newVal);
 
             if (instance.get('useARIA')) {
-                instance.aria.setRole('listbox', A.all('.' + CSS_PALETTE_ITEMS_CONTAINER));
                 instance.aria.setAttribute('selected', false, A.all('.' + CSS_PALETTE_ITEM));
+
+                instance.aria.setRole('listbox', A.all('.' + CSS_PALETTE_ITEMS_CONTAINER));
             }
         },
 

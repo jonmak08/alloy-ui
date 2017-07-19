@@ -1205,9 +1205,9 @@ var AColor = A.Color,
         _setFieldValue: function(fieldNode, value) {
             var instance = this,
                 fieldInput = fieldNode.one('.' + CSS_VALUE),
-                valuemax = fieldInput.get('max'),
-                valuemin = fieldInput.get('min'),
-                valuenow = fieldInput.get('value');
+                valueMax = fieldInput.get('max'),
+                valueMin = fieldInput.get('min'),
+                valueNow = fieldInput.get('value');
 
             fieldNode.one('.' + CSS_VALUE).set('value', value);
 
@@ -1217,17 +1217,17 @@ var AColor = A.Color,
                         {
                             name: 'valuemax',
                             node: fieldInput,
-                            value: valuemax
+                            value: valueMax
                         },
                         {
                             name: 'valuemin',
                             node: fieldInput,
-                            value: valuemin
+                            value: valueMin
                         },
                         {
                             name: 'valuenow',
                             node: fieldInput,
-                            value: valuenow
+                            value: valueNow
                         }
                     ]
                 )
@@ -1670,8 +1670,8 @@ var AColor = A.Color,
                     b: 'B',
                     g: 'G',
                     h: 'H',
-                    r: 'R',
                     hex: 'Hex',
+                    r: 'R',
                     s: 'S',
                     v: 'V'
                 }

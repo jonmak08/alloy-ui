@@ -3,10 +3,10 @@
         "requires": [
             "array-extras",
             "aui-palette",
-            "color-base",
-            "node-core",
             "aui-widget-cssclass",
-            "aui-widget-toggle"
+            "aui-widget-toggle",
+            "color-base",
+            "node-core"
         ],
         "skinnable": true
     },
@@ -14,9 +14,9 @@
     "aui-hsv-palette": {
         "requires": [
             "aui-classnamemanager",
+            "aui-event-input",
             "aui-widget-cssclass",
             "aui-widget-toggle",
-            "aui-event-input",
             "base-build",
             "clickable-rail",
             "color-hsv",

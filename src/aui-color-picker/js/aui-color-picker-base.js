@@ -690,9 +690,9 @@ ColorPickerBase.prototype = {
             recentColors,
             recentColorsPalette;
 
-        recentColors = instance._getDefaultAttributeValue('recentColors');
-
         body = instance.getStdModNode(A.WidgetStdMod.BODY);
+
+        recentColors = instance._getDefaultAttributeValue('recentColors');
 
         recentColors.useARIA = instance.get('useARIA');
 
@@ -752,28 +752,16 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * Validates the value of the `trigger` attribute.
-     *
-     * @method _validateTrigger
-     * @param {Node | String} value
-     * @return {Boolean} The result of the validation
-     * @protected
-     */
-    _validateTrigger: function(value) {
-        return (value instanceof A.Node || value instanceof A.NodeList || Lang.isString(value));
-    },
-
-    /**
-     * Set the `trigger` UI.
-     *
-     * @method _uiSetTrigger
-     * @param {Node | String} value
-     * @protected
-     */
+    * Set the `trigger` UI.
+    *
+    * @method _uiSetTrigger
+    * @param {Node | String} value
+    * @protected
+    */
     _uiSetTrigger: function() {
         var instance = this,
-            trigger,
-            triggerEvent;
+        trigger,
+        triggerEvent;
 
         trigger = instance.get('trigger');
         triggerEvent = instance.get('triggerEvent');
@@ -788,6 +776,18 @@ ColorPickerBase.prototype = {
                 trigger.on(triggerEvent, instance._onTriggerInteraction, instance)
             );
         }
+    },
+
+    /**
+     * Validates the value of the `trigger` attribute.
+     *
+     * @method _validateTrigger
+     * @param {Node | String} value
+     * @return {Boolean} The result of the validation
+     * @protected
+     */
+    _validateTrigger: function(value) {
+        return (value instanceof A.Node || value instanceof A.NodeList || Lang.isString(value));
     }
 };
 
