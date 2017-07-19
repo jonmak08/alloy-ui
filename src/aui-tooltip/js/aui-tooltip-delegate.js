@@ -31,8 +31,10 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      * @protected
      */
     initializer: function() {
-        var instance = this,
-            aria = instance.get('useARIA');
+        var aria,
+            instance = this;
+
+        aria = instance.get('useARIA');
 
         instance._eventHandles = [];
         instance.bindUI();
@@ -114,9 +116,11 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      * @protected
      */
     _onUserHideInteraction: function() {
-        var instance = this,
-            aria = instance.get('useARIA'),
+        var aria,
+            instance = this,
             tooltipBoundingBox = instance.getTooltip().get('boundingBox');
+
+        aria = instance.get('useARIA'),
 
         instance.getTooltip().hide();
 
@@ -134,19 +138,19 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      * @protected
      */
     _onUserShowInteraction: function(event) {
-        var instance = this,
-            aria = instance.get('useARIA'),
+        var aria,
+            instance = this,
             tooltipBoundingBox = instance.getTooltip().get('boundingBox'),
-            trigger;
+            trigger = event.currentTarget;
 
-        trigger = event.currentTarget;
+        aria = instance.get('useARIA'),
 
         instance.getTooltip().show().set('trigger', trigger).render();
 
         if (aria) {
             instance.plug(A.Plugin.Aria);
-            instance.aria.setAttribute('hidden', false, tooltipBoundingBox);
             instance.aria.setAttribute('describedby', trigger, tooltipBoundingBox);
+            instance.aria.setAttribute('hidden', false, tooltipBoundingBox);
         }
     },
 
