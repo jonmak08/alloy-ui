@@ -406,6 +406,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _onEventDragStart: function(event) {
         var instance = this;
+
         var draggingEvent = instance.draggingEvent =
             instance.delegate.dd.get('node').getData('scheduler-event');
 
@@ -430,7 +431,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
                 silent: true
             });
 
-            instance.lassoStartPosition = instance.lassoLastPosition = startPosition;
+            instance.lassoStartPosition = startPosition;
+            instance.lassoLastPosition = startPosition;
 
             instance.rowsContainerNode.addClass(CSS_SVT_DRAGGING).unselectable();
 
@@ -444,16 +446,22 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handles keydown event.
      *
      * @method _onKeyDownGrid
+     * @param {EventFacade} event
+     * @protected
      */
     _onKeyDownGrid: function() {
+        var instance = this;
+
+        var scheduler = instance.get('scheduler');
+        var recorder = scheduler.get('eventRecorder');
+
+        var target = event.target;
+
+        var eventX = target.cellIndex;
+        var eventY;
+
         if (event.keyCode == 13) {
-            var instance = this;
-            var scheduler = instance.get('scheduler');
-            var recorder = scheduler.get('eventRecorder');
-            var target = event.target;
             var tableRows = instance.tableRows._nodes;
-            var eventX = target.cellIndex;
-            var eventY;
 
             for (var i = 0; i < tableRows.length; i++) {
                 if (tableRows[i] == event.path[5]) {
@@ -462,12 +470,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             }
 
             if (recorder && !scheduler.get('disabled')) {
-
                 instance._recording = true;
 
                 instance._syncCellDimensions();
 
-                instance.lassoStartPosition = instance.lassoLastPosition = [eventX, eventY];
+                instance.lassoStartPosition = [eventX, eventY];
+                instance.lassoLastPosition = [eventX, eventY];
 
                 instance.renderLasso(instance.lassoStartPosition, instance.lassoLastPosition);
 
@@ -480,11 +488,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handles keyup event.
      *
      * @method _onKeyUpGrid
+     * @param {EventFacade} event
+     * @protected
      */
-    _onKeyUpGrid: function() {
-        if (event.keyCode == 13) {
-            var instance = this;
+    _onKeyUpGrid: function(event) {
+        var instance = this;
 
+        if (event.keyCode == 13) {
             instance._onMouseUpGrid();
         }
     },
@@ -499,6 +509,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     _onMouseDownGrid: function(event) {
         var instance = this;
         var scheduler = instance.get('scheduler');
+
         var recorder = scheduler.get('eventRecorder');
         var target = event.target;
 
@@ -511,7 +522,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
             var eventXY = instance._offsetXY([event.pageX, event.pageY], -1);
 
-            instance.lassoStartPosition = instance.lassoLastPosition = instance._findPosition(eventXY);
+            instance.lassoStartPosition = instance._findPosition(eventXY);
+            instance.lassoLastPosition = instance._findPosition(eventXY);
 
             instance.renderLasso(instance.lassoStartPosition, instance.lassoLastPosition);
 
@@ -549,6 +561,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     _onMouseUpGrid: function() {
         var instance = this;
         var scheduler = instance.get('scheduler');
+
         var recorder = scheduler.get('eventRecorder');
 
         if (recorder && instance._recording && !scheduler.get('disabled')) {
@@ -578,6 +591,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
         if (scheduler.get('useARIA')) {
             instance.plug(A.Plugin.Aria);
+
             instance.aria.setAttributes(
                 [
                     {

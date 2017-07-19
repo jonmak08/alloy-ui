@@ -448,6 +448,7 @@ var SchedulerEventRecorder = A.Component.create({
             var schedulerBB = scheduler.get('boundingBox');
 
             schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), '.' + CSS_SCHEDULER_EVENT);
+
             schedulerBB.delegate('keyup', A.bind(instance._onKeyUpSchedulerEvent, instance), '.' + CSS_SCHEDULER_EVENT);
         },
 

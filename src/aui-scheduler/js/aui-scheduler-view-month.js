@@ -177,6 +177,8 @@ var SchedulerMonthView = A.Component.create({
             });
 
             if (instance.get('useARIA')) {
+                var colGridNodes = instance.tableRowContainer.all('.' + CSS_SVT_COLGRID);
+
                 instance.plug(
                     A.Plugin.Aria,
                     {
@@ -185,10 +187,9 @@ var SchedulerMonthView = A.Component.create({
                     }
                 );
 
-                var colGridNodes = instance.tableRowContainer.all('.' + CSS_SVT_COLGRID);
-
                 colGridNodes.each(function(colGridNode) {
                     instance.aria.setAttribute('selected', false, colGridNode);
+
                     instance.aria.setRole('gridcell', colGridNode);
                 });
             }

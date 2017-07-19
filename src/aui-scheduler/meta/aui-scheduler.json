@@ -1,7 +1,6 @@
 {
     "aui-scheduler": {
         "use": [
-            "event-gestures",
             "aui-scheduler-base",
             "aui-scheduler-event-recorder",
             "aui-scheduler-view-agenda",
@@ -10,41 +9,42 @@
             "aui-scheduler-view-table-dd",
             "aui-scheduler-view-table",
             "aui-scheduler-view-week",
-            "aui-viewport"
+            "aui-viewport",
+            "event-gestures"
         ]
     },
 
     "aui-scheduler-base": {
         "requires": [
-            "model",
-            "model-list",
-            "widget-stdmod",
-            "color-hsl",
             "aui-event-base",
             "aui-node-base",
             "aui-component",
             "aui-datatype",
             "aui-button",
-            "node-focusmanager"
+            "color-hsl",
+            "model",
+            "model-list",
+            "node-focusmanager",
+            "widget-stdmod"
         ],
         "skinnable": true
     },
 
     "aui-scheduler-event-recorder": {
         "requires": [
-            "querystring",
+            "aui-popover",
+            "aui-scheduler-base",
             "io-form",
             "overlay",
-            "aui-scheduler-base",
-            "aui-popover"
+            "querystring"
         ],
         "skinnable": true
     },
 
     "aui-scheduler-touch": {
         "requires": [
-            "base-build",
-            "aui-scheduler"
+            "aui-scheduler",
+            "base-build"
         ],
         "condition": {
             "trigger": "aui-scheduler",
@@ -62,11 +62,11 @@
 
     "aui-scheduler-view-day": {
         "requires": [
-            "dd-drag",
-            "dd-delegate",
-            "dd-drop",
+            "aui-scheduler-view-table",
             "dd-constrain",
-            "aui-scheduler-view-table"
+            "dd-delegate",
+            "dd-drag",
+            "dd-drop"
         ],
         "skinnable": true
     },
@@ -80,18 +80,18 @@
 
     "aui-scheduler-view-table-dd": {
         "requires": [
-            "dd-drag",
+            "aui-scheduler-view-table",
             "dd-delegate",
-            "dd-drop",
-            "aui-scheduler-view-table"
+            "dd-drag",
+            "dd-drop"
         ]
     },
 
     "aui-scheduler-view-table": {
         "requires": [
-            "overlay",
             "aui-aria",
-            "aui-scheduler-base"
+            "aui-scheduler-base",
+            "overlay"
         ],
         "skinnable": true
     },

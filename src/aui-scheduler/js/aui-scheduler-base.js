@@ -42,9 +42,9 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     CSS_ICON = getCN('glyphicon'),
     CSS_ICON_CHEVRON_RIGHT = getCN('glyphicon', 'chevron', 'right'),
     CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
+    CSS_SCHEDULER_CONTAINER = getCN('.scheduler-view-table-row-container'),
     CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
 
-    SCHEDULER_CONTAINER = ".scheduler-view-table-row-container",
     TPL_SCHEDULER_CONTROLS = '<div class="col-xs-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row ' + CSS_SCHEDULER_HD + '"></div>',
     TPL_SCHEDULER_ICON_NEXT = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
@@ -596,13 +596,13 @@ var SchedulerBase = A.Component.create({
 
         focusmanagerDates: {
             value: {
+                circular: false,
                 descendants: 'td.scheduler-view-table-colgrid',
+                focusClass: 'focus',
                 keys: {
                     next: 'down:39',
                     previous: 'down:37'
-                },
-                focusClass: 'focus',
-                circular: false
+                }
             },
             writeOnce: 'initOnly'
         },
@@ -1425,7 +1425,7 @@ var SchedulerBase = A.Component.create({
 
             instance.viewsNode.plug(A.Plugin.NodeFocusManager, this.get('focusmanager'));
             instance.navNode.plug(A.Plugin.NodeFocusManager, this.get('focusmanager'));
-            A.one(SCHEDULER_CONTAINER).plug(A.Plugin.NodeFocusManager, this.get('focusmanagerDates'));
+            A.one(CSS_SCHEDULER_CONTAINER).plug(A.Plugin.NodeFocusManager, this.get('focusmanagerDates'));
         },
 
         /**
@@ -1506,15 +1506,18 @@ var SchedulerBase = A.Component.create({
             var instance = this;
 
             if (val) {
-                var activeView = val.get('name'),
-                    activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
+                var activeView = val.get('name');
+
+                var activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
 
                 if (activeNav && instance.get('useARIA')) {
                     instance.plug(A.Plugin.Aria);
 
                     instance.aria.setAttribute('pressed', false, instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED));
                     instance.aria.setAttribute('selected', false, instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED));
+
                     instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
+
                     instance.aria.setAttribute('pressed', true, activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED));
                     instance.aria.setAttribute('selected', true, activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED));
                 }
