@@ -41,6 +41,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
 
         content.on('click', this._onButtonSwitchClick, this);
         content.on('key', this._onButtonSwitchKey, 'enter,space,37,39', this);
+
         this.after('activatedChange', this._afterActivatedChange, this);
         this.after('innerLabelLeftChange', this._afterInnerLabelLeftChange, this);
         this.after('innerLabelRightChange', this._afterInnerLabelRightChange, this);
@@ -61,6 +62,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
             contentBox = this.get('contentBox');
 
         contentBox.append(content);
+
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
         this._uiSetInnerLabelRight(this.get('innerLabelRight'));
@@ -80,6 +82,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * Fires after `innerLabelLeft` attribute changes.
      *
      * @method _afterInnerLabelLeftChange
+     * @param event
      * @protected
      */
     _afterInnerLabelLeftChange: function(event) {
@@ -90,6 +93,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * Fires after `innerLabelRight` attribute changes.
      *
      * @method _afterInnerLabelRightChange
+     * @param event
      * @protected
      */
     _afterInnerLabelRightChange: function(event) {
@@ -103,7 +107,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * @return {Node}
      * @protected
      */
-    _getInnerCircle: function () {
+    _getInnerCircle: function() {
         if (!this._innerCircle) {
             this._innerCircle = A.Node.create(TPL_INNER_CIRCLE);
             this.get('content').append(this._innerCircle);
@@ -144,10 +148,11 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      * Fires when space, enter, right, or left key is pressed.
      *
      * @method _onButtonSwitchKey
+     * @param event
      * @protected
      */
-    _onButtonSwitchKey: function() {
-        var activated = this.get('activated');
+    _onButtonSwitchKey: function(event) {
+        var activated = this.get('activated'),
             keyCode = event.keyCode;
 
         if ((keyCode == 32 || keyCode == 13) || (keyCode == 39 && !activated) || (keyCode == 37 && activated)) {
@@ -172,22 +177,47 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
                 roleName: role,
                 roleNode: content
             }
-        )
+        );
 
         this.aria.setAttribute('checked', activated, content);
     },
 
     /**
-     * Updates the ui according to the value of the `activated` attribute.
+     * Updates Inner Circle position with CSS classes.
      *
-     * @method _uiSetActivate
+     * @method _setInnerCirclePosition
+     * @param {Boolean} activated
      * @protected
      */
+    _setInnerCirclePosition: function(activated) {
+        var innerCircle = this._getInnerCircle();
+
+        // Clear the styling, as it has higher precedence than css classes.
+        innerCircle.setStyle('left', '');
+
+        if (activated) {
+            innerCircle.removeClass(CSS_BUTTON_SWITCH_LEFT);
+            innerCircle.addClass(CSS_BUTTON_SWITCH_RIGHT);
+        }
+        else {
+            innerCircle.removeClass(CSS_BUTTON_SWITCH_RIGHT);
+            innerCircle.addClass(CSS_BUTTON_SWITCH_LEFT);
+        }
+    },
+
+    /**
+    * Updates the ui according to the value of the `activated` attribute.
+    *
+    * @method _uiSetActivate
+    * @protected
+    */
     _uiSetActivate: function(activated) {
-        var content = this.get('content'),
-            buttonSwitchWidth = content.get('offsetWidth'),
+        var buttonSwitchWidth,
+            content = this.get('content'),
             innerCircle = this._getInnerCircle(),
             innerCircleWidth = innerCircle.get('offsetWidth');
+
+        buttonSwitchWidth = content.get('offsetWidth');
 
         content.one('.' + CSS_INNER_LABEL_RIGHT).toggleClass('hide', activated);
         content.one('.' + CSS_INNER_LABEL_LEFT).toggleClass('hide', !activated);
@@ -214,29 +244,6 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
                     left: INNER_CIRCLE_THRESHOLD + 'px'
                 });
             }
-        }
-    },
-
-    /**
-     * Updates Inner Circle position with CSS classes.
-     *
-     * @method _setInnerCirclePosition
-     * @param {Boolean} activated
-     * @protected
-     */
-    _setInnerCirclePosition: function(activated) {
-        var innerCircle = this._getInnerCircle();
-
-        // Clear the styling, as it has higher precedence than css classes.
-        innerCircle.setStyle('left', '');
-
-        if (activated) {
-            innerCircle.removeClass(CSS_BUTTON_SWITCH_LEFT);
-            innerCircle.addClass(CSS_BUTTON_SWITCH_RIGHT);
-        }
-        else {
-            innerCircle.removeClass(CSS_BUTTON_SWITCH_RIGHT);
-            innerCircle.addClass(CSS_BUTTON_SWITCH_LEFT);
         }
     },
 
@@ -306,8 +313,8 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
          * @type String
          */
         innerLabelLeft: {
-            value: '',
-            validator: A.Lang.isString
+            validator: A.Lang.isString,
+            value: ''
         },
 
         /**
@@ -317,8 +324,8 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
          * @type String
          */
         innerLabelRight: {
-            value: '',
-            validator: A.Lang.isString
+            validator: A.Lang.isString,
+            value: ''
         },
 
         /**
@@ -328,8 +335,8 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
          * @type String
          */
         role: {
-            value: 'switch',
-            validator: A.Lang.isString
+            validator: A.Lang.isString,
+            value: 'switch'
         },
 
         /**
