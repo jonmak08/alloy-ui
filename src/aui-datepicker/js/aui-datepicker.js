@@ -296,10 +296,6 @@ A.mix(DatePickerBase.prototype, {
             selectionMode = calendar.get('selectionMode');
 
         instance._setCalendarToFirstSelectedDate();
-
-        if (instance.get('autoHide') && (selectionMode !== 'multiple')) {
-            instance.hide();
-        }
     },
 
     /**
