@@ -107,6 +107,9 @@ A.mix(DatePickerPopover.prototype, {
             popover.get(BOUNDING_BOX).on(
                 CLICKOUTSIDE, instance._onPopoverClickOutside, instance);
 
+            popover.get(BOUNDING_BOX).on(
+                'keydown', instance._handleEnterKeyPopover, instance);
+
             instance.popover = popover;
         }
 
@@ -133,6 +136,20 @@ A.mix(DatePickerPopover.prototype, {
         var instance = this;
 
         instance.getPopover().show();
+    },
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleEnterKeyPopover
+     */
+    _handleEnterKeyPopover: function(event) {
+        var instance = this;
+
+        if (event.isKey('enter')) {
+
+            instance.hide();
+        }
     },
 
     /**
