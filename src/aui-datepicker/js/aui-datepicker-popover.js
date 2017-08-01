@@ -100,6 +100,9 @@ A.mix(DatePickerPopover.prototype, {
             popover.get('boundingBox').on(
                 'clickoutside', instance._onPopoverClickOutside, instance);
 
+            popover.get(BOUNDING_BOX).on(
+                'keydown', instance._handleKeyEvent, instance);
+
             instance.popover = popover;
         }
 
