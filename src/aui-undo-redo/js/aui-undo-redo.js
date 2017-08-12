@@ -80,6 +80,9 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
     initializer: function() {
         this.clearHistory();
 
+        A.one('doc').on('key', A.bind(this._onRedoKey, this), 'down:89+ctrl');
+        A.one('doc').on('key', A.bind(this._onUndoKey, this), 'down:90+ctrl');
+
         this.publish({
             afterRedo: {},
             afterUndo: {},
@@ -248,6 +251,26 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
         this._pendingActions.shift();
         this._removeStatesBeyondMaxDepth();
         this._runNextPendingAction();
+    },
+
+    /**
+     * Calls redo method on ctrl + y keydown event
+     *
+     * @method _onRedoKey
+     * @return {EventFacade} event
+     */
+    _onRedoKey: function() {
+        this.redo();
+    },
+
+    /**
+     * Calls undo method on ctrl + z keydown event
+     *
+     * @method _onUndoKey
+     * @return {EventFacade} event
+     */
+    _onUndoKey: function() {
+        this.undo();
     },
 
     /**
