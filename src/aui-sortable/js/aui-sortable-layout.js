@@ -235,6 +235,20 @@ var SortableLayout = A.Component.create({
 
                 return A.merge(defaults, val || {});
             }
+        },
+
+        /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -258,8 +272,18 @@ var SortableLayout = A.Component.create({
          */
         initializer: function() {
             var instance = this;
+            var dragNodes = instance.get('dropNodes').getDOM();
 
             instance.bindUI();
+
+            if (instance.get('useARIA')) {
+                dragNodes.forEach(function(node) {
+                    for(var i = 0; i < node.children.length; i++) {
+                        node.children[i].setAttribute('tabindex', '0');
+                        node.children[i].setAttribute('draggable', 'true');
+                    }
+                })
+            }
         },
 
         /**
