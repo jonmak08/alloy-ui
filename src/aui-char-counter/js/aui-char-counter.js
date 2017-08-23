@@ -5,7 +5,10 @@
  */
 
 var L = A.Lang,
-    isNumber = L.isNumber;
+    isNumber = L.isNumber,
+    isString = L.isString;
+
+var REGEX_STR = /\S.+/;
 
     A.Node.DOM_EVENTS.compositionend = 1;
     A.Node.DOM_EVENTS.compositionstart = 1;
@@ -68,6 +71,48 @@ var CharCounter = A.Component.create({
         },
 
         /**
+         * ARIA attribute that describes the reads.
+         *
+         * @attribute live
+         * @default 'polite'
+         * @type {String}
+         */
+        label: {
+            validator: isString,
+            valueFn: function() {
+                var instance = this;
+
+                if (!counter) {
+                    var counter = instance.get('counter');
+                }
+
+                if (counter) {
+                    var labelName = counter._node.nextSibling.toString().match(REGEX_STR),
+                        maxLength = instance.get('maxLength');
+                }
+
+                if (labelName) {
+                    labelName = maxLength + ' ' + labelName;
+                    return labelName;
+                }
+                return maxLength;
+            }
+        },
+
+        /**
+         * ARIA attribute to help assistive technology properly read updates
+         * to the number of characters remaining.
+         *
+         * @attribute live
+         * @default 'polite'
+         * @type {String}
+         */
+        live: {
+            validator: isString,
+            value: 'polite'
+        },
+
+        /**
          * Max number of characters the [input](A.CharCounter.html#attr_input)
          * can have.
          *
@@ -78,10 +123,25 @@ var CharCounter = A.Component.create({
         maxLength: {
             lazyAdd: false,
             setter: function(v) {
-                return this._setMaxLength(v);
+                var instance = this;
+                return instance._setMaxLength(v);
             },
             validator: isNumber,
             value: Infinity
+        },
+
+        /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            value: true,
+            validator: L.isBoolean,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -170,6 +230,21 @@ var CharCounter = A.Component.create({
                 var counterValue = instance.get('maxLength') - instance._getNormalizedLength(value);
 
                 counter.html(counterValue);
+            }
+
+            if (instance.get('useARIA')) {
+                instance.plug(A.Plugin.Aria, {
+                    attributes: {
+                        live: 'live',
+                        label: 'label',
+                        label: 'valuenow', // Allow screen reader to read current number of characters remaining.
+                    },
+                    attributeNode: instance.get('input'),
+                    roleName: 'textbox',
+                    roleNode: instance.get('input')
+                });
+
+                instance._updateAriaLabel(counterValue);
             }
         },
 
@@ -318,7 +393,35 @@ var CharCounter = A.Component.create({
             }
 
             return v;
-        }
+        },
+
+        /**
+         * Updates the aria-label attribute with the remaining characters.
+         *
+         * @method _onInputCompositionStart
+         * @param {EventFacade} event
+         * @protected
+         */
+        _updateAriaLabel: function(counterValue) {
+            var instance = this,
+                input = instance.get('input');
+
+            if (!counter) {
+                var counter = instance.get('counter');
+            }
+
+            if (counter) {
+                var counterText = counter._node.nextSibling.textContent.match(REGEX_STR);
+            }
+            else {
+                var counterText = '';
+            }
+
+            var labelName = counterValue + ' ' + counterText;
+
+            input.setAttribute('aria-valuenow', labelName);
+            input.setAttribute('aria-label', input.get('role') + ' with ' + labelName);
+        },
     }
 });
 
