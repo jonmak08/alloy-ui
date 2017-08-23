@@ -500,6 +500,21 @@ var ImageGallery = A.Component.create({
             }
         },
 
+        _displayLoadedImage: function(image) {
+            var instance = this;
+
+            ImageGallery.superclass._displayLoadedImage.apply(this, arguments);
+
+            var paginationEl = instance.get(PAGINATION_EL);
+
+            instance._uiSetAlign(
+                paginationEl,
+                [
+                    'cc'
+                ]
+            );
+        },
+
         /**
          * Render the <a href="Pagination.html">Pagination</a> with the thumbnails.
          *
