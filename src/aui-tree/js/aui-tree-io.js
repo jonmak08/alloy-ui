@@ -45,7 +45,7 @@ function TreeViewIO(config) {
  * Static property used to define the default attribute
  * configuration for the TreeViewIO.
  *
- * @property TreeViewIO.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -236,7 +236,7 @@ TreeViewIO.prototype = {
     },
 
     /**
-     * Setter for <a href="TreeNodeIO.html#config_io">io</a>.
+     * Setter for [io](A.TreeViewIO.html#attr_io).
      *
      * @method _setIO
      * @protected

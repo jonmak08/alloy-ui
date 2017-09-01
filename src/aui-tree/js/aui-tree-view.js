@@ -55,14 +55,13 @@ var L = A.Lang,
 
 /**
  * A base class for TreeView, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  *
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class A.TreeView
- * @extends A.TreeData
+ * @uses A.TreeData, A.TreeViewPaginator, A.TreeViewIO
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -70,7 +69,7 @@ var TreeView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -80,7 +79,7 @@ var TreeView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeView.
      *
-     * @property TreeView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -352,7 +351,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>mouseEnter</code> the TreeNode.
+         * Fire on `mouseEnter` the TreeNode.
          *
          * @method _onMouseEnterNodeEl
          * @param {EventFacade} event
@@ -368,7 +367,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>mouseLeave</code> the TreeNode.
+         * Fire on `mouseLeave` the TreeNode.
          *
          * @method _onMouseLeaveNodeEl
          * @param {EventFacade} event
@@ -384,7 +383,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>click</code> the TreeNode hitarea.
+         * Fire on `click` the TreeNode hitarea.
          *
          * @method _onClickHitArea
          * @param {EventFacade} event
@@ -454,10 +453,9 @@ var isNumber = L.isNumber,
 
 /**
  * A base class for TreeViewDD, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>DragDrop support for the TreeNodes</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - DragDrop support for the TreeNodes
  *
  * @class A.TreeViewDD
  * @extends A.TreeView
@@ -468,7 +466,7 @@ var TreeViewDD = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeViewDD.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -478,7 +476,7 @@ var TreeViewDD = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeViewDD.
      *
-     * @property TreeViewDD.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -671,7 +669,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the append CSS state on the passed <code>nodeContent</code>.
+         * Set the append CSS state on the passed `nodeContent`.
          *
          * @method _appendState
          * @param {Node} nodeContent
@@ -688,7 +686,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the going down CSS state on the passed <code>nodeContent</code>.
+         * Set the going down CSS state on the passed `nodeContent`.
          *
          * @method _goingDownState
          * @param {Node} nodeContent
@@ -705,7 +703,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the going up CSS state on the passed <code>nodeContent</code>.
+         * Set the going up CSS state on the passed `nodeContent`.
          *
          * @method _goingUpState
          * @param {Node} nodeContent
@@ -722,7 +720,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the reset CSS state on the passed <code>nodeContent</code>.
+         * Set the reset CSS state on the passed `nodeContent`.
          *
          * @method _resetState
          * @param {Node} nodeContent
