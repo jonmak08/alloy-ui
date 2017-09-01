@@ -23,7 +23,7 @@ function WidgetCssClass() {}
  * Static property used to define the default attribute
  * configuration for the Component.
  *
- * @property WidgetCssClass.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -41,7 +41,7 @@ WidgetCssClass.ATTRS = {
  * Static property used to define the default suffix for cssClass attribute value
  * applied on <code>contentBox</code> node.
  *
- * @property WidgetCssClass.CSS_CLASS_CONTENT_SUFFIX
+ * @property CSS_CLASS_CONTENT_SUFFIX
  * @type String
  * @static
  */

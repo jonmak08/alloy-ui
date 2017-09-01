@@ -16,7 +16,6 @@ var Lang = A.Lang,
     Z_INDEX = 'zIndex';
 
 /**
- *
  * A base class for ButtonSearchCancel, providing:
  * <ul>
  *    <li>Adds a button search cancel icon in order to clear the text on inputs
@@ -25,7 +24,7 @@ var Lang = A.Lang,
  * </ul>
  *
  * @class A.ButtonSearchCancel
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -187,6 +186,14 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
                 elementRegion.top + elementRegion.height / 2 - buttonRegion.height / 2 + gutter[1]]);
     }
 }, {
+    /**
+     * Static property used to define the default attribute
+     * configuration for the ButtonSearchCancel.
+     *
+     * @property ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
         /**
          * The container of Toggler Delegate instance.

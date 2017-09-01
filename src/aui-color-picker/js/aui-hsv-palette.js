@@ -142,8 +142,7 @@ var AColor = A.Color,
      * @class A.HSVPalette
      * @extends Widget
      * @uses A.WidgetCssClass, A.WidgetToggle
-     * @param {Object} config Object literal specifying widget configuration
-     *     properties.
+     * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
      */
     HSVPalette = A.Base.create(NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
