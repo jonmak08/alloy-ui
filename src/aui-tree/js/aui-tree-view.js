@@ -323,18 +323,127 @@ var TreeView = A.Component.create({
             var boundingBox = instance.get('boundingBox');
 
             // expand/collapse delegations
-            boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), '.' +
-                CSS_TREE_NODE_CONTENT);
-            boundingBox.delegate('key', A.bind(instance._afterKeyNodeEl, instance), 'down:enter,space',
-             '.' + CSS_TREE_NODE_CONTENT);
+            boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), '.' + CSS_TREE_NODE_CONTENT);
+            boundingBox.delegate('key', A.bind(instance._afterKeyNodeEl, instance), 'down:enter,space', '.' + CSS_TREE_NODE_CONTENT);
             boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_ICON);
             boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_LABEL);
+            // arrow key navigation
+            boundingBox.delegate('key', A.bind(instance._handleArrowKey, instance), '37,38,39,40', '.' + CSS_TREE_NODE_CONTENT);
             // other delegations
             boundingBox.delegate(
                 'mouseenter', A.bind(instance._onMouseEnterNodeEl, instance), '.' + CSS_TREE_NODE_CONTENT);
             boundingBox.delegate(
                 'mouseleave', A.bind(instance._onMouseLeaveNodeEl, instance), '.' + CSS_TREE_NODE_CONTENT);
         },
+
+        /**
+         * Handle arrow key interaction.
+         *
+         * @method _handleArrowKey
+         */
+        _handleArrowKey: function(event) {
+            var instance = this;
+            var currentDOMNode = event.currentTarget.getDOM();
+            var treeNode = instance.getNodeByChild(event.currentTarget);
+
+            var currentCollapsed = currentDOMNode.className.includes('tree-collapsed');
+            var currentExpanded  = currentDOMNode.className.includes('tree-expanded');
+            var currentIsLeaf = currentDOMNode.className.includes('tree-node-leaf');
+            var currentParent = currentDOMNode.parentNode.parentNode;
+            var nextNode = currentDOMNode;
+            var nextParent = currentDOMNode.parentNode.nextSibling;
+            var prevNode = currentDOMNode;
+            var prevParent = currentDOMNode.parentNode.previousSibling;
+
+            event.preventDefault();
+
+            // Up Arrow - select last
+            if (event.keyCode === 38) {
+                if (!currentDOMNode.className.includes('tree-node-leaf')) {
+                    if (prevParent) {
+                        prevNode = prevParent.firstChild.firstChild;
+                    }
+                }
+                else {
+                    if (prevParent) {
+                        prevNode = prevParent.firstChild;
+                    }
+                    else {
+                        prevNode = currentDOMNode.parentNode.parentNode.parentNode.firstChild;
+                    }
+                }
+
+                prevNode.focus();
+            }
+
+            // Down Arrow - select next
+            else if (event.keyCode === 40) {
+                if (!currentIsLeaf) {
+                    if (nextParent) {
+                        nextNode = nextParent.firstChild.firstChild;
+                    }
+                }
+                else {
+                    if (nextParent) {
+                        nextNode = nextParent.firstChild;
+                    }
+                    else {
+
+                        nextNode = currentParent.parentNode.nextSibling.firstChild;
+                    }
+                }
+
+                nextNode.focus();
+            }
+
+            // Left Arrow - select ancestor and collapse
+            else if (event.keyCode === 37) {
+                if (currentExpanded) {
+                    // need to close
+                }
+
+                if (currentIsLeaf) {
+                    currentDOMNode = currentParent.parentNode.firstChild;
+                }
+
+                currentDOMNode.focus();
+                treeNode.set('expanded', false);
+            }
+
+            // Right Arrow - expand current and select first child
+            else if (event.keyCode === 39) {
+                if (currentCollapsed) {
+                    treeNode.set('expanded', true);
+                }
+
+                if (currentDOMNode.nextSibling.firstChild) {
+                    currentDOMNode.nextSibling.firstChild.firstChild.focus();
+                }
+            }
+        },
+
+        /**
+         * Fire on KEY on TreeView
+         *
+         * @method _onKeyNodeEl
+         * @protected
+         */
+         _onKeyNodeEl: function(event) {
+            var treeNode = this.getNodeByChild(event.currentTarget);
+
+            if (treeNode) {
+                if (!treeNode.isSelected()) {
+                    var lastSelected = this.get('lastSelected');
+
+                    // select drag node
+                    if (lastSelected) {
+                        lastSelected.unselect();
+                    }
+
+                    treeNode.select();
+                }
+            }
+         },
 
         /**
          * Fire on click the TreeView.
@@ -353,6 +462,7 @@ var TreeView = A.Component.create({
          * @method _onMouseEnterNodeEl
          * @param {EventFacade} event
          * @protected
+
          */
         _onMouseEnterNodeEl: function(event) {
             var instance = this;
@@ -405,8 +515,10 @@ var TreeView = A.Component.create({
         _toggleTreeContent: function(event) {
             var treeNode = this.getNodeByChild(event.currentTarget);
 
+            event.preventDefault();
+
             if (treeNode) {
-                if (event.target.test('.' + CSS_TREE_HITAREA)) {
+                if (event.target.test('.' + CSS_TREE_HITAREA) || event.target.test('.' + CSS_TREE_NODE_CONTENT)) {
                     treeNode.toggle();
 
                     if (!this.get('selectOnToggle')) {
