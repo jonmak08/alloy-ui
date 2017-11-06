@@ -239,6 +239,7 @@ A.mix(
 			if (iframeDoc && iframeWin.location.href != 'about:blank') {
 				var docEl = iframeDoc.documentElement;
 				var iframeBody = iframeDoc.body;
+				var nestedDialogs = A.one(iframeDoc).all('.aui-dialog');
 
 				if (docEl) {
 					docEl.style.overflowY = HIDDEN;
@@ -254,6 +255,18 @@ A.mix(
 				else {
 					contentHeight = ResizeIframe._getQuirksHeight(iframeWin) || fallbackHeight;
 				}
+
+				nestedDialogs.each(
+					function(node) {
+						var dialogHeight = node.get('offsetHeight');
+						var topHeight = node.get('offsetTop');
+						var totalHeight = dialogHeight + topHeight;
+
+						if (totalHeight > contentHeight) {
+							contentHeight = totalHeight;
+						}
+					}
+				);
 			}
 
 			return contentHeight;

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<title>content</title>
+</head>
+
+<body>
+	<div id="outerDialog"></div>
+
+	<script>
+		AUI().use(
+			'aui-dialog', 'aui-dialog-iframe', 'aui-resize-iframe', 'node',
+			function(A) {
+				var outerDialogContainer = A.one('#outerDialog');
+
+				var dialog = new A.Dialog(
+					{
+						boundingBox: outerDialogContainer,
+						centered: true,
+						destroyOnClose: true,
+						modal: true,
+						width: 500
+					}
+				).plug(
+					A.Plugin.DialogIframe,
+					{
+						uri: 'assets/iframe-contents.html',
+						bindLoadHandler: function() {
+							var instance = this;
+
+							instance.node.on('load', A.bind(instance.fire, instance, 'load'));
+						}
+					}
+				).render();
+
+				setTimeout(function() {
+					var iframe = A.one('.aui-dialog-iframe-node');
+
+					if (iframe) {
+						var height = A.Plugin.ResizeIframe.getContentHeight(iframe);
+						iframe.setStyle('height', height);
+					}
+				}, 1000);
+			}
+		);
+	</script>
+</body>
+</html>
