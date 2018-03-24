@@ -1,3 +1,7 @@
+.hsv-palette-modal-content {
+    width: fit-content;
+}
+
 .hsv-container {
     padding: 5px;
     position: relative;
@@ -6,6 +10,10 @@
 
 .hsv-container.hsv-container-alpha {
     width: 550px;
+}
+
+.hsv-view-container {
+    width: 100%;
 }
 
 .hsv-view-container .form-group {
@@ -23,11 +31,16 @@
 }
 
 .hsv-view-container .form-control-wrapper {
+    display: inline;
     padding: 0;
 }
 
 .hsv-view-container .form-control {
     padding: 3px 5px;
+}
+
+.hsv-palette .hsv-view-container .hsv-value {
+    width: 50px;
 }
 
 .hsv-hs-container, .hsv-image-backdrop {
@@ -37,6 +50,7 @@
 }
 
 .hsv-image-wrapper {
+    display: inline-block;
     padding: 0;
 }
 
@@ -45,6 +59,11 @@
     margin-left: auto;
     margin-right: auto;
     width: 256px;
+}
+
+.hsv-value-container {
+    display: inline-block;
+    vertical-align: top;
 }
 
 .hsv-hs-thumb {
@@ -97,7 +116,7 @@
 }
 
 .hsv-label {
-    display: inline;
+    display: inline-block;
 }
 
 .hsv-label-value-hsv-container,
