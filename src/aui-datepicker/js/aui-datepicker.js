@@ -292,13 +292,23 @@ A.mix(DatePickerBase.prototype, {
      */
     _afterCalendarSelectionChange: function(event) {
         var instance = this,
+            activeInput = instance.get('activeInput'),
             newDates,
             newSelection = event.newSelection,
-            prevDates = instance.getSelectedDates() || [];
+            prevDates = instance.getSelectedDates() || [],
+            valueFormatter = instance.get('valueFormatter');
 
         newDates = newSelection.concat(prevDates);
 
         newDates = A.Array.dedupe(newDates);
+
+        if (newSelection.length === 0) {
+          valueFormatter.call(instance, prevDates);
+
+          if (activeInput) {
+              activeInput.setData('datepickerSelection', prevDates);
+          }
+        }
 
         if (newSelection.length && (newDates.length !== prevDates.length || newSelection.length < prevDates.length)) {
             instance.fire('selectionChange', {
