@@ -898,7 +898,7 @@ var FormValidator = A.Component.create({
                     var message = instance.getFieldErrorMessage(field, error),
                         messageEl = instance.get('messageContainer').addClass(error);
 
-                    container.append(
+                    container.setHTML(
                         messageEl.html(message)
                     );
                 }
