@@ -35,6 +35,10 @@ var Lang = A.Lang,
     TPL_MESSAGE = '<div role="alert"></div>',
     TPL_STACK_ERROR = '<div class="' + [CSS_STACK, CSS_HELP_BLOCK].join(' ') + '"></div>';
 
+if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector;
+}
+
 A.mix(defaults, {
     STRINGS: {
         DEFAULT: 'Please fix {field}.',
@@ -1300,7 +1304,11 @@ var FormValidator = A.Component.create({
         _onFieldInput: function(event) {
             var instance = this;
 
-            instance.validateField(event.target);
+            var skipValidationTargetSelector = instance.get('skipValidationTargetSelector');
+
+            if (!event.relatedTarget || !event.relatedTarget.getDOMNode().matches(skipValidationTargetSelector)) {
+                instance.validateField(event.target);
+            }
         },
 
         /**
